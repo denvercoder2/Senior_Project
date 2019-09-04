@@ -2,8 +2,8 @@
 ## Members: CS499 Fall, 2019
 ---
 * raw0025 (Robert)
-* eec0013
-* jsr0021
+* eec0013 (Alex)
+* jsr0021 (John)
 * sh0121 (Scott)
 ---
 
