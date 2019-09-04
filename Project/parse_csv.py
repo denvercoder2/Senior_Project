@@ -25,6 +25,7 @@ def main():
     Main function setup
     '''
     # This is not dynamic yet, you'll need to change it to your location of the file
+    
     os.chdir("\\Users\River\Desktop\Senior_Project\Project\HelperFiles\Resources for Students\\")
     lines = get_planets("Planets.csv")  
     for line in lines:
