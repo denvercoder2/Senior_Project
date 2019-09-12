@@ -51,6 +51,10 @@ def main():
         if magnitude < 6.0 and magnitude > 0.0:
             adj_mag_list.append(magnitude)
             connected_id = adj_mag_list.index(magnitude)
+    
+    print(connected_id)
+
+    
 
     # sorted_mag = sorted(adj_mag_list)
     # for starID in starId_List:
