@@ -19,6 +19,19 @@ def read_data(filename: str):
 
     return df
 
+def write_CSV(adj_mag_list: list):
+    '''
+    Function will take a list and map a function to each element
+    in said list to write to csv
+    '''
+    headers = []
+    with open("adjusted_magnitude.csv", "w") as outfile:
+        writer = csv.writer(outfile)
+        writer.writerow(headers)
+        # send items to a list of lists to write
+        # each number per row
+        writer.writerows(map(lambda x: [x], adj_mag_list))
+
 
 def main():
     '''
@@ -29,13 +42,21 @@ def main():
     dataFrame = read_data(path) 
     # here we can select any header type and pull it
     mag_list = dataFrame['Mag'].values
+    starId_List = dataFrame['StarID'].values
+    adj_star_list = []
     adj_mag_list = []
 
-    for element in mag_list:
-        if element < 6.0 and element > 0.0:
-            adj_mag_list.append(element)
+
+    for magnitude in mag_list:
+        if magnitude < 6.0 and magnitude > 0.0:
+            adj_mag_list.append(magnitude)
+            connected_id = adj_mag_list.index(magnitude)
+
+    # sorted_mag = sorted(adj_mag_list)
+    # for starID in starId_List:
+
     
-    writeCSV(output, adj_mag_list)
+    write_CSV(adj_mag_list)
 
     
 
