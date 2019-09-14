@@ -8,19 +8,12 @@ def read_xml(xml_file: str):
     tree = etree.parse(xml_file)
     root = tree.getroot()
     for row in root:
-        for item in row:
-            if item.tag == "Mag":
-                if float(item.text) < 6.0 and float(item.text) > 0.0:
-                    print(item.tag, ":",  item.text)
-
-    # print(StarID[0])
-    # here you can grab them all dependent on for loop
-
-    # pull if within magnitude rating
-    # for rate in Magnitude:
-    #     typed_rate = float(rate.text)
-    #     if typed_rate < 6.0 and typed_rate > 0.0:
-    #         print(typed_rate)
+        for items in row:
+            if items.tag == "Mag":
+                if float(items.text) < 6.0 and float(items.text) > 0.0:
+                    print("StarID: ", row[0].text)
+                    print(items.tag, ":",  items.text)
+                    print("----------------")
 
 
 def main():
