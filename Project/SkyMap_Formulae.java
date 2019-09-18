@@ -65,7 +65,7 @@ public class SkyMap_Formulae{
             julianDay = (int)(365.25 * y) + (int)(30.6001 * (m + 1)) + d + 1720994.5 + B;
             return julianDay;
 
-        }
+    }
 
         public double get_TrueAnomoly(double meanAnom,double eccentricity){
           
@@ -78,7 +78,7 @@ public class SkyMap_Formulae{
             double E1 = E;
             E = E1 - (E1 - eccentricity * Math.sin(E1) - meanAnom) /
             (1 - eccentricity * Math.cos(E1));
-            double increment = 1.0E-12;
+            double increment = 1.0E-12; // store for use
             while(Math.abs(E-E1) > increment){
                 E1 = E;
                 E = E1 - (E1 - eccentricity * Math.sin(E1) - meanAnom) /
@@ -93,14 +93,14 @@ public class SkyMap_Formulae{
                 
         }
 
-        // getPosition function needs to be written post class
+        // getPosition mathod needs to be written post class
         // generartion since it takes the planet as an argument
 
     public static void main(String[] args){
         SkyMap_Formulae sky = new SkyMap_Formulae();
         double test_angle = sky.Mod2Pi(365.00);
         System.out.println(test_angle);
-        
+        // (int year, int month, int day, int hour, int minute) as arguments
         double jul = sky.JulianDay(1000, 12, 31, 7, 35);
         System.out.println(jul);
 

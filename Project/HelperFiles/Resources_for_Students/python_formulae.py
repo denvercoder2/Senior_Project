@@ -157,7 +157,7 @@ class Mercury:
 
 myDate = (2019, 9, 13)
 myTime = (10, 49)
-cy = getJulianDay(myDate, myTime) / 36525
+cy = getJulianDay(myDate, myTime) / 365.25
 earth = Earth(cy)
 mercury = Mercury(cy, earth)
 print(mercury.name)
