@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - SkyMap_Formulae",
+            "request": "launch",
+            "mainClass": "SkyMap_Formulae",
+            "projectName": "Senior_Project_35b3d2c1"
+        }
+    ]
+}
