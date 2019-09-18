@@ -36,15 +36,15 @@ public class SkyMap_Formulae{
         Function will return the JulianDay
         given the date and time
         */
-        // double JulianDay;
-        // whatever java's version of a tuple is
+         double JulianDay;
+         // whatever java's version of a tuple is
 
 
-        // return JulianDay;
+         return JulianDay;
     // }
     public static void main(String[] args){
         SkyMap_Formulae sky = new SkyMap_Formulae();
-        double test_angle = sky.Mod2Pi(360.00);
+        double test_angle = sky.Mod2Pi(365.00);
         System.out.println(test_angle);
     }
 }
