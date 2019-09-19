@@ -54,6 +54,7 @@ public class SkyMap_Formulae{
         // may be error prone depending on how it compares index
         for (int k = 0; k < date.length; k++){
             if(date[k] > test_data[k]){
+                System.out.println(date[k]);
                 A = (int)(y/100); // fractions are dropped
                 B = 2 - A + (int)(A/4);
 
@@ -64,7 +65,6 @@ public class SkyMap_Formulae{
         }
             julianDay = (int)(365.25 * y) + (int)(30.6001 * (m + 1)) + d + 1720994.5 + B;
             return julianDay;
-
     }
 
         public double get_TrueAnomoly(double meanAnom,double eccentricity){
