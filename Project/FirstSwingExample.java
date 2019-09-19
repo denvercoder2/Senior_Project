@@ -1,6 +1,9 @@
 import javax.swing.*;  
 
 public class FirstSwingExample {  
+	/*
+	 * I think swing is easier than I thougt
+	 */
     
     public static void main(String[] args) {  
         JFrame f=new JFrame();//creating instance of JFrame  

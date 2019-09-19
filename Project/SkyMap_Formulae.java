@@ -56,7 +56,6 @@ public class SkyMap_Formulae{
             if(date[k] > test_data[k]){
                 A = (int)(y/100); // fractions are dropped
                 B = 2 - A + (int)(A/4);
-
             }
             else{
                 B = 0;
