@@ -3,7 +3,6 @@ SkyMap Formulae in java
 */
 import java.math.*;
 
-
 public class SkyMap_Formulae{
     
     public double Mod2Pi(double angle){
@@ -53,15 +52,15 @@ public class SkyMap_Formulae{
         int B = 0;
         // may be error prone depending on how it compares index
         for (int k = 0; k < date.length; k++){
-            if(date[k] > test_data[k]){
-                System.out.println(date[k]);
-                A = (int)(y/100); // fractions are dropped
-                B = 2 - A + (int)(A/4);
-
-            }
-            else{
-                B = 0;
-            }
+        	for(int j = 0; j < test_data.length; j++) {
+	            if(date[k] < test_data[k]){
+	                A = (int)(y/100); // fractions are dropped
+	                B = 2 - A + (int)(A/4);
+	            }
+	            else{
+	                B = 0;
+	            }
+        	}
         }
             julianDay = (int)(365.25 * y) + (int)(30.6001 * (m + 1)) + d + 1720994.5 + B;
             return julianDay;
@@ -91,32 +90,33 @@ public class SkyMap_Formulae{
             }
             return anomaly;
         }
-    }
     
-        class Earth{
-            SkyMap_Formulae sky = new SkyMap_Formulae();
-        // simple constructor
-            public Earth(double cy){
-                double meanLong = sky.Mod2Pi(Math.toRadians(100.46435 + 129597740.63 * cy)/ 3600);
-                double semiMajorAxis = 1.00000011 - 0.00000005 * cy;
-                double eccentricity = 0.01671022 - 0.00003804 * cy;
-
-                double inclination = Math.toRadians(.00005 - 44.94 * cy / 3600);
-                double perihilion = Math.toRadians(-11.26064 - 18228.25 * cy / 3600);
-
-                double meanAnomally = sky.Mod2Pi(meanLong - eccentricity);
-                double trueAnomally = sky.get_TrueAnomoly(meanAnomally, eccentricity);
+    
+//        class Earth{
+//            SkyMap_Formulae sky = new SkyMap_Formulae();
+//        // simple constructor
+//            public Earth(double cy){
+//                double meanLong = sky.Mod2Pi(Math.toRadians(100.46435 + 129597740.63 * cy)/ 3600);
+//                double semiMajorAxis = 1.00000011 - 0.00000005 * cy;
+//                double eccentricity = 0.01671022 - 0.00003804 * cy;
+//
+//                double inclination = Math.toRadians(.00005 - 44.94 * cy / 3600);
+//                double perihilion = Math.toRadians(-11.26064 - 18228.25 * cy / 3600);
+//
+//                double meanAnomally = sky.Mod2Pi(meanLong - eccentricity);
+//                double trueAnomally = sky.get_TrueAnomoly(meanAnomally, eccentricity);
 
                 // double position = getPosition();
-            }
+//            }
+//        }
 
+     public static void main(String[] args){
+         SkyMap_Formulae sky = new SkyMap_Formulae();
+         double test_angle = sky.Mod2Pi(365.00);
+         System.out.println(test_angle);
+         // (int year, int month, int day, int hour, int minute) as arguments
+         double jul = sky.JulianDay(1000, 12, 31, 7, 35);
+         System.out.println(jul);
 
-    // public static void main(String[] args){
-    //     SkyMap_Formulae sky = new SkyMap_Formulae();
-    //     double test_angle = sky.Mod2Pi(365.00);
-    //     System.out.println(test_angle);
-    //     // (int year, int month, int day, int hour, int minute) as arguments
-    //     double jul = sky.JulianDay(1000, 12, 31, 7, 35);
-    //     System.out.println(jul);
-
-    }
+     		}
+        }
