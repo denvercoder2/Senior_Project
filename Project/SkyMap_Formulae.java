@@ -90,19 +90,33 @@ public class SkyMap_Formulae{
                 anomaly = anomaly + (2 * Math.PI);
             }
             return anomaly;
-                
         }
+    }
+    
+        class Earth{
+            SkyMap_Formulae sky = new SkyMap_Formulae();
+        // simple constructor
+            public Earth(double cy){
+                double meanLong = sky.Mod2Pi(Math.toRadians(100.46435 + 129597740.63 * cy)/ 3600);
+                double semiMajorAxis = 1.00000011 - 0.00000005 * cy;
+                double eccentricity = 0.01671022 - 0.00003804 * cy;
 
-        // getPosition mathod needs to be written post class
-        // generartion since it takes the planet as an argument
+                double inclination = Math.toRadians(.00005 - 44.94 * cy / 3600);
+                double perihilion = Math.toRadians(-11.26064 - 18228.25 * cy / 3600);
 
-    public static void main(String[] args){
-        SkyMap_Formulae sky = new SkyMap_Formulae();
-        double test_angle = sky.Mod2Pi(365.00);
-        System.out.println(test_angle);
-        // (int year, int month, int day, int hour, int minute) as arguments
-        double jul = sky.JulianDay(1000, 12, 31, 7, 35);
-        System.out.println(jul);
+                double meanAnomally = sky.Mod2Pi(meanLong - eccentricity);
+                double trueAnomally = sky.get_TrueAnomoly(meanAnomally, eccentricity);
+
+                // double position = getPosition();
+            }
+
+
+    // public static void main(String[] args){
+    //     SkyMap_Formulae sky = new SkyMap_Formulae();
+    //     double test_angle = sky.Mod2Pi(365.00);
+    //     System.out.println(test_angle);
+    //     // (int year, int month, int day, int hour, int minute) as arguments
+    //     double jul = sky.JulianDay(1000, 12, 31, 7, 35);
+    //     System.out.println(jul);
 
     }
-}
