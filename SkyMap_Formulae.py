@@ -155,11 +155,16 @@ class Mercury:
         return dec
 
 
-myDate = (2019, 9, 13)
-myTime = (10, 49)
-cy = getJulianDay(myDate, myTime) / 36525
-earth = Earth(cy)
-mercury = Mercury(cy, earth)
-print(mercury.name)
-print('RA -  hours, minutes, seconds:   ',mercury.rightAscension)
-print('Dec - degrees, minutes, seconds: ',mercury.declination)
+#myDate = (1990,4,19)
+myDate = (2008,1,5)
+myTime = (8,0)
+myJD = getJulianDay(myDate, myTime)
+print(myJD)
+
+# myTime = (10, 49)
+# cy = getJulianDay(myDate, myTime) / 36525
+# earth = Earth(cy)
+# mercury = Mercury(cy, earth)
+# print(mercury.name)
+# print('RA -  hours, minutes, seconds:   ',mercury.rightAscension)
+# print('Dec - degrees, minutes, seconds: ',mercury.declination)

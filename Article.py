@@ -63,10 +63,14 @@ def eclipticCoordinates(plot):
     xeclip, yeclip, zeclip = math.degrees(xeclip),math.degrees(yeclip),math.degrees(zeclip)
     return round(xeclip,4), round(yeclip,4), round(zeclip,4)
 
-def julianDay(date):
+def getJD(date):
     y,m,D = date
-    d = 367*y - 7 * ( y + (m+9)//12 ) // 4 - 3 * ( ( y + (m-9)//7 ) // 100 + 1 ) // 4 + 275*m//9 + D - 730515
+    d = 367*y - 7 * ( y + (m+9)//12 ) // 4 - 3 * ( ( y + (m-9)//7 ) // 100 + 1 ) //\
+         4 + 275*m//9 + D - 730515
     return d
+
+def getUT(time):
+    hr, mn = time
 
 def rev(x):
     return  x - math.floor(x/360.0)*360.0
@@ -81,13 +85,45 @@ class Sun():
             self.M = rev(self.M)
         self.L = self.w + self.M                # mean longitude
         if (self.L < 0) or (self.L > 360):
-            self.L = rev(self.L)
+            self.L = rev(self.L)   
         self.oblecl = 23.4393 - 3.563E-7 * d
         self.E = self.M + (180/math.pi) * self.e * math.sin(math.radians(self.M)) * \
             (1 + self.e * math.cos(math.radians(self.M)))
 
+    def computeLocation(self):
+        x = math.cos(math.radians(self.E)) - self.e
+        y = math.sin(math.radians(self.E)) * math.sqrt(1 - pow(self.e,2))
+
+        r = math.sqrt(x*x + y*y)
+        v = math.degrees(math.atan2(y,x))
+        lon = v + self.w
+        lon = rev(lon)
+
+        x = r * math.cos(math.radians(lon))
+        y = r * math.sin(math.radians(lon))
+        z = 0.0
+        temp = (x,y,z)
+        temp = equatorialCoordinates(temp)
+        temp = sphericalCoordinates(temp)
+
+        ra, dec, r = temp
+        hr = int(ra/15)
+        mn = int(((ra/15)-hr)*60)
+        sc = int(((((ra/15)-hr)*60)-mn)*60)
+        ra = hr,mn,sc
+
+        deg = int(dec)
+        mn = int((dec - deg) * 60.0)
+        sc = int((((dec - deg) * 60.0) - mn) * 60.0)
+        dec = deg,mn,sc
+
+        print('ra:  ', ra)
+        print('dec: ', dec)
+        print('r:   ', r)
+
     def show(self):
-        return round(self.w), self.a, self.e, self.M, self.L, self.E
+        return round(self.w,4), round(self.a,4), round(self.e,4),\
+             round(self.M,4), round(self.L,4), round(self.E,4)
 
 def foo():
     sol_ra, sol_dec, sol_dis = 90, 0, 1
@@ -100,13 +136,11 @@ def foo():
     new = sphericalCoordinates(new)
     print(new)
 
-myDate = (1990,4,19)
-myJD = julianDay(myDate)
+    # myDate = (1990,4,19)
+myDate = (2008,1,5)
+myJD = getJD(myDate)
+print(myJD)
 sol = Sun(myJD)
+sol.computeLocation()
 # print(sol.show())
 # foo()
-
-x = math.cos(math.radians(sol.E)) - sol.e
-y = math.sin(math.radians(sol.E)) * math.sqrt(1 - pow(sol.e,2))
-temp = x,y,0
-print(sphericalCoordinates(temp))
