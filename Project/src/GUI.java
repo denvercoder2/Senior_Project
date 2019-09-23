@@ -32,6 +32,18 @@ public class GUI extends JFrame {
 	private JTextField longTextField;
 	private JLabel minutes;
 	private JTextField minTextField;
+	
+	private int dayInput;
+	private int yearInput;
+	private int monthInput;
+	private int hourInput;
+	private int minuteInput;
+	private double longInput;
+	private double latInput;
+	private double minInput;
+	
+	InputUtils utils;
+	
 
 	/**
 	 * Launch the application.
@@ -49,6 +61,10 @@ public class GUI extends JFrame {
 		});
 	}
 
+	public Boolean checkValues() {
+		return true;
+	}
+	
 	/**
 	 * Create the frame.
 	 */
@@ -172,7 +188,20 @@ public class GUI extends JFrame {
 		JButton applyButton = new JButton("Apply");
 		applyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				//if(checkValues()) {
+					dayInput = Integer.valueOf(dayTextField.getText());
+					monthInput = Integer.valueOf(monthTextField.getText());
+					yearInput = Integer.valueOf(yearTextField.getText());
+					hourInput = Integer.valueOf(hoursTextField.getText());
+					minuteInput = Integer.valueOf(minutesTextField.getText());
+					
+					longInput = Double.valueOf(longTextField.getText());
+					latInput = Double.valueOf(latTextField.getText());
+					minInput = Double.valueOf(minTextField.getText());
+					
+					utils.sendInputs(monthInput, dayInput, yearInput, hourInput, minuteInput, latInput, longInput, minInput);
+				//}
+					
 			}
 		});
 		applyButton.setFont(new Font("Tahoma", Font.BOLD, 34));
@@ -195,4 +224,5 @@ public class GUI extends JFrame {
 		labels.setBounds(2000, 279, 429, 40);
 		mainGUI.add(labels);
 	}
+	
 }
