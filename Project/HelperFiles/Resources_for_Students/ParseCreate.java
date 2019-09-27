@@ -16,7 +16,7 @@ public class ParseCreate{
 
     public static void main(String[] args){
         try{
-            File xml_file = new File (Filename);
+            File xml_file = new File ("stars.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(xml_file);
@@ -31,13 +31,13 @@ public class ParseCreate{
             for (int j = 0; j < edge; j++){
                 NodeList nList = doc.getElementsByTagName("row-" + String.valueOf(j));
                            
-            System.out.println("----------------------------");
+            // System.out.println("----------------------------");
         
             for (int counter = 0; counter < nList.getLength(); counter++) {
         
                 Node nNode = nList.item(counter);
                         
-                System.out.println("\nCurrent Index in rows :" + nNode.getNodeName());
+                // System.out.println("\nCurrent Index in rows :" + nNode.getNodeName());
                 String[] templates;
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     
@@ -61,8 +61,23 @@ public class ParseCreate{
                     String ColorIndex = eElement.getElementsByTagName("ColorIndex").item(0).getTextContent();
 
                     // Printing them out to check
-                    System.out.println("StarID: " + StarID);
-                    System.out.println("Magnitude: " + Magnitude);
+                    if(Double.valueOf(Magnitude) < 6.0 && Double.valueOf(Magnitude) > 0.0){
+                        System.out.println("===========================");
+                        System.out.println("StarID: " + StarID);
+                        System.out.println("Hip: " + Hip);
+                        System.out.println("HD: " + HD);
+                        System.out.println("Gliese: " + Gliese);
+                        System.out.println("BayerFlamsteed: " + BayerFlamsteed);
+                        System.out.println("ProperName: " + ProperName);
+                        System.out.println("RA: " + RA);
+                        System.out.println("Dec: " + Dec);
+                        System.out.println("Distance: " + Distance);
+                        System.out.println("Magnitude: " + Magnitude);
+                        System.out.println("AbsMag: " + AbsMag);
+                        System.out.println("Spectrum: " + Spectrum);
+                        System.out.println("ColorIndex: " + ColorIndex);
+                        System.out.println("===========================");
+                        }
                     }
                 }
             }
