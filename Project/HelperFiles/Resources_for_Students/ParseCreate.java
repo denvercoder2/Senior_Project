@@ -1,6 +1,8 @@
 // Placement for the java parsing program
 // Imports
 import java.io.*;
+import java.util.ArrayList;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -13,34 +15,28 @@ import org.xml.sax.SAXException;
 
 public class ParseCreate{
 
-
-    public static void main(String[] args){
+    public static ArrayList<String> stars (String filename){
+        ArrayList<String> templates = new ArrayList<>();
         try{
-            File xml_file = new File ("stars.xml");
+            File xml_file = new File (filename);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(xml_file);
-                    
             doc.getDocumentElement().normalize();
-        
             System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
-            
             // the total size of xml (reduction already in place)
-            
             int edge = 31858;
             for (int j = 0; j < edge; j++){
                 NodeList nList = doc.getElementsByTagName("row-" + String.valueOf(j));
                            
-            // System.out.println("----------------------------");
         
             for (int counter = 0; counter < nList.getLength(); counter++) {
         
                 Node nNode = nList.item(counter);
                         
                 // System.out.println("\nCurrent Index in rows :" + nNode.getNodeName());
-                String[] templates;
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                    
+        
                     // probably want to return these as index of some string array
                     // maybe have a function to convert each to correct type
                     Element eElement = (Element) nNode;
@@ -60,31 +56,41 @@ public class ParseCreate{
                     String Spectrum = eElement.getElementsByTagName("Spectrum").item(0).getTextContent();
                     String ColorIndex = eElement.getElementsByTagName("ColorIndex").item(0).getTextContent();
 
+                    
                     // Printing them out to check
                     if(Double.valueOf(Magnitude) < 6.0 && Double.valueOf(Magnitude) > 0.0){
-                        System.out.println("===========================");
-                        System.out.println("StarID: " + StarID);
-                        System.out.println("Hip: " + Hip);
-                        System.out.println("HD: " + HD);
-                        System.out.println("Gliese: " + Gliese);
-                        System.out.println("BayerFlamsteed: " + BayerFlamsteed);
-                        System.out.println("ProperName: " + ProperName);
-                        System.out.println("RA: " + RA);
-                        System.out.println("Dec: " + Dec);
-                        System.out.println("Distance: " + Distance);
-                        System.out.println("Magnitude: " + Magnitude);
-                        System.out.println("AbsMag: " + AbsMag);
-                        System.out.println("Spectrum: " + Spectrum);
-                        System.out.println("ColorIndex: " + ColorIndex);
-                        System.out.println("===========================");
+                        templates.add(StarID);
+                        templates.add(Hip);
+                        templates.add(HD);
+                        templates.add(HR);
+                        templates.add(Gliese);
+                        templates.add(BayerFlamsteed);
+                        templates.add(ProperName);
+                        templates.add(RA);
+                        templates.add(Dec);
+                        templates.add(Distance);
+                        templates.add(Magnitude);
+                        templates.add(AbsMag);
+                        templates.add(Spectrum);
+                        templates.add(ColorIndex);
                         }
                     }
                 }
             }
-        
-                } catch (Exception e) {
-                e.printStackTrace();
-                }
         }
+        
+            
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        return templates;
     }
+
+
+    public static void main(String[] args){
+        ArrayList<String> star = stars("stars.xml");
+        System.out.println(star.get(0));
+
+    }
+}
 
