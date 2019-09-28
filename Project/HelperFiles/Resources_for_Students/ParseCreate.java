@@ -15,6 +15,7 @@ import org.xml.sax.SAXException;
 
 
 public class ParseCreate{
+    
 
     public static class Star{
         private String starId;
@@ -133,7 +134,6 @@ public class ParseCreate{
         }
     }
 
-
     // function to parse and grab the stars
     public static ArrayList<String> stars (String filename){
         Star star = new Star();
@@ -148,12 +148,14 @@ public class ParseCreate{
             // the total size of xml (reduction already in place)
             int edge = 31858;
             for (int j = 0; j < edge; j++){
+                // this is to iterate through all rows since they change at every child node value
                 NodeList nList = doc.getElementsByTagName("row-" + String.valueOf(j));
-            
-        
+
+                // its adding every occurance to one list
+                // I want to fix it where every star is its own array
             for (int counter = 0; counter < nList.getLength(); counter++) {
                 Node nNode = nList.item(counter);
-                        
+            
                 // System.out.println("\nCurrent Index in rows :" + nNode.getNodeName());
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
         
@@ -176,6 +178,7 @@ public class ParseCreate{
                     String Spectrum = eElement.getElementsByTagName("Spectrum").item(0).getTextContent();
                     String ColorIndex = eElement.getElementsByTagName("ColorIndex").item(0).getTextContent();
                     
+                
                     // assigning to attributes of star class
                     star.starId = StarID;
                     star.Hip = Hip;
@@ -195,6 +198,7 @@ public class ParseCreate{
 
                     
                     // Adding them to the template array
+                    // we only want attributes of the stars under 6 magnitude
                     if(Double.valueOf(Magnitude) < 6.0 && Double.valueOf(Magnitude) > 0.0){
                         templates.add(StarID);
                         templates.add(Hip);
@@ -221,9 +225,31 @@ public class ParseCreate{
         return templates;
     }
 
+
+/*
+Special note:
+Items in list are mapped to following index:
+
+        starId = stars[0]
+        Hip = stars[1]
+        HD = stars[2]
+        HR = stars[3]
+        Gliese = stars[4]
+        BayerFlamsteed = stars[5]
+        ProperName = stars[6]
+        RA = stars[6]
+        Dec = stars[7]
+        Distance = stars[8]
+        Magnitude = stars[9]
+        AbsMag = stars[10]
+        Spectrum = stars[11]
+        ColorIndex stars[12]
+
+*/
     public static void main(String[] args){
         ArrayList<String> star = stars("stars.xml");
+        // get certain element in list using the star.get(index) function
         System.out.println(star.get(0));
     }
-}
 
+}
