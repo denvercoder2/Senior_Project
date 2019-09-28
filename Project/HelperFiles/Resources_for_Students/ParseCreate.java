@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -15,9 +16,23 @@ import org.xml.sax.SAXException;
 
 public class ParseCreate{
 
-    public class Star{
+    public static class Star{
         private String starId;
+        private String Hip;
+        private String HD;
+        private String HR;
+        private String Gliese;
+        private String BayerFlamsteed;
+        private String ProperName;
+        private String RA;
+        private String Dec;
+        private String Distance;
+        private String Magnitude;
+        private String AbsMag;
+        private String Spectrum;
+        private String ColorIndex;
 
+        // starID constructor
         public void setStarID(String starID){
             this.starId = starID;
         }
@@ -25,8 +40,101 @@ public class ParseCreate{
         public String getStarID(){
             return this.starId;
         }
+        // Hip constructor
+        public void setHip(String Hip){
+            this.Hip = Hip;
+        }
+        public String getHip(){
+            return this.Hip;
+        }
+        // HD constructor
+        public void setHD(String HD){
+            this.HD = HD;
+        }
+        public String getHD(){
+            return this.HD;
+        }
+        // HR constructor
+        public void setHR(String HR){
+            this.HR = HR;
+        }
+        public String getHR(){
+            return this.HR;
+        }
+        // Gleise constructor
+        public void setGliese(String Gliese){
+            this.Gliese = Gliese;
+        }
+        public String getGliese(){
+            return this.Gliese;
+        }
+        // BayerFlamsteed constructor
+        public void setBayerFlamsteed(String BayerFlamsteed){
+            this.BayerFlamsteed = BayerFlamsteed;
+        }
+        public String getBayerFlamsteed(){
+            return this.BayerFlamsteed;
+        }
+        // Proper name constructor
+        public void setProperName(String ProperName){
+            this.ProperName = ProperName;
+        }
+        public String getProperName(){
+            return this.ProperName;
+        }
+        // RA constructor
+        public void setRA(String RA){
+            this.RA = RA;
+        }
+        public String getRA(){
+            return this.RA;
+        }
+        // Dec constructor
+        public void setDec(String Dec){
+            this.Dec = Dec;
+        }
+        public String getDec(){
+            return this.Dec;
+        }
+        // Distance constructor
+        public void setDistance(String Distance){
+            this.Distance = Distance;
+        }
+        public String getDistance(){
+            return this.Distance;
+        }
+        // Magnitude constructor
+        public void setMagnitude(String Magnitude){
+            this.Magnitude = Magnitude;
+        }
+        public String getMagnitude(){
+            return this.Magnitude;
+        }
+        // AbsMag constructor
+        public void setAbsMag(String AbsMag){
+            this.AbsMag = AbsMag;
+        }
+        public String getAbsMag(){
+            return this.AbsMag;
+        }
+        // Spectrum constructor
+        public void setSpectrum(String Spectrum){
+            this.Spectrum = Spectrum;
+        }
+        public String getSpectrum(){
+            return this.Spectrum;
+        }
+        // ColorIndex constructor
+        public void setColorIndex(String ColorIndex){
+            this.ColorIndex = ColorIndex;
+        }
+        public String getColorIndex(){
+            return this.ColorIndex;
+        }
     }
 
+
+    // function to parse and grab the stars
     public static ArrayList<String> stars (String filename){
         Star star = new Star();
         ArrayList<String> templates = new ArrayList<>();
@@ -41,10 +149,9 @@ public class ParseCreate{
             int edge = 31858;
             for (int j = 0; j < edge; j++){
                 NodeList nList = doc.getElementsByTagName("row-" + String.valueOf(j));
-                           
+            
         
             for (int counter = 0; counter < nList.getLength(); counter++) {
-        
                 Node nNode = nList.item(counter);
                         
                 // System.out.println("\nCurrent Index in rows :" + nNode.getNodeName());
@@ -68,9 +175,26 @@ public class ParseCreate{
                     String AbsMag = eElement.getElementsByTagName("AbsMag").item(0).getTextContent();
                     String Spectrum = eElement.getElementsByTagName("Spectrum").item(0).getTextContent();
                     String ColorIndex = eElement.getElementsByTagName("ColorIndex").item(0).getTextContent();
+                    
+                    // assigning to attributes of star class
+                    star.starId = StarID;
+                    star.Hip = Hip;
+                    star.HD = HD;
+                    star.HR = HR;
+                    star.Gliese = Gliese;
+                    star.BayerFlamsteed = BayerFlamsteed;
+                    star.ProperName = ProperName;
+                    star.RA = RA;
+                    star.Dec = Dec;
+                    star.Distance = Distance;
+                    star.Magnitude = Magnitude;
+                    star.AbsMag = AbsMag;
+                    star.Spectrum = Spectrum;
+                    star.ColorIndex = ColorIndex;
+
 
                     
-                    // Printing them out to check
+                    // Adding them to the template array
                     if(Double.valueOf(Magnitude) < 6.0 && Double.valueOf(Magnitude) > 0.0){
                         templates.add(StarID);
                         templates.add(Hip);
@@ -96,7 +220,6 @@ public class ParseCreate{
         }
         return templates;
     }
-
 
     public static void main(String[] args){
         ArrayList<String> star = stars("stars.xml");
