@@ -147,10 +147,11 @@ public class ParseCreate{
             System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
             // the total size of xml (reduction already in place)
             int edge = 31858;
+            NodeList nList;
             for (int j = 0; j < edge; j++){
                 // this is to iterate through all rows since they change at every child node value
-                NodeList nList = doc.getElementsByTagName("row-" + String.valueOf(j));
-
+                nList = doc.getElementsByTagName("row-" + String.valueOf(j));
+            
                 // its adding every occurance to one list
                 // I want to fix it where every star is its own array
             for (int counter = 0; counter < nList.getLength(); counter++) {
