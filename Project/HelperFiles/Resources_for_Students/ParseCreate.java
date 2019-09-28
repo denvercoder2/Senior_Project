@@ -15,7 +15,20 @@ import org.xml.sax.SAXException;
 
 public class ParseCreate{
 
+    public class Star{
+        private String starId;
+
+        public void setStarID(String starID){
+            this.starId = starID;
+        }
+
+        public String getStarID(){
+            return this.starId;
+        }
+    }
+
     public static ArrayList<String> stars (String filename){
+        Star star = new Star();
         ArrayList<String> templates = new ArrayList<>();
         try{
             File xml_file = new File (filename);
@@ -77,12 +90,10 @@ public class ParseCreate{
                     }
                 }
             }
+        }    
+        catch (Exception e) {
+            e.printStackTrace();
         }
-        
-            
-            catch (Exception e) {
-                e.printStackTrace();
-            }
         return templates;
     }
 
@@ -90,7 +101,6 @@ public class ParseCreate{
     public static void main(String[] args){
         ArrayList<String> star = stars("stars.xml");
         System.out.println(star.get(0));
-
     }
 }
 
