@@ -63,22 +63,6 @@ def eclipticCoordinates(plot):
     xeclip, yeclip, zeclip = math.degrees(xeclip),math.degrees(yeclip),math.degrees(zeclip)
     return round(xeclip,4), round(yeclip,4), round(zeclip,4)
 
-def getJD(date):
-    y,m,D = date
-    d = 367*y - 7 * ( y + (m+9)//12 ) // 4 - 3 * ( ( y + (m-9)//7 ) // 100 + 1 ) //\
-         4 + 275*m//9 + D - 730515
-    return d
-
-def getST(jd):
-    jd_0 = int(jd-1) + 0.5
-    h = (jd - jd_0)*24
-    jd_i = jd_0 + h/24
-
-    d = jd - 2451545.0
-    d_0 = jd_0 - 2451545.0
-    t = d/36525
-    gmst = 6.697374558 + (0.06570982441908 * d_0) + (1.00273790935 * h) + (0.000026 * t*t)
-
 def rev(x):
     return  x - math.floor(x/360.0)*360.0
 
@@ -143,11 +127,85 @@ def foo():
     new = sphericalCoordinates(new)
     print(new)
 
-# myDate = (1990,4,19)
-myDate = (2008,1,5)
-myJD = getJD(myDate)
-print(myJD)
-sol = Sun(myJD)
-sol.computeLocation()
-# print(sol.show())
-# foo()
+def getUT(place, time):
+    '''get Universal Time'''
+    lat, lon = place
+    hr, mn = time
+    offset = int(lon/15)        #offset between local timezone and Greenwich
+    ut = hr + (mn/60) + offset #universal time
+    return ut
+
+def getGCD(date, ut):
+    '''get Greenwich Calendar Date'''
+    yr, mon, day = date
+    gcday = day + (ut/24) #Greenwich calendar day
+    gcdate = yr, mon, gcday
+    return gcdate
+
+def getJD(gcdate):
+    '''get Julian Date'''
+    yr, mon, day = gcdate
+    if(mon > 2):
+        y = yr
+        m = mon
+    else:
+        y = yr - 1
+        m = mon + 12
+    
+    if gcdate > (1582, 10, 15):
+        A = int(y/100) # Fractions are dropped. They are NOT rounded.
+        B = 2 - A + int(A/4) 
+    else:
+        B = 0
+
+    C = int((365.25*y)-0.75) if (y<0) else int(365.25 * y)
+    D = int(30.6001 * (m + 1))
+
+    jd = B + C + D + day + 1720994.5
+    return jd
+
+def getCD(jd):
+    jd += 0.5
+    I = int(jd)
+    F = jd - int(jd)
+
+    if I > 2299160:
+        A = int((I-1867216.25)/36524.25)
+        B = I + A - int(A/4) + 1
+    else:
+        B = I
+    
+    C = B + 1524
+    D = int((C-122.1)/365.25)
+    E = int(365.25*D)
+    G = int((C-E)/30.6001)
+    day = C - E + F - int(30.6001*G)
+    mon = G-1 if (G<13.5) else G-13
+    yr = D-4716 if (mon>2.5) else D-4715
+
+    date = yr, mon, day
+    return date
+    
+def LCTtoUT(place, date, time):
+    ut = getUT(place, time)
+    gcdate = getGCD(date, ut)
+    jd = getJD(gcdate)
+    gcdate = getCD(jd)
+
+    y,m,d = gcdate
+    hr = 24*(d-int(d))
+    mn = 60*(hr - int(hr))
+    
+    ut = int(hr), int(mn)
+    gcdate = y,m,int(d)
+
+    return gcdate, ut 
+
+# H = LST - right_ascension
+# LT -> UT -> GST -> LST
+place = (0, -60)
+date = (2013, 7, 1)
+time = (2, 37)
+myDate, myTime = LCTtoUT(place, date, time)
+print(myDate)
+print(myTime)
