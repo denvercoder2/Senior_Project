@@ -9,7 +9,7 @@ import subprocess
 
 
 # menu
-user_choice = int(input("What would you like to run?\n1) ParsePlanets\n2) ParseStar\n"))
+user_choice = int(input("What would you like to run?\n1) ParsePlanets\n2) ParseStar\n\n\nChoice?: "))
 if user_choice == 1:
     print("Java Parse for Planets started . . .")
     # create the planet objects

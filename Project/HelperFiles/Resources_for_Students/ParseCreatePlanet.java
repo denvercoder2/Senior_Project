@@ -106,11 +106,11 @@ public class ParseCreatePlanet{
                     templates.add(OPROP);
                 }
             }    
-                catch (Exception e) {
-                    e.printStackTrace();
-                    System.out.println("\tError Handled, no problems");
-                }
-                return templates;
+        catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("\tError Handled, no problems");
+        }
+        return templates;
         }
 
     
