@@ -1,7 +1,7 @@
 // Placement for the java parsing program
 // Imports
 import java.io.*;
-import java.util.ArrayList;
+import java.util.*;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -143,7 +143,7 @@ public class ParseCreate{
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(xml_file);
             doc.getDocumentElement().normalize();
-            System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+            
             // the total size of xml (reduction already in place)
             
             NodeList nList = null;
@@ -157,12 +157,13 @@ public class ParseCreate{
             for (int counter = 0; counter < nList.getLength(); counter++) {
                 nNode = nList.item(counter);
             }
-                System.out.println("\nCurrent Index in rows :" + nNode.getNodeName());
+                // System.out.println("\nCurrent Index in rows :" + nNode.getNodeName());
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
         
                     // probably want to return these as index of some string array
                     // maybe have a function to convert each to correct type
                     Element eElement = (Element) nNode;
+                    
                     // type conversions
                     String StarID = eElement.getElementsByTagName("StarID").item(0).getTextContent();
                     String Hip = eElement.getElementsByTagName("Hip").item(0).getTextContent();
@@ -178,8 +179,7 @@ public class ParseCreate{
                     String AbsMag = eElement.getElementsByTagName("AbsMag").item(0).getTextContent();
                     String Spectrum = eElement.getElementsByTagName("Spectrum").item(0).getTextContent();
                     String ColorIndex = eElement.getElementsByTagName("ColorIndex").item(0).getTextContent();
-                
-                
+                    
                     // assigning to attributes of star class
                     star.starId = StarID;
                     star.Hip = Hip;
@@ -199,6 +199,7 @@ public class ParseCreate{
                     // Adding them to the template array
                     // we only want attributes of the stars under 6 magnitude
                     if(Double.valueOf(Magnitude) < 6.0 && Double.valueOf(Magnitude) > 0.0){
+                        System.out.println(nNode.getNodeName());
                         templates.add(StarID);
                         templates.add(Hip);
                         templates.add(HD);
@@ -216,11 +217,10 @@ public class ParseCreate{
                     }
                 }
             }    
-            
-            catch (Exception e) {
-                e.printStackTrace();
-            }
-            return templates;
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return templates;
         }
 
 
@@ -245,9 +245,22 @@ Items in list are mapped to following index:
 
 */
     public static void main(String[] args){
-        ArrayList<String> star = stars("stars.xml", 35);
-        // get certain element in list using the star.get(index) function
-        System.out.println(star);
-    }
+        // may be able to pull in a list of 
+        // rows that contain the correct numbers
+        // and use it in a for loop here
+        int upper_limit = 31858;
+        for (int k = 0; k < upper_limit; k++){
+            ArrayList<String> star = stars("stars.xml", k);
+            if(!star.isEmpty()){
+                System.out.println("====================================================================================================================================");
+                System.out.println(star);
+                System.out.println("====================================================================================================================================");
+            }
+            else{
+                continue;
+            }
+        }
 
+        // get certain element in list using the star.get(index) function
+    }
 }
