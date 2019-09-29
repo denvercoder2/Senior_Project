@@ -16,7 +16,6 @@ import org.xml.sax.SAXException;
 
 public class ParseCreate{
     
-
     public static class Star{
         private String starId;
         private String Hip;
@@ -157,7 +156,7 @@ public class ParseCreate{
             for (int counter = 0; counter < nList.getLength(); counter++) {
                 Node nNode = nList.item(counter);
             
-                // System.out.println("\nCurrent Index in rows :" + nNode.getNodeName());
+                System.out.println("\nCurrent Index in rows :" + nNode.getNodeName());
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
         
                     // probably want to return these as index of some string array
@@ -178,7 +177,7 @@ public class ParseCreate{
                     String AbsMag = eElement.getElementsByTagName("AbsMag").item(0).getTextContent();
                     String Spectrum = eElement.getElementsByTagName("Spectrum").item(0).getTextContent();
                     String ColorIndex = eElement.getElementsByTagName("ColorIndex").item(0).getTextContent();
-                    
+                
                 
                     // assigning to attributes of star class
                     star.starId = StarID;
@@ -196,8 +195,6 @@ public class ParseCreate{
                     star.Spectrum = Spectrum;
                     star.ColorIndex = ColorIndex;
 
-
-                    
                     // Adding them to the template array
                     // we only want attributes of the stars under 6 magnitude
                     if(Double.valueOf(Magnitude) < 6.0 && Double.valueOf(Magnitude) > 0.0){
@@ -250,7 +247,7 @@ Items in list are mapped to following index:
     public static void main(String[] args){
         ArrayList<String> star = stars("stars.xml");
         // get certain element in list using the star.get(index) function
-        System.out.println(star.get(0));
+        System.out.println(star);
     }
 
 }
