@@ -130,9 +130,9 @@ def foo():
 def getUT(place, time):
     '''get Universal Time'''
     lat, lon = place
-    hr, mn = time
+    hr, mn, sc = time
     offset = int(lon/15)        #offset between local timezone and Greenwich
-    ut = hr + (mn/60) + offset #universal time
+    ut = hr + (mn/60) + (sc/60) + offset #universal time
     return ut
 
 def getGCD(date, ut):
@@ -195,17 +195,53 @@ def LCTtoUT(place, date, time):
     y,m,d = gcdate
     hr = 24*(d-int(d))
     mn = 60*(hr - int(hr))
+    sc = 60*(mn - int(mn))
     
-    ut = int(hr), int(mn)
-    gcdate = y,m,int(d)
+    ut = int(hr), int(mn), int(sc)
+    gcdate = y,m,round(d,2)
 
-    return gcdate, ut 
+    return gcdate, ut
+
+def UTtoGST(gcdate, ut):
+    jd = getJD(gcdate)
+    S = jd - 2451545
+    T = S/36525
+    T0 = 6.697374558 + (2400.051336 * T) + (0.000025862*T*T)
+    ut = getDH(ut)
+    A = ut * 1.002737909
+    T0 += A
+    while (T0>24 or T0<0):
+        if T0 > 24:
+            T0 -= 24
+        if T0 < 0:
+            T0 += 24
+    hr = T0
+    mn = 60*(hr-int(hr))
+    sc = 60*(mn - int(mn)) 
+    gst = int(hr), int(mn), round(sc,2)
+    return gst
+
+def getDH(ut):
+    hr, mn, sc = ut
+    sc /= 60
+    mn = (mn+sc)/60
+    hr += mn
+    return hr
 
 # H = LST - right_ascension
 # LT -> UT -> GST -> LST
-place = (0, -60)
-date = (2013, 7, 1)
-time = (2, 37)
-myDate, myTime = LCTtoUT(place, date, time)
-print(myDate)
-print(myTime)
+def testLCT():
+    place = (0, -60)
+    date = (2013, 7, 1)
+    time = (2, 37, 0)
+    myDate, myTime = LCTtoUT(place, date, time)
+    print(myDate)
+    print(myTime)
+
+def testGST():
+    ut = (14, 36, 51.67)
+    gcdate = (1980, 4, 22)
+    gst = UTtoGST(gcdate, ut)
+    print(gst)
+
+testGST()
