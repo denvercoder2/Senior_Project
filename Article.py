@@ -69,8 +69,15 @@ def getJD(date):
          4 + 275*m//9 + D - 730515
     return d
 
-def getUT(time):
-    hr, mn = time
+def getST(jd):
+    jd_0 = int(jd-1) + 0.5
+    h = (jd - jd_0)*24
+    jd_i = jd_0 + h/24
+
+    d = jd - 2451545.0
+    d_0 = jd_0 - 2451545.0
+    t = d/36525
+    gmst = 6.697374558 + (0.06570982441908 * d_0) + (1.00273790935 * h) + (0.000026 * t*t)
 
 def rev(x):
     return  x - math.floor(x/360.0)*360.0
@@ -136,7 +143,7 @@ def foo():
     new = sphericalCoordinates(new)
     print(new)
 
-    # myDate = (1990,4,19)
+# myDate = (1990,4,19)
 myDate = (2008,1,5)
 myJD = getJD(myDate)
 print(myJD)

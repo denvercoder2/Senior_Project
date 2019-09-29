@@ -10,13 +10,6 @@ def Mod2Pi(angle):
     new_angle = a
     return new_angle
 
-# def getJulianDay(date):
-#     """calculating the Julian Day relative to 2000 (Must be based on GMT time zone)"""
-#     julianDay = (367 * date['year']) - (math.floor(7.0 * (date['year'] \
-#         + math.floor((date['mon'] + 9.0)/12.0))/4.0)) + (math.floor(275.0 * date['mon'] / 9.0)) \
-#             + date['day'] - 730531.5 + date['hour']/24.0
-#     return julianDay
-
 def getJulianDay(date, time):
     (yr, mo, dy) = date
     (hr, mn) = time
