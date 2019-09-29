@@ -241,13 +241,15 @@ Items in list are mapped to following index:
         Magnitude = stars[9]
         AbsMag = stars[10]
         Spectrum = stars[11]
-        ColorIndex stars[12]
+        ColorIndex = stars[12]
 
 */
     public static void main(String[] args){
-        // may be able to pull in a list of 
-        // rows that contain the correct numbers
-        // and use it in a for loop here
+        // Using this for loop to an outer limit,
+        // we cann loop through all rows and pull
+        // out the info for the row (defined above)
+        // if it fits criteria. We can do pretty much whatever
+        // with the data
         int upper_limit = 31858;
         for (int k = 0; k < upper_limit; k++){
             ArrayList<String> star = stars("stars.xml", k);
@@ -260,7 +262,5 @@ Items in list are mapped to following index:
                 continue;
             }
         }
-
-        // get certain element in list using the star.get(index) function
     }
 }
