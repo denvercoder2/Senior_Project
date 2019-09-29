@@ -134,7 +134,7 @@ public class ParseCreate{
     }
 
     // function to parse and grab the stars
-    public static ArrayList<String> stars (String filename){
+    public static ArrayList<String> stars (String filename, int edge_condition){
         Star star = new Star();
         ArrayList<String> templates = new ArrayList<>();
         try{
@@ -145,9 +145,9 @@ public class ParseCreate{
             doc.getDocumentElement().normalize();
             System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
             // the total size of xml (reduction already in place)
-            int edge = 31858;
+            
             NodeList nList = null;
-            for (int j = 0; j < edge; j++){
+            for (int j = 0; j < edge_condition; j++){
                 // this is to iterate through all rows since they change at every child node value
                 nList = doc.getElementsByTagName("row-" + String.valueOf(j));
             }
@@ -213,16 +213,15 @@ public class ParseCreate{
                         templates.add(AbsMag);
                         templates.add(Spectrum);
                         templates.add(ColorIndex);
-                        }
                     }
-                // }
-            // }
-        }    
-        catch (Exception e) {
-            e.printStackTrace();
+                }
+            }    
+            
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+            return templates;
         }
-        return templates;
-    }
 
 
 /*
@@ -246,7 +245,7 @@ Items in list are mapped to following index:
 
 */
     public static void main(String[] args){
-        ArrayList<String> star = stars("stars.xml");
+        ArrayList<String> star = stars("stars.xml", 35);
         // get certain element in list using the star.get(index) function
         System.out.println(star);
     }
