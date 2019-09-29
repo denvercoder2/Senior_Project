@@ -1,12 +1,12 @@
 package JohnWork.main;
 
-public class PlanetCalls {
-	String name;
+public class SpaceObj {
+	String name, group;
 	double meanLong, semiMajorAxis, eccentricity, inclination, perihilion, perihilionDistanc; 
 	double meanAnomaly, trueAnomaly, position, xh, xg, xeq, rightAscension, declination;
 	
 	
-	public PlanetCalls() {
+	public SpaceObj() {
 		
 	}
 }
