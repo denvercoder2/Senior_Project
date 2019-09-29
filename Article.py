@@ -127,18 +127,21 @@ def foo():
     new = sphericalCoordinates(new)
     print(new)
 
-def getUT(place, time):
+def getUT(place, time, dst):
     '''get Universal Time'''
     lat, lon = place
     hr, mn, sc = time
+    if dst:
+        hr -= 1
     offset = int(lon/15)        #offset between local timezone and Greenwich
-    ut = hr + (mn/60) + (sc/60) + offset #universal time
+    time = hr, mn, sc
+    ut = getDH(time) - offset #universal time
     return ut
 
 def getGCD(date, ut):
     '''get Greenwich Calendar Date'''
     yr, mon, day = date
-    gcday = day + (ut/24) #Greenwich calendar day
+    gcday = day + (ut/24)
     gcdate = yr, mon, gcday
     return gcdate
 
@@ -186,19 +189,20 @@ def getCD(jd):
     date = yr, mon, day
     return date
     
-def LCTtoUT(place, date, time):
-    ut = getUT(place, time)
+def LCTtoUT(place, date, time, dst):
+    ut = getUT(place, time, dst)
     gcdate = getGCD(date, ut)
     jd = getJD(gcdate)
     gcdate = getCD(jd)
 
     y,m,d = gcdate
-    hr = 24*(d-int(d))
-    mn = 60*(hr - int(hr))
-    sc = 60*(mn - int(mn))
+    # hr = 24*(d-int(d))
+    # mn = 60*(hr - int(hr))
+    # sc = 60*(mn - int(mn))
     
-    ut = int(hr), int(mn), int(sc)
-    gcdate = y,m,round(d,2)
+    # ut = int(hr), int(mn), int(sc)
+    ut = 24*(d-int(d))
+    gcdate = y,m,int(d)
 
     return gcdate, ut
 
@@ -207,7 +211,7 @@ def UTtoGST(gcdate, ut):
     S = jd - 2451545
     T = S/36525
     T0 = 6.697374558 + (2400.051336 * T) + (0.000025862*T*T)
-    ut = getDH(ut)
+    # ut = getDH(ut)
     A = ut * 1.002737909
     T0 += A
     while (T0>24 or T0<0):
@@ -215,26 +219,41 @@ def UTtoGST(gcdate, ut):
             T0 -= 24
         if T0 < 0:
             T0 += 24
-    hr = T0
-    mn = 60*(hr-int(hr))
-    sc = 60*(mn - int(mn)) 
-    gst = int(hr), int(mn), round(sc,2)
+    # gst = getHMS(T0)
+    gst = T0
     return gst
 
-def getDH(ut):
-    hr, mn, sc = ut
+def getDH(hms):
+    '''get decimal hours'''
+    hr, mn, sc = hms
     sc /= 60
     mn = (mn+sc)/60
     hr += mn
     return hr
 
+def getHMS(dh):
+    '''get hours, minutes, and seconds'''
+    hr = dh
+    mn = 60*(hr-int(hr))
+    sc = 60*(mn - int(mn)) 
+    hms = int(hr), int(mn), round(sc,2)
+    return hms
+
+def GSTtoLST(place, gst):
+    lat, lon = place
+    # dh = getDH(gst)
+    offset = lon/15
+    # lst = getHMS(dh+offset)
+    lst = gst+offset
+    return lst
+
 # H = LST - right_ascension
 # LT -> UT -> GST -> LST
 def testLCT():
-    place = (0, -60)
+    place = (0, 60)
     date = (2013, 7, 1)
-    time = (2, 37, 0)
-    myDate, myTime = LCTtoUT(place, date, time)
+    time = (3, 37, 0)
+    myDate, myTime = LCTtoUT(place, date, time, True)
     print(myDate)
     print(myTime)
 
@@ -244,4 +263,31 @@ def testGST():
     gst = UTtoGST(gcdate, ut)
     print(gst)
 
-testGST()
+def testLST():
+    place = (0,-64)
+    gst = (4, 40, 5.23)
+    myLST = GSTtoLST(place, gst)
+    print(myLST)
+
+def getLST(place, lcdate, lctime, dst):
+    udate, utime = LCTtoUT(place, lcdate, lctime, dst)
+    gst = UTtoGST(udate, utime)
+    lst = GSTtoLST(place, gst)
+    return lst
+
+def RAtoH(ra):
+    place = (34.6961, -64)
+    time = (14, 36, 51.67)
+    date = (1980, 4 , 22)
+    lst = getLST(place, date, time, False)
+    hr = getDH(ra)
+    print('a: ', hr)
+    h1 = lst - hr
+    if (h1 < 0):
+        h1 += 24
+    angle = getHMS(h1)
+    print('hr,mn,sc: ', angle)
+
+# testLCT()
+ra = (18, 32, 21)
+RAtoH(ra)
