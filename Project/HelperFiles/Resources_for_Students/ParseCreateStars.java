@@ -219,6 +219,7 @@ public class ParseCreateStars{
             }    
                 catch (Exception e) {
                     e.printStackTrace();
+                    System.out.println("\tError Handled, no problems");
                 }
                 return templates;
         }
