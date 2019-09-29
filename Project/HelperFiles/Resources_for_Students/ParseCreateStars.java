@@ -14,7 +14,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 
-public class ParseCreate{
+public class ParseCreateStars{
     
     public static class Star{
         private String starId;
