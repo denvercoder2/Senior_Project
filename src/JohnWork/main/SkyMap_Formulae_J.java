@@ -14,8 +14,8 @@ public class SkyMap_Formulae_J {
 		System.out.println(Mod2Pi_Angle);
 		
 		
-		double JD;
-		Date checkAgainstDate = newDateFormat.parse("2008-01-05");
+		double JD; String choiceDate = "2008-01-05";
+		Date checkAgainstDate = newDateFormat.parse(choiceDate);
 		JD = GetJulianDay.GetJulianDay(checkAgainstDate, 20, 14);
 		
 		System.out.println(JD);
