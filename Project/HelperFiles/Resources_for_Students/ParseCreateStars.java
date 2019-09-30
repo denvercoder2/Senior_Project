@@ -247,7 +247,7 @@ Items in list are mapped to following index:
 */
     public static void main(String[] args){
         // Using this for loop to an outer limit,
-        // we cann loop through all rows and pull
+        // we can loop through all rows and pull
         // out the info for the row (defined above)
         // if it fits criteria. We can do pretty much whatever
         // with the data
