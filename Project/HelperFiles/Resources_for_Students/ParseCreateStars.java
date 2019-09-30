@@ -165,20 +165,20 @@ public class ParseCreateStars{
                     Element eElement = (Element) nNode;
                     
                     // type conversions
-                    String StarID = eElement.getElementsByTagName("StarID").item(0).getTextContent();
-                    String Hip = eElement.getElementsByTagName("Hip").item(0).getTextContent();
-                    String HD = eElement.getElementsByTagName("HD").item(0).getTextContent();
-                    String HR = eElement.getElementsByTagName("HR").item(0).getTextContent();
-                    String Gliese = eElement.getElementsByTagName("Gliese").item(0).getTextContent();
+                    String StarID         = eElement.getElementsByTagName("StarID").item(0).getTextContent();
+                    String Hip            = eElement.getElementsByTagName("Hip").item(0).getTextContent();
+                    String HD             = eElement.getElementsByTagName("HD").item(0).getTextContent();
+                    String HR             = eElement.getElementsByTagName("HR").item(0).getTextContent();
+                    String Gliese         = eElement.getElementsByTagName("Gliese").item(0).getTextContent();
                     String BayerFlamsteed = eElement.getElementsByTagName("BayerFlamsteed").item(0).getTextContent();
-                    String ProperName = eElement.getElementsByTagName("ProperName").item(0).getTextContent();
-                    String RA = eElement.getElementsByTagName("RA").item(0).getTextContent();
-                    String Dec = eElement.getElementsByTagName("Dec").item(0).getTextContent();
-                    String Distance = eElement.getElementsByTagName("Distance").item(0).getTextContent();
-                    String Magnitude = eElement.getElementsByTagName("Mag").item(0).getTextContent();
-                    String AbsMag = eElement.getElementsByTagName("AbsMag").item(0).getTextContent();
-                    String Spectrum = eElement.getElementsByTagName("Spectrum").item(0).getTextContent();
-                    String ColorIndex = eElement.getElementsByTagName("ColorIndex").item(0).getTextContent();
+                    String ProperName     = eElement.getElementsByTagName("ProperName").item(0).getTextContent();
+                    String RA             = eElement.getElementsByTagName("RA").item(0).getTextContent();
+                    String Dec            = eElement.getElementsByTagName("Dec").item(0).getTextContent();
+                    String Distance       = eElement.getElementsByTagName("Distance").item(0).getTextContent();
+                    String Magnitude      = eElement.getElementsByTagName("Mag").item(0).getTextContent();
+                    String AbsMag         = eElement.getElementsByTagName("AbsMag").item(0).getTextContent();
+                    String Spectrum       = eElement.getElementsByTagName("Spectrum").item(0).getTextContent();
+                    String ColorIndex     = eElement.getElementsByTagName("ColorIndex").item(0).getTextContent();
                     
                     // assigning to attributes of star class
                     star.starId = StarID;
