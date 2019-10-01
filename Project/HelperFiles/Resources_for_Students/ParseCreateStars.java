@@ -32,99 +32,85 @@ public class ParseCreateStars{
         private String Spectrum;
         private String ColorIndex;
 
-        // starID constructor
+        // getters and setters if we want to use them later
         public void setStarID(String starID){
             this.starId = starID;
         }
-
         public String getStarID(){
             return this.starId;
         }
-        // Hip constructor
         public void setHip(String Hip){
             this.Hip = Hip;
         }
         public String getHip(){
             return this.Hip;
         }
-        // HD constructor
         public void setHD(String HD){
             this.HD = HD;
         }
         public String getHD(){
             return this.HD;
         }
-        // HR constructor
         public void setHR(String HR){
             this.HR = HR;
         }
         public String getHR(){
             return this.HR;
         }
-        // Gleise constructor
         public void setGliese(String Gliese){
             this.Gliese = Gliese;
         }
         public String getGliese(){
             return this.Gliese;
         }
-        // BayerFlamsteed constructor
         public void setBayerFlamsteed(String BayerFlamsteed){
             this.BayerFlamsteed = BayerFlamsteed;
         }
         public String getBayerFlamsteed(){
             return this.BayerFlamsteed;
         }
-        // Proper name constructor
         public void setProperName(String ProperName){
             this.ProperName = ProperName;
         }
         public String getProperName(){
             return this.ProperName;
         }
-        // RA constructor
         public void setRA(String RA){
             this.RA = RA;
         }
         public String getRA(){
             return this.RA;
         }
-        // Dec constructor
         public void setDec(String Dec){
             this.Dec = Dec;
         }
         public String getDec(){
             return this.Dec;
         }
-        // Distance constructor
         public void setDistance(String Distance){
             this.Distance = Distance;
         }
         public String getDistance(){
             return this.Distance;
         }
-        // Magnitude constructor
         public void setMagnitude(String Magnitude){
             this.Magnitude = Magnitude;
         }
         public String getMagnitude(){
             return this.Magnitude;
         }
-        // AbsMag constructor
         public void setAbsMag(String AbsMag){
             this.AbsMag = AbsMag;
         }
         public String getAbsMag(){
             return this.AbsMag;
         }
-        // Spectrum constructor
         public void setSpectrum(String Spectrum){
             this.Spectrum = Spectrum;
         }
         public String getSpectrum(){
             return this.Spectrum;
         }
-        // ColorIndex constructor
         public void setColorIndex(String ColorIndex){
             this.ColorIndex = ColorIndex;
         }
@@ -181,20 +167,20 @@ public class ParseCreateStars{
                     String ColorIndex     = eElement.getElementsByTagName("ColorIndex").item(0).getTextContent();
                     
                     // assigning to attributes of star class
-                    star.starId = StarID;
-                    star.Hip = Hip;
-                    star.HD = HD;
-                    star.HR = HR;
-                    star.Gliese = Gliese;
+                    star.starId         = StarID;
+                    star.Hip            = Hip;
+                    star.HD             = HD;
+                    star.HR             = HR;
+                    star.Gliese         = Gliese;
                     star.BayerFlamsteed = BayerFlamsteed;
-                    star.ProperName = ProperName;
-                    star.RA = RA;
-                    star.Dec = Dec;
-                    star.Distance = Distance;
-                    star.Magnitude = Magnitude;
-                    star.AbsMag = AbsMag;
-                    star.Spectrum = Spectrum;
-                    star.ColorIndex = ColorIndex;
+                    star.ProperName     = ProperName;
+                    star.RA             = RA;
+                    star.Dec            = Dec;
+                    star.Distance       = Distance;
+                    star.Magnitude      = Magnitude;
+                    star.AbsMag         = AbsMag;
+                    star.Spectrum       = Spectrum;
+                    star.ColorIndex     = ColorIndex;
 
                     // Adding them to the template array
                     // we only want attributes of the stars under 6 magnitude
@@ -255,9 +241,10 @@ Items in list are mapped to following index:
         for (int k = 0; k < upper_limit; k++){
             ArrayList<String> star = stars("stars.xml", k);
             if(!star.isEmpty()){
-                System.out.println("====================================================================================================================================");
+                System.out.println("=====================================================================================================================================================================================");
+                System.out.println("[0]StarID, [1]Hip, [2]HD, [3]HR, [4]Gliese, [5]BayerFlamsteed, [6]ProperName, [7]RA,  [8]Dec, [9]Distance, [10]Magnitude, [11]AbsMag, [12]Spectrum, [13]Color Index]");
                 System.out.println(star);
-                System.out.println("====================================================================================================================================");
+                System.out.println("=====================================================================================================================================================================================");
             }
             else{
                 continue;
