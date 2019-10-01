@@ -5,15 +5,16 @@ public class Moon{
 
     // add attributes as needed
     String phase;
+    double size;
     boolean visability;
     double distance;
     double x_location;
     double y_location;
 
-
     //constructor
-    public Moon(String phase, boolean visability,
-                double distance, double x_location, double y_location){
+    public Moon(String phase,double size,
+                boolean visability,double distance,
+                double x_location, double y_location){
 
                      this.phase      = phase;
                      this.visability = visability;
