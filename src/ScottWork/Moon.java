@@ -3,19 +3,14 @@
 import java.util.*;
 
 public class Moon {
-
     // add attributes as needed
     String phase;
     boolean visability;
-
-
     // constructor
     public Moon(String phase,boolean visability) {
-
         this.phase = phase;
         this.visability = visability;
     }
-
     // getters
     public String getPhase() {
         return phase;
@@ -24,8 +19,6 @@ public class Moon {
     public boolean getVisability(){
         return true;
     }
-
-
     // function for returning the phase of the moon
     // given an arbitrary day
     // source https://www.subsystems.us/uploads/9/8/9/4/98948044/moonphase.pdf
@@ -46,11 +39,18 @@ public class Moon {
                             "Waxing Gibbous", "Full", "Waning Gibbous", 
                             "Third Quarter", "Waning Crescent"};
         
-
-        
         // iterate the year every 365 iterations
         // iterate the day every iteration
+        // the cycle takes exactly 29.53 days to go through
+        // completely
         int[] start_day = {1900, 1, 1};
+        int day_in_year = 366;
+        for (int i = 0; i < day_in_year; i++){
+            
+
+        }
+
+        
         int[] given_day = {year, month, day};
 
 
