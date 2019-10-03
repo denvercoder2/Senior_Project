@@ -6,64 +6,30 @@ public class Moon {
 
     // add attributes as needed
     String phase;
-    double size;
     boolean visability;
-    double distance;
-    double x_location;
-    double y_location;
+
 
     // constructor
-    public Moon(String phase, double size, boolean visability, double distance, double x_location, double y_location) {
+    public Moon(String phase,boolean visability) {
 
         this.phase = phase;
-        this.size = size;
         this.visability = visability;
-        this.distance = distance;
-        this.x_location = x_location;
-        this.y_location = y_location;
     }
 
     // getters
     public String getPhase() {
         return phase;
     }
-
-    public double getSize() {
-        return size;
-    }
-
-    // may need to edit this as
-    // it will change
-    public boolean getVisability() {
+    // if the moon is visable
+    public boolean getVisability(){
         return true;
     }
 
-    public double getDistance() {
-        return distance;
-    }
-
-    public double getX_Location() {
-        return x_location;
-    }
-
-    public double getY_Location() {
-        return y_location;
-    }
 
     // function for returning the phase of the moon
     // given an arbitrary day
     // source https://www.subsystems.us/uploads/9/8/9/4/98948044/moonphase.pdf
 
-    public static double JD(int year, int month, int day){
-        double A = (int)year/100;
-        double B = (int)A/4;
-        double C = 2 - A + B;
-        double E = (int)(365.25 * (year + 4713));
-        double F = (int)(30.6001 * (month + 1));
-        double julianDay = C + day + E + F - 1524.5; 
-
-        return julianDay;
-    }
     /*
     Rules include:
         - Finding the pattern for the phases
@@ -71,10 +37,29 @@ public class Moon {
         - it takes the moon 29.53 days to complete
           a full cycle through its phases
     */
-    // public static String getPhase(int day, int month, int year) {
-    //     // January 1st, 1900 was a new moon
-    //     String new_moon = "New Moon";
-    //     // String 
+    public static String getPhase(int day, int month, int year) {
+        /*
+        An array of the phase names to be returned under the 
+        certain rules at which they apply to
+        */
+        String[] phases = {"New Moon", "Waxing Crescent", "First Quater",
+                            "Waxing Gibbous", "Full", "Waning Gibbous", 
+                            "Third Quarter", "Waning Crescent"};
+        
+
+        
+        // iterate the year every 365 iterations
+        // iterate the day every iteration
+        int[] start_day = {1900, 1, 1};
+        int[] given_day = {year, month, day};
+
+
+
+    }
+
+
+
+
 
         /*
          * Define the pattern that the moon follows Take the parameters and map to rules
