@@ -1,16 +1,17 @@
 
 public class InputUtils {
 
-	private int month;
-	private int day;
-	private int year;
-	private int hours;
-	private int minutes;
+	/*private double month;
+	private double day;
+	private double year;
+	private double hours;
+	private double minutes;
 	private double latitude;
 	private double longitude;
 	private double mins;
-	
-	public void sendInputs(int mo, int da, int ye, int ho, int mi, double lat, double lon, double min) {
+	*/
+	/*
+	public void sendInputs(double mo, double da, double ye, double ho, double mi, double lat, double lon, double min) {
 		setMonth(mo);
 		setDay(da);
 		setYear(ye);
@@ -21,32 +22,95 @@ public class InputUtils {
 	    setLongitude(lon);
 	    setMins(min);
 	}
-	
+	*/
 	public Boolean canApply()
 	{
-		Boolean applyFlag = false;
+		Boolean flag = false;
 		
-		return applyFlag;
+		return flag;
 	}
 	
+	public Boolean checkMonth(double month){
+		
+        Boolean flag = false;
+		if(month >= 1 || month <= 12) {
+			flag = true;
+		}
+		return flag;
+	}
 	
-	public void setMonth(int input) {
+	public Boolean checkDay(double day) {
+		
+        Boolean flag = false;
+		if(day >= 1 || day <= 31) {
+			flag = true;
+		}
+		return flag;
+	}
+	
+	public Boolean checkYear(double year) {
+        Boolean flag = false;
+		if(year >=1900 || year <= 2100) {
+			flag = true;
+		}
+		return flag;
+	}
+	
+	public Boolean checkHours(double hours) {
+        Boolean flag = false;
+		if(hours >= 0 || hours <= 24) {
+			flag = true;
+		}
+		return flag;
+	}
+	
+	public Boolean checkMinutes(double minutes) {
+        Boolean flag = false;
+		if(minutes >= 0 || minutes <= 60) {
+			flag = true;
+		}
+		return flag;
+	}
+	
+	public Boolean checkLatitude(double latitude) {
+        Boolean flag = false;
+		if(latitude >= 0 || latitude <= 90) {
+			flag = true;
+		}
+		return flag;
+	}
+	
+	public Boolean checkLongitude(double longitude) {
+        Boolean flag = false;
+		if(longitude >= 0 || longitude <= 180) {
+			flag = true;
+		}
+		return flag;
+	}
+	
+	public Boolean checkMins(double mins) {
+        Boolean flag = false;
+		
+		return flag;
+	}
+	/*
+	public void setMonth(double input) {
 		month = input;
 	}
 	
-	public void setDay(int input) {
+	public void setDay(double input) {
 		day = input;
 	}
 	
-	public void setYear(int input) {
+	public void setYear(double input) {
 		year = input;
 	}
 	
-	public void setHours(int input) {
+	public void setHours(double input) {
 		hours = input;
 	}
 	
-	public void setMinutes(int input) {
+	public void setMinutes(double input) {
 		minutes = input;
 	}
 	
@@ -61,4 +125,5 @@ public class InputUtils {
 	public void setMins(double input) {
 		mins = input;
 	}
+	*/
 }

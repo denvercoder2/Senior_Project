@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JCheckBox;
@@ -13,7 +14,11 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+import java.awt.ScrollPane;
+import java.awt.Scrollbar;
+import javax.swing.JComboBox;
+import java.awt.Color;
+import javax.swing.border.LineBorder;
 public class GUI extends JFrame {
 
 	private JPanel mainGUI;
@@ -33,16 +38,17 @@ public class GUI extends JFrame {
 	private JLabel minutes;
 	private JTextField minTextField;
 	
-	private int dayInput;
-	private int yearInput;
-	private int monthInput;
-	private int hourInput;
-	private int minuteInput;
+	private double dayInput;
+	private double yearInput;
+	private double monthInput;
+	private double hourInput;
+	private double minuteInput;
 	private double longInput;
 	private double latInput;
 	private double minInput;
 	
 	InputUtils utils;
+	private JButton btnSaveToDisk;
 	
 
 	/**
@@ -61,10 +67,207 @@ public class GUI extends JFrame {
 		});
 	}
 
-	public Boolean checkValues() {
-		return true;
+	public void checkValues() {
+		
+		checkDay();
+		checkYear();
+		checkMonth();
+		checkHours();
+		checkMinutes();
+		
+		checkLatitude();
+		checkLongitude();
+		checkMins();
+		
+		if(checkDay() && checkYear() && checkMonth() && checkHours() && checkMinutes()
+				&& checkLatitude() && checkLongitude() && checkMins()) {
+			setValidInputs();
+		}
+		else {
+			JOptionPane.showMessageDialog(new JFrame(), "Please Enter Valid Inputs!", "Dialog",
+			        JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	public void setValidInputs() {
+		
+	}
+	public Boolean checkDay() {
+		Boolean check = false;
+		System.out.println(dayTextField.getText());
+		
+		if(dayTextField.getText() != null && !dayTextField.getText().isEmpty()) {
+			dayInput = Double.valueOf(dayTextField.getText());
+			System.out.println(dayInput);
+			
+			if(dayInput < 1 || dayInput > 31) {	
+				dayTextField.setBorder(new LineBorder(Color.RED, 3));
+			}
+			else {
+				check = true;
+			    dayTextField.setBorder(new LineBorder(Color.BLACK, 1));
+			}
+		}
+		else {
+			
+			dayTextField.setBorder(new LineBorder(Color.RED, 3));
+		}
+		return check;
 	}
 	
+	public Boolean checkYear() {
+		Boolean check = false;
+		
+		if(yearTextField.getText() != null && !yearTextField.getText().isEmpty()) {
+			yearInput = Double.valueOf(yearTextField.getText());
+			System.out.println(yearInput);
+			
+			if(yearInput < 1900 || yearInput > 2100) {
+				yearTextField.setBorder(new LineBorder(Color.RED, 3));
+			}
+			else {
+				check = true;
+				yearTextField.setBorder(new LineBorder(Color.BLACK, 1));
+			}
+		}
+		else {
+			//JOptionPane.showMessageDialog(new JFrame(), "Please Enter a Valid Day", "Dialog",
+			 //       JOptionPane.ERROR_MESSAGE);
+			yearTextField.setBorder(new LineBorder(Color.RED, 3));
+		}
+		return check;
+	}
+	
+	public Boolean checkMonth() {
+		Boolean check = false;
+		
+		if(monthTextField.getText() != null && !monthTextField.getText().isEmpty()) {
+			monthInput = Double.valueOf(monthTextField.getText());
+			System.out.println(monthInput);
+			
+			if(monthInput < 1 || monthInput > 12) {
+				monthTextField.setBorder(new LineBorder(Color.RED, 3));
+			}
+			else {
+				check = true;
+				monthTextField.setBorder(new LineBorder(Color.BLACK, 1));	
+			}
+		}
+		else {
+			monthTextField.setBorder(new LineBorder(Color.RED, 3));
+		}
+		return check;
+	}
+	
+	public Boolean checkHours() {
+		Boolean check = false;
+		
+		if(hoursTextField.getText() != null && !hoursTextField.getText().isEmpty()) {
+			hourInput = Double.valueOf(hoursTextField.getText());
+			
+			if(hourInput < 1 || hourInput > 24) {
+				hoursTextField.setBorder(new LineBorder(Color.RED, 3));
+			}
+			else {
+				check = true;
+				hoursTextField.setBorder(new LineBorder(Color.BLACK, 1));
+			}
+		}
+		else {
+			hoursTextField.setBorder(new LineBorder(Color.RED, 3));
+		}
+		return check;
+	}
+	
+	public Boolean checkMinutes() {
+		Boolean check = false;
+		
+		if(minutesTextField.getText() != null && !minutesTextField.getText().isEmpty()) {
+			minuteInput = Double.valueOf(minutesTextField.getText());
+			
+			if(minuteInput < 0 || minuteInput > 60) {
+				minutesTextField.setBorder(new LineBorder(Color.RED, 3));
+			}
+			else {
+				check = true;
+				minutesTextField.setBorder(new LineBorder(Color.BLACK, 1));
+			}
+		}
+		else {
+			minutesTextField.setBorder(new LineBorder(Color.RED, 3));
+		}
+		return check;
+	}
+	
+	public Boolean checkLatitude() {
+		Boolean check = false;
+		
+		if(latTextField.getText() != null && !latTextField.getText().isEmpty()) {
+			latInput = Double.valueOf(latTextField.getText());
+			
+			if(latInput < 0 || latInput > 90) {
+				latTextField.setBorder(new LineBorder(Color.RED, 3));
+			}
+			else {
+				check = true;
+				latTextField.setBorder(new LineBorder(Color.BLACK, 1));
+			}
+		}
+		else {
+			latTextField.setBorder(new LineBorder(Color.RED, 3));
+		}
+		return check;
+	}
+	
+	public Boolean checkLongitude() {
+		Boolean check = false;
+		
+		if(longTextField.getText() != null && !longTextField.getText().isEmpty()) {
+			longInput = Double.valueOf(longTextField.getText());
+			
+			if(longInput < 0 || longInput > 180) {
+				longTextField.setBorder(new LineBorder(Color.RED, 3));
+			}
+			else {
+				check = true;
+				longTextField.setBorder(new LineBorder(Color.BLACK, 1));
+			}
+		}
+		else {
+			longTextField.setBorder(new LineBorder(Color.RED, 3));
+		}
+		return check;
+	}
+	
+	public Boolean checkMins() {
+		Boolean check = false;
+		
+		if(minTextField.getText() != null && !minTextField.getText().isEmpty()) {
+			minInput = Double.valueOf(minTextField.getText());
+			
+			if(minInput < 0 || minInput > 180) {
+				minTextField.setBorder(new LineBorder(Color.RED, 3));
+			}
+			else {
+				check = true;
+				minTextField.setBorder(new LineBorder(Color.BLACK, 1));
+			}
+		}
+		else {
+			minTextField.setBorder(new LineBorder(Color.RED, 3));
+		}
+		return check;
+	}
+	public void intialize() {
+		//Set to intial values
+		dayInput = -1;
+		yearInput = -1;
+		monthInput = -1;
+		hourInput = -1;
+		minuteInput = -1;
+		longInput = -1;
+		latInput = -1;
+		minInput = -1;
+	}
 	/**
 	 * Create the frame.
 	 */
@@ -75,6 +278,14 @@ public class GUI extends JFrame {
 		mainGUI.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(mainGUI);
 		mainGUI.setLayout(null);
+		
+		//Display display = Display.getDefault(); // this is required to come before the "Shell" we'll be editting
+		//Shell shell = new Shell(display, SWT.CLOSE | SWT.TITLE | SWT.MIN ); // Says 'use the Windows display window with a close, title, and minimize' but since we aren't also putting SWT.MAX then it is grayed out in my other projects I'm doing
+		//shell.setSize(600, 450); // Resolution in X, Y
+		
+		//Intialize the member variables
+		intialize();
+		
 		month.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		month.setBounds(26, 215, 115, 33);
 		mainGUI.add(month);
@@ -127,31 +338,31 @@ public class GUI extends JFrame {
 		
 		latitude = new JLabel("Latitude");
 		latitude.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		latitude.setBounds(21, 794, 173, 33);
+		latitude.setBounds(25, 751, 173, 33);
 		mainGUI.add(latitude);
 		
 		latTextField = new JTextField();
-		latTextField.setBounds(186, 794, 52, 39);
+		latTextField.setBounds(190, 751, 52, 39);
 		mainGUI.add(latTextField);
 		latTextField.setColumns(10);
 		
 		longitude = new JLabel("Longitude");
 		longitude.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		longitude.setBounds(22, 855, 154, 47);
+		longitude.setBounds(25, 879, 154, 47);
 		mainGUI.add(longitude);
 		
 		longTextField = new JTextField();
-		longTextField.setBounds(186, 862, 52, 39);
+		longTextField.setBounds(189, 886, 52, 39);
 		mainGUI.add(longTextField);
 		longTextField.setColumns(10);
 		
 		minutes = new JLabel("Minutes");
 		minutes.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		minutes.setBounds(22, 933, 150, 33);
+		minutes.setBounds(26, 1015, 150, 33);
 		mainGUI.add(minutes);
 		
 		minTextField = new JTextField();
-		minTextField.setBounds(186, 933, 52, 39);
+		minTextField.setBounds(190, 1015, 52, 39);
 		mainGUI.add(minTextField);
 		minTextField.setColumns(10);
 		
@@ -188,19 +399,25 @@ public class GUI extends JFrame {
 		JButton applyButton = new JButton("Apply");
 		applyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//if(checkValues()) {
-					dayInput = Integer.valueOf(dayTextField.getText());
-					monthInput = Integer.valueOf(monthTextField.getText());
-					yearInput = Integer.valueOf(yearTextField.getText());
-					hourInput = Integer.valueOf(hoursTextField.getText());
-					minuteInput = Integer.valueOf(minutesTextField.getText());
+				try {
+				/*dayInput = Double.valueOf(dayTextField.getText());
+				monthInput = Double.valueOf(monthTextField.getText());
+				yearInput = Double.valueOf(yearTextField.getText());
+				hourInput = Double.valueOf(hoursTextField.getText());
+				minuteInput = Double.valueOf(minutesTextField.getText());
 					
-					longInput = Double.valueOf(longTextField.getText());
-					latInput = Double.valueOf(latTextField.getText());
-					minInput = Double.valueOf(minTextField.getText());
-					
-					utils.sendInputs(monthInput, dayInput, yearInput, hourInput, minuteInput, latInput, longInput, minInput);
-				//}
+				longInput = Double.valueOf(longTextField.getText());
+				latInput = Double.valueOf(latTextField.getText());
+				minInput = Double.valueOf(minTextField.getText());
+					*/
+				//utils.sendInputs(monthInput, dayInput, yearInput, hourInput, minuteInput, latInput, longInput, minInput);
+				}
+				catch(IllegalArgumentException e) 
+		        { 
+		            System.out.println("IllegalArgumentException caught"); 
+		        }
+				checkValues();
+				
 					
 			}
 		});
@@ -210,7 +427,7 @@ public class GUI extends JFrame {
 		
 		JLabel lblEnterLocation = new JLabel("Enter Location:");
 		lblEnterLocation.setFont(new Font("Tahoma", Font.BOLD, 34));
-		lblEnterLocation.setBounds(21, 726, 271, 33);
+		lblEnterLocation.setBounds(14, 670, 271, 33);
 		mainGUI.add(lblEnterLocation);
 		
 		JLabel enterDate = new JLabel("Enter Date:");
@@ -223,6 +440,37 @@ public class GUI extends JFrame {
 		labels.setFont(new Font("Tahoma", Font.BOLD, 34));
 		labels.setBounds(2000, 279, 429, 40);
 		mainGUI.add(labels);
+		
+		ScrollPane scrollPane = new ScrollPane();
+		scrollPane.setBounds(415, 148, 1544, 935);
+		mainGUI.add(scrollPane);
+		
+		Scrollbar scrollbar = new Scrollbar();
+		scrollbar.setBounds(1916, 155, 43, 928);
+		mainGUI.add(scrollbar);
+		
+		btnSaveToDisk = new JButton("Save To Disk");
+		btnSaveToDisk.setFont(new Font("Tahoma", Font.BOLD, 34));
+		btnSaveToDisk.setBounds(2000, 1095, 337, 67);
+		mainGUI.add(btnSaveToDisk);
+		
+		JComboBox latitudeComboBox = new JComboBox();
+		latitudeComboBox.setBounds(25, 812, 217, 39);
+		latitudeComboBox.addItem(" ");
+		latitudeComboBox.addItem("North");
+		latitudeComboBox.addItem("South");
+		mainGUI.add(latitudeComboBox);
+		
+		JComboBox longitudeComboBox = new JComboBox();
+		longitudeComboBox.setBounds(25, 948, 217, 39);
+		longitudeComboBox.addItem(" ");
+		longitudeComboBox.addItem("East");
+		longitudeComboBox.addItem("West");
+		mainGUI.add(longitudeComboBox);
+		
+		JButton refreshButton = new JButton("Refresh SkyMap");
+		refreshButton.setFont(new Font("Tahoma", Font.BOLD, 34));
+		refreshButton.setBounds(2018, 667, 411, 49);
+		mainGUI.add(refreshButton);
 	}
-	
 }
