@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
-  <row>
+  <row-0>
     <PlanetName>Mercury</PlanetName>
     <Lscal>252.25084</Lscal>
     <Lprop>538101628.3</Lprop>
@@ -14,8 +14,8 @@
     <Wprop>573.57</Wprop>
     <Oscal>48.33167</Oscal>
     <Oprop>446.3</Oprop>
-  </row>
-  <row>
+  </row-0>
+  <row-1>
     <PlanetName>Venus</PlanetName>
     <Lscal>181.97973</Lscal>
     <Lprop>210664136.1</Lprop>
@@ -29,8 +29,8 @@
     <Wprop>108.8</Wprop>
     <Oscal>76.68069</Oscal>
     <Oprop>996.89</Oprop>
-  </row>
-  <row>
+  </row-1>
+  <row-2>
     <PlanetName>Earth/Sun</PlanetName>
     <Lscal>100.46435</Lscal>
     <Lprop>129597740.6</Lprop>
@@ -44,8 +44,8 @@
     <Wprop>1198.28</Wprop>
     <Oscal>-11.26064</Oscal>
     <Oprop>18228.25</Oprop>
-  </row>
-  <row>
+  </row-2>
+  <row-3>
     <PlanetName>Mars</PlanetName>
     <Lscal>355.45332</Lscal>
     <Lprop>68905103.78</Lprop>
@@ -59,8 +59,8 @@
     <Wprop>1560.78</Wprop>
     <Oscal>49.57854</Oscal>
     <Oprop>1020.19</Oprop>
-  </row>
-  <row>
+  </row-3>
+  <row-4>
     <PlanetName>Jupiter</PlanetName>
     <Lscal>34.40438</Lscal>
     <Lprop>10925078.35</Lprop>
@@ -74,8 +74,8 @@
     <Wprop>839.93</Wprop>
     <Oscal>100.55615</Oscal>
     <Oprop>1217.17</Oprop>
-  </row>
-  <row>
+  </row-4>
+  <row-5>
     <PlanetName>Saturn</PlanetName>
     <Lscal>49.94432</Lscal>
     <Lprop>4401052.95</Lprop>
@@ -89,8 +89,8 @@
     <Wprop>1948.89</Wprop>
     <Oscal>113.71504</Oscal>
     <Oprop>1591.05</Oprop>
-  </row>
-  <row>
+  </row-5>
+  <row-6>
     <PlanetName>Uranus</PlanetName>
     <Lscal>313.23218</Lscal>
     <Lprop>1542547.79</Lprop>
@@ -104,8 +104,8 @@
     <Wprop>1312.56</Wprop>
     <Oscal>74.22988</Oscal>
     <Oprop>1681.4</Oprop>
-  </row>
-  <row>
+  </row-6>
+  <row-7>
     <PlanetName>Neptune</PlanetName>
     <Lscal>304.88003</Lscal>
     <Lprop>786449.21</Lprop>
@@ -119,8 +119,8 @@
     <Wprop>844.43</Wprop>
     <Oscal>131.72169</Oscal>
     <Oprop>151.25</Oprop>
-  </row>
-  <row>
+  </row-7>
+  <row-8>
     <PlanetName>Pluto</PlanetName>
     <Lscal>238.92881</Lscal>
     <Lprop>522747.9</Lprop>
@@ -134,5 +134,5 @@
     <Wprop>132.25</Wprop>
     <Oscal>110.30347</Oscal>
     <Oprop>37.33</Oprop>
-  </row>
+  </row-8>
 </root>
