@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JCheckBox;
 import javax.swing.Box;
+import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -19,6 +20,9 @@ import java.awt.Scrollbar;
 import javax.swing.JComboBox;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
+import javax.swing.JScrollPane;
+import java.awt.SystemColor;
+import javax.swing.JTextArea;
 public class GUI extends JFrame {
 
 	private JPanel mainGUI;
@@ -37,6 +41,7 @@ public class GUI extends JFrame {
 	private JTextField longTextField;
 	private JLabel minutes;
 	private JTextField minTextField;
+	private JScrollPane scrollPane;
 	
 	private double dayInput;
 	private double yearInput;
@@ -49,6 +54,7 @@ public class GUI extends JFrame {
 	
 	InputUtils utils;
 	private JButton btnSaveToDisk;
+	private JScrollPane scrollPane_1;
 	
 
 	/**
@@ -441,14 +447,6 @@ public class GUI extends JFrame {
 		labels.setBounds(2000, 279, 429, 40);
 		mainGUI.add(labels);
 		
-		ScrollPane scrollPane = new ScrollPane();
-		scrollPane.setBounds(415, 148, 1544, 935);
-		mainGUI.add(scrollPane);
-		
-		Scrollbar scrollbar = new Scrollbar();
-		scrollbar.setBounds(1916, 155, 43, 928);
-		mainGUI.add(scrollbar);
-		
 		btnSaveToDisk = new JButton("Save To Disk");
 		btnSaveToDisk.setFont(new Font("Tahoma", Font.BOLD, 34));
 		btnSaveToDisk.setBounds(2000, 1095, 337, 67);
@@ -472,5 +470,23 @@ public class GUI extends JFrame {
 		refreshButton.setFont(new Font("Tahoma", Font.BOLD, 34));
 		refreshButton.setBounds(2018, 667, 411, 49);
 		mainGUI.add(refreshButton);
+		
+		//JTextArea textArea = new JTextArea();
+		//textArea.setBounds(341, 155, 1605, 1026);
+		//mainGUI.add(textArea);
+		
+		scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(341, 155, 1605, 1026);
+		scrollPane_1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scrollPane_1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane_1.setViewportBorder(new LineBorder(Color.BLACK));
+		
+		ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\SkyMap.png");
+		scrollPane_1.setViewportView(new JLabel(ii));
+		
+		mainGUI.add(scrollPane_1);
+		
+		
+		
 	}
 }
