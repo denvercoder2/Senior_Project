@@ -16,8 +16,8 @@ def moon_phase(month, day, year):
       "In its Last Quarter (decreasing from full)",
       "Waning Crescent (decreasing from full)"]
 
-    months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-              "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    months = [" Jan ", " Feb ", " Mar ", " Apr ", " May ", " Jun ",
+              " Jul ", " Aug ", " Sep ", " Oct ", " Nov ", " Dec "]
     if day == 31:
         day = 1
 
@@ -37,18 +37,15 @@ def moon_phase(month, day, year):
     if light > 100:
         light = abs(light - 200)
     date = "%d%s%d" % (day, months[month-1], year)
-    print(type(date))
-    print(type(status))
-    print(type(light))
     return date, status, light
 
 def main():
     '''
     Main function
     '''
-    month = 10
-    day = 5
-    year = 2019  # use yyyy format
+    month = 1
+    day = 1
+    year = 1900  # use yyyy format
     date, status, light = moon_phase(month, day, year)
     print("Moon Phase on given date: ",date, "is:", status)
 

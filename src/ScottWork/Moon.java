@@ -43,8 +43,8 @@ public class Moon {
         };
 
         String[] months = {
-            "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-              "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+            " Jan", " Feb", " Mar", " Apr", " May", " Jun",
+              " Jul", " Aug", " Sep", " Oct", " Nov", " Dec"
         };
 
         if (day == 31){
@@ -53,7 +53,7 @@ public class Moon {
 
         int days_into_phase;
         int index; 
-        if (year < 1900){
+        if (year >= 1900){
         days_into_phase = ((ages[(year + 1) % 19] +
                             ((day + offsets[month-1]) % 30) +
                             (year) % 30));
@@ -64,8 +64,7 @@ public class Moon {
                             }
                             status = descriptions[index];
                             returned_vals.add(status);
-    }
-
+                        }
 
     return returned_vals;
     }
@@ -73,9 +72,9 @@ public class Moon {
     
 
     public static void main(String[] args) {
-    int day = 5;
-    int month = 10;
-    int year = 1800;
+    int day = 1;
+    int month = 1;
+    int year = 1900;
 
     ArrayList<String> moon = getPhase(month, day, year);
     System.out.println(moon);
