@@ -301,21 +301,63 @@ def getLST(place, lcdate, lctime, dst):
     lst = GSTtoLST(place, gst)
     return lst
 
+def RAtoH(ra, lst):
+    hr = lst - ra
+    if (hr < 0):
+        hr += 24
+    return hr
 
-def RAtoH(ra):
-    place = (34.6961, -64)
-    time = (14, 36, 51.67)
-    date = (1980, 4, 22)
-    lst = getLST(place, date, time, False)
-    hr = getDH(ra)
-    print('a: ', hr)
-    h1 = lst - hr
-    if (h1 < 0):
-        h1 += 24
-    angle = getHMS(h1)
-    print('hr,mn,sc: ', angle)
+def getAltitude(lat, dh, dec):
+    a = (math.sin(dec)*math.sin(lat))+(math.cos(dec)*math.cos(lat)*math.cos(dh))
+    a = math.asin(a)
+    return a
 
+def getAzimuth(lat, dh, alt, dec):
+    A = (math.sin(dec)-(math.sin(lat)*math.sin(alt)))/(math.cos(lat)*math.cos(alt))
+    A = math.acos(A)
+    H = math.sin(dh)
+    if H > 0:
+        A = 2*(math.pi) - A
+    return A
 
 # testLCT()
-ra = (18, 32, 21)
-RAtoH(ra)
+def test():
+    ra = (2, 31.1, 0)
+    ra = math.radians(getDH(ra))
+    dec = math.radians(89.15)
+
+    lat = math.radians(34.73)
+    lon = -86.59
+    place = (lat, lon)
+
+    time = (21, 2, 0)
+    date = (2019, 10, 7)
+
+    lst = getLST(place, date, time, False)
+    dh = RAtoH(ra, lst)
+    a = getAltitude(lat, dh, dec)
+    print(math.degrees(a))
+    A = getAzimuth(lat, dh, a, dec)
+    print(math.degrees(A))
+
+def test1():
+    ra = (18, 32, 21)
+    ra = getDH(ra)
+    dec = (23, 13, 10)
+    dec = getDH(dec)
+
+    lat = 52
+    lon = -64
+    place = (lat, lon)
+
+    time = (14, 36, 51.67)
+    date = (1980, 4, 22)
+
+    lst = getLST(place, date, time, False)
+    dh = RAtoH(ra, lst)
+    a = getAltitude(lat, dh, dec)
+    print(a)
+    A = getAzimuth(lat, dh, a, dec)
+    print(A)
+
+test()
