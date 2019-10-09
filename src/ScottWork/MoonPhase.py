@@ -37,7 +37,6 @@ def moon_phase(month, day, year):
 
     status = description[index]
     # light should be 100% 15 days into phase
-    # don't really care about the light percentage
     light = int(2 * days_into_phase * 100/29)
     if light > 100:
         light = abs(light - 200)
@@ -58,7 +57,7 @@ def main():
     year = 1900  # use yyyy format
 >>>>>>> parent of 0ed404a... MoonPhase calculations correct
     date, status, light = moon_phase(month, day, year)
-    print("Moon Phase on given date: ",date, "is:", status)
+    print("Moon Phase on given date: ", moon_phase(month, day, year))
 
 
 if __name__ == "__main__":

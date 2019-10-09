@@ -5,16 +5,14 @@ import java.util.*;
 import java.io.*;
 import java.math.*;
 
-public class Moon {
+class Moon {
     // add attributes as needed
     String status;
     
     // constructor
     public static class MoonPhase{
         private String status;    
-    }
 
-<<<<<<< HEAD
     public static String getPhase() throws IOException{
         MoonPhase moon = new MoonPhase();
         Runtime rt = Runtime.getRuntime();
@@ -94,11 +92,19 @@ public class Moon {
                         }
 
     return returned_vals;
+=======
+
+    // constructor
+    Moon(String date, String status) {
+        this.date = date;
+        this.status = status;
+>>>>>>> parent of 3c9505e... Prototype of working Moon Phase calculator
     }
 
     
 
     public static void main(String[] args) {
+<<<<<<< HEAD
     int day = 1;
     int month = 1;
     int year = 1900;
@@ -106,5 +112,8 @@ public class Moon {
     ArrayList<String> moon = getPhase(month, day, year);
     System.out.println(moon);
 >>>>>>> parent of 0ed404a... MoonPhase calculations correct
+=======
+
+>>>>>>> parent of 3c9505e... Prototype of working Moon Phase calculator
     }
 
