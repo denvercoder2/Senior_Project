@@ -53,28 +53,34 @@ public class Moon {
 
         int days_into_phase;
         int index; 
-        if (year >= 1900){
-            year = year % 30;
+        int year_count;
+        for (year_count = 1900; year_count < 2101; year_count++){
+            year_count += 1;
+        }
         days_into_phase = ((ages[(year + 1) % 19] +
                             ((day + offsets[month-1]) % 30) +
-                            (year)));
-                            index = (int)(days_into_phase + 2) * 16/59;
-                            String status;
-                            if (index > 7){
-                                index = 7;
-                            }
-                            status = descriptions[index];
-                            returned_vals.add(status);
-                        }
-
-            return returned_vals;
+                            (year_count) % 30));
+            index = (days_into_phase + 2) * 16/59;
+            String status;
+            if (index > 7){
+                if(index % 2 == 0){
+                    index = 0;
+                };
             }
+            System.out.println(days_into_phase);
+            System.out.println(index);
+            
+            status = descriptions[index];
+            returned_vals.add(status);
+
+        return returned_vals;
+        }
     
 
     public static void main(String[] args) {
-    int day = 1;
-    int month = 1;
-    int year = 1900;
+    int month = 10;
+    int day = 16;
+    int year = 1996; 
 
     ArrayList<String> moon = getPhase(month, day, year);
     System.out.println(moon);
