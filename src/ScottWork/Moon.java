@@ -1,43 +1,18 @@
 // Placement for the java parsing program
-package ScottWork;
+// package ScottWork;
 
 import java.util.*;
 import java.io.*;
 import java.math.*;
 
-class Moon {
+public class Moon {
     // add attributes as needed
-    String status;
     
     // constructor
     public static class MoonPhase{
-        private String status;    
-
-    public static String getPhase() throws IOException{
-        MoonPhase moon = new MoonPhase();
-        Runtime rt = Runtime.getRuntime();
-        String[] commands = {"python3.7", "ScottWork/MoonPhase.py"};
-        Process proc = rt.exec(commands);
+        private String phase;
         
-        BufferedReader stdInput = new BufferedReader(new 
-             InputStreamReader(proc.getInputStream()));
-        
-        BufferedReader stdError = new BufferedReader(new 
-             InputStreamReader(proc.getErrorStream()));
-        
-        // Read the output from the command
-        String s = null;
-        while ((s = stdInput.readLine()) != null) {
-            moon.status = s;
-        }
-            return s;
     }
-
-    public static void main(String[] args) throws IOException{
-        String phase = getPhase();
-        System.out.println(phase);
-        }
-=======
     /*
     Function: getPhase()
     Parameters: month, day, year
@@ -79,9 +54,10 @@ class Moon {
         int days_into_phase;
         int index; 
         if (year >= 1900){
+            year = year % 30;
         days_into_phase = ((ages[(year + 1) % 19] +
                             ((day + offsets[month-1]) % 30) +
-                            (year) % 30));
+                            (year)));
                             index = (int)(days_into_phase + 2) * 16/59;
                             String status;
                             if (index > 7){
@@ -91,29 +67,16 @@ class Moon {
                             returned_vals.add(status);
                         }
 
-    return returned_vals;
-=======
-
-    // constructor
-    Moon(String date, String status) {
-        this.date = date;
-        this.status = status;
->>>>>>> parent of 3c9505e... Prototype of working Moon Phase calculator
-    }
-
+            return returned_vals;
+            }
     
 
     public static void main(String[] args) {
-<<<<<<< HEAD
     int day = 1;
     int month = 1;
     int year = 1900;
 
     ArrayList<String> moon = getPhase(month, day, year);
     System.out.println(moon);
->>>>>>> parent of 0ed404a... MoonPhase calculations correct
-=======
-
->>>>>>> parent of 3c9505e... Prototype of working Moon Phase calculator
     }
-
+}   
