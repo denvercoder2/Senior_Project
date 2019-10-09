@@ -24,7 +24,7 @@ def moon_phase(month, day, year):
     days_into_phase = ((ages[(year + 1) % 19] +
                         ((day + offsets[month-1]) % 30) +
                         (year > 1900)) % 30)
-    print(days_into_phase)
+    print("Days into phase: ", days_into_phase)
 
     index = int((days_into_phase + 2) * 16/59.0)
     #print(index)  # test
