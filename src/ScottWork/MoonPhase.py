@@ -23,8 +23,12 @@ def moon_phase(month, day, year):
 
     days_into_phase = ((ages[(year + 1) % 19] +
                         ((day + offsets[month-1]) % 30) +
+<<<<<<< HEAD
                         (year > 1900)) % 30)
     print("Days into phase: ", days_into_phase)
+=======
+                        (year < 1900)) % 30)
+>>>>>>> parent of 0ed404a... MoonPhase calculations correct
 
     index = int((days_into_phase + 2) * 16/59.0)
     #print(index)  # test
@@ -44,9 +48,15 @@ def main():
     '''
     Main function
     '''
+<<<<<<< HEAD
     month = 10
     day = 28
     year = 2019  # use yyyy format
+=======
+    month = 1
+    day = 1
+    year = 1900  # use yyyy format
+>>>>>>> parent of 0ed404a... MoonPhase calculations correct
     date, status, light = moon_phase(month, day, year)
     print("Moon Phase on given date: ",date, "is:", status)
 
