@@ -1,4 +1,5 @@
 // Placement for the java parsing program
+package ScottWork;
 
 import java.util.*;
 import java.io.*;
@@ -53,18 +54,20 @@ public class Moon {
 
         int days_into_phase;
         int index; 
-        int years_min;
+        int years_min = 1900;
         int years_max = 2100;
-        
-        for(years_min = 1900; years_min < years_max ; years_min++){
-            years_min += 1;
-        }
 
+        if (year > 1900){
+            year = year % 30;
+        }
         days_into_phase = ((ages[(year + 1) % 19] +
-                            ((day + offsets[month-1]) % 30) +
-                            (years_min) % 30));
+                           ((day + offsets[month-1]) % 30) +
+                           (year)));
+
+        System.out.println(days_into_phase);
         
-        index = (int)(days_into_phase + 2) * 16/59;
+        index = (days_into_phase + 2) * (16/59);
+        System.out.println(index);
         String status;
         if (index > 7){
             index = 7;
@@ -75,14 +78,34 @@ public class Moon {
     return returned_vals;
     }
 
+    public static void main(String[] args) throws IOException{
+    // int month = 4;
+    // int day = 30;
+    // int year = 1969;
+
+    // ArrayList<String> moon = getPhase(month, day, year);
+    // System.out.println(moon);
+    Runtime rt = Runtime.getRuntime();
+    String[] commands = {"python3.7", "ScottWork/MoonPhase.py"};
+    Process proc = rt.exec(commands);
     
-
-    public static void main(String[] args) {
-    int day = 8;
-    int month = 7;
-    int year = 1998;
-
-    ArrayList<String> moon = getPhase(month, day, year);
-    System.out.println(moon);
+    BufferedReader stdInput = new BufferedReader(new 
+         InputStreamReader(proc.getInputStream()));
+    
+    BufferedReader stdError = new BufferedReader(new 
+         InputStreamReader(proc.getErrorStream()));
+    
+    // Read the output from the command
+    System.out.println("Here is the standard output of the command:\n");
+    String s = null;
+    while ((s = stdInput.readLine()) != null) {
+        System.out.println(s);
+    }
+    
+    // Read any errors from the attempted command
+    System.out.println("Here is the standard error of the command (if any):\n");
+    while ((s = stdError.readLine()) != null) {
+        System.out.println(s);
+        }
     }
 }

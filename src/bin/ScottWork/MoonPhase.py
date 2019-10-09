@@ -44,9 +44,9 @@ def main():
     '''
     Main function
     '''
-    month = 10
-    day = 28
-    year = 2019  # use yyyy format
+    month = 5
+    day = 27
+    year = 1996  # use yyyy format
     date, status, light = moon_phase(month, day, year)
     print("Moon Phase on given date: ",date, "is:", status)
 
