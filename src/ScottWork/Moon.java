@@ -11,7 +11,6 @@ public class Moon {
     // constructor
     public static class MoonPhase{
         private String phase;
-        
     }
     /*
     Function: getPhase()
@@ -19,9 +18,8 @@ public class Moon {
     Purpose: return an array of correctly
     formatted phase given the date and status
     */
-    public static ArrayList<String> getPhase(int month, int day, int year){
-        Moon moon = new Moon();
-        ArrayList<String> returned_vals = new ArrayList<>();
+    public static String getPhase(int month, int day, int year){
+        MoonPhase moon = new MoonPhase();
         int[] ages = {
             18, 0, 11, 22, 3, 14, 25, 6, 17, 28,
              9, 20, 1, 12, 23, 4, 15, 26, 7
@@ -52,37 +50,33 @@ public class Moon {
         }
 
         int days_into_phase;
-        int index; 
-        int year_count;
-        for (year_count = 1900; year_count < 2101; year_count++){
-            year_count += 1;
-        }
-        days_into_phase = ((ages[(year + 1) % 19] +
-                            ((day + offsets[month-1]) % 30) +
-                            (year_count) % 30));
-            index = (days_into_phase + 2) * 16/59;
-            String status;
-            if (index > 7){
-                if(index % 2 == 0){
-                    index = 0;
-                };
-            }
-            System.out.println(days_into_phase);
-            System.out.println(index);
-            
-            status = descriptions[index];
-            returned_vals.add(status);
+        int index = 0; 
+        String status = null;
 
-        return returned_vals;
+            if(year > 1899){
+                days_into_phase = (ages[(year) % 19]) +
+                ((day + offsets[month-1]) % 30) + (year % 30);
+                
+                index = (days_into_phase + 2) * 16/59;
+                if (index > 7){
+                    index = 7;
+                }
+                status = descriptions[index];
+                moon.phase = status;
+
+                System.out.printf("Days into phase: %d", days_into_phase);
+                
+            }    
+        return status;
         }
     
 
     public static void main(String[] args) {
-    int month = 10;
-    int day = 16;
-    int year = 1996; 
+    int month = 1;
+    int day = 1;
+    int year = 1900; 
 
-    ArrayList<String> moon = getPhase(month, day, year);
-    System.out.println(moon);
+    String moon = getPhase(month, day, year);
+    System.out.printf("\n %s",moon);
     }
 }   

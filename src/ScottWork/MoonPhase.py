@@ -27,7 +27,7 @@ def moon_phase(month, day, year):
     print("Days into phase: ", days_into_phase)
 
     index = int((days_into_phase + 2) * 16/59.0)
-    #print(index)  # test
+    # print(index)  # test
     if index > 7:
         index = 7
 
@@ -43,9 +43,9 @@ def main():
     '''
     Main function
     '''
-    month = 10
-    day = 16
-    year = 1996  # use yyyy format
+    month = 1
+    day = 1
+    year = 1900  # use yyyy format
     date, status, light = moon_phase(month, day, year)
     print("Moon Phase on given date: ", status)
 
