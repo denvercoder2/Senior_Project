@@ -49,14 +49,20 @@ public class Moon {
             day = 1;
         }
 
-        int days_into_phase;
+        int days_into_phase = 0;
         int index = 0; 
         String status = null;
 
             if(year > 1899){
-                days_into_phase = (ages[(year) % 19]) +
-                ((day + offsets[month-1]) % 30) + (year % 30);
+                int special_case = ((day + offsets[month-1]) % 30);
+                if (special_case == 0){
+                    special_case = 30;
+                }
+                days_into_phase =  ((ages[(year + 1) % 19] +
+                                    special_case + (year)) % 30);
+
                 
+                System.out.println(1930 % 30);
                 index = (days_into_phase + 2) * 16/59;
                 if (index > 7){
                     index = 7;
