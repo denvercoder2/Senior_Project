@@ -5,6 +5,8 @@ import java.util.*;
 import java.io.*;
 import java.math.*;
 
+
+
 public class Moon {
     // add attributes as needed
     
@@ -12,77 +14,129 @@ public class Moon {
     public static class MoonPhase{
         private String phase;
     }
+
+    /*
+    Function: fixReturn
+    Parameters: inverse (double)
+    Purpose: To fix a calculation error
+    that only occurs sometimes.
+    */
+    public static double fixReturn(double inverse){
+        double new_return = Math.abs(inverse);
+
+        return new_return;
+    }
+    /*
+    Function: returnDec
+    Parameters: number (double)
+    Purpose: return the decimal value of a double
+    */
+    public static double returnDec(double number){
+        BigDecimal bigDecimal = new BigDecimal(String.valueOf(number));
+        int intValue = bigDecimal.intValue();
+        double dec_return = bigDecimal.subtract(
+            new BigDecimal(intValue)).doubleValue();
+
+        return dec_return;
+    }
+
     /*
     Function: getPhase()
-    Parameters: month, day, year
+    Parameters: month, day, year (all int)
     Purpose: return an array of correctly
     formatted phase given the date and status
     */
     public static String getPhase(int month, int day, int year){
         MoonPhase moon = new MoonPhase();
-        int[] ages = {
-            18, 0, 11, 22, 3, 14, 25, 6, 17, 28,
-             9, 20, 1, 12, 23, 4, 15, 26, 7
-        };
-
-        int[] offsets = {
-            -1, 1, 0, 1, 2, 3, 4, 5, 7, 7, 9, 9
-        };
-
         String[] descriptions = {
-            "New (totally dark)",
-            "Waxing Crescent (increasing to full)",
-            "In its First Quarter (increasing to full)",
-            "Waxing Gibbous (increasing to full)",
-            "Full (full light)",
-            "Waning Gibbous (decreasing from full)",
-            "In its Last Quarter (decreasing from full)",
-            "Waning Crescent (decreasing from full)"
+            "New ( -> Waxing Cresent)",
+            "Waxing Crescent ( -> First Quarter)",
+            "First Quarter ( -> Waxing Gibbous)",
+            "Waxing Gibbous ( -> Full)",
+            "Full ( -> Waning Gibbous)",
+            "Waning Gibbous ( -> Third Quarter)",
+            "Third Quarter( ->  Waning Cresent)",
+            "Waning Crescent ( -> New)",
+            "New (End of Cycle)"
         };
-
-        String[] months = {
-            " Jan", " Feb", " Mar", " Apr", " May", " Jun",
-              " Jul", " Aug", " Sep", " Oct", " Nov", " Dec"
-        };
-
-        if (day == 31){
-            day = 1;
+            double JD = 0.0;
+        if (month == 1 || month == 2){
+            year = year - 1;
+            month = month + 12;
         }
+            // source: https://www.subsystems.us/uploads/9/8/9/4/98948044/moonphase.pdf
 
-        int days_into_phase = 0;
-        int index = 0; 
-        String status = null;
+            // This is essentially a barebones JulianDay method
+            int A = year/100;
+            int B = A/4;
+            int C = (2 - A + B);
+            int E = (int)(365.25 * (year + 4716));
+            int F = (int)(30.6001 * (month + 1));
+            JD =  C + day + E + F - 1524.5;
+            System.out.printf("Julian Day: %f", JD);
+            
+            
+            double days_since_new = JD - 2451549.5;
+            double new_moons = days_since_new / 29.53;
+            double dec_new = returnDec(new_moons);
+            double days_into_cycle = (dec_new * 29.53);
+            String phase = null;
+            
+            System.out.printf("\nFor Year: %d, Month: %d, Day: %d", year, month, day);
+            System.out.printf("\n=======================================\n");
 
-            if(year > 1899){
-                int special_case = ((day + offsets[month-1]) % 30);
-                if (special_case == 0){
-                    special_case = 30;
-                }
-                days_into_phase =  ((ages[(year + 1) % 19] +
-                                    special_case + (year)) % 30);
 
-                
-                System.out.println(1930 % 30);
-                index = (days_into_phase + 2) * 16/59;
-                if (index > 7){
-                    index = 7;
-                }
-                status = descriptions[index];
-                moon.phase = status;
 
-                System.out.printf("Days into phase: %d", days_into_phase);
-                
-            }    
-        return status;
-        }
-    
+            if(days_into_cycle < 0){
+                days_into_cycle = fixReturn(days_into_cycle);
+            }
 
-    public static void main(String[] args) {
-    int month = 1;
-    int day = 1;
-    int year = 1900; 
+            if(days_into_cycle >= 0.00 && days_into_cycle <= 3.68){
+                phase = descriptions[0]; // new
+            }
+            else if(days_into_cycle >= 3.69 && days_into_cycle <= 7.37){
+                phase = descriptions[1]; // waning crescent
+            }
+            else if(days_into_cycle >= 7.38 && days_into_cycle <= 11.05){
+                phase = descriptions[2]; // third quarter
+            }
+            else if(days_into_cycle >= 11.06 && days_into_cycle <= 14.73){
+                phase = descriptions[3]; // waning gibbious
+            }
+            else if(days_into_cycle >= 14.74 && days_into_cycle <= 18.42){
+                phase = descriptions[4]; // Full
+            }
+            else if(days_into_cycle >= 18.43 && days_into_cycle <= 22.11){
+                phase = descriptions[5]; // Waxing Gibbious
+            }
+            else if(days_into_cycle >= 22.12 && days_into_cycle <= 25.80){
+                phase = descriptions[6]; // First Quarter
+            }
+            else if(days_into_cycle >= 25.81 && days_into_cycle <= 29.48){
+                phase = descriptions[7]; // Waxing Crescent
+            }
+            else if(days_into_cycle >= 29.48 && days_into_cycle <= 29.53){
+                phase = descriptions[8]; // New (End cycle)
+            }
+            else{
+                System.out.printf("There's an error in floating point calculations somewhere\n");
+            }
 
-    String moon = getPhase(month, day, year);
-    System.out.printf("\n %s",moon);
+            System.out.printf("Days into cycle: %f", days_into_cycle,  "\n");
+
+            moon.phase = phase;
+
+            return phase;
+    }
+        
+        public static void main(String[] args) {
+            int month = 1;
+            int day = 1;
+            int year = 1900;
+            // object phase is passed
+            String test = getPhase(month, day, year);
+            System.out.printf("\nPhase: %s", test);
+ 
+
     }
 }   

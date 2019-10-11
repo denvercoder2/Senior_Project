@@ -25,6 +25,7 @@ def moon_phase(month, day, year):
                         ((day + offsets[month-1]) % 30) +
                         (year > 1900)) % 30)
     print("Days into phase: ", days_into_phase)
+    print(13 * 16/59)
 
     index = int((days_into_phase + 2) * 16/59.0)
     # print(index)  # test
@@ -43,11 +44,12 @@ def main():
     '''
     Main function
     '''
-    month = 1
-    day = 1
-    year = 1900  # use yyyy format
+    month = 10
+    day = 11
+    year = 1921  # use yyyy format
     date, status, light = moon_phase(month, day, year)
     print("Moon Phase on given date: ", status)
+    
 
 
 if __name__ == "__main__":
