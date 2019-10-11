@@ -81,6 +81,7 @@ public class Moon {
             double dec_new = returnDec(new_moons);
             double days_into_cycle = (dec_new * 29.53);
             String phase = null;
+            boolean visable = true;
             
             System.out.printf("\nFor Year: %d, Month: %d, Day: %d", year, month, day);
             System.out.printf("\n=======================================\n");
