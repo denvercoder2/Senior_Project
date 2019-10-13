@@ -6,7 +6,6 @@ import java.io.*;
 import java.math.*;
 
 
-
 public class Moon {
     // add attributes as needed
     
