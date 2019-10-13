@@ -15,6 +15,7 @@ public class SkyMap_Formulae_J {
 	static SimpleDateFormat newDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	
 	public static void main(String[] args) throws ParseException {
+		long startTime = System.nanoTime();
 		ArrayList<SpaceObj> spaceObjList;
 		/*double Mod2Pi_Angle;
 		Mod2Pi_Angle = Mod2Pi.Mod2Pi(365);
@@ -47,6 +48,10 @@ public class SkyMap_Formulae_J {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
+		
+		long endTime = System.nanoTime();
+		long elapsedTime = endTime - startTime;
+		System.out.println("Finished processing in " + elapsedTime / 1000000000.00 + " seconds.");
 	}
 }

@@ -31,7 +31,7 @@ public class SpaceObjListBuilder {
 		System.out.println(nList.getLength()); // This prints out how many rows there are of this nodeset.
 		// This value will be our upper end.
 		
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < nList.getLength(); i++) {
 			System.out.println("===============NEW SPACE OBJ CREATED===============");
 			SpaceObj tempSpaceObj = new SpaceObj();
 //			exp = xPath.compile("//element/*[@id='row-" + i + "']");
