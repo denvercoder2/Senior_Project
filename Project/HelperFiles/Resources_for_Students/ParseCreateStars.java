@@ -120,20 +120,15 @@ public class ParseCreateStars{
     }
 
     // function to parse and grab the stars
-    public static ArrayList<String> stars (String filename, int edge_condition){
+    public static ArrayList<String> stars (String filename, int edge_condition, Document doc){
         Star star = new Star();
         ArrayList<String> templates = new ArrayList<>();
         try{
-            File xml_file = new File (filename);
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(xml_file);
-            doc.getDocumentElement().normalize();
-            
             // the total size of xml (reduction already in place)
             
             NodeList nList = null;
             for (int j = 0; j < edge_condition; j++){
+            	//System.out.println(j); // Uncomment this line to see where the problem is speed is
                 // this is to iterate through all rows since they change at every child node value
                 nList = doc.getElementsByTagName("row-" + String.valueOf(j));
             }
@@ -237,18 +232,33 @@ Items in list are mapped to following index:
         // out the info for the row (defined above)
         // if it fits criteria. We can do pretty much whatever
         // with the data
-        int upper_limit = 31858;
-        for (int k = 0; k < upper_limit; k++){
-            ArrayList<String> star = stars("stars.xml", k);
-            if(!star.isEmpty()){
-                System.out.println("=====================================================================================================================================================================================");
-                System.out.println("[0]StarID, [1]Hip, [2]HD, [3]HR, [4]Gliese, [5]BayerFlamsteed, [6]ProperName, [7]RA,  [8]Dec, [9]Distance, [10]Magnitude, [11]AbsMag, [12]Spectrum, [13]Color Index]");
-                System.out.println(star);
-                System.out.println("=====================================================================================================================================================================================");
-            }
-            else{
-                continue;
-            }
+    	String filename = "stars.xml";
+    	ArrayList<String> star;
+    	int upper_limit = 31858;
+    	try{
+
+				File xml_file = new File (filename);
+	            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+	            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+	            Document doc = dBuilder.parse(xml_file);
+	            doc.getDocumentElement().normalize();
+
+	        for (int k = 0; k < 100; k++){
+	            star = stars("stars.xml", k, doc);
+	            if(!star.isEmpty()){
+	                System.out.println("=====================================================================================================================================================================================");
+	                System.out.println("[0]StarID, [1]Hip, [2]HD, [3]HR, [4]Gliese, [5]BayerFlamsteed, [6]ProperName, [7]RA,  [8]Dec, [9]Distance, [10]Magnitude, [11]AbsMag, [12]Spectrum, [13]Color Index]");
+	                System.out.println(star);
+	                System.out.println("=====================================================================================================================================================================================");
+	            }
+	            else{
+	                continue;
+	            }
+	        }
+	    }
+    	catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("\tError Handled, no problems");
         }
     }
 }
