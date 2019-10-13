@@ -41,7 +41,7 @@ public class SkyMap_Formulae_J {
 	        doc.getDocumentElement().normalize();
 	        
 	        spaceObjList = SpaceObjListBuilder.stars(filename, doc, 6);
-	        System.out.println(spaceObjList.size());
+	        System.out.println(spaceObjList.size() - 1); // -1 because we COUNT THAT 0
 	        
 	        
 	        

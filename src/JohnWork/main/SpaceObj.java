@@ -1,4 +1,10 @@
 package JohnWork.main;
+/*
+ * A lot of this, almost entirely, is derived from Scott's ParseCreateStars
+ * It has a really good baseline, but work and functions were included in an
+ * object, and to neatly separate it I split his .java into SpaceObj and SpaceObjListBuilder
+ */
+
 
 public class SpaceObj {
     private String starId;
