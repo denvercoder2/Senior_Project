@@ -100,10 +100,10 @@ public class Moon {
             else if(days_into_cycle >= 7.38 && days_into_cycle <= 11.05){
                 phase = descriptions[2]; // third quarter
             }
-            else if(days_into_cycle >= 11.06 && days_into_cycle <= 14.73){
+            else if(days_into_cycle >= 11.06 && days_into_cycle <= 14.65){
                 phase = descriptions[3]; // waning gibbious
             }
-            else if(days_into_cycle >= 14.74 && days_into_cycle <= 18.42){
+            else if(days_into_cycle >= 14.65 && days_into_cycle <= 18.42){
                 phase = descriptions[4]; // Full
             }
             else if(days_into_cycle >= 18.43 && days_into_cycle <= 22.11){
@@ -130,9 +130,9 @@ public class Moon {
     }
         
         public static void main(String[] args) {
-            int month = 1;
-            int day = 1;
-            int year = 1900;
+            int month = 10;
+            int day = 13;
+            int year = 2019;
             // object phase is passed
             String test = getPhase(month, day, year);
             System.out.printf("\nPhase: %s", test);
