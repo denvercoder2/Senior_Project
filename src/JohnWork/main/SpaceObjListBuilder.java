@@ -24,9 +24,14 @@ public class SpaceObjListBuilder {
 		NodeList nList = (NodeList)exp.evaluate(doc,XPathConstants.NODESET);
 		System.out.println(nList.getLength()); // This prints out how many rows there are of this nodeset.
 		// This value will be our upper end.
+		boolean printOutput = true;
+		double d_RA = 0, d_Dec = 0;
 		
+		// Strings to hold out childNode's name and tempChildValue's name
+		String tempChild = "", tempChildValue = "";
+		// for (int i = 0; i < nList.getLength(); i++)
 		for (int i = 0; i < nList.getLength(); i++) {
-			System.out.println("===============NEW SPACE OBJ CREATED===============");
+			//System.out.println("===============NEW SPACE OBJ CREATED===============");
 			SpaceObj tempSpaceObj = new SpaceObj();
 			Element e1 = (Element) nList.item(i);
 			
@@ -36,15 +41,14 @@ public class SpaceObjListBuilder {
 			// This grabs all the children of the above node and tests them for their name and value
 			NodeList children = e1.getChildNodes();
 			
-			// Strings to hold out childNode's name and tempChildValue's name
-			String tempChild, tempChildValue;
+			
 			for (int k = 0; k < children.getLength(); k++) {
 				Node child = children.item(k);
 
 				// Now that we have our child, let's be sure it isn't a text node (or aka, let's make sure it HAS children)
 				if (child.getNodeType() != Node.TEXT_NODE) {
 					tempChild = child.getNodeName();
-					System.out.println("\t child  - " + tempChild);
+					//System.out.println("\t child  - " + tempChild);
 					
 					// Now that we know it HAS children, let's look at its children, and be sure they hold values we want to take (and are not null)
 					if (child.getFirstChild() != null && child.getFirstChild().getNodeType() == Node.TEXT_NODE) {
@@ -56,51 +60,64 @@ public class SpaceObjListBuilder {
 				// Using a switch statement to add the values for the object based on nodeName
 				switch(child.getNodeName()) {
 				case "StarID":
-					tempSpaceObj.setStarID(child.getNodeValue());
+					tempSpaceObj.setStarID(tempChildValue);
 					break;
 				case "Hip":
-					tempSpaceObj.setHip(child.getNodeValue());
+					tempSpaceObj.setHip(tempChildValue);
 					break;
 				case "HD":
-					tempSpaceObj.setHD(child.getNodeValue());
+					tempSpaceObj.setHD(tempChildValue);
 					break;
 				case "HR":
-					tempSpaceObj.setHR(child.getNodeValue());
+					tempSpaceObj.setHR(tempChildValue);
 					break;
 				case "Gliese":
-					tempSpaceObj.setGliese(child.getNodeValue());
+					tempSpaceObj.setGliese(tempChildValue);
 					break;
 				case "BayerFlamesteed":
-					tempSpaceObj.setBayerFlamsteed(child.getNodeValue());
+					tempSpaceObj.setBayerFlamsteed(tempChildValue);
 					break;
 				case "ProperName":
-					tempSpaceObj.setProperName(child.getNodeValue());
+					tempSpaceObj.setProperName(tempChildValue);
 					break;
 				case "RA":
-					tempSpaceObj.setRA(child.getNodeValue());
+					tempSpaceObj.setRA(tempChildValue);
+					d_RA = Double.parseDouble(tempSpaceObj.getRA()); 
 					break;
 				case "Dec":
-					tempSpaceObj.setDec(child.getNodeValue());
+					tempSpaceObj.setDec(tempChildValue);
+					d_Dec = Double.parseDouble(tempSpaceObj.getDec()); 
 					break;
 				case "Distance":
-					tempSpaceObj.setDistance(child.getNodeValue());
+					tempSpaceObj.setDistance(tempChildValue);
 					break;
 				case "Mag":
-					tempSpaceObj.setMagnitude(child.getNodeValue());
+					tempSpaceObj.setMagnitude(tempChildValue);
 					break;
 				case "AbsMag":
-					tempSpaceObj.setAbsMag(child.getNodeValue());
+					tempSpaceObj.setAbsMag(tempChildValue);
 					break;
 				case "Spectrum":
-					tempSpaceObj.setSpectrum(child.getNodeValue());
+					tempSpaceObj.setSpectrum(tempChildValue);
 					break;
 				case "ColorIndex":
-					tempSpaceObj.setColorIndex(child.getNodeValue());
-					System.out.println("===============NEW SPACE OBJ DONE===============");
+					tempSpaceObj.setColorIndex(tempChildValue);
+					//System.out.println("===============NEW SPACE OBJ DONE===============");
 					break;
 				}
 			}
-		
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			// Finally, add the objects to our list
 			spaceObjList.add(tempSpaceObj);
 		
