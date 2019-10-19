@@ -23,6 +23,8 @@ import javax.swing.border.LineBorder;
 import javax.swing.JScrollPane;
 import java.awt.SystemColor;
 import javax.swing.JTextArea;
+//import org.apache.commons.lang3.StringUtils;
+
 public class GUI extends JFrame {
 
 	private JPanel mainGUI;
@@ -42,6 +44,12 @@ public class GUI extends JFrame {
 	private JLabel minutes;
 	private JTextField minTextField;
 	private JScrollPane scrollPane;
+	private JComboBox latitudeComboBox;
+	private JComboBox longitudeComboBox;
+	private JCheckBox starNames;
+	private JCheckBox constellations;
+	private JCheckBox planets;
+	private JCheckBox messierDeepSpace;
 	
 	private double dayInput;
 	private double yearInput;
@@ -51,6 +59,15 @@ public class GUI extends JFrame {
 	private double longInput;
 	private double latInput;
 	private double minInput;
+	private String latitudeDirection;
+	private String longitudeDirection;
+	private Boolean starNamesCB;
+	private Boolean constellationsCB;
+	private Boolean planetsCB;
+	private Boolean messierCB;
+	
+	
+	
 	
 	InputUtils utils;
 	private JButton btnSaveToDisk;
@@ -84,9 +101,12 @@ public class GUI extends JFrame {
 		checkLatitude();
 		checkLongitude();
 		checkMins();
+		checkLatitudeDirection();
+		checkLongitudeDirection();
+		
 		
 		if(checkDay() && checkYear() && checkMonth() && checkHours() && checkMinutes()
-				&& checkLatitude() && checkLongitude() && checkMins()) {
+				&& checkLatitude() && checkLongitude() && checkMins() && checkLatitudeDirection() && checkLongitudeDirection()) {
 			setValidInputs();
 		}
 		else {
@@ -102,7 +122,12 @@ public class GUI extends JFrame {
 		System.out.println(dayTextField.getText());
 		
 		if(dayTextField.getText() != null && !dayTextField.getText().isEmpty()) {
-			dayInput = Double.valueOf(dayTextField.getText());
+			try {
+				dayInput = Double.valueOf(dayTextField.getText());
+			}
+			catch(Exception e) {
+				dayTextField.setBorder(new LineBorder(Color.RED, 3));
+			}
 			System.out.println(dayInput);
 			
 			if(dayInput < 1 || dayInput > 31) {	
@@ -124,7 +149,12 @@ public class GUI extends JFrame {
 		Boolean check = false;
 		
 		if(yearTextField.getText() != null && !yearTextField.getText().isEmpty()) {
-			yearInput = Double.valueOf(yearTextField.getText());
+			try {
+				yearInput = Double.valueOf(yearTextField.getText());
+			}
+			catch(Exception e) {
+				yearTextField.setBorder(new LineBorder(Color.RED, 3));
+			}
 			System.out.println(yearInput);
 			
 			if(yearInput < 1900 || yearInput > 2100) {
@@ -147,7 +177,13 @@ public class GUI extends JFrame {
 		Boolean check = false;
 		
 		if(monthTextField.getText() != null && !monthTextField.getText().isEmpty()) {
+			
+			try {
 			monthInput = Double.valueOf(monthTextField.getText());
+			}
+			catch(Exception e) {
+				monthTextField.setBorder(new LineBorder(Color.RED, 3));
+			}
 			System.out.println(monthInput);
 			
 			if(monthInput < 1 || monthInput > 12) {
@@ -168,8 +204,12 @@ public class GUI extends JFrame {
 		Boolean check = false;
 		
 		if(hoursTextField.getText() != null && !hoursTextField.getText().isEmpty()) {
-			hourInput = Double.valueOf(hoursTextField.getText());
-			
+			try {
+				hourInput = Double.valueOf(hoursTextField.getText());
+			}
+			catch(Exception e) {
+				hoursTextField.setBorder(new LineBorder(Color.RED, 3));
+			}
 			if(hourInput < 1 || hourInput > 24) {
 				hoursTextField.setBorder(new LineBorder(Color.RED, 3));
 			}
@@ -188,7 +228,12 @@ public class GUI extends JFrame {
 		Boolean check = false;
 		
 		if(minutesTextField.getText() != null && !minutesTextField.getText().isEmpty()) {
-			minuteInput = Double.valueOf(minutesTextField.getText());
+			try {
+				minuteInput = Double.valueOf(minutesTextField.getText());
+			}
+			catch(Exception e) {
+				minutesTextField.setBorder(new LineBorder(Color.RED, 3));
+			}
 			
 			if(minuteInput < 0 || minuteInput > 60) {
 				minutesTextField.setBorder(new LineBorder(Color.RED, 3));
@@ -208,7 +253,12 @@ public class GUI extends JFrame {
 		Boolean check = false;
 		
 		if(latTextField.getText() != null && !latTextField.getText().isEmpty()) {
-			latInput = Double.valueOf(latTextField.getText());
+			try {
+				latInput = Double.valueOf(latTextField.getText());
+			}
+			catch(Exception e) {
+				latTextField.setBorder(new LineBorder(Color.RED, 3));
+			}
 			
 			if(latInput < 0 || latInput > 90) {
 				latTextField.setBorder(new LineBorder(Color.RED, 3));
@@ -228,7 +278,12 @@ public class GUI extends JFrame {
 		Boolean check = false;
 		
 		if(longTextField.getText() != null && !longTextField.getText().isEmpty()) {
-			longInput = Double.valueOf(longTextField.getText());
+			try {
+				longInput = Double.valueOf(longTextField.getText());
+			}
+			catch(Exception e) {
+				longTextField.setBorder(new LineBorder(Color.RED, 3));
+			}
 			
 			if(longInput < 0 || longInput > 180) {
 				longTextField.setBorder(new LineBorder(Color.RED, 3));
@@ -248,7 +303,12 @@ public class GUI extends JFrame {
 		Boolean check = false;
 		
 		if(minTextField.getText() != null && !minTextField.getText().isEmpty()) {
-			minInput = Double.valueOf(minTextField.getText());
+			try {
+				minInput = Double.valueOf(minTextField.getText());
+			}
+			catch(Exception e) {
+				minTextField.setBorder(new LineBorder(Color.RED, 3));
+			}
 			
 			if(minInput < 0 || minInput > 180) {
 				minTextField.setBorder(new LineBorder(Color.RED, 3));
@@ -263,6 +323,49 @@ public class GUI extends JFrame {
 		}
 		return check;
 	}
+	
+	public Boolean checkLatitudeDirection() {
+		Boolean flag = false;
+		
+		if(latitudeComboBox.getSelectedItem().toString() == " ") {
+			latitudeComboBox.setBorder(new LineBorder(Color.RED, 3));
+		}
+		else {
+			if(latitudeComboBox.getSelectedItem().toString() == "North") {
+				latitudeDirection = "North";
+				latitudeComboBox.setBorder(new LineBorder(Color.BLACK, 1));
+			}
+			else if(latitudeComboBox.getSelectedItem().toString() == "South") {
+				latitudeDirection = "South";
+				latitudeComboBox.setBorder(new LineBorder(Color.BLACK, 1));
+			}
+			flag = true;
+		}
+		
+		return flag;
+	}
+	
+	public Boolean checkLongitudeDirection() {
+		Boolean flag = false;
+		
+		if(longitudeComboBox.getSelectedItem().toString() == " ") {
+			longitudeComboBox.setBorder(new LineBorder(Color.RED, 3));
+		}
+		else {
+			if(longitudeComboBox.getSelectedItem().toString() == "West") {
+				longitudeDirection = "West";
+				longitudeComboBox.setBorder(new LineBorder(Color.BLACK, 1));
+			}
+			else if(longitudeComboBox.getSelectedItem().toString() == "East") {
+				longitudeDirection = "East";
+				longitudeComboBox.setBorder(new LineBorder(Color.BLACK, 1));
+			}
+			flag = true;
+		}
+		
+		return flag;
+	}
+	
 	public void intialize() {
 		//Set to intial values
 		dayInput = -1;
@@ -277,6 +380,14 @@ public class GUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
+	public void setLabels() {
+	    starNamesCB = starNames.isSelected();
+		constellationsCB = constellations.isSelected();
+		planetsCB = planets.isSelected();
+		messierCB = messierDeepSpace.isSelected();
+	}
+	
 	public GUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 2500, 1500);
@@ -372,22 +483,22 @@ public class GUI extends JFrame {
 		mainGUI.add(minTextField);
 		minTextField.setColumns(10);
 		
-		JCheckBox starNames = new JCheckBox("Star Names");
+		starNames = new JCheckBox("Star Names");
 		starNames.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		starNames.setBounds(2000, 343, 429, 41);
 		mainGUI.add(starNames);
 		
-		JCheckBox constellations = new JCheckBox("Constellations");
+		constellations = new JCheckBox("Constellations");
 		constellations.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		constellations.setBounds(2000, 412, 429, 41);
 		mainGUI.add(constellations);
 		
-		JCheckBox planets = new JCheckBox("Planets");
+		planets = new JCheckBox("Planets");
 		planets.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		planets.setBounds(2000, 473, 221, 41);
 		mainGUI.add(planets);
 		
-		JCheckBox messierDeepSpace = new JCheckBox("Messier Deep Space Objects");
+		messierDeepSpace = new JCheckBox("Messier Deep Space Objects");
 		messierDeepSpace.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		messierDeepSpace.setBounds(2000, 534, 429, 41);
 		mainGUI.add(messierDeepSpace);
@@ -401,35 +512,6 @@ public class GUI extends JFrame {
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
 		lblNewLabel.setBounds(0, 28, 2468, 67);
 		mainGUI.add(lblNewLabel);
-		
-		JButton applyButton = new JButton("Apply");
-		applyButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-				/*dayInput = Double.valueOf(dayTextField.getText());
-				monthInput = Double.valueOf(monthTextField.getText());
-				yearInput = Double.valueOf(yearTextField.getText());
-				hourInput = Double.valueOf(hoursTextField.getText());
-				minuteInput = Double.valueOf(minutesTextField.getText());
-					
-				longInput = Double.valueOf(longTextField.getText());
-				latInput = Double.valueOf(latTextField.getText());
-				minInput = Double.valueOf(minTextField.getText());
-					*/
-				//utils.sendInputs(monthInput, dayInput, yearInput, hourInput, minuteInput, latInput, longInput, minInput);
-				}
-				catch(IllegalArgumentException e) 
-		        { 
-		            System.out.println("IllegalArgumentException caught"); 
-		        }
-				checkValues();
-				
-					
-			}
-		});
-		applyButton.setFont(new Font("Tahoma", Font.BOLD, 34));
-		applyButton.setBounds(26, 1082, 212, 67);
-		mainGUI.add(applyButton);
 		
 		JLabel lblEnterLocation = new JLabel("Enter Location:");
 		lblEnterLocation.setFont(new Font("Tahoma", Font.BOLD, 34));
@@ -452,14 +534,14 @@ public class GUI extends JFrame {
 		btnSaveToDisk.setBounds(2000, 1095, 337, 67);
 		mainGUI.add(btnSaveToDisk);
 		
-		JComboBox latitudeComboBox = new JComboBox();
+		latitudeComboBox = new JComboBox();
 		latitudeComboBox.setBounds(25, 812, 217, 39);
 		latitudeComboBox.addItem(" ");
 		latitudeComboBox.addItem("North");
 		latitudeComboBox.addItem("South");
 		mainGUI.add(latitudeComboBox);
 		
-		JComboBox longitudeComboBox = new JComboBox();
+		longitudeComboBox = new JComboBox();
 		longitudeComboBox.setBounds(25, 948, 217, 39);
 		longitudeComboBox.addItem(" ");
 		longitudeComboBox.addItem("East");
@@ -467,9 +549,47 @@ public class GUI extends JFrame {
 		mainGUI.add(longitudeComboBox);
 		
 		JButton refreshButton = new JButton("Refresh SkyMap");
+		refreshButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setLabels();
+			}
+		});
 		refreshButton.setFont(new Font("Tahoma", Font.BOLD, 34));
 		refreshButton.setBounds(2018, 667, 411, 49);
 		mainGUI.add(refreshButton);
+		
+		JButton applyButton = new JButton("Apply");
+		applyButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+				/*dayInput = Double.valueOf(dayTextField.getText());
+				monthInput = Double.valueOf(monthTextField.getText());
+				yearInput = Double.valueOf(yearTextField.getText());
+				hourInput = Double.valueOf(hoursTextField.getText());
+				minuteInput = Double.valueOf(minutesTextField.getText());
+					
+				longInput = Double.valueOf(longTextField.getText());
+				latInput = Double.valueOf(latTextField.getText());
+				minInput = Double.valueOf(minTextField.getText());
+					*/
+				//utils.sendInputs(monthInput, dayInput, yearInput, hourInput, minuteInput, latInput, longInput, minInput);
+				}
+				catch(IllegalArgumentException e) 
+		        { 
+		            System.out.println("IllegalArgumentException caught"); 
+		        }
+				checkValues();
+				setLabels();
+				
+				
+					
+			}
+		});
+		applyButton.setFont(new Font("Tahoma", Font.BOLD, 34));
+		applyButton.setBounds(26, 1082, 212, 67);
+		mainGUI.add(applyButton);
+		
+		
 		
 		//JTextArea textArea = new JTextArea();
 		//textArea.setBounds(341, 155, 1605, 1026);
