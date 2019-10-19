@@ -136,6 +136,10 @@ public class SpaceObj {
     	this.solvingOwnLocation();
     }
     
+    public void solveOwnLocation(Date chosenDate) {
+    	this.solvingOwnLocation(chosenDate);
+    }
+    
     public void solveOwnLocation(double lat, double lon) {
     	this.solvingOwnLocation(lat, lon);
     }
@@ -167,21 +171,21 @@ public class SpaceObj {
     
     private Date getGCD(Date chosenDate, double UT) {
     	Date gcDate = chosenDate;
-    	double chosenDate_year = chosenDate.getYear(),chosenDate_mon = chosenDate.getMonth(),chosenDate_day = chosenDate.getDate() + (UT/24);
-    	gcDate.setDate((int) chosenDate_day);
+    	double chosenDate_year = chosenDate.getYear()+1900,chosenDate_mon = chosenDate.getMonth()+1,chosenDate_day = chosenDate.getDate() + (UT/24);
+    	gcDate.setDate((int) chosenDate_day);    	
     	
     	return gcDate;
     }
     
     private double getJulianDate(Date gcDate) {
-    	boolean testOutput = false;
+    	boolean testOutput = true;
     	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy,MM,dd,HH,mm,ss");
     	double JD = 0, DDdd, y, m, A = 0, B;
-		
+    	
 		int dayAsInt = gcDate.getDate() - 1;
-		DDdd = (double)(gcDate.getDate() + gcDate.getHours() / 24.0);
+		DDdd = (double)(gcDate.getDate() + (gcDate.getHours()+1) / 24.0);
 		
-		if (gcDate.getMonth() > 2) {
+		if (gcDate.getMonth()+1 > 2) {
 			y = gcDate.getYear()+1900;
 			m = gcDate.getMonth();
 		} else {
@@ -208,19 +212,20 @@ public class SpaceObj {
 		if (testOutput == true) {
 		System.out.println("::JD TEST::"
 				+ "\nchosenDate.year = " + gcDate.getYear()
-				+ "\nchosenDate.month = " + gcDate.getMonth()
+				+ "\nchosenDate.month = " + (gcDate.getMonth()+1)
 				+ "\nchosenDate.day = " + gcDate.getDate()
-				+ "\nhours = " + gcDate.getHours()
+				+ "\nhours = " + (gcDate.getHours()+1)
 				+ "\nmins = " + gcDate.getMinutes()
 				+ "\ny = " + y
 				+ "\nm = " + m
 				+ "\nA = " + A
 				+ "\nB = " + B
 				+ "\nDDdd = " + DDdd
-				+ "\nDate = " + gcDate);
+				+ "\nDate(+1hr) = " + gcDate);
 		}
 		
 		JD = (int)(365.25 * y) + (int)(30.6001 * (m + 1)) + DDdd + 1720994.5 + B;
+		System.out.println("JD = " + JD);
 		
 		return JD;
     }
@@ -314,8 +319,39 @@ public class SpaceObj {
     	//String choiceDate = dateFormat.format(chosenDate);
     	
     	double d_RA, d_Dec, lat, lon;
-    	d_RA = Math.toRadians(Double.parseDouble(this.getRA()));
-		d_Dec = Math.toRadians(Double.parseDouble(this.getDec())); 
+    	d_RA = Double.parseDouble(this.getRA());
+		d_Dec = Double.parseDouble(this.getDec()); 
+    	lat = 34.7251; lon = 86.6398; // Lat and Lon of UAH default if none given
+    	
+    	
+    	Date gcDate; double ut, jd, gst, lst, dh, altitude, azimuth;
+    	ut = getUT(lat,lon,chosenDate);
+    	gcDate = getGCD(chosenDate, ut);
+    	jd = getJulianDate(gcDate);
+    	gcDate = getCD(jd);
+    	ut = 24*(gcDate.getDate() - (int)gcDate.getDate());
+    	gst = UTtoGST(gcDate, ut, jd);
+    	//
+    	lst = gst + lon/15; // First big step
+    	//
+    	dh = RAtoH(d_RA,lst); // Second big step
+    	//
+    	
+    	altitude = getAltitude(lat,dh,d_Dec);
+    	this.setAltitude(altitude);
+    	azimuth = getAzimuth(lat,dh,altitude,d_Dec);
+    	this.setAzimuth(azimuth);
+    	
+    	//System.out.println(this.ProperName + " \nstar has an altitude of " + altitude + "\nand an azimuth of " + azimuth);
+    }
+    
+    private void solvingOwnLocation(Date chosenDate) {
+    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy,MM,dd,HH,mm,ss");
+    	//String choiceDate = dateFormat.format(chosenDate);
+    	
+    	double d_RA, d_Dec, lat, lon;
+    	d_RA = Double.parseDouble(this.getRA());
+		d_Dec = Double.parseDouble(this.getDec()); 
     	lat = 34.7251; lon = 86.6398; // Lat and Lon of UAH default if none given
     	
     	
@@ -346,8 +382,8 @@ public class SpaceObj {
     	//String choiceDate = dateFormat.format(chosenDate);
     	
     	double d_RA, d_Dec;
-    	d_RA = Math.toRadians(Double.parseDouble(this.getRA()));
-		d_Dec = Math.toRadians(Double.parseDouble(this.getDec())); 
+    	d_RA = Double.parseDouble(this.getRA());
+		d_Dec = Double.parseDouble(this.getDec()); 
     	
 		Date gcDate; double ut, jd, gst, lst, dh, altitude, azimuth;
     	ut = getUT(lat,lon,chosenDate);
@@ -375,8 +411,8 @@ public class SpaceObj {
     	//String choiceDate = dateFormat.format(chosenDate);
     	
     	double d_RA, d_Dec;
-		d_RA = Math.toRadians(Double.parseDouble(this.getRA()));
-		d_Dec = Math.toRadians(Double.parseDouble(this.getDec())); 
+		d_RA = Double.parseDouble(this.getRA());
+		d_Dec = Double.parseDouble(this.getDec()); 
     	
 		Date gcDate; double ut, jd, gst, lst, dh, altitude, azimuth;
     	ut = getUT(lat,lon,chosenDate);

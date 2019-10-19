@@ -12,14 +12,11 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 
 public class SkyMap_Formulae_J {
-	//static SimpleDateFormat newDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy,MM,dd,HH,mm,ss");
 	
 	public static void main(String[] args) throws ParseException {
 		long startTime = System.nanoTime();
 		ArrayList<SpaceObj> spaceObjList = null;
-		Date nowDate = new Date();
-    	String choiceDate = dateFormat.format(nowDate);
 		/*double Mod2Pi_Angle;
 		Mod2Pi_Angle = Mod2Pi.Mod2Pi(365);
 		
@@ -51,7 +48,7 @@ public class SkyMap_Formulae_J {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}		
 		
 		
 		for (int k = 0; k < spaceObjList.size(); k++) {
