@@ -59,6 +59,16 @@ public class GUI extends JFrame {
 	private double longInput;
 	private double latInput;
 	private double minInput;
+	
+	private double dayValid;
+	private double yearValid;
+	private double monthValid;
+	private double hourValid;
+	private double minuteValid;
+	private double longValid;
+	private double latValid;
+	private double minValid;
+	
 	private String latitudeDirection;
 	private String longitudeDirection;
 	private Boolean starNamesCB;
@@ -114,9 +124,18 @@ public class GUI extends JFrame {
 			        JOptionPane.ERROR_MESSAGE);
 		}
 	}
+	
 	public void setValidInputs() {
-		
+		dayValid = dayInput;
+		yearValid = yearInput;
+		monthValid = monthInput;
+		hourValid = hourInput;
+		minuteValid = minuteInput;
+		longValid = longInput;
+		latValid = latInput;
+		minValid = minInput;
 	}
+
 	public Boolean checkDay() {
 		Boolean check = false;
 		System.out.println(dayTextField.getText());
@@ -377,16 +396,59 @@ public class GUI extends JFrame {
 		latInput = -1;
 		minInput = -1;
 	}
-	/**
-	 * Create the frame.
-	 */
 	
 	public void setLabels() {
+		//CB is checked if true
 	    starNamesCB = starNames.isSelected();
 		constellationsCB = constellations.isSelected();
 		planetsCB = planets.isSelected();
 		messierCB = messierDeepSpace.isSelected();
 	}
+	
+	public double getDay() {
+		return dayValid;
+	}
+	
+	public double getYear() {
+		return yearValid;
+	}
+	
+	public double getMonth() {
+		return monthValid;
+	}
+	
+	public double getHour() {
+		return hourValid;
+	}
+	
+	public double getMinute() {
+		return minuteValid;
+	}
+	
+	public double getLong() {
+		return longValid;
+	}
+	
+	public double getLat() {
+		return latValid;
+	}
+	
+	public double getMin() {
+		return minValid;
+	}
+	
+	public String getLatitudeDirection() {
+		return latitudeDirection;
+	}
+	
+	public String getLongitudeDirection() {
+		return longitudeDirection;
+	}
+	
+	
+	/**
+	 * Create the frame.
+	 */
 	
 	public GUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
