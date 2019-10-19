@@ -320,21 +320,62 @@ def getAzimuth(lat, dh, alt, dec):
         A = 2*(math.pi) - A
     return A
 
+def boundRange(num):
+    while (1 == 1):
+        if num < 0:
+            num += 360
+        elif num > 360:
+            num -= 360
+        else:
+            break
+    return num
+
+def getSun(jd):
+    epoch = 2455196.5
+    D = jd - epoch
+    t = (epoch-2415020.0)/36525
+    L = 279.6966778 + (36000.76892*t) + (0.0003025*t*t) # mean longitude
+    L = boundRange(L)
+    w = 281.2208444 + (1.719175*t) + (0.000452778*t*t) # argument of perigee
+    w = boundRange(w)
+    e = 0.01675104 - (0.0000418*t) - (0.000000126*t*t)
+    N = (360/365.242191)*D
+    N = boundRange(N)
+    M = N+L-w
+    if M < 0:
+        M += 360 
+    E = (360/math.pi)*e*math.sin(math.radians(M))
+    l = N+E+L
+    while (l > 360):
+        l -= 360
+    return l
+
+def testSun():
+    date = (2003, 7, 27)
+    jd = getJD(date)
+    getSun(jd)
+
 # testLCT()
 def test():
-    ra = (2, 31.1, 0)
-    ra = math.radians(getDH(ra))
-    dec = math.radians(89.15)
+    ra = (14, 50, 42)
+    ra = getDH(ra)
+    dec = (74, 9, 19.81)
+    dec = getDH(dec)
 
-    lat = math.radians(34.73)
-    lon = -86.59
+    lat = 34
+    lon = -87
     place = (lat, lon)
 
-    time = (21, 2, 0)
-    date = (2019, 10, 7)
+    time = (8, 17, 0)
+    date = (2019, 10, 16)
 
     lst = getLST(place, date, time, False)
     dh = RAtoH(ra, lst)
+
+    lat = math.radians(lat)
+    dh = math.radians(dh*15)
+    dec = math.radians(dec)
+
     a = getAltitude(lat, dh, dec)
     print(math.degrees(a))
     A = getAzimuth(lat, dh, a, dec)
@@ -360,4 +401,4 @@ def test1():
     A = getAzimuth(lat, dh, a, dec)
     print(A)
 
-test()
+testSun()
