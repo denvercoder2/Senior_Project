@@ -149,21 +149,22 @@ public class SpaceObj {
     }
     
     private double getDH(Date chosenDate) {
-    	double chosenDate_hours = chosenDate.getHours(),chosenDate_mins = chosenDate.getMinutes(),chosenDate_secs = chosenDate.getSeconds(); 
+    	double chosenDate_hours = chosenDate.getHours(),chosenDate_mins = chosenDate.getMinutes(),chosenDate_secs = chosenDate.getSeconds();     	
     	
     	chosenDate_secs /= 60;
     	chosenDate_mins = (chosenDate_mins + chosenDate_secs)/60;
-    	chosenDate_hours += chosenDate_mins;
+    	chosenDate_hours += chosenDate_mins;    	
     	
     	return chosenDate_hours;
     }
     
     private double getUT(double lat, double lon, Date chosenDate) {
     	double offset, ut;
+    	
     	if (TimeZone.getDefault().inDaylightTime(chosenDate))
     		chosenDate.setHours(chosenDate.getHours()-1);
     	
-    	offset = (int)(lon/15);
+    	offset = (int)(Math.round((lon/15)));
     	ut = getDH(chosenDate) - offset;
     	
     	return ut;
@@ -178,7 +179,7 @@ public class SpaceObj {
     }
     
     private double getJulianDate(Date gcDate) {
-    	boolean testOutput = true;
+    	boolean testOutput = false;
     	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy,MM,dd,HH,mm,ss");
     	double JD = 0, DDdd, y, m, A = 0, B;
     	
@@ -225,22 +226,24 @@ public class SpaceObj {
 		}
 		
 		JD = (int)(365.25 * y) + (int)(30.6001 * (m + 1)) + DDdd + 1720994.5 + B;
-		System.out.println("JD = " + JD);
+		//System.out.println("JD = " + JD);
 		
 		return JD;
     }
     
     private Date getCD(double jd) {
+    	boolean testOutput = false;
     	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy,MM,dd");
-    	double A, B, C, D, E, G;
+    	double A = 0, B, C, D, E, G, temp;
     	int I;
     	double F, day, month, year;
     	jd += 0.5;
-    	I = (int)jd;
-    	F = jd - (int)jd;
+    	
+    	I = (int) (Math.floor(jd));
+    	F = jd - I;
     	
     	if (I > 2299160) {
-    		A = (int)(I-1867216.25/36524.25);
+    		A = (int)((I-1867216.25)/36524.25);
     		B = I + A - (int)(A/4) + 1;
     	}
     	else
@@ -268,12 +271,27 @@ public class SpaceObj {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		if (testOutput == true ) {
+		System.out.println("\nI = " + I
+							+ "\nF = " + F
+							+ "\nA = " + A
+							+ "\nB = " + B
+							+ "\nC = " + C
+							+ "\nD = " + D
+							+ "\nE = " + E
+							+ "\nG = " + G
+							+ "\nd = " + day
+							+ "\nm = " + month
+							+ "\ny = " + year);
+		}
+		//System.out.println("\nCDDAte = " + CDDate);
     	return CDDate;
     }
     
-    private double UTtoGST(Date gcDate, double UT, double jd) {
-    	double s = jd - 2451545;
-    	double t = s/36525;
+    private double UTtoGST(double UT, double jd) {
+    	double s = jd - 2451545.0;
+    	double t = s/36525.0;
     	
     	double t0 = 6.697374558 + (2400.051336 * t) + (0.000025862*t*t);
     	double A = UT * 1.002727909;
@@ -288,6 +306,7 @@ public class SpaceObj {
     	}
     	double gst = t0;
     	
+    	
     	return gst;
     }
     
@@ -295,27 +314,38 @@ public class SpaceObj {
     	double hr = lst - RA;
     	if (hr < 0)
     		hr += 24;
+
     	return hr;
     }
     
-    private double getAltitude(double lat, double dh, double dec) {
-    	double a = (Math.sin(dec)*Math.sin(lat))+(Math.cos(dec)*Math.cos(lat)*Math.cos(dh));
-    	a = Math.asin(a);
+    private double getAltitude(double lat, double dh, double dec) {    	
+    	double a = Math.sin(dec)*Math.sin(lat)+Math.cos(dec)*Math.cos(lat)*Math.cos(dh); // 4
+    	a = Math.asin(a); // 5
     	return a;
     }
+    
     private double getAzimuth(double lat, double dh, double alt, double dec) {
     	double A, H;
-    	A = (Math.sin(dec)-(Math.sin(lat)*Math.sin(alt)))/(Math.cos(lat)*Math.cos(alt));
-    	A = Math.acos(A);
-    	H = Math.sin(dh);
+    	
+    	
+    	H = dh; // 1
+    	H = dh*15; // 2
+    	dec = Math.toDegrees(dec); // 3
+    	// Steps 4 and 5 are done in the function
+    	// for altitude called getAltitude and are passed into "alt" as params
+    	A = (Math.sin(dec)-(Math.sin(lat)*Math.sin(alt)))/(Math.cos(lat)*Math.cos(alt)); // 6
+    	A = Math.acos(A); // 7
+    	H = Math.sin(H); // 8
     	if (H > 0)
-    		A = 2*(Math.PI) - A;
+    		A = 360-A;
+    	
     	return A;
     }
     
     private void solvingOwnLocation() {
     	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy,MM,dd,HH,mm,ss");
     	Date chosenDate = new Date();
+    	chosenDate.setHours(chosenDate.getHours()+1); // Hour fix for formulas
     	//String choiceDate = dateFormat.format(chosenDate);
     	
     	double d_RA, d_Dec, lat, lon;
@@ -330,7 +360,7 @@ public class SpaceObj {
     	jd = getJulianDate(gcDate);
     	gcDate = getCD(jd);
     	ut = 24*(gcDate.getDate() - (int)gcDate.getDate());
-    	gst = UTtoGST(gcDate, ut, jd);
+    	gst = UTtoGST(ut, jd);
     	//
     	lst = gst + lon/15; // First big step
     	//
@@ -361,7 +391,7 @@ public class SpaceObj {
     	jd = getJulianDate(gcDate);
     	gcDate = getCD(jd);
     	ut = 24*(gcDate.getDate() - (int)gcDate.getDate());
-    	gst = UTtoGST(gcDate, ut, jd);
+    	gst = UTtoGST(ut, jd);
     	//
     	lst = gst + lon/15; // First big step
     	//
@@ -391,7 +421,7 @@ public class SpaceObj {
     	jd = getJulianDate(gcDate);
     	gcDate = getCD(jd);
     	ut = 24*(gcDate.getDate() - (int)gcDate.getDate());
-    	gst = UTtoGST(gcDate, ut, jd);
+    	gst = UTtoGST(ut, jd);
     	//
     	lst = gst + lon/15; // First big step
     	//
@@ -420,7 +450,7 @@ public class SpaceObj {
     	jd = getJulianDate(gcDate);
     	gcDate = getCD(jd);
     	ut = 24*(gcDate.getDate() - (int)gcDate.getDate());
-    	gst = UTtoGST(gcDate, ut, jd);
+    	gst = UTtoGST(ut, jd);
     	//
     	lst = gst + lon/15; // First big step
     	//
