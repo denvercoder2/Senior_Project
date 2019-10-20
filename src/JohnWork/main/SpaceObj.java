@@ -318,27 +318,58 @@ public class SpaceObj {
     	return hr;
     }
     
-    private double getAltitude(double lat, double dh, double dec) {    	
-    	double a = Math.sin(dec)*Math.sin(lat)+Math.cos(dec)*Math.cos(lat)*Math.cos(dh); // 4
+    private double getAltitude(double lat, double dh, double dec) {
+    	lat = Math.toRadians(lat); dec = Math.toRadians(dec);
+
+    	double a = (Math.sin(dec)*Math.sin(lat))+(Math.cos(dec)*Math.cos(lat)*Math.cos(dh)); // 4
     	a = Math.asin(a); // 5
     	return a;
     }
     
     private double getAzimuth(double lat, double dh, double alt, double dec) {
+    	lat = Math.toRadians(lat); dec = Math.toRadians(dec);
     	double A, H;
     	
-    	
+    	// 1
     	H = dh; // 1
+    	System.out.println("1:\tH = \t" + H);
+    	// 1
+    	
+    	
+    	// 2
     	H = dh*15; // 2
+    	System.out.println("2:\tH = \t" + H);
+    	// 2
+    	
+    	
+    	// 3
     	dec = Math.toDegrees(dec); // 3
+    	System.out.println("3:\tdec = \t" + dec);
+    	// 3
+    	
+    	
     	// Steps 4 and 5 are done in the function
     	// for altitude called getAltitude and are passed into "alt" as params
+    	System.out.println("4&5:\ta = \t" + alt);
+    	// Steps 4 and 5
+    	
+    	
+    	// 6
     	A = (Math.sin(dec)-(Math.sin(lat)*Math.sin(alt)))/(Math.cos(lat)*Math.cos(alt)); // 6
+    	System.out.println("6:\tA = \t" + A);
+    	// 6
+    	
+    	
+    	// 7
     	A = Math.acos(A); // 7
-    	H = Math.sin(H); // 8
+    	System.out.println("7:\tA = \t" + A);
+    	// 7
+    	
+    	//H = 87.933333;
+    	H = Math.sin(Math.toRadians(H)); // 8
     	if (H > 0)
     		A = 360-A;
-    	
+    	System.out.println("\n");
     	return A;
     }
     
