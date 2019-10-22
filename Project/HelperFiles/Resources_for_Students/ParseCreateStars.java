@@ -1,5 +1,5 @@
 // Placement for the java parsing program
-// Imports
+// Scott Holley
 import java.io.*;
 import java.util.*;
 

@@ -1,5 +1,6 @@
 /*
 SkyMap Formulae in java
+Scott Holley
 */
 import java.math.*;
 

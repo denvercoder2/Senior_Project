@@ -5,7 +5,7 @@ Scott Holley
 
 public class Constellations{
 
-
+    
     public static class locations{
         // make the 2D locations
         double x;

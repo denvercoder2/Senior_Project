@@ -1,4 +1,5 @@
 // template for planet parsing
+// Scott Holley
 import java.io.*;
 import java.util.*;
 
