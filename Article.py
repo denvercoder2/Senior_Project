@@ -381,6 +381,41 @@ def test():
     A = getAzimuth(lat, dh, a, dec)
     print(math.degrees(A))
 
+
+def solveLocation(ira, idec, ilon, ilat, ihr, imn, isc, iyr, imon, iday, idst): 
+    
+    place = (ilat, ilon)
+    time = (ihr, imn, isc)
+    date = (iyr, imon, iday)
+
+    lst = getLST(place, date, time, idst)
+    dh = math.radians(RAtoH(ira, lst)*15)
+
+    lat = math.radians(ilat)
+    dec = math.radians(idec)
+
+    a = getAltitude(lat, dh, dec)
+    print(math.degrees(a))
+    A = getAzimuth(lat, dh, a, dec)
+    print(math.degrees(A))
+
+def Atest():
+    ra = (14, 50, 42)
+    ra = getDH(ra)
+    dec = (74, 9, 19.81)
+    dec = getDH(dec)
+    lat = 34
+    lon = -87
+    hr = 8
+    mn = 17
+    sc = 0
+    yr = 2019
+    mon = 10
+    day = 16
+    dst = False
+    solveLocation(ra,dec,lon,lat,hr,mn,sc,yr,mon,day,dst)
+
+
 def test1():
     ra = (18, 32, 21)
     ra = getDH(ra)
@@ -401,4 +436,6 @@ def test1():
     A = getAzimuth(lat, dh, a, dec)
     print(A)
 
-testSun()
+# testSun()
+test()
+Atest()
