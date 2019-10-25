@@ -56,8 +56,8 @@ public class SkyMap_Formulae_J {
 		/*
 		for (int k = 0; k < spaceObjList.size(); k++) {
 			spaceObjList.get(k).solveOwnLocation();
-		}*/
-		
+		}*/ 
+		// Test stuff
 		System.out.println(nowDate);
 		System.out.println("day = " + nowDate.getDate());
 		String[] arguments = {"Altest", spaceObjList.get(0).getRA(),
