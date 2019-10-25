@@ -95,6 +95,7 @@ public class Moon {
             if(days_into_cycle >= 0.00 && days_into_cycle <= 3.68){
                 phase = descriptions[0]; // new
             }
+            
             else if(days_into_cycle >= 3.69 && days_into_cycle <= 7.37){
                 phase = descriptions[1]; // waning crescent
             }
