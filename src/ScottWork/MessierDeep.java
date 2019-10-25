@@ -2,6 +2,7 @@
 /*
 Messier Deep Objects parse and functions
 */
+package ScottWork;
 import java.io.*;
 import java.util.*;
 
@@ -67,16 +68,16 @@ public class MessierDeep{
                     
                     // type conversions
                     String objNum              = eElement.getElementsByTagName("ObjectNum").item(0).getTextContent();
-                    String name             = eElement.getElementsByTagName("Name").item(0).getTextContent();
-                    String type             = eElement.getElementsByTagName("Type").item(0).getTextContent();
-                    String constellation    = eElement.getElementsByTagName("Constellation").item(0).getTextContent();
+                    String name                = eElement.getElementsByTagName("Name").item(0).getTextContent();
+                    String type                = eElement.getElementsByTagName("Type").item(0).getTextContent();
+                    String constellation       = eElement.getElementsByTagName("Constellation").item(0).getTextContent();
                     String rahour              = eElement.getElementsByTagName("RAHour").item(0).getTextContent();
-                    String raminute         = eElement.getElementsByTagName("RAMinute").item(0).getTextContent();
-                    String decSign          = eElement.getElementsByTagName("DecSign").item(0).getTextContent();
+                    String raminute            = eElement.getElementsByTagName("RAMinute").item(0).getTextContent();
+                    String decSign             = eElement.getElementsByTagName("DecSign").item(0).getTextContent();
                     String decDeg              = eElement.getElementsByTagName("DecDeg").item(0).getTextContent();
                     String decMin              = eElement.getElementsByTagName("DecMinute").item(0).getTextContent();
-                    String mag              = eElement.getElementsByTagName("Magnitude").item(0).getTextContent();
-                    String info             = eElement.getElementsByTagName("Info").item(0).getTextContent();
+                    String mag                 = eElement.getElementsByTagName("Magnitude").item(0).getTextContent();
+                    String info                = eElement.getElementsByTagName("Info").item(0).getTextContent();
                     String distance            = eElement.getElementsByTagName("Distance").item(0).getTextContent();
 
                     // assigning to attributes of star class
