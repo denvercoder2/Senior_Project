@@ -319,10 +319,11 @@ public class SpaceObj {
     }
     
     private double getAltitude(double lat, double dh, double dec) {
-    	lat = Math.toRadians(lat); dec = Math.toRadians(dec);
+    	//lat = Math.toRadians(lat); dec = Math.toRadians(dec);
 
-    	double a = (Math.sin(dec)*Math.sin(lat))+(Math.cos(dec)*Math.cos(lat)*Math.cos(dh)); // 4
+    	double a = (Math.sin(Math.toRadians(dec))*Math.sin(Math.toRadians(lat)))+(Math.cos(Math.toRadians(dec))*Math.cos(Math.toRadians(lat))*Math.cos(dh)); // 4
     	a = Math.asin(a); // 5
+    	a = Math.toDegrees(a);
     	return a;
     }
     
@@ -355,20 +356,21 @@ public class SpaceObj {
     	
     	
     	// 6
-    	A = (Math.sin(dec)-(Math.sin(lat)*Math.sin(alt)))/(Math.cos(lat)*Math.cos(alt)); // 6
+    	A = (Math.sin(Math.toRadians(dec))-(Math.sin(Math.toRadians(lat))*Math.sin(Math.toRadians(alt))))/(Math.cos(Math.toRadians(lat))*Math.cos(Math.toRadians(alt))); // 6
     	System.out.println("6:\tA = \t" + A);
     	// 6
     	
     	
     	// 7
-    	A = Math.acos(A); // 7
+    	A = Math.acos(Math.toRadians(A)); // 7
     	System.out.println("7:\tA = \t" + A);
     	// 7
     	
     	//H = 87.933333;
     	H = Math.sin(Math.toRadians(H)); // 8
     	if (H > 0)
-    		A = 360-A;
+    		A = Math.toDegrees(A);
+    	
     	System.out.println("\n");
     	return A;
     }
@@ -382,7 +384,7 @@ public class SpaceObj {
     	double d_RA, d_Dec, lat, lon;
     	d_RA = Double.parseDouble(this.getRA());
 		d_Dec = Double.parseDouble(this.getDec()); 
-    	lat = 34.7251; lon = 86.6398; // Lat and Lon of UAH default if none given
+    	lat = 34.70160; lon = 86.65970; // Lat and Lon of UAH default if none given
     	
     	
     	Date gcDate; double ut, jd, gst, lst, dh, altitude, azimuth;
