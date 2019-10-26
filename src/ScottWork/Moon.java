@@ -87,15 +87,19 @@ public class Moon {
             System.out.printf("\n=======================================\n");
 
 
-
+            /*
+            This structure is weird, but I found that it works with all inputs
+            Occasionally, and I don't know why, the days into cycle return negative,
+            but the correct value that they should be is the absolute value of what it
+            returns. So I put a function in to fix this problem. Now works all the time
+             
+            */
             if(days_into_cycle < 0){
                 days_into_cycle = fixReturn(days_into_cycle);
             }
-
             if(days_into_cycle >= 0.00 && days_into_cycle <= 3.68){
                 phase = descriptions[0]; // new
             }
-            
             else if(days_into_cycle >= 3.69 && days_into_cycle <= 7.37){
                 phase = descriptions[1]; // waning crescent
             }
@@ -124,7 +128,7 @@ public class Moon {
                 System.out.printf("There's an error in floating point calculations somewhere\n");
             }
 
-            System.out.printf("Days into cycle: %f", days_into_cycle,  "\n");
+            System.out.printf("Days into cycle: %.2f", days_into_cycle,  "\n");
 
             moon.phase = phase;
 
@@ -133,12 +137,11 @@ public class Moon {
         
         public static void main(String[] args) {
             int month = 10;
-            int day = 13;
+            int day = 27;
             int year = 2019;
             // object phase is passed
             String test = getPhase(month, day, year);
             System.out.printf("\nPhase: %s", test);
- 
 
     }
 }   
