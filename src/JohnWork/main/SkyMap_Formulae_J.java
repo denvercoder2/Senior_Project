@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.TimeZone;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -17,6 +18,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.python.core.PyFunction;
 import org.python.core.PyInteger;
 import org.python.core.PyObject;
+import org.python.core.PyString;
 import org.python.util.PythonInterpreter;
 import org.w3c.dom.Document;
 
@@ -60,23 +62,54 @@ public class SkyMap_Formulae_J {
 		//
 		System.out.println(nowDate);
 		System.out.println("day = " + nowDate.getDate());
-		String[] arguments = {"Altest", spaceObjList.get(0).getRA(),
-											spaceObjList.get(0).getDec(),
-											"34.70160","-86.65970",
-											Integer.toString(nowDate.getHours()),
-											Integer.toString(nowDate.getMinutes()),
-											Integer.toString(nowDate.getSeconds()),
-											Integer.toString(nowDate.getYear()+1900),
-											Integer.toString(nowDate.getMonth()+1),
-											Integer.toString(nowDate.getDate())};
+		String outputStr;
 		
-		PythonInterpreter.initialize(System.getProperties(), System.getProperties(), arguments);
-		org.python.util.PythonInterpreter python = new org.python.util.PythonInterpreter();
-		StringWriter out = new StringWriter();
-		python.setOut(out);
-		python.execfile("Article.py");
-		String outputStr = out.toString();
-		System.out.println(outputStr);
+		if (TimeZone.getDefault().inDaylightTime(nowDate)) {
+			String[] arguments = {"solveLocation.py", spaceObjList.get(0).getRA(),
+												spaceObjList.get(0).getDec(),
+												"34.70160","-86.65970",
+												Integer.toString(nowDate.getHours()),
+												Integer.toString(nowDate.getMinutes()),
+												Integer.toString(nowDate.getSeconds()),
+												Integer.toString(nowDate.getYear()+1900),
+												Integer.toString(nowDate.getMonth()+1),
+												Integer.toString(nowDate.getDate()),
+												"True"};
+			PythonInterpreter.initialize(System.getProperties(), System.getProperties(), arguments);
+			org.python.util.PythonInterpreter python = new org.python.util.PythonInterpreter();
+			StringWriter out = new StringWriter();
+			python.setOut(out);
+			//python.execfile("Article.py");
+			python.exec("from Article import solveLocation");
+			PyObject func = python.get("solveLocation");
+			func.__call__(new PyString(arguments[0]), new PyString(arguments[1]),
+					new PyString(arguments[3]), new PyString(arguments[4]));
+			outputStr = out.toString();
+		}
+		else {
+			String[] arguments = {"solveLocation.py", spaceObjList.get(0).getRA(),
+												spaceObjList.get(0).getDec(),
+												"34.70160","-86.65970",
+												Integer.toString(nowDate.getHours()),
+												Integer.toString(nowDate.getMinutes()),
+												Integer.toString(nowDate.getSeconds()),
+												Integer.toString(nowDate.getYear()+1900),
+												Integer.toString(nowDate.getMonth()+1),
+												Integer.toString(nowDate.getDate()),
+												"False"};
+			PythonInterpreter.initialize(System.getProperties(), System.getProperties(), arguments);
+			org.python.util.PythonInterpreter python = new org.python.util.PythonInterpreter();
+			StringWriter out = new StringWriter();
+			python.setOut(out);
+			//python.execfile("Article.py");
+			python.exec("from Article import solveLocation");
+			PyObject func = python.get("solveLocation");
+			func.__call__(new PyString(arguments[0]), new PyString(arguments[1]),new PyString(arguments[3]), new PyString(arguments[4]));
+			outputStr = out.toString();
+		}
+		
+
+		System.out.println("This is the output\n" + outputStr);
 		
 		
 		System.out.println("\n" + spaceObjList.get(0).getProperName()
