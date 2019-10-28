@@ -1,6 +1,7 @@
 '''
 Moon algorithm in python
 '''
+import subprocess
 def moon_phase(month, day, year):
     '''
     Moon phase 
@@ -45,9 +46,13 @@ def main():
     Main function
     '''
     month = 10
-    day = 11
-    year = 1921  # use yyyy format
+    day = 16
+    year = 1996  # use yyyy format
     date, status, light = moon_phase(month, day, year)
+    p = subprocess.Popen(["java", "MoonPhase"], stdin=subprocess.PIPE)
+    p.stdin.write("First line\r\n")
+    p.stdin.write("Second line\r\n")
+    
     print("Moon Phase on given date: ", status)
     
 

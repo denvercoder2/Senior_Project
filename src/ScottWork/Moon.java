@@ -49,22 +49,22 @@ public class Moon {
     public static String getPhase(int month, int day, int year){
         MoonPhase moon = new MoonPhase();
         String[] descriptions = {
-            "New ( -> Waxing Cresent)",
-            "Waxing Crescent ( -> First Quarter)",
-            "First Quarter ( -> Waxing Gibbous)",
-            "Waxing Gibbous ( -> Full)",
-            "Full ( -> Waning Gibbous)",
-            "Waning Gibbous ( -> Third Quarter)",
-            "Third Quarter( ->  Waning Cresent)",
-            "Waning Crescent ( -> New)",
-            "New (End of Cycle)"
+            "New",
+            "Waxing Crescent",
+            "First Moon",
+            "Waxing Gibbous",
+            "Full",
+            "Waning Gibbous",
+            "Last Quarter",
+            "Waning Crescent",
+            "New"
         };
             double JD = 0.0;
         if (month == 1 || month == 2){
             year = year - 1;
             month = month + 12;
         }
-            // source: https://www.subsystems.us/uploads/9/8/9/4/98948044/moonphase.pdf
+            // source: http://home.hiwaay.net/~krcool/Astro/moon/moonphase/
 
             // This is essentially a barebones JulianDay method
             int A = year/100;
@@ -97,31 +97,31 @@ public class Moon {
             if(days_into_cycle < 0){
                 days_into_cycle = fixReturn(days_into_cycle);
             }
-            if(days_into_cycle >= 0.00 && days_into_cycle <= 3.68){
+            if(days_into_cycle >= 0.00 && days_into_cycle <= 1.00){
                 phase = descriptions[0]; // new
             }
-            else if(days_into_cycle >= 3.69 && days_into_cycle <= 7.37){
-                phase = descriptions[1]; // waning crescent
+            else if(days_into_cycle >= 1.01 && days_into_cycle <= 7.40){
+                phase = descriptions[1]; // Waxing Crescent
             }
-            else if(days_into_cycle >= 7.38 && days_into_cycle <= 11.05){
-                phase = descriptions[2]; // third quarter
+            else if(days_into_cycle >= 7.41 && days_into_cycle <= 8.00){
+                phase = descriptions[2]; // Full
             }
-            else if(days_into_cycle >= 11.06 && days_into_cycle <= 14.65){
-                phase = descriptions[3]; // waning gibbious
+            else if(days_into_cycle >= 8.00 && days_into_cycle <= 14.70){
+                phase = descriptions[3]; // Waxing Gibbious
             }
-            else if(days_into_cycle >= 14.65 && days_into_cycle <= 18.42){
+            else if(days_into_cycle >= 14.80 && days_into_cycle <= 15.74){
                 phase = descriptions[4]; // Full
             }
-            else if(days_into_cycle >= 18.43 && days_into_cycle <= 22.11){
-                phase = descriptions[5]; // Waxing Gibbious
+            else if(days_into_cycle >= 15.75 && days_into_cycle <= 22.00){
+                phase = descriptions[5]; // Waning Gibbious
             }
-            else if(days_into_cycle >= 22.12 && days_into_cycle <= 25.80){
-                phase = descriptions[6]; // First Quarter
+            else if(days_into_cycle >= 22.10 && days_into_cycle <= 22.99){
+                phase = descriptions[6]; // Last Quarter
             }
-            else if(days_into_cycle >= 25.81 && days_into_cycle <= 29.48){
+            else if(days_into_cycle >= 23.00 && days_into_cycle <= 29.49){
                 phase = descriptions[7]; // Waxing Crescent
             }
-            else if(days_into_cycle >= 29.48 && days_into_cycle <= 29.53){
+            else if(days_into_cycle >= 29.50 && days_into_cycle <= 29.53){
                 phase = descriptions[8]; // New (End cycle)
             }
             else{
@@ -137,7 +137,7 @@ public class Moon {
         
         public static void main(String[] args) {
             int month = 10;
-            int day = 27;
+            int day = 15;
             int year = 2019;
             // object phase is passed
             String test = getPhase(month, day, year);
