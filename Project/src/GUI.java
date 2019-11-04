@@ -23,6 +23,13 @@ import javax.swing.border.LineBorder;
 import javax.swing.JScrollPane;
 import java.awt.SystemColor;
 import javax.swing.JTextArea;
+
+import com.jogamp.opengl.GLAutoDrawable;
+import com.jogamp.opengl.GLEventListener;
+
+import javax.swing.JFrame;
+
+
 //import org.apache.commons.lang3.StringUtils;
 
 public class GUI extends JFrame {
@@ -107,6 +114,7 @@ public class GUI extends JFrame {
 		checkMonth();
 		checkHours();
 		checkMinutes();
+		checkDate();
 		
 		checkLatitude();
 		checkLongitude();
@@ -116,7 +124,7 @@ public class GUI extends JFrame {
 		
 		
 		if(checkDay() && checkYear() && checkMonth() && checkHours() && checkMinutes()
-				&& checkLatitude() && checkLongitude() && checkMins() && checkLatitudeDirection() && checkLongitudeDirection()) {
+				&& checkLatitude() && checkLongitude() && checkMins() && checkLatitudeDirection() && checkLongitudeDirection() && checkDate()) {
 			setValidInputs();
 		}
 		else {
@@ -329,7 +337,7 @@ public class GUI extends JFrame {
 				minTextField.setBorder(new LineBorder(Color.RED, 3));
 			}
 			
-			if(minInput < 0 || minInput > 180) {
+			if(minInput < 0 || minInput > 60) {
 				minTextField.setBorder(new LineBorder(Color.RED, 3));
 			}
 			else {
@@ -380,6 +388,45 @@ public class GUI extends JFrame {
 				longitudeComboBox.setBorder(new LineBorder(Color.BLACK, 1));
 			}
 			flag = true;
+		}
+		
+		return flag;
+	}
+	
+	public Boolean checkDate() {
+		Boolean flag = true;
+		Boolean leapYear = false;
+		
+		if(checkMonth() && checkDay() && checkYear()) {
+			if(yearInput % 4 == 0) {
+				leapYear = true;
+			}
+			
+			//Check Feb
+			if(monthInput == 2) {
+				if(leapYear && dayInput > 29) {
+					dayTextField.setBorder(new LineBorder(Color.RED, 3));
+					flag = false;
+				}
+				else if(!leapYear && dayInput > 28) {
+					dayTextField.setBorder(new LineBorder(Color.RED, 3));
+					flag = false;
+				}
+			}
+			
+			if(monthInput == 4 || monthInput == 6 || monthInput == 9 || monthInput == 11) {
+				if(dayInput > 30) {
+					dayTextField.setBorder(new LineBorder(Color.RED, 3));
+					flag = false;
+				}
+			}
+		}
+		else {
+			flag = false;
+		}
+		
+		if(flag) {
+			dayTextField.setBorder(new LineBorder(Color.BLACK, 1));
 		}
 		
 		return flag;
@@ -547,22 +594,22 @@ public class GUI extends JFrame {
 		
 		starNames = new JCheckBox("Star Names");
 		starNames.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		starNames.setBounds(2000, 343, 429, 41);
+		starNames.setBounds(2000, 224, 429, 41);
 		mainGUI.add(starNames);
 		
 		constellations = new JCheckBox("Constellations");
 		constellations.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		constellations.setBounds(2000, 412, 429, 41);
+		constellations.setBounds(2000, 293, 429, 41);
 		mainGUI.add(constellations);
 		
 		planets = new JCheckBox("Planets");
 		planets.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		planets.setBounds(2000, 473, 221, 41);
+		planets.setBounds(2000, 354, 221, 41);
 		mainGUI.add(planets);
 		
 		messierDeepSpace = new JCheckBox("Messier Deep Space Objects");
 		messierDeepSpace.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		messierDeepSpace.setBounds(2000, 534, 429, 41);
+		messierDeepSpace.setBounds(2000, 415, 429, 41);
 		mainGUI.add(messierDeepSpace);
 		
 		Box verticalBox = Box.createVerticalBox();
@@ -588,7 +635,7 @@ public class GUI extends JFrame {
 		JLabel labels = new JLabel("Labels:");
 		labels.setHorizontalAlignment(SwingConstants.CENTER);
 		labels.setFont(new Font("Tahoma", Font.BOLD, 34));
-		labels.setBounds(2000, 279, 429, 40);
+		labels.setBounds(2000, 160, 429, 40);
 		mainGUI.add(labels);
 		
 		btnSaveToDisk = new JButton("Save To Disk");
@@ -658,13 +705,13 @@ public class GUI extends JFrame {
 		//mainGUI.add(textArea);
 		
 		scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(341, 155, 1605, 1026);
+		scrollPane_1.setBounds(484, 155, 1500, 1050);
 		scrollPane_1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scrollPane_1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane_1.setViewportBorder(new LineBorder(Color.BLACK));
 		
-		ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\SkyMap.png");
-		scrollPane_1.setViewportView(new JLabel(ii));
+		//ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\SkyMap.png");
+		//scrollPane_1.setViewportView(new JLabel(ii));
 		
 		mainGUI.add(scrollPane_1);
 		
