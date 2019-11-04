@@ -29,6 +29,8 @@ public class SkyMap_Formulae_J {
 		
 		Date nowDate = new Date();
 		
+		
+		//nowDate = nowDate2;
 		long startTime = System.nanoTime();
 		
 		
@@ -55,11 +57,14 @@ public class SkyMap_Formulae_J {
 			e.printStackTrace();
 		}		
 		
-		/*
-		for (int k = 0; k < spaceObjList.size(); k++) {
-			spaceObjList.get(k).solveOwnLocation();
-		}*/ 
+		
+		for (int k = 0; k < 30; k++) {
+			if (spaceObjList.get(k).getBayerFlamsteed() != null)
+				spaceObjList.get(k).solveOwnLocation();
+		}
+		//}
 		//
+		
 		System.out.println(nowDate);
 		System.out.println("day = " + nowDate.getDate());
 		String outputStr;
@@ -82,8 +87,7 @@ public class SkyMap_Formulae_J {
 			//python.execfile("Article.py");
 			python.exec("from Article import solveLocation");
 			PyObject func = python.get("solveLocation");
-			func.__call__(new PyString(arguments[0]), new PyString(arguments[1]),
-					new PyString(arguments[3]), new PyString(arguments[4]));
+			func.__call__(new PyString(arguments[0]), new PyString(arguments[1]), new PyString(arguments[2]));
 			outputStr = out.toString();
 		}
 		else {
@@ -104,7 +108,10 @@ public class SkyMap_Formulae_J {
 			//python.execfile("Article.py");
 			python.exec("from Article import solveLocation");
 			PyObject func = python.get("solveLocation");
-			func.__call__(new PyString(arguments[0]), new PyString(arguments[1]),new PyString(arguments[3]), new PyString(arguments[4]));
+			func.__call__(new PyString(arguments[0]),
+							new PyString(arguments[1]),
+							new PyString(arguments[2]),
+							new PyString(arguments[3]));
 			outputStr = out.toString();
 		}
 		
@@ -112,10 +119,11 @@ public class SkyMap_Formulae_J {
 		System.out.println("This is the output\n" + outputStr);
 		
 		
-		System.out.println("\n" + spaceObjList.get(0).getProperName()
-				+ "\nAltitude: " + spaceObjList.get(0).getAltitude() + ""
-				+ "\nAzimuth: " + spaceObjList.get(0).getAzimuth() + "\n");
+		System.out.println("\n" + spaceObjList.get(25).getProperName()
+				+ "\nAltitude: " + spaceObjList.get(25).getAltitude() + ""
+				+ "\nAzimuth: " + spaceObjList.get(25).getAzimuth() + "\n");
 		
+		System.out.println(nowDate);
 		long endTime = System.nanoTime();
 		long elapsedTime = endTime - startTime;
 		System.out.println("Finished processing in " + elapsedTime / 1000000000.00 + " seconds.");

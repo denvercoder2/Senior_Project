@@ -321,7 +321,7 @@ public class SpaceObj {
     private double getAltitude(double lat, double dh, double dec) {
     	//lat = Math.toRadians(lat); dec = Math.toRadians(dec);
 
-    	double a = (Math.sin(Math.toRadians(dec))*Math.sin(Math.toRadians(lat)))+(Math.cos(Math.toRadians(dec))*Math.cos(Math.toRadians(lat))*Math.cos(dh)); // 4
+    	double a = (Math.sin(dec)*Math.sin(lat))+(Math.cos(dec)*Math.cos(lat)*Math.cos(dh)); // 4
     	a = Math.asin(a); // 5
     	a = Math.toDegrees(a);
     	return a;
@@ -329,8 +329,8 @@ public class SpaceObj {
     
     private double getAzimuth(double lat, double dh, double alt, double dec) {
     	lat = Math.toRadians(lat); dec = Math.toRadians(dec);
-    	double A, H;
-    	
+    	double A = 0, H;
+
     	// 1
     	H = dh; // 1
     	System.out.println("1:\tH = \t" + H);
@@ -340,6 +340,7 @@ public class SpaceObj {
     	// 2
     	H = dh*15; // 2
     	System.out.println("2:\tH = \t" + H);
+    	H = Math.toDegrees(H);
     	// 2
     	
     	
@@ -355,21 +356,27 @@ public class SpaceObj {
     	// Steps 4 and 5
     	
     	
+    	//dec = 23.219444;
+    	//lat = 52;
+    	//alt = 19.334345;
     	// 6
-    	A = (Math.sin(Math.toRadians(dec))-(Math.sin(Math.toRadians(lat))*Math.sin(Math.toRadians(alt))))/(Math.cos(Math.toRadians(lat))*Math.cos(Math.toRadians(alt))); // 6
+    	A = (Math.sin(dec)-(Math.sin(lat))*Math.sin(alt))/(Math.cos(Math.toDegrees(lat))*Math.cos(alt)); // 6
     	System.out.println("6:\tA = \t" + A);
     	// 6
     	
     	
     	// 7
-    	A = Math.acos(Math.toRadians(A)); // 7
+    	A = Math.toDegrees(A); // 7
     	System.out.println("7:\tA = \t" + A);
     	// 7
     	
+    	
+    	
     	//H = 87.933333;
     	H = Math.sin(Math.toRadians(H)); // 8
+    	
     	if (H > 0)
-    		A = Math.toDegrees(A);
+    		A = 360-A;
     	
     	System.out.println("\n");
     	return A;
@@ -397,6 +404,7 @@ public class SpaceObj {
     	//
     	lst = gst + lon/15; // First big step
     	//
+    	lst = 3.5475062589507527;
     	dh = RAtoH(d_RA,lst); // Second big step
     	//
     	

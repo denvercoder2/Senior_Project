@@ -36,7 +36,7 @@ public class SpaceObjListBuilder {
 			Element e1 = (Element) nList.item(i);
 			
 			// Prints out our node name which has the children for our object
-			System.out.println(e1.getNodeName());
+			//System.out.println(e1.getNodeName());
 			
 			// This grabs all the children of the above node and tests them for their name and value
 			NodeList children = e1.getChildNodes();
@@ -74,7 +74,7 @@ public class SpaceObjListBuilder {
 				case "Gliese":
 					tempSpaceObj.setGliese(tempChildValue);
 					break;
-				case "BayerFlamesteed":
+				case "BayerFlamsteed":
 					tempSpaceObj.setBayerFlamsteed(tempChildValue);
 					break;
 				case "ProperName":
