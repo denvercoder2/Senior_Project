@@ -280,27 +280,44 @@ def solveLocation(ira, idec, ilon, ilat, ihr, imn, isc, iyr, imon, iday, idst):
     dec = math.radians(idec)
 
     a = getAltitude(lat, dh, dec)
-    print("alt: ", math.degrees(a))
+    print("alt: ", getDMS(math.degrees(a)))
     A = getAzimuth(lat, dh, a, dec)
-    print("azm: ", math.degrees(A))
+    print("azm: ", getDMS(math.degrees(A)))
+
 
 def Atest():
-    # ra = (14, 50, 42)
-    # dec = (74, 9, 19.81)
+    ra = (2, 31, 49)
+    dec = (89, 15, 50.78)
     lat = 34
     lon = -87
-    hr = 14
-    mn = 29
+    hr = 21
+    mn = 44
     sc = 0
     yr = 2019
     mon = 10
     day = 30
     dst = False
-    ra, dec = getSun(lon, lat, hr, mn, sc, yr, mon, day, dst)
+    # ra, dec = getSun(lon, lat, hr, mn, sc, yr, mon, day, dst)
     ra = getDH(ra)
     dec = getDH(dec)
     solveLocation(ra, dec, lon, lat, hr, mn, sc, yr, mon, day, dst)
 
+def Btest(istring):
+    s = istring.split(':')
+    ra = (int(s[0]), int(s[1]), float(s[2]))
+    dec = (int(s[3]), int(s[4]), float(s[5]))
+    lat = float(s[6])
+    lon = float(s[7])
+    hr = int(s[8])
+    mn = int(s[9])
+    sc = float(s[10])
+    yr = int(s[11])
+    mon = int(s[12])
+    day = int(s[13])
+    dst = True if (s[14]=='True') else False
+    ra = getDH(ra)
+    dec = getDH(dec)
+    solveLocation(ra, dec, lon, lat, hr, mn, sc, yr, mon, day, dst)
 
 def test1():
     ra = (18, 32, 21)
@@ -322,5 +339,7 @@ def test1():
     A = getAzimuth(lat, dh, a, dec)
     print(A)
 
-test()
+# test1()
 Atest()
+txt = '2:31:49:89:15:50.78:34:-87:21:44:0:2019:10:30:False'
+Btest(txt)
