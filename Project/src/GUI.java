@@ -237,7 +237,7 @@ public class GUI extends JFrame {
 			catch(Exception e) {
 				hoursTextField.setBorder(new LineBorder(Color.RED, 3));
 			}
-			if(hourInput < 1 || hourInput > 24) {
+			if(hourInput < 0 || hourInput > 24) {
 				hoursTextField.setBorder(new LineBorder(Color.RED, 3));
 			}
 			else {
@@ -543,9 +543,9 @@ public class GUI extends JFrame {
 		mainGUI.add(yearTextField);
 		yearTextField.setColumns(10);
 		
-		time = new JLabel("Time:");
-		time.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		time.setBounds(26, 399, 115, 33);
+		time = new JLabel("Time (Military Format Only):");
+		time.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		time.setBounds(26, 399, 432, 33);
 		mainGUI.add(time);
 		
 		hoursTextField = new JTextField();
@@ -564,31 +564,31 @@ public class GUI extends JFrame {
 		
 		latitude = new JLabel("Latitude");
 		latitude.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		latitude.setBounds(25, 751, 173, 33);
+		latitude.setBounds(25, 807, 173, 33);
 		mainGUI.add(latitude);
 		
 		latTextField = new JTextField();
-		latTextField.setBounds(190, 751, 52, 39);
+		latTextField.setBounds(190, 807, 52, 39);
 		mainGUI.add(latTextField);
 		latTextField.setColumns(10);
 		
 		longitude = new JLabel("Longitude");
 		longitude.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		longitude.setBounds(25, 879, 154, 47);
+		longitude.setBounds(25, 935, 154, 47);
 		mainGUI.add(longitude);
 		
 		longTextField = new JTextField();
-		longTextField.setBounds(189, 886, 52, 39);
+		longTextField.setBounds(189, 942, 52, 39);
 		mainGUI.add(longTextField);
 		longTextField.setColumns(10);
 		
 		minutes = new JLabel("Minutes");
 		minutes.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		minutes.setBounds(26, 1015, 150, 33);
+		minutes.setBounds(26, 1071, 150, 33);
 		mainGUI.add(minutes);
 		
 		minTextField = new JTextField();
-		minTextField.setBounds(190, 1015, 52, 39);
+		minTextField.setBounds(190, 1071, 52, 39);
 		mainGUI.add(minTextField);
 		minTextField.setColumns(10);
 		
@@ -624,7 +624,7 @@ public class GUI extends JFrame {
 		
 		JLabel lblEnterLocation = new JLabel("Enter Location:");
 		lblEnterLocation.setFont(new Font("Tahoma", Font.BOLD, 34));
-		lblEnterLocation.setBounds(14, 670, 271, 33);
+		lblEnterLocation.setBounds(14, 726, 271, 33);
 		mainGUI.add(lblEnterLocation);
 		
 		JLabel enterDate = new JLabel("Enter Date:");
@@ -638,20 +638,20 @@ public class GUI extends JFrame {
 		labels.setBounds(2000, 160, 429, 40);
 		mainGUI.add(labels);
 		
-		btnSaveToDisk = new JButton("Save To Disk");
+		btnSaveToDisk = new JButton("Save Image");
 		btnSaveToDisk.setFont(new Font("Tahoma", Font.BOLD, 34));
-		btnSaveToDisk.setBounds(2000, 1095, 337, 67);
+		btnSaveToDisk.setBounds(2000, 1138, 411, 67);
 		mainGUI.add(btnSaveToDisk);
 		
 		latitudeComboBox = new JComboBox();
-		latitudeComboBox.setBounds(25, 812, 217, 39);
+		latitudeComboBox.setBounds(25, 868, 217, 39);
 		latitudeComboBox.addItem(" ");
 		latitudeComboBox.addItem("North");
 		latitudeComboBox.addItem("South");
 		mainGUI.add(latitudeComboBox);
 		
 		longitudeComboBox = new JComboBox();
-		longitudeComboBox.setBounds(25, 948, 217, 39);
+		longitudeComboBox.setBounds(25, 1004, 217, 39);
 		longitudeComboBox.addItem(" ");
 		longitudeComboBox.addItem("East");
 		longitudeComboBox.addItem("West");
@@ -664,7 +664,7 @@ public class GUI extends JFrame {
 			}
 		});
 		refreshButton.setFont(new Font("Tahoma", Font.BOLD, 34));
-		refreshButton.setBounds(2018, 667, 411, 49);
+		refreshButton.setBounds(2000, 576, 411, 49);
 		mainGUI.add(refreshButton);
 		
 		JButton applyButton = new JButton("Apply");
@@ -689,13 +689,15 @@ public class GUI extends JFrame {
 		        }
 				checkValues();
 				setLabels();
+				ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\SkyMap.png");
+				scrollPane_1.setViewportView(new JLabel(ii));
 				
 				
 					
 			}
 		});
 		applyButton.setFont(new Font("Tahoma", Font.BOLD, 34));
-		applyButton.setBounds(26, 1082, 212, 67);
+		applyButton.setBounds(26, 1138, 212, 67);
 		mainGUI.add(applyButton);
 		
 		
@@ -705,7 +707,7 @@ public class GUI extends JFrame {
 		//mainGUI.add(textArea);
 		
 		scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(484, 155, 1500, 1050);
+		scrollPane_1.setBounds(450, 155, 1500, 1050);
 		scrollPane_1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scrollPane_1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane_1.setViewportBorder(new LineBorder(Color.BLACK));
@@ -714,6 +716,7 @@ public class GUI extends JFrame {
 		//scrollPane_1.setViewportView(new JLabel(ii));
 		
 		mainGUI.add(scrollPane_1);
+		
 		
 		
 		
