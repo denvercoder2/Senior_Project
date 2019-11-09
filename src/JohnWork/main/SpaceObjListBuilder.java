@@ -44,6 +44,7 @@ public class SpaceObjListBuilder {
 			
 			for (int k = 0; k < children.getLength(); k++) {
 				Node child = children.item(k);
+				
 
 				// Now that we have our child, let's be sure it isn't a text node (or aka, let's make sure it HAS children)
 				if (child.getNodeType() != Node.TEXT_NODE) {
