@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <row-0>
+    <ConstName>Andromeda</ConstName>
+    <Abbriv>And</Abbriv>
+    <English>Andromeda (Chained Lady)</English>
+    <RA>1</RA>
+    <Dec>43</Dec>
+  </row-0>
+  <row-1>
+    <ConstName>Aquarius</ConstName>
+    <Abbriv>Aqr</Abbriv>
+    <English>Water Bearer</English>
+    <RA>23</RA>
+    <Dec>-13</Dec>
+  </row-1>
+  <row-2>
+    <ConstName>Aquila</ConstName>
+    <Abbriv>Aql</Abbriv>
+    <English>Eagle</English>
+    <RA>20</RA>
+    <Dec>4</Dec>
+  </row-2>
+  <row-3>
+    <ConstName>Aries</ConstName>
+    <Abbriv>Ari</Abbriv>
+    <English>Ram</English>
+    <RA>2</RA>
+    <Dec>19</Dec>
+  </row-3>
+  <row-4>
+    <ConstName>Auriga</ConstName>
+    <Abbriv>Aur</Abbriv>
+    <English>Charioteer</English>
+    <RA>6</RA>
+    <Dec>42</Dec>
+  </row-4>
+  <row-5>
+    <ConstName>Bootes</ConstName>
+    <Abbriv>Boo</Abbriv>
+    <English>Herdsman</English>
+    <RA>15</RA>
+    <Dec>34</Dec>
+  </row-5>
+  <row-6>
+    <ConstName>Cancer</ConstName>
+    <Abbriv>Cnc</Abbriv>
+    <English>Crab</English>
+    <RA>8</RA>
+    <Dec>14</Dec>
+  </row-6>
+  <row-7>
+    <ConstName>Canis Major</ConstName>
+    <Abbriv>CMa</Abbriv>
+    <English>Large Dog</English>
+    <RA>7</RA>
+    <Dec>-23</Dec>
+  </row-7>
+  <row-8>
+    <ConstName>Canis Minor</ConstName>
+    <Abbriv>CMi</Abbriv>
+    <English>Small Dog</English>
+    <RA>7</RA>
+    <Dec>25</Dec>
+  </row-8>
+  <row-9>
+    <ConstName>Capricornus</ConstName>
+    <Abbriv>Cap</Abbriv>
+    <English>(Sea) Goat</English>
+    <RA>21</RA>
+    <Dec>-21</Dec>
+  </row-9>
+  <row-10>
+    <ConstName>Cassiopeia</ConstName>
+    <Abbriv>Cas</Abbriv>
+    <English>Cassiopeia (Seated Lady)</English>
+    <RA>1</RA>
+    <Dec>64</Dec>
+  </row-10>
+  <row-11>
+    <ConstName>Centaurus</ConstName>
+    <Abbriv>Cen</Abbriv>
+    <English>Centaur</English>
+    <RA>13</RA>
+    <Dec>-44</Dec>
+  </row-11>
+  <row-12>
+    <ConstName>Cepheus</ConstName>
+    <Abbriv>Cep</Abbriv>
+    <English>Cepheus (the King)</English>
+    <RA>22</RA>
+    <Dec>68</Dec>
+  </row-12>
+  <row-13>
+    <ConstName>Crux</ConstName>
+    <Abbriv>Cru</Abbriv>
+    <English>Southern Cross</English>
+    <RA>12</RA>
+    <Dec>-61</Dec>
+  </row-13>
+  <row-14>
+    <ConstName>Cygnus</ConstName>
+    <Abbriv>Cyg</Abbriv>
+    <English>Swan</English>
+    <RA>21</RA>
+    <Dec>48</Dec>
+  </row-14>
+  <row-15>
+    <ConstName>Draco</ConstName>
+    <Abbriv>Dra</Abbriv>
+    <English>Dragon</English>
+    <RA>17</RA>
+    <Dec>61</Dec>
+  </row-15>
+  <row-16>
+    <ConstName>Gemini</ConstName>
+    <Abbriv>Gem</Abbriv>
+    <English>Twins</English>
+    <RA>7</RA>
+    <Dec>18</Dec>
+  </row-16>
+  <row-17>
+    <ConstName>Hercules</ConstName>
+    <Abbriv>Her</Abbriv>
+    <English>Hercules</English>
+    <RA>18</RA>
+    <Dec>22</Dec>
+  </row-17>
+  <row-18>
+    <ConstName>Hydra</ConstName>
+    <Abbriv>Hya</Abbriv>
+    <English>Water Monster</English>
+    <RA>10</RA>
+    <Dec>-16</Dec>
+  </row-18>
+  <row-19>
+    <ConstName>Leo</ConstName>
+    <Abbriv>Leo</Abbriv>
+    <English>Lion</English>
+    <RA>11</RA>
+    <Dec>17</Dec>
+  </row-19>
+  <row-20>
+    <ConstName>Libra</ConstName>
+    <Abbriv>Lib</Abbriv>
+    <English>Balance</English>
+    <RA>15</RA>
+    <Dec>-13</Dec>
+  </row-20>
+  <row-21>
+    <ConstName>Lyra</ConstName>
+    <Abbriv>Lyr</Abbriv>
+    <English>Lyre</English>
+    <RA>19</RA>
+    <Dec>42</Dec>
+  </row-21>
+  <row-22>
+    <ConstName>Orion</ConstName>
+    <Abbriv>Ori</Abbriv>
+    <English>Orion (the Hunter)</English>
+    <RA>5</RA>
+    <Dec>2</Dec>
+  </row-22>
+  <row-23>
+    <ConstName>Pegasus</ConstName>
+    <Abbriv>Peg</Abbriv>
+    <English>Pegasus (Winged Horse)</English>
+    <RA>22</RA>
+    <Dec>18</Dec>
+  </row-23>
+  <row-24>
+    <ConstName>Perseus</ConstName>
+    <Abbriv>Per</Abbriv>
+    <English>Perseus (Rescuer of
+Andromeda)</English>
+    <RA>4</RA>
+    <Dec>44</Dec>
+  </row-24>
+  <row-25>
+    <ConstName>Pisces</ConstName>
+    <Abbriv>Psc</Abbriv>
+    <English>Fishes</English>
+    <RA>1</RA>
+    <Dec>12</Dec>
+  </row-25>
+  <row-26>
+    <ConstName>Sagittarius</ConstName>
+    <Abbriv>Sgr</Abbriv>
+    <English>Archer</English>
+    <RA>19</RA>
+    <Dec>-32</Dec>
+  </row-26>
+  <row-27>
+    <ConstName>Scorpio</ConstName>
+    <Abbriv>Sco</Abbriv>
+    <English>Scorpion</English>
+    <RA>17</RA>
+    <Dec>-32</Dec>
+  </row-27>
+  <row-28>
+    <ConstName>Taurus</ConstName>
+    <Abbriv>Tau</Abbriv>
+    <English>Bull</English>
+    <RA>4</RA>
+    <Dec>25</Dec>
+  </row-28>
+  <row-29>
+    <ConstName>Ursa Major</ConstName>
+    <Abbriv>UMa</Abbriv>
+    <English>Large Bear</English>
+    <RA>10</RA>
+    <Dec>48</Dec>
+  </row-29>
+  <row-30>
+    <ConstName>Ursa Minor</ConstName>
+    <Abbriv>UMi</Abbriv>
+    <English>Small Bear</English>
+    <RA>15</RA>
+    <Dec>73</Dec>
+  </row-30>
+  <row-31>
+    <ConstName>Virgo</ConstName>
+    <Abbriv>Vir</Abbriv>
+    <English>Virgin</English>
+    <RA>13</RA>
+    <Dec>-3</Dec>
+  </row-31>
+</root>
