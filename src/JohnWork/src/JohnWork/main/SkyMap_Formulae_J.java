@@ -138,6 +138,21 @@ public class SkyMap_Formulae_J {
 			e.printStackTrace();
 		}		
 		
+		
+		System.out.println(spaceObjList.size());
+		for (int i = 1; i < 31; i++) {
+			Constellations Cobj = Constellations.CreateConstArr("Constellations.xml", i);
+			SpaceObj tempObj = new SpaceObj();
+			tempObj.setType("CONST");
+			tempObj.setConstName(Cobj.getName());
+			tempObj.setAbbrev(Cobj.getAbbrev());
+			tempObj.setEnglish(Cobj.getEnglish());
+			tempObj.setRA(Cobj.getRA());
+			tempObj.setDec(Cobj.getDec());
+			spaceObjList.add(tempObj);
+		}	
+		
+		
 		String outputStr;
 		String stringArgument;
 		org.python.util.PythonInterpreter python = new org.python.util.PythonInterpreter();
@@ -209,6 +224,21 @@ public class SkyMap_Formulae_J {
 			e.printStackTrace();
 		}		
 		
+		
+		System.out.println(spaceObjList.size());
+		for (int i = 1; i < 31; i++) {
+			Constellations Cobj = Constellations.CreateConstArr("Constellations.xml", i);
+			SpaceObj tempObj = new SpaceObj();
+			tempObj.setType("CONST");
+			tempObj.setConstName(Cobj.getName());
+			tempObj.setAbbrev(Cobj.getAbbrev());
+			tempObj.setEnglish(Cobj.getEnglish());
+			tempObj.setRA(Cobj.getRA());
+			tempObj.setDec(Cobj.getDec());
+			spaceObjList.add(tempObj);
+		}	
+		
+		
 		String outputStr;
 		String stringArgument;
 		org.python.util.PythonInterpreter python = new org.python.util.PythonInterpreter();
@@ -279,6 +309,21 @@ public class SkyMap_Formulae_J {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
+		
+		
+		System.out.println(spaceObjList.size());
+		for (int i = 1; i < 31; i++) {
+			Constellations Cobj = Constellations.CreateConstArr("Constellations.xml", i);
+			SpaceObj tempObj = new SpaceObj();
+			tempObj.setType("CONST");
+			tempObj.setConstName(Cobj.getName());
+			tempObj.setAbbrev(Cobj.getAbbrev());
+			tempObj.setEnglish(Cobj.getEnglish());
+			tempObj.setRA(Cobj.getRA());
+			tempObj.setDec(Cobj.getDec());
+			spaceObjList.add(tempObj);
+		}	
+		
 		
 		String outputStr;
 		String stringArgument;
