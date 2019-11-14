@@ -15,6 +15,13 @@ public class Moon {
         private String phase;
     }
 
+    // getters and setters
+    public void setMoonPhase(String starID){
+        this.phase = Phase;
+    }
+    public String getMoonPhase(){
+        return this.phase;
+    }
     /*
     Function: fixReturn
     Parameters: inverse (double)
@@ -94,9 +101,9 @@ public class Moon {
             returns. So I put a function in to fix this problem. Now works all the time
              
             */
-            if(days_into_cycle < 0){
-                days_into_cycle = fixReturn(days_into_cycle);
-            }
+            // if(days_into_cycle < 0){
+            //     days_into_cycle = fixReturn(days_into_cycle);
+            // }
             if(days_into_cycle >= 0.00 && days_into_cycle <= 1.00){
                 phase = descriptions[0]; // new
             }

@@ -88,14 +88,15 @@ public class Constellations {
     public static void main(String[] args) throws InterruptedException {
         long startTime = System.nanoTime();
         // number of messier deep catalog
-        int upper_limit = 229;
+        int upper_limit = 31;
         for (int k = 0; k < upper_limit; k++) {
             ArrayList<String> Constellation_holder = CreateConstArr("Constellations.xml", k);
             if (!Constellation_holder.isEmpty()) {
                 System.out.println("[0]: Constellation Name, [1]: Abbreviation, [2]: English Name, [3]: RA, [4]: Dec");
                 System.out.println(
                         "===============================================================================================================================================================================");
-                System.out.println(Constellation_holder);
+                // System.out.println(Constellation_holder);
+                System.out.println(Constellation_holder.in[0]);
                 System.out.println(
                         "===============================================================================================================================================================================");
             } else {
