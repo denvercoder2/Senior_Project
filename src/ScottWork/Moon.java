@@ -143,9 +143,9 @@ public class Moon {
     }
         
         public static void main(String[] args) {
-            int month = 10;
-            int day = 15;
-            int year = 2019;
+            int month = 1;
+            int day = 1;
+            int year = 1900;
             // object phase is passed
             String test = getPhase(month, day, year);
             System.out.printf("\nPhase: %s", test);
