@@ -138,11 +138,11 @@ public class MessierDeep{
         for (int k = 0; k < upper_limit; k++){
             ArrayList<String> SpaceObj = MDSO("MessierDeep.xml", k);
             if(!SpaceObj.isEmpty()){
-                // System.out.println("[0]: Object Number, [1]: Name, [2]: Type, [3]: Constellation, [4]: RAHour, [5]: RAMinute, [6]DecSign, [7]: DecDeg, [8]: DecMinute, [9]: Magnitude, [10]: Info, [11]: Distance");
                 System.out.println("\n===============================================================================================================================================================================");
+                // System.out.println("[0]: Object Number, [1]: Name, [2]: Type, [3]: Constellation, [4]: RAHour, [5]: RAMinute, [6]DecSign, [7]: DecDeg, [8]: DecMinute, [9]: Magnitude, [10]: Info, [11]: Distance");
                 System.out.println(SpaceObj);
-                System.out.println("===============================================================================================================================================================================");
                 System.out.printf("\nCombined RA = %.5f", getRA(SpaceObj));
+                System.out.println("\n===============================================================================================================================================================================");
             }
             else{
                 
