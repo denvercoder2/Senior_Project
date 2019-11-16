@@ -2,10 +2,11 @@
 /*
 Messier Deep Objects parse and functions
 */
-package ScottWork;
+
 import java.io.*;
 import java.util.*;
 
+import javax.swing.text.StyledEditorKit;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -13,6 +14,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
 
 public class MessierDeep{
 
@@ -120,6 +122,15 @@ public class MessierDeep{
         }
         return SpaceObjects;
         }
+
+    public static double getRA(ArrayList<String> obj){
+        double RA = 0;
+        RA = (Double.valueOf(obj.get(4)) * 15 + Double.valueOf(obj.get(5)) * .25);  
+
+        return RA;
+        
+    }
+        
     public static void main(String[] args) throws InterruptedException{
         long startTime = System.nanoTime();
         // number of messier deep catalog
@@ -127,10 +138,11 @@ public class MessierDeep{
         for (int k = 0; k < upper_limit; k++){
             ArrayList<String> SpaceObj = MDSO("MessierDeep.xml", k);
             if(!SpaceObj.isEmpty()){
-                System.out.println("[0]: Object Number, [1]: Name, [2]: Type, [3]: Constellation, [4]: RAHour, [5]: RAMinute, [6]DecSign, [7]: DecDeg, [8]: DecMinute, [9]: Magnitude, [10]: Info, [11]: Distance");
-                System.out.println("===============================================================================================================================================================================");
+                // System.out.println("[0]: Object Number, [1]: Name, [2]: Type, [3]: Constellation, [4]: RAHour, [5]: RAMinute, [6]DecSign, [7]: DecDeg, [8]: DecMinute, [9]: Magnitude, [10]: Info, [11]: Distance");
+                System.out.println("\n===============================================================================================================================================================================");
                 System.out.println(SpaceObj);
                 System.out.println("===============================================================================================================================================================================");
+                System.out.printf("\nCombined RA = %.5f", getRA(SpaceObj));
             }
             else{
                 
