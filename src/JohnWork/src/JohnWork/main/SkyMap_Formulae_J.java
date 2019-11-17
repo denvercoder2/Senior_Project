@@ -141,6 +141,7 @@ public class SkyMap_Formulae_J {
 		
 		System.out.println(spaceObjList.size());
 		for (int i = 1; i < 31; i++) {
+			
 			Constellations Cobj = Constellations.CreateConstArr("Constellations.xml", i);
 			SpaceObj tempObj = new SpaceObj();
 			tempObj.setType("CONST");
