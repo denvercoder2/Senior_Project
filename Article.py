@@ -310,7 +310,7 @@ def getLR(istring, D):
     return l, r
 
 
-def getPlanet(idate, iplanet, outer):
+def getPlanet(ijd, iplanet):
     # M  mean anomaly
     # v  true anomaly
     # T  orbital period of the planet (in tropical years)
@@ -318,21 +318,18 @@ def getPlanet(idate, iplanet, outer):
     # w  longitude of the perihelion
     # e  eccentricity of orbit
 
+    if iplanet.lower() == 'jupiter':
+        planet = '11.857911:337.917132:14.6633:0.048907:5.20278:1.3035:100.595:True'
     earth = '0.999996:99.556772:103.2055:0.016671:0.999985'
-
-    s = idate.split(':')
-    p = iplanet.split(':')
-    date = (int(s[0]), int(s[1]), float(s[2]))
 
     epoch_date = (2010, 1, 0)
     epoch = getJD(epoch_date)
-    jd = getJD(date)
-    D = jd - epoch
+    D = ijd - epoch
 
     lE, rE = getLR(earth, D)
-    l, r = getLR(jupiter, D)
-    i = math.radians(float(p[5]))
-    N = math.radians(float(p[6]))
+    l, r = getLR(planet, D)
+    i = math.radians(float(planet[5]))
+    N = math.radians(float(planet[6]))
 
     hLat = math.asin(math.sin(l-N)*math.sin(i))
     y = math.sin(l-N)*math.cos(i)
@@ -348,7 +345,9 @@ def getPlanet(idate, iplanet, outer):
             math.atan((pr * math.sin(lE - pl)) / (rE - rE * math.cos(pl - lE)))
     ecLat = math.atan(
         (pr*math.tan(hLat)*math.sin(ecLon-pl))/(rE*math.sin(pl-lE)))
-    return ecLat, ecLon
+
+    ra, dec = equatorialCoordinates(ecLon, ecLat, gcd)
+    return ra, dec
 
 
 def solveLocation(istring):
