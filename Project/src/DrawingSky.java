@@ -1,4 +1,4 @@
-//import JohnWork.main.SkyMap_Formulae_J;
+import JohnWork.main.SkyMap_Formulae_J;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Component;
@@ -51,7 +51,7 @@ public class DrawingSky extends Canvas{
     	int c = 2;
     	int d = 3;
     	g.setColor(Color.white);
-    	for(int i = 0; i < 35000; i++) {
+    	for(int i = 0; i < (list.size())/4; i++) {
     		g.fillOval(list.get(a), list.get(b), list.get(c), list.get(d));
     		a = d + 1;
     		b = a + 1;

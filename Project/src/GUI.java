@@ -24,7 +24,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.JScrollPane;
 import java.awt.SystemColor;
 import javax.swing.JTextArea;
-
+import JohnWork.main.SkyMap_Formulae_J;
 import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.GLEventListener;
 
@@ -170,7 +170,7 @@ public class GUI extends JFrame {
 		
 		drawing = new DrawingSky();
 		screenshot = drawing.draw(spaceObjList);
-		scrollPane_1.setViewportView(new JLabel(sreenshot));
+		scrollPane_1.setViewportView(new JLabel(screenshot));
 	}
 
 	public Boolean checkDay() {
