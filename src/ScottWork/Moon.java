@@ -15,18 +15,21 @@ public class Moon {
         private String phase;
     }
 
-    // getters and setters
-    public void setMoonPhase(String starID){
-        this.phase = Phase;
-    }
-    public String getMoonPhase(){
-        return this.phase;
-    }
+    // // getters and setters
+    // public void setMoonPhase(String phase){
+    //     this.phase = Phase;
+    // }
+    // public String getMoonPhase(){
+    //     return this.phase;
+    // }
     /*
+
+
+
     Function: fixReturn
     Parameters: inverse (double)
     Purpose: To fix a calculation error
-    that only occurs sometimes.
+    that rarely occurs.
     */
     public static double fixReturn(double inverse){
         double new_return = Math.abs(inverse);
@@ -45,6 +48,16 @@ public class Moon {
             new BigDecimal(intValue)).doubleValue();
 
         return dec_return;
+    }
+
+    /*
+    Function: rev
+    Parameters: double
+    Purpose: return normalized value
+    */
+    public static double rev(double x)
+    {
+        return  x - Math.floor(x/360.0)*360.0;
     }
 
     /*
@@ -80,8 +93,7 @@ public class Moon {
             int E = (int)(365.25 * (year + 4716));
             int F = (int)(30.6001 * (month + 1));
             JD =  C + day + E + F - 1524.5;
-            System.out.printf("Julian Day: %f", JD);
-            
+            System.out.printf("Julian Day %f", JD);
             
             double days_since_new = JD - 2451549.5;
             double new_moons = days_since_new / 29.53;
@@ -99,11 +111,10 @@ public class Moon {
             Occasionally, and I don't know why, the days into cycle return negative,
             but the correct value that they should be is the absolute value of what it
             returns. So I put a function in to fix this problem. Now works all the time
-             
             */
-            // if(days_into_cycle < 0){
-            //     days_into_cycle = fixReturn(days_into_cycle);
-            // }
+            if(days_into_cycle < 0){
+                days_into_cycle = fixReturn(days_into_cycle);
+            }
             if(days_into_cycle >= 0.00 && days_into_cycle <= 1.00){
                 phase = descriptions[0]; // new
             }
@@ -143,9 +154,9 @@ public class Moon {
     }
         
         public static void main(String[] args) {
-            int month = 1;
-            int day = 1;
-            int year = 1900;
+            int month = 5;
+            int day = 19;
+            int year = 1991;
             // object phase is passed
             String test = getPhase(month, day, year);
             System.out.printf("\nPhase: %s", test);
