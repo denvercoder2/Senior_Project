@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.ScrollPane;
 import java.awt.Scrollbar;
@@ -58,6 +59,9 @@ public class GUI extends JFrame {
 	private JCheckBox planets;
 	private JCheckBox messierDeepSpace;
 	
+	DrawingSky drawing;
+	ImageIcon screenshot;
+	
 	private double dayInput;
 	private double yearInput;
 	private double monthInput;
@@ -83,10 +87,9 @@ public class GUI extends JFrame {
 	private Boolean planetsCB;
 	private Boolean messierCB;
 	
+	private ArrayList<SpaceObj> spaceObjList;
 	
 	
-	
-	InputUtils utils;
 	private JButton btnSaveToDisk;
 	private JScrollPane scrollPane_1;
 	
@@ -126,6 +129,8 @@ public class GUI extends JFrame {
 		if(checkDay() && checkYear() && checkMonth() && checkHours() && checkMinutes()
 				&& checkLatitude() && checkLongitude() && checkMins() && checkLatitudeDirection() && checkLongitudeDirection() && checkDate()) {
 			setValidInputs();
+			//ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\SkyMap.png");
+			//scrollPane_1.setViewportView(new JLabel(ii));
 		}
 		else {
 			JOptionPane.showMessageDialog(new JFrame(), "Please Enter Valid Inputs!", "Dialog",
@@ -142,6 +147,17 @@ public class GUI extends JFrame {
 		longValid = longInput;
 		latValid = latInput;
 		minValid = minInput;
+	}
+	
+	public void getSpaceObjects() {
+		spaceObjList = getSpace(String.valueOf(yearValid), String.valueOf(monthValid), 
+				String.valueOf(dayValid), String.valueOf(hourValid), 
+				String.valueOf(minuteValid), String.valueOf(SEC), 
+				String.valueOf(latValid), String.valueOf(latValid));
+		
+		drawing = new DrawingSky();
+		screenshot = drawing.draw(spaceObjList);
+		scrollPane_1.setViewportView(new JLabel(sreenshot));
 	}
 
 	public Boolean checkDay() {
@@ -689,8 +705,7 @@ public class GUI extends JFrame {
 		        }
 				checkValues();
 				setLabels();
-				ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\SkyMap.png");
-				scrollPane_1.setViewportView(new JLabel(ii));
+				
 				
 				
 					
