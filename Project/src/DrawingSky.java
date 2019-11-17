@@ -80,7 +80,7 @@ public class DrawingSky extends Canvas{
     	int d = 3;
     	int size;
     	
-    	for(int i = 0; i < spaceObjects.getSize(); i++) {
+    	for(int i = 0; i < spaceObjects.size(); i++) {
     		
     		//Check if mag is less than or equal to 6, add location to list
     		if((spaceObjects.get(i).getMag() <= 6) || !(spaceObjects.get(i).getType().equals("STAR"))) {
