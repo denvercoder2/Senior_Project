@@ -146,8 +146,19 @@ public class GUI extends JFrame {
 		monthValid = monthInput;
 		hourValid = hourInput;
 		minuteValid = minuteInput;
-		longValid = longInput;
-		latValid = latInput;
+		if(longitudeDirection == "South") {
+			longValid = longInput * -1;
+		}
+		if(longitudeDirection == "North") {
+			longValid = longInput;
+		}
+		
+		if(latitudeDirection == "West") {
+			latValid = latInput * -1;
+		}
+		if(latitudeDirection == "East") {
+			latValid = latInput;
+		}
 		minValid = minInput;
 	}
 	

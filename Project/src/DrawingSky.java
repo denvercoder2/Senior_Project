@@ -42,6 +42,24 @@ public class DrawingSky extends Canvas{
         
 	}
 	
+	public void paint(Graphics g) {
+        g.setColor(Color.black);
+        g.fillRect(0, 0, getWidth(), getHeight());
+    	ArrayList<Integer> list = createList();
+    	int a = 0;
+    	int b = 1;
+    	int c = 2;
+    	int d = 3;
+    	g.setColor(Color.white);
+    	for(int i = 0; i < 35000; i++) {
+    		g.fillOval(list.get(a), list.get(b), list.get(c), list.get(d));
+    		a = d + 1;
+    		b = a + 1;
+    		c = b + 1;
+    		d = c + 1;
+    	}
+	}
+	
 	public ArrayList<Integer> createList(){
 		// java - get screen size using the Toolkit class
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -65,7 +83,7 @@ public class DrawingSky extends Canvas{
     	for(int i = 0; i < spaceObjects.getSize(); i++) {
     		
     		//Check if mag is less than or equal to 6, add location to list
-    		if(spaceObjects.get(i).getMag()) {
+    		if((spaceObjects.get(i).getMag() <= 6) || !(spaceObjects.get(i).getType().equals("STAR"))) {
 	    		locations.add(a, getX(screenHeight, screenWidth, 10, spaceObjects.get(i).getAzimuth()));
 	    		locations.add(b, getY(screenHeight, screenWidth, 10, spaceObjects.get(i).getAltitude()));
 	    		size = getSize(spaceObjects.get(i));
@@ -108,6 +126,9 @@ public class DrawingSky extends Canvas{
 	
 	public int getSize(SpaceObj object) {
 		int size;
+		
+		//TEST SIZE -- Need to update method
+		size = 5;
 		
 		return size;
 	}
