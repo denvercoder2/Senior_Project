@@ -131,6 +131,8 @@ public class GUI extends JFrame {
 			setValidInputs();
 			//ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\SkyMap.png");
 			//scrollPane_1.setViewportView(new JLabel(ii));
+			setLabels();
+			getSpaceObjects();
 		}
 		else {
 			JOptionPane.showMessageDialog(new JFrame(), "Please Enter Valid Inputs!", "Dialog",
@@ -152,7 +154,7 @@ public class GUI extends JFrame {
 	public void getSpaceObjects() {
 		spaceObjList = getSpace(String.valueOf(yearValid), String.valueOf(monthValid), 
 				String.valueOf(dayValid), String.valueOf(hourValid), 
-				String.valueOf(minuteValid), String.valueOf(SEC), 
+				String.valueOf(minuteValid), String.valueOf(0), 
 				String.valueOf(latValid), String.valueOf(latValid));
 		
 		drawing = new DrawingSky();
@@ -686,40 +688,13 @@ public class GUI extends JFrame {
 		JButton applyButton = new JButton("Apply");
 		applyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				try {
-				/*dayInput = Double.valueOf(dayTextField.getText());
-				monthInput = Double.valueOf(monthTextField.getText());
-				yearInput = Double.valueOf(yearTextField.getText());
-				hourInput = Double.valueOf(hoursTextField.getText());
-				minuteInput = Double.valueOf(minutesTextField.getText());
-					
-				longInput = Double.valueOf(longTextField.getText());
-				latInput = Double.valueOf(latTextField.getText());
-				minInput = Double.valueOf(minTextField.getText());
-					*/
-				//utils.sendInputs(monthInput, dayInput, yearInput, hourInput, minuteInput, latInput, longInput, minInput);
-				}
-				catch(IllegalArgumentException e) 
-		        { 
-		            System.out.println("IllegalArgumentException caught"); 
-		        }
 				checkValues();
-				setLabels();
-				
-				
-				
-					
+						
 			}
 		});
 		applyButton.setFont(new Font("Tahoma", Font.BOLD, 34));
 		applyButton.setBounds(26, 1138, 212, 67);
 		mainGUI.add(applyButton);
-		
-		
-		
-		//JTextArea textArea = new JTextArea();
-		//textArea.setBounds(341, 155, 1605, 1026);
-		//mainGUI.add(textArea);
 		
 		scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(450, 155, 1500, 1050);
@@ -727,10 +702,22 @@ public class GUI extends JFrame {
 		scrollPane_1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane_1.setViewportBorder(new LineBorder(Color.BLACK));
 		
-		//ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\SkyMap.png");
-		//scrollPane_1.setViewportView(new JLabel(ii));
-		
 		mainGUI.add(scrollPane_1);
+		
+		JLabel lblHrsMins = new JLabel("Hrs              Mins");
+		lblHrsMins.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblHrsMins.setBounds(26, 483, 115, 17);
+		mainGUI.add(lblHrsMins);
+		
+		JLabel lblDegrees = new JLabel("Degrees");
+		lblDegrees.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblDegrees.setBounds(247, 810, 115, 33);
+		mainGUI.add(lblDegrees);
+		
+		JLabel label = new JLabel("Degrees");
+		label.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		label.setBounds(247, 945, 115, 33);
+		mainGUI.add(label);
 		
 		
 		
