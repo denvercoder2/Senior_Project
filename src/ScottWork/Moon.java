@@ -51,16 +51,6 @@ public class Moon {
     }
 
     /*
-    Function: rev
-    Parameters: double
-    Purpose: return normalized value
-    */
-    public static double rev(double x)
-    {
-        return  x - Math.floor(x/360.0)*360.0;
-    }
-
-    /*
     Function: getPhase()
     Parameters: month, day, year (all int)
     Purpose: return an array of correctly
@@ -154,9 +144,9 @@ public class Moon {
     }
         
         public static void main(String[] args) {
-            int month = 5;
-            int day = 19;
-            int year = 1991;
+            int month = 11;
+            int day = 17;
+            int year = 2019;
             // object phase is passed
             String test = getPhase(month, day, year);
             System.out.printf("\nPhase: %s", test);
