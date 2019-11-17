@@ -351,17 +351,37 @@ def getPlanet(idate, iplanet, outer):
     return ecLat, ecLon
 
 
-def solveLocation(ira, idec, ilon, ilat, ihr, imn, isc, iyr, imon, iday, idst):
+def solveLocation(istring):
+    # line = 'ra:ra:ra:dec:dec:dec:lat:lon:hr:mn:sc:yr:mon:day:dst'
+    s = istring.split(':')
+    ra = (int(s[0]), int(s[1]), float(s[2]))
+    dec = (int(s[3]), int(s[4]), float(s[5]))
+    lat = float(s[6])
+    lon = float(s[7])
+    hr = int(s[8])
+    mn = int(s[9])
+    sc = float(s[10])
+    yr = int(s[11])
+    mon = int(s[12])
+    day = int(s[13])
+    dst = True if (s[14] == 'True') else False
 
-    place = (ilat, ilon)
-    time = (ihr, imn, isc)
-    date = (iyr, imon, iday)
+    place = (lat, lon)
+    time = (hr, mn, sc)
+    date = (yr, mon, day)
 
-    lst = getLST(place, date, time, idst)
-    dh = math.radians(RAtoH(ira, lst)*15)
+    lst = getLST(place, date, time, dst)
 
-    lat = math.radians(ilat)
-    dec = math.radians(idec)
+    if star:
+        getStar(ra, dec)
+    elif planet:
+        getPlanet()
+    else:
+        getSun()
+
+    dh = math.radians(RAtoH(ra, lst)*15)
+    lat = math.radians(lat)
+    dec = math.radians(dec)
 
     a = getAltitude(lat, dh, dec)
     print("alt: ", getDMS(math.degrees(a)))
