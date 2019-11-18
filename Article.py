@@ -319,7 +319,7 @@ def getStar(ra, dec):
     return ra, dec
 
 def solveLocation(istring):
-    # line = 'ra:ra:ra:dec:dec:dec:lat:lon:hr:mn:sc:yr:mon:day:dst'
+    # line = 'ra:ra:ra:dec:dec:dec:lat:lon:hr:mn:sc:yr:mon:day:dst:obj'
     s = istring.split(':')
     ra = (int(s[0]), int(s[1]), float(s[2]))
     dec = (int(s[3]), int(s[4]), float(s[5]))
@@ -332,7 +332,9 @@ def solveLocation(istring):
     mon = int(s[12])
     day = int(s[13])
     dst = True if (s[14] == 'True') else False
-    obj = s[15]
+    obj = None
+    if len(s)==16:
+        obj = s[15] 
 
     place = (lat, lon)
     time = (hr, mn, sc)
@@ -342,12 +344,12 @@ def solveLocation(istring):
     gcdate = getGCD(date, ut)
     lst = getLST(place, date, time, dst)
 
-    if obj == 'star':
+    if obj is None:
         ra, dec = getStar(ra, dec)
-    elif obj == 'planet':
-        ra, dec = getPlanet(gcdate, obj)
-    else:
+    elif obj.lower() == 'sol':
         ra, dec = getSun(gcdate, dst)
+    else:
+        ra, dec = getPlanet(gcdate, obj)
 
     dh = math.radians(RAtoH(ra, lst)*15)
     lat = math.radians(lat)
@@ -362,8 +364,7 @@ def solveLocation(istring):
 def test():
     # line = 'ra:ra:ra:dec:dec:dec:lat:lon:hr:mn:sc:yr:mon:day:dst'
     # static = '18:32:21:23:13:10:52:-64:14:36:51.67:1980:4:22:False'
-    polaris = '2:31:49:89:15:50.78:34:-87:17:37:0:2019:11:17:True'
+    polaris = '2:31:49:89:15:50.78:34:-87:18:08:0:2019:11:17:True:Sol'
     solveLocation(polaris)
-
 
 test()
