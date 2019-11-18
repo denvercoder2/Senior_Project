@@ -77,7 +77,7 @@ public class MoonPosition{
 
         // true anomaly
         double r = Math.sqrt(x_coord*x_coord + y_coord*y_coord);
-        double v = Math.atan2(y_coord, x_coord);
+        double v = Math.atan2(y_coord, x_coord);    // 259.8605
         System.out.printf("\nR: %.5f", r);
         System.out.printf("\nV: %.5f", v);  // wrong value?
 
@@ -87,6 +87,10 @@ public class MoonPosition{
         System.out.printf("\nXE: %.5f", xeclip);
         System.out.printf("\nYE: %.5f", yeclip);
         System.out.printf("\nZE: %.5f", zeclip);
+    }
+
+    public static void getMoonPosNew(int d, int m, int y){
+
     }
 
     // http://www2.arnes.si/~gljsentvid10/tutorial_.html#7
