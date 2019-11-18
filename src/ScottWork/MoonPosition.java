@@ -90,7 +90,12 @@ public class MoonPosition{
     }
 
     public static void getMoonPosNew(int d, int m, int y){
-
+        // # M  mean anomaly
+        // # v  true anomaly
+        // # T  orbital period of the planet (in tropical years)
+        // # L  mean longitude of the planet
+        // # w  longitude of the perihelion
+        // # e  eccentricity of orbit
     }
 
     // http://www2.arnes.si/~gljsentvid10/tutorial_.html#7
