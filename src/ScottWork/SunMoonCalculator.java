@@ -623,7 +623,7 @@ public class SunMoonCalculator {
 		System.out.println("SunMoonCalculator test run");
  
 		try {
-			int year = 2019, month = 11, day = 17, h = 16-2, m = 28, s = 52; // in UT !!!
+			int year = 2003, month = 9, day = 1, h = 0, m = 0, s = 0; // in UT !!!
 			double obsLon = -3.7 * DEG_TO_RAD, obsLat = 40.417 * DEG_TO_RAD; // lon is negative to the west
 			SunMoonCalculator smc = new SunMoonCalculator(year, month, day, h, m, s, obsLon, obsLat);
  
