@@ -283,9 +283,31 @@ def getPlanet(gcdate, iplanet):
     # w  longitude of the perihelion
     # e  eccentricity of orbit
 
-    if iplanet.lower() == 'jupiter':
-        planet = '11.857911:337.917132:14.6633:0.048907:5.20278:1.3035:100.595:outer'
     earth = '0.999996:99.556772:103.2055:0.016671:0.999985'
+    mercury = '0.24085:75.5671:77.612:0.205627:0.387098:7.0051:48.449:inner'
+    venus = '0.615207:272.30044:131.54:0.006812:0.723329 3.3947 76.769:inner'
+    mars = '1.880765:109.09646:336.217:0.093348:1.523689:1.8497:49.632:outer'
+    jupiter = '11.857911:337.917132:14.6633:0.048907:5.20278:1.3035:100.595:outer'
+    saturn = '29.310579:172.398316:89.567:0.053853:9.51134:2.4873:113.752:outer'
+    uranus = '84.039492:271.063148:172.884833:0.046321:19.21814:0.773059:73.926961:outer'
+    neptune = '165.84539:326.895127:23.07:0.010483:30.1985:1.7673:131.879:outer'
+    
+    
+    if iplanet.lower() == 'mercury':
+        planet = mercury
+    if iplanet.lower() == 'venus':
+        planet = venus
+    if iplanet.lower() == 'mars':
+        planet = mars
+    if iplanet.lower() == 'jupiter':
+        planet = jupiter
+    if iplanet.lower() == 'saturn':
+        planet = saturn
+    if iplanet.lower() == 'uranus':
+        planet = uranus
+    if iplanet.lower() == 'neptune':
+        planet = neptune
+    
 
     epoch = (2010, 1, 0)
     D = getJD(gcdate) - getJD(epoch)
