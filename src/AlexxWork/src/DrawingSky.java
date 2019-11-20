@@ -38,14 +38,30 @@ public class DrawingSky extends Canvas {
     public void paint(Graphics g) {
         g.setColor(Color.black);
         g.fillRect(0, 0, getWidth(), getHeight());
+        
     	ArrayList<Integer> list = createList();
     	int a = 0;
     	int b = 1;
     	int c = 2;
     	int d = 3;
-    	g.setColor(Color.white);
+    	int color;
+    	//g.setColor(Color.white);
     	System.out.println("----------------------\n"+(list.size()/4)+"\n-----------------------------\n");
     	for(int i = 0; i < (list.size()/4); i++) {
+    		color = getRandom(1,4);
+    		if(color == 1) {
+    			g.setColor(Color.white);
+    		}
+    		else if(color == 2) {
+    			g.setColor(Color.red);
+    		}
+    		else if(color == 3) {
+    			g.setColor(Color.blue);
+    		}
+    		else if(color == 4) {
+    			g.setColor(Color.green);
+    		}
+    		
     		g.fillOval(list.get(a), list.get(b), list.get(c), list.get(d));
     		a = d + 1;
     		b = a + 1;
@@ -80,7 +96,8 @@ public class DrawingSky extends Canvas {
     		test.add(b, y);
     	 */
     	for(int i = 0; i < GUI.spaceObjList.size(); i++) {
-    		if(GUI.spaceObjList.get(i).getMagnitude() != null && (Double.valueOf(GUI.spaceObjList.get(i).getMagnitude()) <= 6.0)) {
+    		if(GUI.spaceObjList.get(i).getMagnitude() != null && (Double.valueOf(GUI.spaceObjList.get(i).getMagnitude()) <= 6.0) 
+    				&& GUI.spaceObjList.get(i).getAltitude() > 1) {
 	    		//raduius = 50000
     			int x = getX(2000, 2000, 1000, (int)GUI.spaceObjList.get(i).getAzimuth(), (int)GUI.spaceObjList.get(i).getAltitude());
 				int y = getY(2000, 2000, 1000, (int)GUI.spaceObjList.get(i).getAzimuth(), (int)GUI.spaceObjList.get(i).getAltitude());
@@ -161,25 +178,25 @@ public int getY(int screenHeight, int screenWidth, int r, int z, int a) {
 public int getSize(Double mag) {
 	int size = 0;
 	if(mag >= 5.0) {
-		size = 1;
+		size = 2;
 	}
 	else if(mag >= 4.0) {
-		size = 3;
+		size = 4;
 	}
 	else if(mag >= 3.0) {
-		size = 5;
+		size = 6;
 	}
 	else if(mag >= 2.0) {
-		size = 7;
+		size = 8;
 	}
 	else if(mag >= 1.0) {
-		size = 9;
+		size = 10;
 	}
 	else if(mag >= 0.0) {
-		size = 11;
+		size = 12;
 	}
 	else {
-		size = 12;
+		size = 14;
 	}
 	
 	
