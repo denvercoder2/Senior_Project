@@ -51,8 +51,7 @@ public class MoonPoint{
 	  return Math.PI * degrees / 180;
    }   
 
-   public static double meanObliquity(double date)
-   {
+   public static double meanObliquity(double date){
 	  double T = (date - 2415020.0) / 36525;
 	  
 	  double de = T * (46.845 + T * (0.0059 - T * (0.00181)));
@@ -71,7 +70,6 @@ public class MoonPoint{
         double MPrimeM = 0;
         double EcSun = 0;
         double EcMoon = 0;
-        double parallax = 0;
         double epoch = 2444238.5 ; // 1980
 
         // Days since epoch. We use Universal time for these calculations.
@@ -97,34 +95,34 @@ public class MoonPoint{
             
         // Find the Moon's position.
         
-        double l = degreesToRadians(13.1763966 * D) + 1.13403577981;
+        double l = 13.1763966 * D + 1.13403577981;
         l = fixRange(l);
         
-        double Mm = l - degreesToRadians(0.1114041 * D) - 6.09788480005;
+        double Mm = l - 0.1114041 * D - 6.09788480005;
         Mm = fixRange(Mm);
         
-        N = 2.65203528587 - degreesToRadians(0.052953 * D);
+        N = 2.65203528587 - 0.052953 * D;
         N = fixRange(N);
         
         double C = (l - SunLambda);
-        double Ev = degreesToRadians(1.2739 * Math.sin(2*C - Mm));
+        double Ev = 1.2739 * Math.sin(2*C - Mm);
         
-        double Ae = degreesToRadians(0.1858 * Math.sin(meanAnomalySun));
-        double A3 = degreesToRadians(0.37 * Math.sin(meanAnomalySun));
+        double Ae = 0.1858 * Math.sin(meanAnomalySun);
+        double A3 = 0.37 * Math.sin(meanAnomalySun);
         
         MPrimeM = Mm + Ev - Ae - A3;
         
-        EcMoon = degreesToRadians(6.2886 * Math.sin(MPrimeM));
+        EcMoon = 6.2886 * Math.sin(MPrimeM);
         
-        double A4 = degreesToRadians(0.214 * Math.sin(2*MPrimeM));
+        double A4  = 0.214 * Math.sin(2*MPrimeM);
         
         double lPrime = l + Ev + EcMoon - Ae + A4;
         
-        double V = degreesToRadians(0.6583 * Math.sin(2 * (lPrime - SunLambda)));
+        double V = 0.6583 * Math.sin(2 * (lPrime - SunLambda));
         
         lPrimePrime = lPrime + V;
         
-        double NPrime = N - degreesToRadians(0.16 * Math.sin(meanAnomalySun));
+        double NPrime = N - 0.16 * Math.sin(meanAnomalySun);
         
         double y_c = Math.sin(lPrimePrime - NPrime) * Math.cos(0.0898041015189);
         double x_c = Math.cos(lPrimePrime - NPrime);
@@ -150,8 +148,8 @@ public class MoonPoint{
         RAmoon = Math.atan2(y_m, x_m);
 
         double[] rd = new double[3];
-        rd[0] = RAmoon;
-        rd[1] = Decmoon;
+        rd[0] = degreesToRadians(RAmoon);
+        rd[1] = degreesToRadians(Decmoon);
 
         return rd;
    }   
