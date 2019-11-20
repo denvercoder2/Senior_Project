@@ -14,6 +14,8 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
@@ -21,13 +23,18 @@ import java.awt.ScrollPane;
 import java.awt.Scrollbar;
 import javax.swing.JComboBox;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.border.LineBorder;
 import javax.swing.JScrollPane;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
+
 import javax.swing.JTextArea;
 
 import JohnWork.main.SkyMap_Formulae_J;
 import JohnWork.main.SpaceObj;
+import net.miginfocom.swing.MigLayout;
 
 import javax.swing.JFrame;
 
@@ -102,7 +109,7 @@ public class AlexxWork2 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GUI frame = new GUI();
+					AlexxWork2 frame = new AlexxWork2();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -169,8 +176,8 @@ public class AlexxWork2 extends JFrame {
 				String.valueOf((int)dayValid), String.valueOf((int)hourValid), 
 				String.valueOf((int)minuteValid), String.valueOf(0), 
 				String.valueOf((int)latValid), String.valueOf((int)latValid));*/
-		ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\waiting.jpg");
-		scrollPane_1.setViewportView(new JLabel(ii));
+		//ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\waiting.jpg");
+		//scrollPane_1.setViewportView(new JLabel(ii));
 		spaceObjList = SkyMap_Formulae_J.getSpace(String.valueOf((int)1950), String.valueOf((int)12), 
 				String.valueOf((int)12), String.valueOf((int)12), 
 				String.valueOf((int)25), String.valueOf(0), 
@@ -539,12 +546,14 @@ public class AlexxWork2 extends JFrame {
 	 */
 	
 	public AlexxWork2() {
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		double screenHeight = screenSize.height;
+		double screenWidth = screenSize.width;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 2500, 1500);
+		setBounds(100, 100, (int)(screenWidth*0.75), (int)(screenHeight*0.75));
 		mainGUI = new JPanel();
 		mainGUI.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(mainGUI);
-		mainGUI.setLayout(null);
 		
 		//Display display = Display.getDefault(); // this is required to come before the "Shell" we'll be editting
 		//Shell shell = new Shell(display, SWT.CLOSE | SWT.TITLE | SWT.MIN ); // Says 'use the Windows display window with a close, title, and minimize' but since we aren't also putting SWT.MAX then it is grayed out in my other projects I'm doing
@@ -552,133 +561,132 @@ public class AlexxWork2 extends JFrame {
 		
 		//Intialize the member variables
 		intialize();
+		mainGUI.setLayout(new MigLayout("", "[75px][][9px][10px][7px][76.00px][105.00px][5px][-1.00px][-76.00px][850.00px][67.00px][329.00px]", "[67px][1px][4px][40px][13px][52px][11px][58px][3px][58px][4px][33px][9px][39px][3px][17px][76px][49px][101px][33px][48px][39px][22px][39px][28px][47px][22px][39px][28px][39px][28px][67px]"));
 		
-		month.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		month.setBounds(26, 215, 115, 33);
-		mainGUI.add(month);
+		month.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		mainGUI.add(month, "cell 0 5,alignx left,aligny top");
 		
 		monthTextField = new JTextField();
-		monthTextField.setText("example");
-		monthTextField.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		monthTextField.setBounds(142, 213, 52, 36);
-		mainGUI.add(monthTextField);
+		monthTextField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if (!Character.isDigit(e.getKeyChar())) {
+					e.consume();
+				}
+			}
+			public void keyPressed(KeyEvent e) {
+				if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_V) {
+					System.out.println("ILLEGAL ACTION");
+					e.consume();
+				}
+			}
+		});
+		monthTextField.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		mainGUI.add(monthTextField, "cell 5 5 2 1,growx,aligny top");
 		monthTextField.setColumns(10);
 		
 		JLabel day = new JLabel("Day");
-		day.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		day.setBounds(26, 276, 115, 33);
-		mainGUI.add(day);
-		
-		dayTextField = new JTextField();
-		dayTextField.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		dayTextField.setBounds(142, 276, 52, 39);
-		mainGUI.add(dayTextField);
-		dayTextField.setColumns(10);
+		day.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		mainGUI.add(day, "flowx,cell 0 7 7 1,growx,aligny top");
 		
 		year = new JLabel("Year");
-		year.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		year.setBounds(26, 337, 115, 33);
-		mainGUI.add(year);
+		year.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		mainGUI.add(year, "flowx,cell 0 9 7 1,growx,aligny top");
 		
-		yearTextField = new JTextField();
-		yearTextField.setBounds(142, 337, 52, 39);
-		mainGUI.add(yearTextField);
-		yearTextField.setColumns(10);
-		
-		time = new JLabel("Time (Military Format Only):");
+		time = new JLabel("Time (Military Format):");
 		time.setFont(new Font("Tahoma", Font.PLAIN, 28));
-		time.setBounds(26, 399, 432, 33);
-		mainGUI.add(time);
+		mainGUI.add(time, "cell 0 11 7 1,alignx left,growy");
 		
 		hoursTextField = new JTextField();
-		hoursTextField.setBounds(26, 441, 49, 39);
-		mainGUI.add(hoursTextField);
+		hoursTextField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if (!Character.isDigit(e.getKeyChar())) {
+					e.consume();
+				}
+			}
+			public void keyPressed(KeyEvent e) {
+				if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_V) {
+					System.out.println("ILLEGAL ACTION");
+					e.consume();
+				}
+			}
+		});
+		hoursTextField.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		mainGUI.add(hoursTextField, "cell 0 13,grow");
 		hoursTextField.setColumns(10);
 		
 		colon = new JLabel(":");
-		colon.setBounds(84, 444, 10, 33);
-		mainGUI.add(colon);
+		colon.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		mainGUI.add(colon, "cell 1 13,alignx center,growy");
 		
 		minutesTextField = new JTextField();
-		minutesTextField.setBounds(101, 441, 49, 39);
-		mainGUI.add(minutesTextField);
+		minutesTextField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if (!Character.isDigit(e.getKeyChar())) {
+					e.consume();
+				}
+			}
+			public void keyPressed(KeyEvent e) {
+				if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_V) {
+					System.out.println("ILLEGAL ACTION");
+					e.consume();
+				}
+			}
+		});
+		minutesTextField.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		mainGUI.add(minutesTextField, "cell 5 13,grow");
 		minutesTextField.setColumns(10);
 		
 		latitude = new JLabel("Latitude");
 		latitude.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		latitude.setBounds(25, 807, 173, 33);
-		mainGUI.add(latitude);
-		
-		latTextField = new JTextField();
-		latTextField.setBounds(190, 807, 52, 39);
-		mainGUI.add(latTextField);
-		latTextField.setColumns(10);
+		mainGUI.add(latitude, "flowx,cell 0 21 7 1,alignx left,growy");
 		
 		longitude = new JLabel("Longitude");
 		longitude.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		longitude.setBounds(25, 935, 154, 47);
-		mainGUI.add(longitude);
-		
-		longTextField = new JTextField();
-		longTextField.setBounds(189, 942, 52, 39);
-		mainGUI.add(longTextField);
-		longTextField.setColumns(10);
+		mainGUI.add(longitude, "flowx,cell 0 25 7 1,alignx left,growy");
 		
 		minutes = new JLabel("Minutes");
 		minutes.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		minutes.setBounds(26, 1071, 150, 33);
-		mainGUI.add(minutes);
-		
-		minTextField = new JTextField();
-		minTextField.setBounds(190, 1071, 52, 39);
-		mainGUI.add(minTextField);
-		minTextField.setColumns(10);
+		mainGUI.add(minutes, "flowx,cell 0 29 7 1,alignx left,growy");
 		
 		starNames = new JCheckBox("Star Names");
-		starNames.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		starNames.setBounds(2000, 224, 429, 41);
-		mainGUI.add(starNames);
+		starNames.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		mainGUI.add(starNames, "cell 12 5,growx,aligny bottom");
 		
 		constellations = new JCheckBox("Constellations");
-		constellations.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		constellations.setBounds(2000, 293, 429, 41);
-		mainGUI.add(constellations);
+		constellations.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		mainGUI.add(constellations, "cell 12 7,growx,aligny bottom");
 		
 		planets = new JCheckBox("Planets");
-		planets.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		planets.setBounds(2000, 354, 221, 41);
-		mainGUI.add(planets);
+		planets.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		mainGUI.add(planets, "cell 12 9,alignx left,aligny bottom");
 		
-		messierDeepSpace = new JCheckBox("Messier Deep Space Objects");
-		messierDeepSpace.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		messierDeepSpace.setBounds(2000, 415, 429, 41);
-		mainGUI.add(messierDeepSpace);
+		messierDeepSpace = new JCheckBox("Messier Objects");
+		messierDeepSpace.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		mainGUI.add(messierDeepSpace, "cell 12 11 1 3,alignx left,aligny center");
 		
 		Box verticalBox = Box.createVerticalBox();
-		verticalBox.setBounds(2018, 155, 1, 1);
-		mainGUI.add(verticalBox);
+		mainGUI.add(verticalBox, "cell 12 1,alignx left,growy");
 		
 		JLabel lblNewLabel = new JLabel("Sky Map");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
-		lblNewLabel.setBounds(0, 28, 2468, 67);
-		mainGUI.add(lblNewLabel);
+		mainGUI.add(lblNewLabel, "cell 0 0 13 1,grow");
 		
 		JLabel lblEnterLocation = new JLabel("Enter Location:");
 		lblEnterLocation.setFont(new Font("Tahoma", Font.BOLD, 34));
-		lblEnterLocation.setBounds(14, 726, 271, 33);
-		mainGUI.add(lblEnterLocation);
+		mainGUI.add(lblEnterLocation, "flowx,cell 0 19 9 1,alignx left,growy");
 		
 		JLabel enterDate = new JLabel("Enter Date:");
-		enterDate.setFont(new Font("Tahoma", Font.BOLD, 34));
-		enterDate.setBounds(26, 155, 212, 33);
-		mainGUI.add(enterDate);
+		enterDate.setFont(new Font("Tahoma", Font.BOLD, 30));
+		mainGUI.add(enterDate, "cell 0 1 7 3,alignx center,aligny top");
 		
 		JLabel labels = new JLabel("Labels:");
 		labels.setHorizontalAlignment(SwingConstants.CENTER);
 		labels.setFont(new Font("Tahoma", Font.BOLD, 34));
-		labels.setBounds(2000, 160, 429, 40);
-		mainGUI.add(labels);
+		mainGUI.add(labels, "cell 12 3,growx,aligny center");
 		
 		btnSaveToDisk = new JButton("Save Image");
 		btnSaveToDisk.addActionListener(new ActionListener() {
@@ -688,30 +696,27 @@ public class AlexxWork2 extends JFrame {
 				
 			}
 		});
-		btnSaveToDisk.setFont(new Font("Tahoma", Font.BOLD, 34));
-		btnSaveToDisk.setBounds(2000, 1138, 411, 67);
-		mainGUI.add(btnSaveToDisk);
+		btnSaveToDisk.setFont(new Font("Tahoma", Font.BOLD, 30));
+		mainGUI.add(btnSaveToDisk, "cell 12 31,grow");
 		
 		latitudeComboBox = new JComboBox();
-		latitudeComboBox.setBounds(25, 868, 217, 39);
 		latitudeComboBox.addItem(" ");
 		latitudeComboBox.addItem("North");
 		latitudeComboBox.addItem("South");
-		mainGUI.add(latitudeComboBox);
+		mainGUI.add(latitudeComboBox, "cell 0 23 7 1,grow");
 		
 		longitudeComboBox = new JComboBox();
-		longitudeComboBox.setBounds(25, 1004, 217, 39);
 		longitudeComboBox.addItem(" ");
 		longitudeComboBox.addItem("East");
 		longitudeComboBox.addItem("West");
-		mainGUI.add(longitudeComboBox);
+		mainGUI.add(longitudeComboBox, "cell 0 27 7 1,grow");
 		
 		JButton refreshButton = new JButton("Refresh SkyMap");
 		refreshButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\waiting.jpg");
-					scrollPane_1.setViewportView(new JLabel(ii));
+					//ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\waiting.jpg");
+					//scrollPane_1.setViewportView(new JLabel(ii));
 					getSpaceObjects();
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
@@ -720,9 +725,8 @@ public class AlexxWork2 extends JFrame {
 				setLabels();
 			}
 		});
-		refreshButton.setFont(new Font("Tahoma", Font.BOLD, 34));
-		refreshButton.setBounds(2000, 576, 411, 49);
-		mainGUI.add(refreshButton);
+		refreshButton.setFont(new Font("Tahoma", Font.BOLD, 30));
+		mainGUI.add(refreshButton, "cell 12 17,growx,aligny top");
 		
 		JButton applyButton = new JButton("Apply");
 		applyButton.addActionListener(new ActionListener() {
@@ -737,32 +741,114 @@ public class AlexxWork2 extends JFrame {
 			}
 		});
 		applyButton.setFont(new Font("Tahoma", Font.BOLD, 34));
-		applyButton.setBounds(26, 1138, 212, 67);
-		mainGUI.add(applyButton);
+		mainGUI.add(applyButton, "cell 0 31 7 1,grow");
 		
 		scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(450, 155, 1500, 1050);
 		scrollPane_1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scrollPane_1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane_1.setViewportBorder(new LineBorder(Color.BLACK));
-		ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\pluto.jpg");
-		scrollPane_1.setViewportView(new JLabel(ii));
-		mainGUI.add(scrollPane_1);
+		//ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\pluto.jpg");
+		//scrollPane_1.setViewportView(new JLabel(ii));
+		mainGUI.add(scrollPane_1, "cell 10 1 1 31,grow");
 		
 		JLabel lblHrsMins = new JLabel("Hrs              Mins");
-		lblHrsMins.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblHrsMins.setBounds(26, 483, 115, 17);
-		mainGUI.add(lblHrsMins);
+		lblHrsMins.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		mainGUI.add(lblHrsMins, "cell 0 15 6 1,alignx right,aligny top");
 		
-		JLabel lblDegrees = new JLabel("Degrees");
-		lblDegrees.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblDegrees.setBounds(247, 810, 115, 33);
-		mainGUI.add(lblDegrees);
+		yearTextField = new JTextField();
+		yearTextField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if (!Character.isDigit(e.getKeyChar())) {
+					e.consume();
+				}
+			}
+			public void keyPressed(KeyEvent e) {
+				if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_V) {
+					System.out.println("ILLEGAL ACTION");
+					e.consume();
+				}
+			}
+		});
+		yearTextField.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		mainGUI.add(yearTextField, "cell 5 9 2 1,alignx left,aligny top");
+		yearTextField.setColumns(10);
 		
-		JLabel label = new JLabel("Degrees");
-		label.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		label.setBounds(247, 945, 115, 33);
-		mainGUI.add(label);
+		dayTextField = new JTextField();
+		dayTextField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if (!Character.isDigit(e.getKeyChar())) {
+					e.consume();
+				}
+			}
+			public void keyPressed(KeyEvent e) {
+				if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_V) {
+					System.out.println("ILLEGAL ACTION");
+					e.consume();
+				}
+			}
+		});
+		dayTextField.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		mainGUI.add(dayTextField, "cell 5 7 2 1,growx,aligny top");
+		dayTextField.setColumns(10);
+		
+		latTextField = new JTextField();
+		latTextField.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		latTextField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if (!Character.isDigit(e.getKeyChar())) {
+					e.consume();
+				}
+			}
+			public void keyPressed(KeyEvent e) {
+				if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_V) {
+					System.out.println("ILLEGAL ACTION");
+					e.consume();
+				}
+			}
+		});
+		mainGUI.add(latTextField, "cell 6 21 2 1,grow");
+		latTextField.setColumns(10);
+		
+		longTextField = new JTextField();
+		longTextField.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		longTextField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if (!Character.isDigit(e.getKeyChar())) {
+					e.consume();
+				}
+			}
+			public void keyPressed(KeyEvent e) {
+				if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_V) {
+					System.out.println("ILLEGAL ACTION");
+					e.consume();
+				}
+			}
+		});
+		mainGUI.add(longTextField, "cell 6 25 2 1,grow");
+		longTextField.setColumns(10);
+		
+		minTextField = new JTextField();
+		minTextField.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		minTextField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if (!Character.isDigit(e.getKeyChar())) {
+					e.consume();
+				}
+			}
+			public void keyPressed(KeyEvent e) {
+				if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_V) {
+					System.out.println("ILLEGAL ACTION");
+					e.consume();
+				}
+			}
+		});
+		mainGUI.add(minTextField, "cell 6 29 2 1,grow");
+		minTextField.setColumns(10);
 		
 		
 		

@@ -540,7 +540,7 @@ public class GUI extends JFrame {
 	
 	public GUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 2500, 1500);
+		setBounds(100, 100, 1000, 500);
 		mainGUI = new JPanel();
 		mainGUI.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(mainGUI);

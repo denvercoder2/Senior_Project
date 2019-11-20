@@ -95,15 +95,15 @@ public class DrawingSky extends Canvas {
     		test.add(a, x);
     		test.add(b, y);
     	 */
-    	for(int i = 0; i < GUI.spaceObjList.size(); i++) {
-    		if(GUI.spaceObjList.get(i).getMagnitude() != null && (Double.valueOf(GUI.spaceObjList.get(i).getMagnitude()) <= 6.0) 
-    				&& GUI.spaceObjList.get(i).getAltitude() > 1) {
+    	for(int i = 0; i < AlexxWork2.spaceObjList.size(); i++) {
+    		if(AlexxWork2.spaceObjList.get(i).getMagnitude() != null && (Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()) <= 6.0) 
+    				&& AlexxWork2.spaceObjList.get(i).getAltitude() > 1) {
 	    		//raduius = 50000
-    			int x = getX(2000, 2000, 1000, (int)GUI.spaceObjList.get(i).getAzimuth(), (int)GUI.spaceObjList.get(i).getAltitude());
-				int y = getY(2000, 2000, 1000, (int)GUI.spaceObjList.get(i).getAzimuth(), (int)GUI.spaceObjList.get(i).getAltitude());
+    			int x = getX(1000, 1000, 500, (int)AlexxWork2.spaceObjList.get(i).getAzimuth(), (int)AlexxWork2.spaceObjList.get(i).getAltitude());
+				int y = getY(1000, 1000, 500, (int)AlexxWork2.spaceObjList.get(i).getAzimuth(), (int)AlexxWork2.spaceObjList.get(i).getAltitude());
 	    		test.add(a, x);
 	    		test.add(b, y);
-	    		size = getSize(Double.valueOf(GUI.spaceObjList.get(i).getMagnitude()));
+	    		size = getSize(Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()));
 	    		//size = 5;
 	    		test.add(c, size);
 	    		test.add(d, size);
