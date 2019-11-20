@@ -14,7 +14,9 @@ import org.python.core.PyString;
 import org.python.util.PythonInterpreter;
 import org.w3c.dom.Document;
 
+import ScottWork.main.Convert2RA;
 import ScottWork.main.Constellations;
+import ScottWork.main.MessierDeep;
 
 public class SkyMap_Formulae_J {
 	
@@ -64,6 +66,18 @@ public class SkyMap_Formulae_J {
 			tempObj.setDec(Cobj.getDec());
 			spaceObjList.add(tempObj);
 		}		
+		/*
+		for (int i = 0; i < 111; i++) {
+			ArrayList<String> MessierDeepObj = MessierDeep.MDSO("MessierDeep.xml", i);
+			SpaceObj tempObj = new SpaceObj();
+			tempObj.setType("MESR");
+			tempObj.setProperName(MessierDeepObj.get(1));
+			tempObj.setConstName(MessierDeepObj.get(3));
+			tempObj.setMagnitude(MessierDeepObj.get(9));
+			double tempRAHour = Double.parseDouble(MessierDeepObj.get(4));
+			double tempRAMin = Double.parseDouble(MessierDeepObj.get(5));
+			tempObj.setRA(Double.toString(Convert2RA.Convert(tempRAHour,tempRAMin)));
+		}*/
 		
 		
 		String outputStr;

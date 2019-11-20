@@ -131,23 +131,6 @@ public class SpaceObjListBuilder {
 		return spaceObjList;
 	}
 	
-	public static ArrayList<SpaceObj> combineLists (ArrayList<SpaceObj> SpaceObjList, ArrayList<Constellations> importedItems) {
-		System.out.println("ImportedItems size = " + importedItems.size());
-		
-		ArrayList<SpaceObj> newSpaceObjList = new ArrayList<>();
-		for (int i = 0; i < importedItems.size(); i++) {
-			SpaceObj tempObj = new SpaceObj(); 
-			tempObj.setConstName(importedItems.get(i).getName());
-			tempObj.setEnglish(importedItems.get(i).getEnglish());
-			tempObj.setRA(importedItems.get(i).getRA());
-			tempObj.setDec(importedItems.get(i).getDec());
-			newSpaceObjList.add(tempObj);
-		}
-		SpaceObjList.addAll(newSpaceObjList);
-		
-		
-		return SpaceObjList;
-	}
 }
 
 

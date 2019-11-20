@@ -1,7 +1,7 @@
 /*
  Converting RAHour and Mintute to Singular RA
 */
-package ScottWork;
+package ScottWork.main;
 public class Convert2RA{
 
     /*
