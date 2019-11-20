@@ -52,8 +52,14 @@ public class SkyMap_Formulae_J {
 			e.printStackTrace();
 		}		
 		
-		
-		
+
+		String[] planets = {"sol","mercury","venus","mars","jupiter","saturn","uranus","neptune"};
+		for (int i = 1; i < planets.length; i++) {
+			SpaceObj tempObj = new SpaceObj();
+			tempObj.setType("PLAN");
+			tempObj.setProperName(planets[i]);
+			spaceObjList.add(tempObj);
+		}	
 		System.out.println(spaceObjList.size());
 		for (int i = 1; i < 31; i++) {
 			Constellations Cobj = Constellations.CreateConstArr("Constellations.xml", i);
@@ -83,22 +89,46 @@ public class SkyMap_Formulae_J {
 		String outputStr;
 		String stringArgument;
 		org.python.util.PythonInterpreter python = new org.python.util.PythonInterpreter();
-
+		
 		boolean doOnce = false;
 		for (int k = 0; k < spaceObjList.size(); k++) {
-			System.out.println(spaceObjList.get(k).getRA());
-			System.out.println(spaceObjList.get(k).getDec());
-			stringArgument = spaceObjList.get(k).getRA() 			// RA
-					+ ":" + spaceObjList.get(k).getDec() 			// DEC
-					+ ":" + "34.7251" 								// Lat (UAH LAT)
-					+ ":" +	"86.6398" 								// Lon (UAH LONG)
-					+ ":" + c.get(Calendar.HOUR_OF_DAY)				// hour
-					+ ":" + c.get(Calendar.MINUTE)					// min
-					+ ":" + c.get(Calendar.SECOND)					// sec
-					+ ":" + c.get(Calendar.YEAR)					// year
-					+ ":" + (c.get(Calendar.MONTH)+1)				// month
-					+ ":" + c.get(Calendar.DAY_OF_MONTH)			// day
-					+ ":" + "FALSE";								// dst
+			//System.out.println(spaceObjList.get(k).getRA());
+			//System.out.println(spaceObjList.get(k).getDec());
+			String argument11 = "";
+			if (spaceObjList.get(k).getProperName() == "mercury")
+				argument11 = "mercury";
+			else if (spaceObjList.get(k).getProperName() == "venus")
+				argument11 = "venus";
+			else if (spaceObjList.get(k).getProperName() == "mars")
+				argument11 = "mars";
+			else if (spaceObjList.get(k).getProperName() == "jupiter")
+				argument11 = "jupiter";
+			else if (spaceObjList.get(k).getProperName() == "saturn")
+				argument11 = "saturn";
+			else if (spaceObjList.get(k).getProperName() == "uranus")
+				argument11 = "uranus";
+			else if (spaceObjList.get(k).getProperName() == "neptune")
+				argument11 = "neptune";
+			else if (spaceObjList.get(k).getProperName() == "sol")
+				argument11 = "sol";
+			String RAtoSend = spaceObjList.get(k).getRA();
+			String DecToSend = spaceObjList.get(k).getDec();
+			if (spaceObjList.get(k).getRA() == null) {
+				RAtoSend = "0";
+				DecToSend = "0"; 
+				}
+			stringArgument = RAtoSend 								// 0.RA
+					+ ":" + DecToSend					 			// 1.DEC
+					+ ":" + "34.7251" 								// 2.Lat (UAH LAT)
+					+ ":" +	"86.6398" 								// 3.Lon (UAH LONG)
+					+ ":" + c.get(Calendar.HOUR_OF_DAY)				// 4.hour
+					+ ":" + c.get(Calendar.MINUTE)					// 5.min
+					+ ":" + c.get(Calendar.SECOND)					// 6.sec
+					+ ":" + c.get(Calendar.YEAR)					// 7.year
+					+ ":" + (c.get(Calendar.MONTH)+1)				// 8.month
+					+ ":" + c.get(Calendar.DAY_OF_MONTH)			// 9.day
+					+ ":" + "FALSE"									// 10.dst
+					+ ":" + argument11;								// 11.obj
 			String[] arguments = {"solveLocation.py", stringArgument};
 			if (doOnce == false) {
 				PythonInterpreter.initialize(System.getProperties(), System.getProperties(), arguments);
@@ -106,8 +136,8 @@ public class SkyMap_Formulae_J {
 			}
 			StringWriter out = new StringWriter();
 			python.setOut(out);
-			python.exec("from Article import Btest");
-			PyObject func = python.get("Btest");
+			python.exec("from Article import solveLocation");
+			PyObject func = python.get("solveLocation");
 			func.__call__(new PyString(arguments[1]));
 			outputStr = out.toString();
 			System.out.println(outputStr);
@@ -116,6 +146,18 @@ public class SkyMap_Formulae_J {
 			spaceObjList.get(k).setAzimuth(Double.parseDouble(outputStr.substring(outputStr.lastIndexOf(',')+2,outputStr.lastIndexOf(')'))));
 		}
 		
+		System.out.println(spaceObjList.get(24).getProperName());
+		System.out.println(spaceObjList.get(24).getAltitude());
+		System.out.println(spaceObjList.get(24).getAzimuth());
+		
+		for (int i = 0; i < spaceObjList.size(); i++) {
+			if (spaceObjList.get(i).getProperName() == "uranus") {
+				System.out.println(spaceObjList.get(i).getProperName());
+				System.out.println(spaceObjList.get(i).getAltitude());
+				System.out.println(spaceObjList.get(i).getAzimuth());
+				break;
+			}
+		}
 		
 		long endTime = System.nanoTime();
 		long elapsedTime = endTime - startTime;
@@ -174,17 +216,43 @@ public class SkyMap_Formulae_J {
 		
 		boolean doOnce = false;
 		for (int k = 0; k < spaceObjList.size(); k++) {
-			stringArgument = spaceObjList.get(k).getRA() 			// RA
-					+ ":" + spaceObjList.get(k).getDec() 			// DEC
-					+ ":" + "34.7251" 								// Lat (UAH LAT)
-					+ ":" +	"86.6398" 								// Lon (UAH LONG)
-					+ ":" + HOUR									// hour
-					+ ":" + MIN										// min
-					+ ":" + SEC										// sec
-					+ ":" + YEAR									// year
-					+ ":" + MONTH									// month
-					+ ":" + DAY										// day
-					+ ":" + "FALSE";								// dst
+			//System.out.println(spaceObjList.get(k).getRA());
+			//System.out.println(spaceObjList.get(k).getDec());
+			String argument11 = "";
+			if (spaceObjList.get(k).getProperName() == "mercury")
+				argument11 = "mercury";
+			else if (spaceObjList.get(k).getProperName() == "venus")
+				argument11 = "venus";
+			else if (spaceObjList.get(k).getProperName() == "mars")
+				argument11 = "mars";
+			else if (spaceObjList.get(k).getProperName() == "jupiter")
+				argument11 = "jupiter";
+			else if (spaceObjList.get(k).getProperName() == "saturn")
+				argument11 = "saturn";
+			else if (spaceObjList.get(k).getProperName() == "uranus")
+				argument11 = "uranus";
+			else if (spaceObjList.get(k).getProperName() == "neptune")
+				argument11 = "neptune";
+			else if (spaceObjList.get(k).getProperName() == "sol")
+				argument11 = "sol";
+			String RAtoSend = spaceObjList.get(k).getRA();
+			String DecToSend = spaceObjList.get(k).getDec();
+			if (spaceObjList.get(k).getRA() == null) {
+				RAtoSend = "0";
+				DecToSend = "0"; 
+				}
+			stringArgument = RAtoSend 								// 0.RA
+					+ ":" + DecToSend					 			// 1.DEC
+					+ ":" + "34.7251" 								// 2.Lat (UAH LAT)
+					+ ":" +	"86.6398" 								// 3.Lon (UAH LONG)
+					+ ":" + HOUR									// 4.hour
+					+ ":" + MIN										// 5.min
+					+ ":" + SEC										// 6.sec
+					+ ":" + YEAR									// 7.year
+					+ ":" + MONTH									// 8.month
+					+ ":" + DAY										// 9.day
+					+ ":" + "FALSE"									// 10.dst
+					+ ":" + "";										// 11.obj
 			String[] arguments = {"solveLocation.py", stringArgument};
 			if (doOnce == false) {
 				PythonInterpreter.initialize(System.getProperties(), System.getProperties(), arguments);
@@ -192,11 +260,12 @@ public class SkyMap_Formulae_J {
 			}
 			StringWriter out = new StringWriter();
 			python.setOut(out);
-			python.exec("from Article import Btest");
-			PyObject func = python.get("Btest");
+			python.exec("from Article import solveLocation");
+			PyObject func = python.get("solveLocation");
 			func.__call__(new PyString(arguments[1]));
 			outputStr = out.toString();
 			System.out.println(outputStr);
+
 			spaceObjList.get(k).setAltitude(Double.parseDouble(outputStr.substring(outputStr.indexOf(',')+2,outputStr.indexOf(')'))));
 			spaceObjList.get(k).setAzimuth(Double.parseDouble(outputStr.substring(outputStr.lastIndexOf(',')+2,outputStr.lastIndexOf(')'))));
 		}
@@ -260,17 +329,43 @@ public class SkyMap_Formulae_J {
 		
 		boolean doOnce = false;
 		for (int k = 0; k < spaceObjList.size(); k++) {
-			stringArgument = spaceObjList.get(k).getRA() 			// RA
-					+ ":" + spaceObjList.get(k).getDec() 			// DEC
-					+ ":" + LAT										// Lat (UAH LAT)
-					+ ":" +	LONG	 								// Lon (UAH LONG)
-					+ ":" + HOUR									// hour
-					+ ":" + MIN										// min
-					+ ":" + SEC										// sec
-					+ ":" + YEAR									// year
-					+ ":" + MONTH									// month
-					+ ":" + DAY										// day
-					+ ":" + "FALSE";								// dst
+			//System.out.println(spaceObjList.get(k).getRA());
+			//System.out.println(spaceObjList.get(k).getDec());
+			String argument11 = "";
+			if (spaceObjList.get(k).getProperName() == "mercury")
+				argument11 = "mercury";
+			else if (spaceObjList.get(k).getProperName() == "venus")
+				argument11 = "venus";
+			else if (spaceObjList.get(k).getProperName() == "mars")
+				argument11 = "mars";
+			else if (spaceObjList.get(k).getProperName() == "jupiter")
+				argument11 = "jupiter";
+			else if (spaceObjList.get(k).getProperName() == "saturn")
+				argument11 = "saturn";
+			else if (spaceObjList.get(k).getProperName() == "uranus")
+				argument11 = "uranus";
+			else if (spaceObjList.get(k).getProperName() == "neptune")
+				argument11 = "neptune";
+			else if (spaceObjList.get(k).getProperName() == "sol")
+				argument11 = "sol";
+			String RAtoSend = spaceObjList.get(k).getRA();
+			String DecToSend = spaceObjList.get(k).getDec();
+			if (spaceObjList.get(k).getRA() == null) {
+				RAtoSend = "0";
+				DecToSend = "0"; 
+				}
+			stringArgument = RAtoSend 								// 0.RA
+					+ ":" + DecToSend					 			// 1.DEC
+					+ ":" + LAT										// 2.Lat (UAH LAT)
+					+ ":" +	LONG	 								// 3.Lon (UAH LONG)
+					+ ":" + HOUR									// 4.hour
+					+ ":" + MIN										// 5.min
+					+ ":" + SEC										// 6.sec
+					+ ":" + YEAR									// 7.year
+					+ ":" + MONTH									// 8.month
+					+ ":" + DAY										// 9.day
+					+ ":" + "FALSE"									// 10.dst
+					+ ":" + "";										// 11.obj
 			String[] arguments = {"solveLocation.py", stringArgument};
 			if (doOnce == false) {
 				PythonInterpreter.initialize(System.getProperties(), System.getProperties(), arguments);
@@ -278,11 +373,12 @@ public class SkyMap_Formulae_J {
 			}
 			StringWriter out = new StringWriter();
 			python.setOut(out);
-			python.exec("from Article import Btest");
-			PyObject func = python.get("Btest");
+			python.exec("from Article import solveLocation");
+			PyObject func = python.get("solveLocation");
 			func.__call__(new PyString(arguments[1]));
 			outputStr = out.toString();
 			System.out.println(outputStr);
+
 			spaceObjList.get(k).setAltitude(Double.parseDouble(outputStr.substring(outputStr.indexOf(',')+2,outputStr.indexOf(')'))));
 			spaceObjList.get(k).setAzimuth(Double.parseDouble(outputStr.substring(outputStr.lastIndexOf(',')+2,outputStr.lastIndexOf(')'))));
 		}
@@ -346,17 +442,43 @@ public class SkyMap_Formulae_J {
 		
 		boolean doOnce = false;
 		for (int k = 0; k < spaceObjList.size(); k++) {
-			stringArgument = spaceObjList.get(k).getRA() 			// RA
-					+ ":" + spaceObjList.get(k).getDec() 			// DEC
-					+ ":" + LAT										// Lat (UAH LAT)
-					+ ":" +	LONG	 								// Lon (UAH LONG)
-					+ ":" + c.get(Calendar.HOUR_OF_DAY)				// hour
-					+ ":" + c.get(Calendar.MINUTE)					// min
-					+ ":" + c.get(Calendar.SECOND)					// sec
-					+ ":" + c.get(Calendar.YEAR)					// year
-					+ ":" + (c.get(Calendar.MONTH)+1)				// month
-					+ ":" + c.get(Calendar.DAY_OF_MONTH)			// day
-					+ ":" + "FALSE";								// dst
+			//System.out.println(spaceObjList.get(k).getRA());
+			//System.out.println(spaceObjList.get(k).getDec());
+			String argument11 = "";
+			if (spaceObjList.get(k).getProperName() == "mercury")
+				argument11 = "mercury";
+			else if (spaceObjList.get(k).getProperName() == "venus")
+				argument11 = "venus";
+			else if (spaceObjList.get(k).getProperName() == "mars")
+				argument11 = "mars";
+			else if (spaceObjList.get(k).getProperName() == "jupiter")
+				argument11 = "jupiter";
+			else if (spaceObjList.get(k).getProperName() == "saturn")
+				argument11 = "saturn";
+			else if (spaceObjList.get(k).getProperName() == "uranus")
+				argument11 = "uranus";
+			else if (spaceObjList.get(k).getProperName() == "neptune")
+				argument11 = "neptune";
+			else if (spaceObjList.get(k).getProperName() == "sol")
+				argument11 = "sol";
+			String RAtoSend = spaceObjList.get(k).getRA();
+			String DecToSend = spaceObjList.get(k).getDec();
+			if (spaceObjList.get(k).getRA() == null) {
+				RAtoSend = "0";
+				DecToSend = "0"; 
+				}
+			stringArgument = RAtoSend 								// 0.RA
+					+ ":" + DecToSend					 			// 1.DEC
+					+ ":" + LAT										// 2.Lat (UAH LAT)
+					+ ":" +	LONG	 								// 3.Lon (UAH LONG)
+					+ ":" + c.get(Calendar.HOUR_OF_DAY)				// 4.hour
+					+ ":" + c.get(Calendar.MINUTE)					// 5.min
+					+ ":" + c.get(Calendar.SECOND)					// 6.sec
+					+ ":" + c.get(Calendar.YEAR)					// 7.year
+					+ ":" + (c.get(Calendar.MONTH)+1)				// 8.month
+					+ ":" + c.get(Calendar.DAY_OF_MONTH)			// 9.day
+					+ ":" + "FALSE"									// 10.dst
+					+ ":" + "";										// 11.obj
 			String[] arguments = {"solveLocation.py", stringArgument};
 			if (doOnce == false) {
 				PythonInterpreter.initialize(System.getProperties(), System.getProperties(), arguments);
@@ -364,11 +486,12 @@ public class SkyMap_Formulae_J {
 			}
 			StringWriter out = new StringWriter();
 			python.setOut(out);
-			python.exec("from Article import Btest");
-			PyObject func = python.get("Btest");
+			python.exec("from Article import solveLocation");
+			PyObject func = python.get("solveLocation");
 			func.__call__(new PyString(arguments[1]));
 			outputStr = out.toString();
 			System.out.println(outputStr);
+
 			spaceObjList.get(k).setAltitude(Double.parseDouble(outputStr.substring(outputStr.indexOf(',')+2,outputStr.indexOf(')'))));
 			spaceObjList.get(k).setAzimuth(Double.parseDouble(outputStr.substring(outputStr.lastIndexOf(',')+2,outputStr.lastIndexOf(')'))));
 		}
