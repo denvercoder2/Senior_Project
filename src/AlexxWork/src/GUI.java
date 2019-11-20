@@ -169,6 +169,8 @@ public class GUI extends JFrame {
 				String.valueOf((int)dayValid), String.valueOf((int)hourValid), 
 				String.valueOf((int)minuteValid), String.valueOf(0), 
 				String.valueOf((int)latValid), String.valueOf((int)latValid));*/
+		ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\waiting.jpg");
+		scrollPane_1.setViewportView(new JLabel(ii));
 		spaceObjList = SkyMap_Formulae_J.getSpace(String.valueOf((int)1950), String.valueOf((int)12), 
 				String.valueOf((int)12), String.valueOf((int)12), 
 				String.valueOf((int)25), String.valueOf(0), 
@@ -177,10 +179,10 @@ public class GUI extends JFrame {
     	System.out.println(spaceObjList.size()+"\2222222222222222222222222222\n");
     	
 		drawing = new DrawingSky();
-		//drawing.draw(spaceObjList);
-		//screenshot = 
-		drawing.draw();
-		//scrollPane_1.setViewportView(new JLabel(screenshot));
+		
+		screenshot = drawing.draw();
+		//drawing.draw();
+		scrollPane_1.setViewportView(new JLabel(screenshot));
 	}
 
 	public Boolean checkDay() {
@@ -678,6 +680,13 @@ public class GUI extends JFrame {
 		mainGUI.add(labels);
 		
 		btnSaveToDisk = new JButton("Save Image");
+		btnSaveToDisk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\waiting.jpg");
+				scrollPane_1.setViewportView(new JLabel(ii));
+				
+			}
+		});
 		btnSaveToDisk.setFont(new Font("Tahoma", Font.BOLD, 34));
 		btnSaveToDisk.setBounds(2000, 1138, 411, 67);
 		mainGUI.add(btnSaveToDisk);
@@ -700,6 +709,8 @@ public class GUI extends JFrame {
 		refreshButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
+					ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\waiting.jpg");
+					scrollPane_1.setViewportView(new JLabel(ii));
 					getSpaceObjects();
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
@@ -733,7 +744,8 @@ public class GUI extends JFrame {
 		scrollPane_1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scrollPane_1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane_1.setViewportBorder(new LineBorder(Color.BLACK));
-		
+		ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\pluto.jpg");
+		scrollPane_1.setViewportView(new JLabel(ii));
 		mainGUI.add(scrollPane_1);
 		
 		JLabel lblHrsMins = new JLabel("Hrs              Mins");

@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import JohnWork.main.SpaceObj;
@@ -22,15 +23,16 @@ import JohnWork.main.SpaceObj;
 
 public class DrawingSky extends Canvas {
 	
-    public void draw() {
+    public ImageIcon draw() {
         JFrame frame = new JFrame("My Drawing");
         frame.setBackground(Color.BLACK);
         Canvas canvas = new DrawingSky();
-        canvas.setSize(3300, 1800);
+        //canvas.setSize(1800, 1800);
+        canvas.setSize(2000, 2000);
         frame.add(canvas);
         frame.pack();
-        frame.setVisible(true);
-        //takeSnapShot(canvas);
+        //frame.setVisible(true);
+        return takeSnapShot(canvas);
     }
 
     public void paint(Graphics g) {
@@ -78,15 +80,13 @@ public class DrawingSky extends Canvas {
     		test.add(b, y);
     	 */
     	for(int i = 0; i < GUI.spaceObjList.size(); i++) {
-    		if(GUI.spaceObjList.get(i).getMagnitude() != null && (Double.valueOf(Double.valueOf(GUI.spaceObjList.get(i).getMagnitude())) <= 6.0)) {
+    		if(GUI.spaceObjList.get(i).getMagnitude() != null && (Double.valueOf(GUI.spaceObjList.get(i).getMagnitude()) <= 6.0)) {
 	    		//raduius = 50000
-    			int x = getX(1800, 3300, 1000, (int)GUI.spaceObjList.get(i).getAzimuth(), (int)GUI.spaceObjList.get(i).getAltitude());
-				int y = getY(1800, 3300, 1000, (int)GUI.spaceObjList.get(i).getAzimuth(), (int)GUI.spaceObjList.get(i).getAltitude());
+    			int x = getX(2000, 2000, 1000, (int)GUI.spaceObjList.get(i).getAzimuth(), (int)GUI.spaceObjList.get(i).getAltitude());
+				int y = getY(2000, 2000, 1000, (int)GUI.spaceObjList.get(i).getAzimuth(), (int)GUI.spaceObjList.get(i).getAltitude());
 	    		test.add(a, x);
 	    		test.add(b, y);
-	    		//test.add(a, getRandom(0, 3300));
-	    		//test.add(b, getRandom(0, 2550));
-	    		size = getRandom(1, 5);
+	    		size = getSize(Double.valueOf(GUI.spaceObjList.get(i).getMagnitude()));
 	    		//size = 5;
 	    		test.add(c, size);
 	    		test.add(d, size);
@@ -158,11 +158,30 @@ public int getY(int screenHeight, int screenWidth, int r, int z, int a) {
 	return y;	
 }
 
-public int getSize(SpaceObj object) {
-	int size;
+public int getSize(Double mag) {
+	int size = 0;
+	if(mag >= 5.0) {
+		size = 1;
+	}
+	else if(mag >= 4.0) {
+		size = 3;
+	}
+	else if(mag >= 3.0) {
+		size = 5;
+	}
+	else if(mag >= 2.0) {
+		size = 7;
+	}
+	else if(mag >= 1.0) {
+		size = 9;
+	}
+	else if(mag >= 0.0) {
+		size = 11;
+	}
+	else {
+		size = 12;
+	}
 	
-	//TEST SIZE -- Need to update method
-	size = 5;
 	
 	return size;
 }
@@ -214,10 +233,11 @@ public int getSize(SpaceObj object) {
     }
     */
     
-    void takeSnapShot(Component panel){
+    public ImageIcon takeSnapShot(Component panel){
 	       BufferedImage bufImage = new BufferedImage(panel.getSize().width, panel.getSize().height,BufferedImage.TYPE_INT_RGB);
 	       System.out.println(panel.getSize().width+" "+panel.getSize().height);
 	       panel.paint(bufImage.createGraphics());
+	       ImageIcon imageIcon = new ImageIcon(bufImage);
 	       String snapshotLocation = "C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\testScreenShot.jpeg";
 		File imageFile = new File(snapshotLocation);
 	    try{
@@ -228,6 +248,7 @@ public int getSize(SpaceObj object) {
 	    }catch(Exception ex){
 	    	System.out.println("Did not create picture");
 	    } 
+	    return imageIcon;
 	}
     public static int getRandom(int min, int max){
         int x = (int) ((Math.random()*((max-min)+1))+min);
