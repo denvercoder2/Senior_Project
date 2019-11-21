@@ -14,6 +14,7 @@ import decimal
 # spherical ecliptic coordinates (long, lat)
 # spherical equatorial coordinates (RA, Decl)
 
+
 def getUT(place, time, dst):
     '''get Universal Time'''
     lat, lon = place
@@ -58,6 +59,7 @@ def getJD(gcdate):
 
 
 def getCD(jd):
+    '''get Calendar Date'''
     jd += 0.5
     I = int(jd)
     F = jd - int(jd)
@@ -126,11 +128,12 @@ def getHMS(dh):
     hms = int(hr), int(mn), round(sc, 2)
     return hms
 
+
 def getDMS(dd):
     'get degrees, minutes, seconds from decimal degrees'
     mn = (dd-int(dd))*60
     sc = (mn-int(mn))*60
-    dms = (int(dd))#, int(mn), round(sc,2))
+    dms = (int(dd), int(mn), round(sc, 2))
     return dms
 
 
@@ -159,13 +162,15 @@ def RAtoH(ra, lst):
 
 
 def getAltitude(lat, dh, dec):
-    a = (math.sin(dec)*math.sin(lat)) + (math.cos(dec)*math.cos(lat)*math.cos(dh))
+    a = (math.sin(dec)*math.sin(lat)) + \
+        (math.cos(dec)*math.cos(lat)*math.cos(dh))
     a = math.asin(a)
     return a
 
 
 def getAzimuth(lat, dh, alt, dec):
-    A = (math.sin(dec)-(math.sin(lat)*math.sin(alt))) / (math.cos(lat)*math.cos(alt))
+    A = (math.sin(dec)-(math.sin(lat)*math.sin(alt))) / \
+        (math.cos(lat)*math.cos(alt))
     A = math.acos(A)
     H = math.sin(dh)
     if H > 0:
@@ -197,25 +202,30 @@ def getMeanObliq(gcdate):
 def equatorialCoordinates(ecLon, ecLat, gcdate):
     """ecliptic -> equatorial"""
     e = getMeanObliq(gcdate)
-    dec = math.degrees(math.asin(math.sin(ecLat)*math.cos(e) + math.cos(ecLat)*math.sin(e)*math.sin(ecLon)))
+    dec = math.degrees(math.asin(math.sin(ecLat)*math.cos(e) +
+                                 math.cos(ecLat)*math.sin(e)*math.sin(ecLon)))
     y = math.sin(ecLon)*math.cos(e)-math.tan(ecLat)*math.sin(e)
-    ys = -1 if (y < 0) else 1
     x = math.cos(ecLon)
+    ra = getQuadrant(x, y) / 15
+    return ra, dec
+
+
+def getQuadrant(x, y):
+    ys = -1 if (y < 0) else 1
     xs = -1 if (x < 0) else 1
     if ys == 1:
         upper = 90 if xs == 1 else 180
     else:
         upper = 360 if xs == 1 else 270
     lower = upper - 90
-    
-    ra = math.degrees(math.atan(y/x))
-    while not (lower < ra < upper):
-        if ra > upper:
-            ra -= 90
+
+    temp = math.degrees(math.atan(y/x))
+    while not (lower < temp < upper):
+        if temp > upper:
+            temp -= 90
         else:
-            ra += 90
-    ra /= 15
-    return ra, dec
+            temp += 90
+    return temp
 
 
 def getECLon(jd):
@@ -239,82 +249,99 @@ def getECLon(jd):
     return l
 
 
-def testEC():
-    date = (2009, 7, 6)
-    ecLon = (139, 41, 10)
-    ecLon = getDH(ecLon)
-    ecLon = math.radians(ecLon)
-    ecLat = (4, 52, 31)
-    ecLat = getDH(ecLat)
-    ecLat = math.radians(ecLat)
-    ra, dec = equatorialCoordinates(ecLon, ecLat, date)
-    print("RA:  ", getHMS(ra))
-    print("Dec: ", getDMS(dec))
-
-
-def getSun(ilon, ilat, ihr, imn, isc, iyr, imon, iday, idst):
-    place = (ilat, ilon)
-    time = (ihr, imn, isc)
-    date = (iyr, imon, iday)
-
-    ut = getUT(place, time, idst)
-    gcdate = getGCD(date, ut)
-
+def getSun(gcdate, dst):
     jd = getJD(gcdate)
     ecLon = getECLon(jd)
     ecLon = math.radians(ecLon)
-    ecLat = 0 # ecliptic latitude is zero for the sun
+    ecLat = 0  # ecliptic latitude is zero for the sun
     ra, dec = equatorialCoordinates(ecLon, ecLat, gcdate)
-    return getHMS(ra), getDMS(dec)
-
-def solveLocation(ira, idec, ilon, ilat, ihr, imn, isc, iyr, imon, iday, idst):
-    #print("ira =  ", ira)
-    #print("idec =  ", idec)
-    #print("ilon =  ", ilon)
-    #print("ilat =  ", ilat)
-    #print("ihr =  ", ihr)
-    #print("imn =  ", imn)
-    #print("isc =  ", isc)
-    #print("iyr =  ", iyr)
-    #print("imonth =  ", imon)
-    #print("iday =  ", iday)
-    #print("idst =  ", idst)
-
-    place = (ilat, ilon)
-    time = (ihr, imn, isc)
-    date = (iyr, imon, iday)
-
-    lst = getLST(place, date, time, idst)
-    #print("LST = ", lst)
-    dh = math.radians(RAtoH(ira, lst)*15)
-
-    lat = math.radians(ilat)
-    dec = math.radians(idec)
-
-    a = getAltitude(lat, dh, dec)
-    print("alt: ", getDMS(math.degrees(a)))
-    A = getAzimuth(lat, dh, a, dec)
-    print("azm: ", getDMS(math.degrees(A)))
+    return ra, dec
 
 
-def Atest():
-    ra = (2, 31, 49)
-    dec = (89, 15, 50.78)
-    lat = 34
-    lon = -87
-    hr = 21
-    mn = 44
-    sc = 0
-    yr = 2019
-    mon = 10
-    day = 30
-    dst = False
-    # ra, dec = getSun(lon, lat, hr, mn, sc, yr, mon, day, dst)
+def getLR(istring, D):
+    s = istring.split(':')
+    T = float(s[0])
+    L = float(s[1])
+    w = float(s[2])
+    e = float(s[3])
+    a = float(s[4])
+
+    M = math.radians(((360 / 365.242191) * (D / T)) + L - w)
+    M = round(M, 4)
+    v = M + (e * math.sin(M))
+    temp = boundRange(math.degrees(v))
+    l = math.radians(boundRange(math.degrees(v) + w))
+    r = (a * (1-e*e)) / (1+e*math.cos(v))
+    return l, r
+
+
+def getPlanet(gcdate, iplanet):
+    # M  mean anomaly
+    # v  true anomaly
+    # T  orbital period of the planet (in tropical years)
+    # L  mean longitude of the planet
+    # w  longitude of the perihelion
+    # e  eccentricity of orbit
+
+    earth = '0.999996:99.556772:103.2055:0.016671:0.999985'
+    mercury = '0.24085:75.5671:77.612:0.205627:0.387098:7.0051:48.449:inner'
+    venus = '0.615207:272.30044:131.54:0.006812:0.723329 3.3947 76.769:inner'
+    mars = '1.880765:109.09646:336.217:0.093348:1.523689:1.8497:49.632:outer'
+    jupiter = '11.857911:337.917132:14.6633:0.048907:5.20278:1.3035:100.595:outer'
+    saturn = '29.310579:172.398316:89.567:0.053853:9.51134:2.4873:113.752:outer'
+    uranus = '84.039492:271.063148:172.884833:0.046321:19.21814:0.773059:73.926961:outer'
+    neptune = '165.84539:326.895127:23.07:0.010483:30.1985:1.7673:131.879:outer'
+    
+    
+    if iplanet.lower() == 'mercury':
+        planet = mercury
+    if iplanet.lower() == 'venus':
+        planet = venus
+    if iplanet.lower() == 'mars':
+        planet = mars
+    if iplanet.lower() == 'jupiter':
+        planet = jupiter
+    if iplanet.lower() == 'saturn':
+        planet = saturn
+    if iplanet.lower() == 'uranus':
+        planet = uranus
+    if iplanet.lower() == 'neptune':
+        planet = neptune
+    
+
+    epoch = (2010, 1, 0)
+    D = getJD(gcdate) - getJD(epoch)
+
+    lE, rE = getLR(earth, D)
+    l, r = getLR(planet, D)
+    i = math.radians(float(planet[5]))
+    N = math.radians(float(planet[6]))
+
+    hLat = math.asin(math.sin(l-N)*math.sin(i))
+    y = math.sin(l-N)*math.cos(i)
+    x = math.cos(l-N)
+    pl = math.radians(getQuadrant(x, y)) + N
+    pr = (r*math.cos(hLat))
+
+    if planet[7]=='outer':
+        ecLon = math.atan((rE * math.sin(pl - lE)) /
+                          (pr - rE * math.cos(pl - lE))) + pl
+    else:
+        ecLon = 180 + lE + \
+            math.atan((pr * math.sin(lE - pl)) / (rE - rE * math.cos(pl - lE)))
+    ecLat = math.atan(
+        (pr*math.tan(hLat)*math.sin(ecLon-pl))/(rE*math.sin(pl-lE)))
+
+    ra, dec = equatorialCoordinates(ecLon, ecLat, gcdate)
+    return ra, dec
+
+def getStar(ra, dec):
     ra = getDH(ra)
     dec = getDH(dec)
-    solveLocation(ra, dec, lon, lat, hr, mn, sc, yr, mon, day, dst)
+    return ra, dec
 
-def Btest(istring):
+def solveLocation(istring):
+    # line = 'ra:ra:ra:dec:dec:dec:lat:lon:hr:mn:sc:yr:mon:day:dst:obj'
     s = istring.split(':')
     ra = float(s[0])
     dec = float(s[1])
@@ -327,31 +354,39 @@ def Btest(istring):
     mon = int(s[8])
     day = int(s[9])
     dst = True if (s[10]=='True') else False
-    #ra = getDH(ra)
-    #dec = getDH(dec)
-    solveLocation(ra, dec, lon, lat, hr, mn, sc, yr, mon, day, dst)
+    obj = None
+    if len(s)==11:
+        obj = s[11] 
 
-def test1():
-    ra = (18, 32, 21)
-    ra = getDH(ra)
-    dec = (23, 13, 10)
-    dec = getDH(dec)
-
-    lat = 52
-    lon = -64
     place = (lat, lon)
+    time = (hr, mn, sc)
+    date = (yr, mon, day)
 
-    time = (14, 36, 51.67)
-    date = (1980, 4, 22)
+    ut = getUT(place, time, dst)
+    gcdate = getGCD(date, ut)
+    lst = getLST(place, date, time, dst)
 
-    lst = getLST(place, date, time, False)
-    dh = RAtoH(ra, lst)
+    if obj is None:
+        ra, dec = getStar(ra, dec)
+    elif obj.lower() == 'sol':
+        ra, dec = getSun(gcdate, dst)
+    else:
+        ra, dec = getPlanet(gcdate, obj)
+
+    dh = math.radians(RAtoH(ra, lst)*15)
+    lat = math.radians(lat)
+    dec = math.radians(dec)
+
     a = getAltitude(lat, dh, dec)
-    print(a)
+    print("alt: ", getDMS(math.degrees(a)))
     A = getAzimuth(lat, dh, a, dec)
-    print(A)
+    print("azm: ", getDMS(math.degrees(A)))
 
-# test1()
-#Atest()
-#txt = '2:31:49:89:15:50.78:34:-87:21:44:0:2019:10:30:False'
-#Btest(txt)
+
+def test():
+    # line = 'ra:ra:ra:dec:dec:dec:lat:lon:hr:mn:sc:yr:mon:day:dst'
+    # static = '18:32:21:23:13:10:52:-64:14:36:51.67:1980:4:22:False'
+    polaris = '2:31:49:89:15:50.78:34:-87:18:08:0:2019:11:17:True:Sol'
+    solveLocation(polaris)
+
+test()

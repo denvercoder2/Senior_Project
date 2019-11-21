@@ -133,7 +133,7 @@ def getDMS(dd):
     'get degrees, minutes, seconds from decimal degrees'
     mn = (dd-int(dd))*60
     sc = (mn-int(mn))*60
-    dms = (int(dd), int(mn), round(sc, 2))
+    dms = (int(dd))
     return dms
 
 
@@ -336,27 +336,26 @@ def getPlanet(gcdate, iplanet):
     return ra, dec
 
 def getStar(ra, dec):
-    ra = getDH(ra)
-    dec = getDH(dec)
     return ra, dec
 
 def solveLocation(istring):
-    # line = 'ra:ra:ra:dec:dec:dec:lat:lon:hr:mn:sc:yr:mon:day:dst:obj'
+    #         0  1   2   3   4  5  6  7  8   9   10  11
+    # line = 'ra:dec:lat:lon:hr:mn:sc:yr:mon:day:dst:obj'
     s = istring.split(':')
-    ra = (int(s[0]), int(s[1]), float(s[2]))
-    dec = (int(s[3]), int(s[4]), float(s[5]))
-    lat = float(s[6])
-    lon = float(s[7])
-    hr = int(s[8])
-    mn = int(s[9])
-    sc = float(s[10])
-    yr = int(s[11])
-    mon = int(s[12])
-    day = int(s[13])
-    dst = True if (s[14] == 'True') else False
+    ra = float(s[0])
+    dec = float(s[1])
+    lat = float(s[2])
+    lon = float(s[3])
+    hr = int(s[4])
+    mn = int(s[5])
+    sc = float(s[6])
+    yr = int(s[7])
+    mon = int(s[8])
+    day = int(s[9])
+    dst = True if (s[10]=='True') else False
     obj = None
-    if len(s)==16:
-        obj = s[15] 
+    if len(s)==11:
+        obj = s[11] 
 
     place = (lat, lon)
     time = (hr, mn, sc)
@@ -365,7 +364,7 @@ def solveLocation(istring):
     ut = getUT(place, time, dst)
     gcdate = getGCD(date, ut)
     lst = getLST(place, date, time, dst)
-
+    
     if obj is None:
         ra, dec = getStar(ra, dec)
     elif obj.lower() == 'sol':
@@ -383,10 +382,10 @@ def solveLocation(istring):
     print("azm: ", getDMS(math.degrees(A)))
 
 
-def test():
+#def test():
     # line = 'ra:ra:ra:dec:dec:dec:lat:lon:hr:mn:sc:yr:mon:day:dst'
     # static = '18:32:21:23:13:10:52:-64:14:36:51.67:1980:4:22:False'
-    polaris = '2:31:49:89:15:50.78:34:-87:18:08:0:2019:11:17:True:Sol'
-    solveLocation(polaris)
+  #  polaris = '2:31:49:89:15:50.78:34:-87:18:08:0:2019:11:17:True:Sol'
+ #   solveLocation(polaris)
 
-test()
+#test()

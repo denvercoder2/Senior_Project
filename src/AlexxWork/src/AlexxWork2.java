@@ -562,7 +562,7 @@ public class AlexxWork2 extends JFrame {
 		//Intialize the member variables
 		intialize();
 		mainGUI.setLayout(new MigLayout("", "[75px][][9px][10px][7px][76.00px][105.00px][5px][-1.00px][-76.00px][850.00px][67.00px][329.00px]", "[67px][1px][4px][40px][13px][52px][11px][58px][3px][58px][4px][33px][9px][39px][3px][17px][76px][49px][101px][33px][48px][39px][22px][39px][28px][47px][22px][39px][28px][39px][28px][67px]"));
-		
+		 
 		month.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		mainGUI.add(month, "cell 0 5,alignx left,aligny top");
 		
