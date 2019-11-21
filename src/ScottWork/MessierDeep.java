@@ -123,11 +123,40 @@ public class MessierDeep{
         return SpaceObjects;
         }
 
+
+    /*
+        Function: getRA
+        Parameters: ArrayList<String>
+        Return Type: Double
+        Purpose:
+        Take the ArrayList and return the true RA
+    */
     public static double getRA(ArrayList<String> obj){
         double RA = 0;
         RA = (Double.valueOf(obj.get(4)) * 15 + Double.valueOf(obj.get(5)) * .25);  
 
         return RA;
+        
+    }
+
+        /*
+        Function: getDec
+        Parameters: ArrayList<String>
+        Return Type: Double
+        Purpose:
+        Take the ArrayList and return the true Declination
+    */
+    public static double getDec(ArrayList<String> obj){
+        double Dec;
+        // if the string retruned is a negative sign, multiply answer by -1
+        if (obj.get(6).equals("-")){
+            Dec = (Double.valueOf(obj.get(7)) + Double.valueOf(obj.get(8))/60) * -1;  
+        }
+        // If it's positive, just let it be
+        else{
+            Dec = (Double.valueOf(obj.get(7)) + Double.valueOf(obj.get(8))/60);  
+        }
+        return Dec;
         
     }
         
@@ -142,6 +171,7 @@ public class MessierDeep{
                 // System.out.println("[0]: Object Number, [1]: Name, [2]: Type, [3]: Constellation, [4]: RAHour, [5]: RAMinute, [6]DecSign, [7]: DecDeg, [8]: DecMinute, [9]: Magnitude, [10]: Info, [11]: Distance");
                 System.out.println(SpaceObj);
                 System.out.printf("\nCombined RA = %.5f", getRA(SpaceObj));
+                System.out.printf("\nCombined Dec = %.5f", getDec(SpaceObj));
                 System.out.println("\n===============================================================================================================================================================================");
             }
             else{
