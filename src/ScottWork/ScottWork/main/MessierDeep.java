@@ -1,11 +1,12 @@
-package ScottWork.main;
 
 /*
 Messier Deep Objects parse and functions
 */
+
 import java.io.*;
 import java.util.*;
 
+import javax.swing.text.StyledEditorKit;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -13,6 +14,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
 
 public class MessierDeep{
 
@@ -31,7 +33,13 @@ public class MessierDeep{
         private String    Info;
         private String    Distance;
     }
-
+    /*
+    Function: MDSO
+    Parameters: Filename, edge condition
+    Purpose:
+    To return all attributes of the messier deep space objects, specifically the
+    ones we need to use
+    */
     public static ArrayList<String> MDSO (String filename, int edge_condition){
         MDSObjects obj = new MDSObjects();
         ArrayList<String> SpaceObjects = new ArrayList<>();
@@ -62,16 +70,16 @@ public class MessierDeep{
                     
                     // type conversions
                     String objNum              = eElement.getElementsByTagName("ObjectNum").item(0).getTextContent();
-                    String name             = eElement.getElementsByTagName("Name").item(0).getTextContent();
-                    String type             = eElement.getElementsByTagName("Type").item(0).getTextContent();
-                    String constellation    = eElement.getElementsByTagName("Constellation").item(0).getTextContent();
+                    String name                = eElement.getElementsByTagName("Name").item(0).getTextContent();
+                    String type                = eElement.getElementsByTagName("Type").item(0).getTextContent();
+                    String constellation       = eElement.getElementsByTagName("Constellation").item(0).getTextContent();
                     String rahour              = eElement.getElementsByTagName("RAHour").item(0).getTextContent();
-                    String raminute         = eElement.getElementsByTagName("RAMinute").item(0).getTextContent();
-                    String decSign          = eElement.getElementsByTagName("DecSign").item(0).getTextContent();
+                    String raminute            = eElement.getElementsByTagName("RAMinute").item(0).getTextContent();
+                    String decSign             = eElement.getElementsByTagName("DecSign").item(0).getTextContent();
                     String decDeg              = eElement.getElementsByTagName("DecDeg").item(0).getTextContent();
                     String decMin              = eElement.getElementsByTagName("DecMinute").item(0).getTextContent();
-                    String mag              = eElement.getElementsByTagName("Magnitude").item(0).getTextContent();
-                    String info             = eElement.getElementsByTagName("Info").item(0).getTextContent();
+                    String mag                 = eElement.getElementsByTagName("Magnitude").item(0).getTextContent();
+                    String info                = eElement.getElementsByTagName("Info").item(0).getTextContent();
                     String distance            = eElement.getElementsByTagName("Distance").item(0).getTextContent();
 
                     // assigning to attributes of star class
@@ -110,22 +118,64 @@ public class MessierDeep{
             }    
         catch (Exception e) {
             e.printStackTrace();
-            System.out.println("\tError Handled, no problems");
+            System.out.println("");
         }
         return SpaceObjects;
         }
+
+
+    /*
+        Function: getRA
+        Parameters: ArrayList<String>
+        Return Type: Double
+        Purpose:
+        Take the ArrayList and return the true RA
+    */
+    public static double getRA(ArrayList<String> obj){
+        double RA = 0;
+        RA = (Double.valueOf(obj.get(4)) * 15 + Double.valueOf(obj.get(5)) * .25);  
+
+        return RA;
+        
+    }
+
+        /*
+        Function: getDec
+        Parameters: ArrayList<String>
+        Return Type: Double
+        Purpose:
+        Take the ArrayList and return the true Declination
+    */
+    public static double getDec(ArrayList<String> obj){
+        double Dec;
+        // if the string retruned is a negative sign, multiply answer by -1
+        if (obj.get(6).equals("-")){
+            Dec = (Double.valueOf(obj.get(7)) + Double.valueOf(obj.get(8))/60) * -1;  
+        }
+        // If it's positive, just let it be
+        else{
+            Dec = (Double.valueOf(obj.get(7)) + Double.valueOf(obj.get(8))/60);  
+        }
+        return Dec;
+        
+    }
+        
     public static void main(String[] args) throws InterruptedException{
         long startTime = System.nanoTime();
+        // number of messier deep catalog
         int upper_limit = 111;
         for (int k = 0; k < upper_limit; k++){
             ArrayList<String> SpaceObj = MDSO("MessierDeep.xml", k);
             if(!SpaceObj.isEmpty()){
-                System.out.println("[0]: Object Number, [1]: Name, [2]: Type, [3]: Constellation, [4]: RAHour, [5]: RAMinute, [6]DecSign, [7]: DecDeg, [8]: DecMinute, [9]: Magnitude, [10]: Info, [11]: Distance");
-                System.out.println("===============================================================================================================================================================================");
+                System.out.println("\n===============================================================================================================================================================================");
+                // System.out.println("[0]: Object Number, [1]: Name, [2]: Type, [3]: Constellation, [4]: RAHour, [5]: RAMinute, [6]DecSign, [7]: DecDeg, [8]: DecMinute, [9]: Magnitude, [10]: Info, [11]: Distance");
                 System.out.println(SpaceObj);
-                System.out.println("===============================================================================================================================================================================");
+                System.out.printf("\nCombined RA = %.5f", getRA(SpaceObj));
+                System.out.printf("\nCombined Dec = %.5f", getDec(SpaceObj));
+                System.out.println("\n===============================================================================================================================================================================");
             }
             else{
+                
                 continue;
             }
         }
@@ -133,13 +183,8 @@ public class MessierDeep{
 
         long timePassed = endTime - startTime;
 
-        float seconds = timePassed / 1000000000;
-
-        System.out.println("Execution time in nanoseconds  : " + timePassed);
-
-		System.out.println("Execution time in milliseconds : " + 
-                                timePassed / 1000000);
+        double seconds = timePassed / 1000000000F;
                                 
-        System.out.println("Execution time in seconds: " + seconds);
+        System.out.println("\nExecution time in seconds: " + seconds);
     }
 }
