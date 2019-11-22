@@ -57,8 +57,6 @@ public class AlexxWork2 extends JFrame {
 	private JTextField latTextField;
 	private JLabel longitude;
 	private JTextField longTextField;
-	private JLabel minutes;
-	private JTextField minTextField;
 	private JScrollPane scrollPane;
 	private JComboBox latitudeComboBox;
 	private JComboBox longitudeComboBox;
@@ -129,13 +127,12 @@ public class AlexxWork2 extends JFrame {
 		
 		checkLatitude();
 		checkLongitude();
-		checkMins();
 		checkLatitudeDirection();
 		checkLongitudeDirection();
 		
 		
 		if(checkDay() && checkYear() && checkMonth() && checkHours() && checkMinutes()
-				&& checkLatitude() && checkLongitude() && checkMins() && checkLatitudeDirection() && checkLongitudeDirection() && checkDate()) {
+				&& checkLatitude() && checkLongitude() && checkLatitudeDirection() && checkLongitudeDirection() && checkDate()) {
 			setValidInputs();
 			//ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\SkyMap.png");
 			//scrollPane_1.setViewportView(new JLabel(ii));
@@ -374,31 +371,6 @@ public class AlexxWork2 extends JFrame {
 		return check;
 	}
 	
-	public Boolean checkMins() {
-		Boolean check = false;
-		
-		if(minTextField.getText() != null && !minTextField.getText().isEmpty()) {
-			try {
-				minInput = Double.valueOf(minTextField.getText());
-			}
-			catch(Exception e) {
-				minTextField.setBorder(new LineBorder(Color.RED, 3));
-			}
-			
-			if(minInput < 0 || minInput > 60) {
-				minTextField.setBorder(new LineBorder(Color.RED, 3));
-			}
-			else {
-				check = true;
-				minTextField.setBorder(new LineBorder(Color.BLACK, 1));
-			}
-		}
-		else {
-			minTextField.setBorder(new LineBorder(Color.RED, 3));
-		}
-		return check;
-	}
-	
 	public Boolean checkLatitudeDirection() {
 		Boolean flag = false;
 		
@@ -561,7 +533,7 @@ public class AlexxWork2 extends JFrame {
 		
 		//Intialize the member variables
 		intialize();
-		mainGUI.setLayout(new MigLayout("", "[75px][][9px][10px][7px][76.00px][105.00px][5px][-1.00px][-76.00px][850.00px][67.00px][329.00px]", "[67px][1px][4px][40px][13px][52px][11px][58px][3px][58px][4px][33px][9px][39px][3px][17px][76px][49px][101px][33px][48px][39px][22px][39px][28px][47px][22px][39px][28px][39px][28px][67px]"));
+		mainGUI.setLayout(new MigLayout("", "[75px][][9px][10px][7px][76.00px][105.00px][5px][-1.00px][-76.00px][850.00px,grow,fill][2.00][329.00px,right][]", "[67px][1px][4px][40px][13px][52px][11px][58px][3px][58px][4px][33px][9px][39px][3px][17px][76px][49px][101px][33px][48px][39px][22px][39px][28px][47px][22px][39px][28px][39px][28px][67px]"));
 		 
 		month.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		mainGUI.add(month, "cell 0 5,alignx left,aligny top");
@@ -647,17 +619,13 @@ public class AlexxWork2 extends JFrame {
 		longitude.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		mainGUI.add(longitude, "flowx,cell 0 25 7 1,alignx left,growy");
 		
-		minutes = new JLabel("Minutes");
-		minutes.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		mainGUI.add(minutes, "flowx,cell 0 29 7 1,alignx left,growy");
-		
 		starNames = new JCheckBox("Star Names");
 		starNames.setFont(new Font("Tahoma", Font.PLAIN, 28));
-		mainGUI.add(starNames, "cell 12 5,growx,aligny bottom");
+		mainGUI.add(starNames, "cell 12 5,alignx left,aligny bottom");
 		
 		constellations = new JCheckBox("Constellations");
 		constellations.setFont(new Font("Tahoma", Font.PLAIN, 28));
-		mainGUI.add(constellations, "cell 12 7,growx,aligny bottom");
+		mainGUI.add(constellations, "cell 12 7,alignx left,aligny bottom");
 		
 		planets = new JCheckBox("Planets");
 		planets.setFont(new Font("Tahoma", Font.PLAIN, 28));
@@ -798,7 +766,7 @@ public class AlexxWork2 extends JFrame {
 		latTextField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				if (!Character.isDigit(e.getKeyChar())) {
+				if (!Character.isDigit(e.getKeyChar()) && e.getKeyChar() != '.') {
 					e.consume();
 				}
 			}
@@ -809,7 +777,7 @@ public class AlexxWork2 extends JFrame {
 				}
 			}
 		});
-		mainGUI.add(latTextField, "cell 6 21 2 1,grow");
+		mainGUI.add(latTextField, "cell 6 21,grow");
 		latTextField.setColumns(10);
 		
 		longTextField = new JTextField();
@@ -817,7 +785,7 @@ public class AlexxWork2 extends JFrame {
 		longTextField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				if (!Character.isDigit(e.getKeyChar())) {
+				if (!Character.isDigit(e.getKeyChar()) && e.getKeyChar() != '.') {
 					e.consume();
 				}
 			}
@@ -828,27 +796,8 @@ public class AlexxWork2 extends JFrame {
 				}
 			}
 		});
-		mainGUI.add(longTextField, "cell 6 25 2 1,grow");
+		mainGUI.add(longTextField, "cell 6 25,grow");
 		longTextField.setColumns(10);
-		
-		minTextField = new JTextField();
-		minTextField.setFont(new Font("Tahoma", Font.PLAIN, 28));
-		minTextField.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				if (!Character.isDigit(e.getKeyChar())) {
-					e.consume();
-				}
-			}
-			public void keyPressed(KeyEvent e) {
-				if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_V) {
-					System.out.println("ILLEGAL ACTION");
-					e.consume();
-				}
-			}
-		});
-		mainGUI.add(minTextField, "cell 6 29 2 1,grow");
-		minTextField.setColumns(10);
 		
 		
 		
