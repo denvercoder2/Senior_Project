@@ -1,4 +1,4 @@
-
+package ScottWork.main;
 /*
 Messier Deep Objects parse and functions
 */

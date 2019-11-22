@@ -72,18 +72,28 @@ public class SkyMap_Formulae_J {
 			tempObj.setDec(Cobj.getDec());
 			spaceObjList.add(tempObj);
 		}		
-		/*
-		for (int i = 0; i < 111; i++) {
+		
+		for (int i = 1; i < 111; i++) {
 			ArrayList<String> MessierDeepObj = MessierDeep.MDSO("MessierDeep.xml", i);
-			SpaceObj tempObj = new SpaceObj();
-			tempObj.setType("MESR");
-			tempObj.setProperName(MessierDeepObj.get(1));
-			tempObj.setConstName(MessierDeepObj.get(3));
-			tempObj.setMagnitude(MessierDeepObj.get(9));
-			double tempRAHour = Double.parseDouble(MessierDeepObj.get(4));
-			double tempRAMin = Double.parseDouble(MessierDeepObj.get(5));
-			tempObj.setRA(Double.toString(Convert2RA.Convert(tempRAHour,tempRAMin)));
-		}*/
+
+			if(!MessierDeepObj.isEmpty()){
+
+				SpaceObj tempObj = new SpaceObj();
+				tempObj.setType("MESR");
+				tempObj.setProperName(MessierDeepObj.get(1));
+				tempObj.setConstName(MessierDeepObj.get(3));
+				tempObj.setMagnitude(MessierDeepObj.get(9));
+				double tempRAHour = Double.parseDouble(MessierDeepObj.get(4));
+				double tempRAMin = Double.parseDouble(MessierDeepObj.get(5));
+				double tempDecHour = Double.parseDouble(MessierDeepObj.get(7));
+				double tempDecMin = Double.parseDouble(MessierDeepObj.get(8));
+				if (MessierDeepObj.get(6).equals("-"))
+					tempDecHour *= -1;
+
+				tempObj.setRA(Double.toString(Convert2RA.ConvertRA(tempRAHour,tempRAMin)));
+				tempObj.setDec(Double.toString(Convert2RA.ConvertDec(tempDecHour,tempDecMin)));
+			}
+		}
 		
 		
 		String outputStr;
@@ -145,7 +155,7 @@ public class SkyMap_Formulae_J {
 			spaceObjList.get(k).setAltitude(Double.parseDouble(outputStr.substring(outputStr.indexOf(',')+2,outputStr.indexOf(')'))));
 			spaceObjList.get(k).setAzimuth(Double.parseDouble(outputStr.substring(outputStr.lastIndexOf(',')+2,outputStr.lastIndexOf(')'))));
 		}
-		
+		/*
 		System.out.println(spaceObjList.get(24).getProperName());
 		System.out.println(spaceObjList.get(24).getAltitude());
 		System.out.println(spaceObjList.get(24).getAzimuth());
@@ -157,7 +167,7 @@ public class SkyMap_Formulae_J {
 				System.out.println(spaceObjList.get(i).getAzimuth());
 				break;
 			}
-		}
+		}*/
 		
 		long endTime = System.nanoTime();
 		long elapsedTime = endTime - startTime;
@@ -194,7 +204,13 @@ public class SkyMap_Formulae_J {
 			e.printStackTrace();
 		}		
 		
-		
+		String[] planets = {"sol","mercury","venus","mars","jupiter","saturn","uranus","neptune"};
+		for (int i = 1; i < planets.length; i++) {
+			SpaceObj tempObj = new SpaceObj();
+			tempObj.setType("PLAN");
+			tempObj.setProperName(planets[i]);
+			spaceObjList.add(tempObj);
+		}	
 		System.out.println(spaceObjList.size());
 		for (int i = 1; i < 31; i++) {
 			
@@ -209,6 +225,27 @@ public class SkyMap_Formulae_J {
 			spaceObjList.add(tempObj);
 		}	
 		
+		for (int i = 1; i < 111; i++) {
+			ArrayList<String> MessierDeepObj = MessierDeep.MDSO("MessierDeep.xml", i);
+
+			if(!MessierDeepObj.isEmpty()){
+
+				SpaceObj tempObj = new SpaceObj();
+				tempObj.setType("MESR");
+				tempObj.setProperName(MessierDeepObj.get(1));
+				tempObj.setConstName(MessierDeepObj.get(3));
+				tempObj.setMagnitude(MessierDeepObj.get(9));
+				double tempRAHour = Double.parseDouble(MessierDeepObj.get(4));
+				double tempRAMin = Double.parseDouble(MessierDeepObj.get(5));
+				double tempDecHour = Double.parseDouble(MessierDeepObj.get(7));
+				double tempDecMin = Double.parseDouble(MessierDeepObj.get(8));
+				if (MessierDeepObj.get(6).equals("-"))
+					tempDecHour *= -1;
+
+				tempObj.setRA(Double.toString(Convert2RA.ConvertRA(tempRAHour,tempRAMin)));
+				tempObj.setDec(Double.toString(Convert2RA.ConvertDec(tempDecHour,tempDecMin)));
+			}
+		}
 		
 		String outputStr;
 		String stringArgument;
@@ -269,10 +306,7 @@ public class SkyMap_Formulae_J {
 			spaceObjList.get(k).setAltitude(Double.parseDouble(outputStr.substring(outputStr.indexOf(',')+2,outputStr.indexOf(')'))));
 			spaceObjList.get(k).setAzimuth(Double.parseDouble(outputStr.substring(outputStr.lastIndexOf(',')+2,outputStr.lastIndexOf(')'))));
 		}
-		
-		System.out.println(spaceObjList.get(24).getAltitude());
-		System.out.println(spaceObjList.get(24).getAzimuth());
-		
+
 		long endTime = System.nanoTime();
 		long elapsedTime = endTime - startTime;
 		System.out.println("Finished processing in " + elapsedTime / 1000000000.00 + " seconds.");
@@ -308,7 +342,13 @@ public class SkyMap_Formulae_J {
 			e.printStackTrace();
 		}		
 		
-		
+		String[] planets = {"sol","mercury","venus","mars","jupiter","saturn","uranus","neptune"};
+		for (int i = 1; i < planets.length; i++) {
+			SpaceObj tempObj = new SpaceObj();
+			tempObj.setType("PLAN");
+			tempObj.setProperName(planets[i]);
+			spaceObjList.add(tempObj);
+		}	
 		System.out.println(spaceObjList.size());
 		for (int i = 1; i < 31; i++) {
 			Constellations Cobj = Constellations.CreateConstArr("Constellations.xml", i);
@@ -322,6 +362,27 @@ public class SkyMap_Formulae_J {
 			spaceObjList.add(tempObj);
 		}	
 		
+		for (int i = 1; i < 111; i++) {
+			ArrayList<String> MessierDeepObj = MessierDeep.MDSO("MessierDeep.xml", i);
+
+			if(!MessierDeepObj.isEmpty()){
+
+				SpaceObj tempObj = new SpaceObj();
+				tempObj.setType("MESR");
+				tempObj.setProperName(MessierDeepObj.get(1));
+				tempObj.setConstName(MessierDeepObj.get(3));
+				tempObj.setMagnitude(MessierDeepObj.get(9));
+				double tempRAHour = Double.parseDouble(MessierDeepObj.get(4));
+				double tempRAMin = Double.parseDouble(MessierDeepObj.get(5));
+				double tempDecHour = Double.parseDouble(MessierDeepObj.get(7));
+				double tempDecMin = Double.parseDouble(MessierDeepObj.get(8));
+				if (MessierDeepObj.get(6).equals("-"))
+					tempDecHour *= -1;
+
+				tempObj.setRA(Double.toString(Convert2RA.ConvertRA(tempRAHour,tempRAMin)));
+				tempObj.setDec(Double.toString(Convert2RA.ConvertDec(tempDecHour,tempDecMin)));
+			}
+		}
 		
 		String outputStr;
 		String stringArgument;
@@ -382,10 +443,7 @@ public class SkyMap_Formulae_J {
 			spaceObjList.get(k).setAltitude(Double.parseDouble(outputStr.substring(outputStr.indexOf(',')+2,outputStr.indexOf(')'))));
 			spaceObjList.get(k).setAzimuth(Double.parseDouble(outputStr.substring(outputStr.lastIndexOf(',')+2,outputStr.lastIndexOf(')'))));
 		}
-		
-		System.out.println(spaceObjList.get(24).getAltitude());
-		System.out.println(spaceObjList.get(24).getAzimuth());
-		
+
 		long endTime = System.nanoTime();
 		long elapsedTime = endTime - startTime;
 		System.out.println("Finished processing in " + elapsedTime / 1000000000.00 + " seconds.");
@@ -421,7 +479,13 @@ public class SkyMap_Formulae_J {
 			e.printStackTrace();
 		}		
 		
-		
+		String[] planets = {"sol","mercury","venus","mars","jupiter","saturn","uranus","neptune"};
+		for (int i = 1; i < planets.length; i++) {
+			SpaceObj tempObj = new SpaceObj();
+			tempObj.setType("PLAN");
+			tempObj.setProperName(planets[i]);
+			spaceObjList.add(tempObj);
+		}	
 		System.out.println(spaceObjList.size());
 		for (int i = 1; i < 31; i++) {
 			Constellations Cobj = Constellations.CreateConstArr("Constellations.xml", i);
@@ -435,6 +499,27 @@ public class SkyMap_Formulae_J {
 			spaceObjList.add(tempObj);
 		}	
 		
+		for (int i = 1; i < 111; i++) {
+			ArrayList<String> MessierDeepObj = MessierDeep.MDSO("MessierDeep.xml", i);
+
+			if(!MessierDeepObj.isEmpty()){
+
+				SpaceObj tempObj = new SpaceObj();
+				tempObj.setType("MESR");
+				tempObj.setProperName(MessierDeepObj.get(1));
+				tempObj.setConstName(MessierDeepObj.get(3));
+				tempObj.setMagnitude(MessierDeepObj.get(9));
+				double tempRAHour = Double.parseDouble(MessierDeepObj.get(4));
+				double tempRAMin = Double.parseDouble(MessierDeepObj.get(5));
+				double tempDecHour = Double.parseDouble(MessierDeepObj.get(7));
+				double tempDecMin = Double.parseDouble(MessierDeepObj.get(8));
+				if (MessierDeepObj.get(6).equals("-"))
+					tempDecHour *= -1;
+
+				tempObj.setRA(Double.toString(Convert2RA.ConvertRA(tempRAHour,tempRAMin)));
+				tempObj.setDec(Double.toString(Convert2RA.ConvertDec(tempDecHour,tempDecMin)));
+			}
+		}
 		
 		String outputStr;
 		String stringArgument;
@@ -495,10 +580,7 @@ public class SkyMap_Formulae_J {
 			spaceObjList.get(k).setAltitude(Double.parseDouble(outputStr.substring(outputStr.indexOf(',')+2,outputStr.indexOf(')'))));
 			spaceObjList.get(k).setAzimuth(Double.parseDouble(outputStr.substring(outputStr.lastIndexOf(',')+2,outputStr.lastIndexOf(')'))));
 		}
-		
-		System.out.println(spaceObjList.get(24).getAltitude());
-		System.out.println(spaceObjList.get(24).getAzimuth());
-		
+
 		long endTime = System.nanoTime();
 		long elapsedTime = endTime - startTime;
 		System.out.println("Finished processing in " + elapsedTime / 1000000000.00 + " seconds.");

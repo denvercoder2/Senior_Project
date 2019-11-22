@@ -1,3 +1,4 @@
+package ScottWork.main;
 /*
  Converting RAHour and Mintute to Singular RA
 */
