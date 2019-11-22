@@ -26,8 +26,6 @@ import math
     M = mean anomaly (0 at perihelion; increases uniformly with time)
 '''
 
- 
-
 def getUT(hours: int, minutes: int) -> float:
     '''Conversion to UT time'''
     UT = hours + (minutes/60)
@@ -82,23 +80,25 @@ def getMoonPos(d: float):
 
 
 
+# def RADec(moon: list) -> list:
+
 
 
 def main():
 
     ''' Main '''
-    hours = 0
-    minutes = 0
+    hours = 15
+    minutes = 00
 
     UT = getUT(hours, minutes)
-    year = 2100
-    month = 12
-    day = 1
+    year = 1991
+    month = 5
+    day = 19
     d = timeScale(year, month, UT, day, hours, minutes)
 
     moon_attr = getMoonPos(d)
-    print("Longitude: %.5f" % moon_attr[0])
-    print("Latitude: %.5f" % moon_attr[1])
+    print("Longitude: ", (moon_attr[0] * 15) * 2)
+    print("Latitude: ", (moon_attr[1] * 15) * 2)
 
 if __name__ == "__main__":
 
