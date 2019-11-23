@@ -175,10 +175,10 @@ public class AlexxWork2 extends JFrame {
 				String.valueOf((int)latValid), String.valueOf((int)latValid));*/
 		//ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\waiting.jpg");
 		//scrollPane_1.setViewportView(new JLabel(ii));
-		spaceObjList = SkyMap_Formulae_J.getSpace(String.valueOf((int)1950), String.valueOf((int)12), 
-				String.valueOf((int)12), String.valueOf((int)12), 
-				String.valueOf((int)25), String.valueOf(0), 
-				String.valueOf((int)30), String.valueOf((int)30));
+		spaceObjList = SkyMap_Formulae_J.getSpace(String.valueOf((int)2019), String.valueOf((int)11), 
+				String.valueOf((int)6), String.valueOf((int)17), 
+				String.valueOf((int)30), String.valueOf(0), 
+				String.valueOf((int)41), String.valueOf((int)-74));
 		System.out.println("2222222222222222222222222222\n");
     	System.out.println(spaceObjList.size()+"\2222222222222222222222222222\n");
     	

@@ -23,12 +23,14 @@ import JohnWork.main.SpaceObj;
 
 public class DrawingSky extends Canvas {
 	
+	ArrayList<String> starLabels;
+	
     public ImageIcon draw() {
         JFrame frame = new JFrame("My Drawing");
         frame.setBackground(Color.BLACK);
         Canvas canvas = new DrawingSky();
         //canvas.setSize(1800, 1800);
-        canvas.setSize(2000, 2000);
+        canvas.setSize(2250, 2250);
         frame.add(canvas);
         frame.pack();
         //frame.setVisible(true);
@@ -44,11 +46,12 @@ public class DrawingSky extends Canvas {
     	int b = 1;
     	int c = 2;
     	int d = 3;
+    	int index = 0;
     	int color;
-    	//g.setColor(Color.white);
+    	g.setColor(Color.white);
     	System.out.println("----------------------\n"+(list.size()/4)+"\n-----------------------------\n");
     	for(int i = 0; i < (list.size()/4); i++) {
-    		color = getRandom(1,4);
+    		/*color = getRandom(1,4);
     		if(color == 1) {
     			g.setColor(Color.white);
     		}
@@ -61,6 +64,7 @@ public class DrawingSky extends Canvas {
     		else if(color == 4) {
     			g.setColor(Color.green);
     		}
+    		*/
     		
     		g.fillOval(list.get(a), list.get(b), list.get(c), list.get(d));
     		a = d + 1;
@@ -68,15 +72,22 @@ public class DrawingSky extends Canvas {
     		c = b + 1;
     		d = c + 1;
     	}
+    	for(int i = 0; i < (starLabels.size()/3); i++) {
+    		g.drawString(starLabels.get(index), Integer.valueOf(starLabels.get(index+1)), Integer.valueOf(starLabels.get(index+2)));
+    		index +=3;
+    	}
     }
     
     public ArrayList<Integer> createList(){
     	ArrayList<Integer> test = new ArrayList<>();
+    	starLabels = new ArrayList<>();
     	int a = 0;
     	int b = 1;
     	int c = 2;
     	int d = 3;
+    	Boolean stringFlag = true;
     	int size;
+    	
     	
     	// java - get screen size using the Toolkit class
     			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -87,24 +98,44 @@ public class DrawingSky extends Canvas {
     			// the screen width
     			int screenWidth = (int)screenSize.getWidth();
     	
-    	//this.SpaceObjectList
-    	
-    	/*
-    	 * int x = getX(1000, 2000, 1000, (int)GUI.spaceObjList.get(i).getAzimuth(), (int)GUI.spaceObjList.get(i).getAltitude());
-			int y = getY(1000, 2000, 1000, (int)GUI.spaceObjList.get(i).getAzimuth(), (int)GUI.spaceObjList.get(i).getAltitude());
-    		test.add(a, x);
-    		test.add(b, y);
-    	 */
     	for(int i = 0; i < AlexxWork2.spaceObjList.size(); i++) {
+    		stringFlag = true;
     		if(AlexxWork2.spaceObjList.get(i).getMagnitude() != null && (Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()) <= 6.0) 
     				&& AlexxWork2.spaceObjList.get(i).getAltitude() > 1) {
-	    		//raduius = 50000
-    			int x = getX(1000, 1000, 500, (int)AlexxWork2.spaceObjList.get(i).getAzimuth(), (int)AlexxWork2.spaceObjList.get(i).getAltitude());
-				int y = getY(1000, 1000, 500, (int)AlexxWork2.spaceObjList.get(i).getAzimuth(), (int)AlexxWork2.spaceObjList.get(i).getAltitude());
+	    		
+    			int x = getX(2250, 2250, 1000, (int)AlexxWork2.spaceObjList.get(i).getAzimuth(), (int)AlexxWork2.spaceObjList.get(i).getAltitude());
+				int y = getY(2250, 2250, 1000, (int)AlexxWork2.spaceObjList.get(i).getAzimuth(), (int)AlexxWork2.spaceObjList.get(i).getAltitude());
+				if(AlexxWork2.spaceObjList.get(i).getType() == "STAR" 
+						&& AlexxWork2.spaceObjList.get(i).getProperName() != null 
+						&& AlexxWork2.spaceObjList.get(i).getProperName() != "") {
+					try {
+						int testInt = Integer.parseInt(AlexxWork2.spaceObjList.get(i).getProperName());
+						} catch (NumberFormatException | NullPointerException nfe) {
+							//stringFlag = false;
+							if(!(Character.isDigit(AlexxWork2.spaceObjList.get(i).getProperName().charAt(0)))) {
+								starLabels.add(AlexxWork2.spaceObjList.get(i).getProperName());
+								starLabels.add(String.valueOf(x));
+								starLabels.add(String.valueOf(y));
+							}
+							
+						}
+					if (stringFlag) {
+						
+					}
+					
+					
+					
+				}
 	    		test.add(a, x);
 	    		test.add(b, y);
-	    		size = getSize(Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()));
-	    		//size = 5;
+	    		if(AlexxWork2.spaceObjList.get(i).getType() == "PLAN") {
+	    			size = 50;
+	    			System.out.println(AlexxWork2.spaceObjList.get(i).getType());
+	    		}
+	    		else {
+	    			size = getSize(Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()));
+	    		}
+	    		
 	    		test.add(c, size);
 	    		test.add(d, size);
 	    		a = d + 1;
@@ -117,34 +148,6 @@ public class DrawingSky extends Canvas {
     	return test;
     }
     
-    /*
-    
-    
-    
-    
-    
-    
-    
-    for(int i = 0; i < spaceObjects.size(); i++) {
-		
-		//Check if mag is less than or equal to 6, add location to list
-		if(spaceObjects.get(i).getMagnitude() != null && (Double.valueOf(spaceObjects.get(i).getMagnitude()) <= 6)) {
-			x = getX(screenHeight, screenWidth, 10, (int)spaceObjects.get(i).getAzimuth(), (int)spaceObjects.get(i).getAltitude());
-			y = getY(screenHeight, screenWidth, 10, (int)spaceObjects.get(i).getAzimuth(), (int)spaceObjects.get(i).getAltitude());
-    		locations.add(a, x);
-    		locations.add(b, y);
-    		size = getSize(spaceObjects.get(i));
-    		locations.add(c, size);
-    		locations.add(d, size);
-    		a = d + 1;
-    		b = a + 1;
-    		c = b + 1;
-    		d = c + 1;
-		}
-	}
-	return locations;
-}
-*/
 public int getX(int screenHeight, int screenWidth, int r, int z, int a) {
 	int x;
 	
@@ -201,33 +204,7 @@ public int getSize(Double mag) {
 	
 	
 	return size;
-}
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+}  
   /*  
     static 
     public static void captureComponent(Component component) {
