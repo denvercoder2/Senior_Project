@@ -166,7 +166,11 @@ public class SunMoonCalculator {
 	private double toJulianDay(int year, int month, int day, int h, int m, int s) throws Exception {
 		// The conversion formulas are from Meeus, chapter 7.
 		boolean julian = false; // Use Gregorian calendar
-		if (year < 1582 || (year == 1582 && month <= 10) || (year == 1582 && month == 10 && day < 15)) julian = true;
+		
+		if (year < 1582 || (year == 1582 && month <= 10) || (year == 1582 && month == 10 && day < 15)){
+			julian = true;
+		}
+
 		int D = day;
 		int M = month;
 		int Y = year;
@@ -621,7 +625,7 @@ public class SunMoonCalculator {
 	 */
 	public static void main(String[] args) {
 		System.out.println("SunMoonCalculator test run");
-
+ 
 		try {
 			int year = 2019, month = 11, day = 22, h = 9, m = 40, s = 0; // in UT !!!
 			double obsLon = -3.7 * DEG_TO_RAD, obsLat = 40.417 * DEG_TO_RAD; // lon is negative to the west
