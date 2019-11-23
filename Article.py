@@ -246,12 +246,12 @@ def getECLon(jd):
     l = N+E+L
     while (l > 360):
         l -= 360
-    return l
+    return l, M
 
 
 def getSun(gcdate, dst):
     jd = getJD(gcdate)
-    ecLon = getECLon(jd)
+    ecLon, M_s = getECLon(jd)
     ecLon = math.radians(ecLon)
     ecLat = 0  # ecliptic latitude is zero for the sun
     ra, dec = equatorialCoordinates(ecLon, ecLat, gcdate)
@@ -292,7 +292,7 @@ def getPlanet(gcdate, iplanet):
     uranus = '84.039492:271.063148:172.884833:0.046321:19.21814:0.773059:73.926961:outer'
     neptune = '165.84539:326.895127:23.07:0.010483:30.1985:1.7673:131.879:outer'
     
-    
+
     if iplanet.lower() == 'mercury':
         planet = mercury
     if iplanet.lower() == 'venus':
@@ -324,13 +324,10 @@ def getPlanet(gcdate, iplanet):
     pr = (r*math.cos(hLat))
 
     if planet[7]=='outer':
-        ecLon = math.atan((rE * math.sin(pl - lE)) /
-                          (pr - rE * math.cos(pl - lE))) + pl
+        ecLon = math.atan((rE * math.sin(pl - lE)) / (pr - rE * math.cos(pl - lE))) + pl
     else:
-        ecLon = 180 + lE + \
-            math.atan((pr * math.sin(lE - pl)) / (rE - rE * math.cos(pl - lE)))
-    ecLat = math.atan(
-        (pr*math.tan(hLat)*math.sin(ecLon-pl))/(rE*math.sin(pl-lE)))
+        ecLon = 180 + lE + math.atan((pr * math.sin(lE - pl)) / (rE - rE * math.cos(pl - lE)))
+    ecLat = math.atan((pr*math.tan(hLat)*math.sin(ecLon-pl))/(rE*math.sin(pl-lE)))
 
     ra, dec = equatorialCoordinates(ecLon, ecLat, gcdate)
     return ra, dec
@@ -339,6 +336,48 @@ def getStar(ra, dec):
     ra = getDH(ra)
     dec = getDH(dec)
     return ra, dec
+
+def getMoon(gcdate):
+    l_0 = 91.929336 #degrees
+    P_0 = 130.143076 #degrees
+    N_0 = 291.682547 #degrees
+    i = math.radians(5.145396) #degrees
+    e = 0.0549
+    a = 384401 #km
+    θ0 = 0.5181 #degrees
+    π0 = 0.9507 #degrees
+
+    jd = getJD(gcdate)
+    epoch = 2455196.5
+    D = jd - epoch 
+    ecLon_s, M_s = getECLon(jd)
+    ecLon_s = ecLon_s
+    M_s = math.radians(M_s)
+
+    l = boundRange((13.1763966*D) + l_0)
+    M = boundRange(l - (0.1114041*D) - P_0)
+    N = boundRange(N_0 - (0.0529539*D))
+
+    C = l - ecLon_s
+    E_v = 1.2739* math.sin(math.radians(2*C - M))
+    A_e = 0.1858*math.sin(M_s)
+    A_3 = 0.37*math.sin(M_s)
+
+    v = math.radians(M + E_v - A_e - A_3)
+    E_c = 6.2886*math.sin(v)
+    A_4 = 0.214*math.sin(math.radians(2*M))
+
+    l_c = l + E_v + E_c - A_e + A_4
+    V = 0.6583*math.sin(math.radians(2*(l-ecLon_s)))
+    l_t = math.radians(l_c + V)
+    N_c = math.radians(N - (0.16*math.sin(M_s)))
+    y = math.sin(l_t - N_c)*math.cos(i)
+    x = math.cos(l_t-N_c)
+    ecLon_m = math.radians(getQuadrant(x, y)+math.degrees(N_c))
+    ecLat_m = math.asin(math.sin(l_t - N_c)*math.sin(i))
+    ra, dec = equatorialCoordinates(ecLon_m, ecLat_m, gcdate)
+    return ra, dec
+
 
 def solveLocation(istring):
     # line = 'ra:ra:ra:dec:dec:dec:lat:lon:hr:mn:sc:yr:mon:day:dst:obj'
@@ -370,6 +409,8 @@ def solveLocation(istring):
         ra, dec = getStar(ra, dec)
     elif obj.lower() == 'sol':
         ra, dec = getSun(gcdate, dst)
+    elif obj.lower() == 'luna':
+        ra, dec = getMoon(gcdate)
     else:
         ra, dec = getPlanet(gcdate, obj)
 
@@ -386,7 +427,10 @@ def solveLocation(istring):
 def test():
     # line = 'ra:ra:ra:dec:dec:dec:lat:lon:hr:mn:sc:yr:mon:day:dst'
     # static = '18:32:21:23:13:10:52:-64:14:36:51.67:1980:4:22:False'
-    polaris = '2:31:49:89:15:50.78:34:-87:18:08:0:2019:11:17:True:Sol'
-    solveLocation(polaris)
+    # p_test = '2:31:49:89:15:50.78:34:-87:0:0:0:2003:11:22:True:jupiter'
+    luna = '2:31:49:89:15:50.78:34:-87:0:0:0:2003:9:1:True:luna'
+    # polaris = '2:31:49:89:15:50.78:34:-87:18:08:0:2019:11:17:True:Sol'
+    # planet = '2:31:49:89:15:50.78:34:-87:20:15:0:2019:11:18:True:jupiter'
+    solveLocation(luna)
 
 test()
