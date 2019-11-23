@@ -25,7 +25,16 @@ public class DrawingSky extends Canvas {
 	
 	ArrayList<String> starLabels;
 	
+	//Checkboxes true == clicked
+	/*
+	Boolean starsCB;
+	Boolean constellationCB;
+	Boolean planetsCB;
+	Boolean messierCB;
+	*/
+	
     public ImageIcon draw() {
+    	
         JFrame frame = new JFrame("My Drawing");
         frame.setBackground(Color.BLACK);
         Canvas canvas = new DrawingSky();
@@ -100,31 +109,33 @@ public class DrawingSky extends Canvas {
     	
     	for(int i = 0; i < AlexxWork2.spaceObjList.size(); i++) {
     		stringFlag = true;
+    		if(AlexxWork2.spaceObjList.get(i).getType() == "PLAN") {
+    			System.out.println(AlexxWork2.spaceObjList.get(i).getProperName());
+    			System.out.println(AlexxWork2.spaceObjList.get(i).getAltitude());
+    		}
     		if(AlexxWork2.spaceObjList.get(i).getMagnitude() != null && (Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()) <= 6.0) 
     				&& AlexxWork2.spaceObjList.get(i).getAltitude() > 1) {
 	    		
     			int x = getX(2250, 2250, 1000, (int)AlexxWork2.spaceObjList.get(i).getAzimuth(), (int)AlexxWork2.spaceObjList.get(i).getAltitude());
 				int y = getY(2250, 2250, 1000, (int)AlexxWork2.spaceObjList.get(i).getAzimuth(), (int)AlexxWork2.spaceObjList.get(i).getAltitude());
-				if(AlexxWork2.spaceObjList.get(i).getType() == "STAR" 
-						&& AlexxWork2.spaceObjList.get(i).getProperName() != null 
-						&& AlexxWork2.spaceObjList.get(i).getProperName() != "") {
-					try {
-						int testInt = Integer.parseInt(AlexxWork2.spaceObjList.get(i).getProperName());
-						} catch (NumberFormatException | NullPointerException nfe) {
-							//stringFlag = false;
-							if(!(Character.isDigit(AlexxWork2.spaceObjList.get(i).getProperName().charAt(0)))) {
-								starLabels.add(AlexxWork2.spaceObjList.get(i).getProperName());
-								starLabels.add(String.valueOf(x));
-								starLabels.add(String.valueOf(y));
+				if(AlexxWork2.starNamesCB) {
+					if(AlexxWork2.spaceObjList.get(i).getType() == "STAR" 
+							&& AlexxWork2.spaceObjList.get(i).getProperName() != null 
+							&& AlexxWork2.spaceObjList.get(i).getProperName() != "") {
+						try {
+							int testInt = Integer.parseInt(AlexxWork2.spaceObjList.get(i).getProperName());
+							} catch (NumberFormatException | NullPointerException nfe) {
+								
+								if(!(Character.isDigit(AlexxWork2.spaceObjList.get(i).getProperName().charAt(0)))
+										&& Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()) <= 2.0) {
+									//System.out.println(AlexxWork2.spaceObjList.get(i).getProperName());
+									starLabels.add(AlexxWork2.spaceObjList.get(i).getProperName());
+									starLabels.add(String.valueOf(x));
+									starLabels.add(String.valueOf(y));
+								}
+								
 							}
-							
-						}
-					if (stringFlag) {
-						
 					}
-					
-					
-					
 				}
 	    		test.add(a, x);
 	    		test.add(b, y);

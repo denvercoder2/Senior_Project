@@ -88,10 +88,10 @@ public class AlexxWork2 extends JFrame {
 	
 	private String latitudeDirection;
 	private String longitudeDirection;
-	private Boolean starNamesCB;
-	private Boolean constellationsCB;
-	private Boolean planetsCB;
-	private Boolean messierCB;
+	public static Boolean starNamesCB;
+	public Boolean constellationsCB;
+	public Boolean planetsCB;
+	public Boolean messierCB;
 	
 	public static ArrayList<SpaceObj> spaceObjList;
 	
@@ -176,16 +176,17 @@ public class AlexxWork2 extends JFrame {
 		//ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\waiting.jpg");
 		//scrollPane_1.setViewportView(new JLabel(ii));
 		spaceObjList = SkyMap_Formulae_J.getSpace(String.valueOf((int)2019), String.valueOf((int)11), 
-				String.valueOf((int)6), String.valueOf((int)17), 
-				String.valueOf((int)30), String.valueOf(0), 
-				String.valueOf((int)41), String.valueOf((int)-74));
+				String.valueOf((int)23), String.valueOf((int)13), 
+				String.valueOf((int)05), String.valueOf(0), 
+				String.valueOf((int)37), String.valueOf((int)-114));
 		System.out.println("2222222222222222222222222222\n");
     	System.out.println(spaceObjList.size()+"\2222222222222222222222222222\n");
     	
-		drawing = new DrawingSky();
 		
+	}
+	public void drawSky() {
+		drawing = new DrawingSky();
 		screenshot = drawing.draw();
-		//drawing.draw();
 		scrollPane_1.setViewportView(new JLabel(screenshot));
 	}
 
@@ -682,14 +683,16 @@ public class AlexxWork2 extends JFrame {
 		JButton refreshButton = new JButton("Refresh SkyMap");
 		refreshButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				try {
+				//try {
 					//ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\waiting.jpg");
 					//scrollPane_1.setViewportView(new JLabel(ii));
-					getSpaceObjects();
-				} catch (ParseException e) {
+					setLabels();
+					drawSky();
+					//getSpaceObjects();
+				//} catch () {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				//	e.printStackTrace();
+				//}
 				setLabels();
 			}
 		});
@@ -700,7 +703,10 @@ public class AlexxWork2 extends JFrame {
 		applyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					checkValues();
+					//checkValues();
+					setLabels();
+					getSpaceObjects();
+					drawSky();
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
