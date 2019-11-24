@@ -24,6 +24,10 @@ import JohnWork.main.SpaceObj;
 public class DrawingSky extends Canvas {
 	
 	ArrayList<String> starLabels;
+	ArrayList<String> constLabels;
+	ArrayList<String> planetLabels;
+	ArrayList<String> mesrLabels;
+	ArrayList<Integer> hercules;
 	
 	//Checkboxes true == clicked
 	/*
@@ -55,7 +59,7 @@ public class DrawingSky extends Canvas {
     	int b = 1;
     	int c = 2;
     	int d = 3;
-    	int index = 0;
+    	int index;
     	int color;
     	g.setColor(Color.white);
     	System.out.println("----------------------\n"+(list.size()/4)+"\n-----------------------------\n");
@@ -81,66 +85,140 @@ public class DrawingSky extends Canvas {
     		c = b + 1;
     		d = c + 1;
     	}
+    	index = 0;
+    	System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~"+(constLabels.size()/3)+"~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    	for(int i = 0; i < (constLabels.size()/3); i++) {
+    		g.drawString(constLabels.get(index), Integer.valueOf(constLabels.get(index+1)), Integer.valueOf(constLabels.get(index+2)));
+    		index +=3;
+    	}
+    	index = 0;
     	for(int i = 0; i < (starLabels.size()/3); i++) {
     		g.drawString(starLabels.get(index), Integer.valueOf(starLabels.get(index+1)), Integer.valueOf(starLabels.get(index+2)));
     		index +=3;
     	}
+    	//index = 0;
+    	if(hercules.size() > 0) {
+	    	g.drawLine(hercules.get(0), hercules.get(1), hercules.get(2), hercules.get(3));
+	    	g.drawLine(hercules.get(2), hercules.get(3), hercules.get(4), hercules.get(5));
+	    	g.drawLine(hercules.get(4), hercules.get(5), hercules.get(6), hercules.get(7));
+	    	g.drawLine(hercules.get(6), hercules.get(7), hercules.get(8), hercules.get(9));
+    	}
+    	
     }
     
     public ArrayList<Integer> createList(){
     	ArrayList<Integer> test = new ArrayList<>();
     	starLabels = new ArrayList<>();
+    	constLabels = new ArrayList<>();
+    	planetLabels = new ArrayList<>();
+    	mesrLabels = new ArrayList<>();
+    	hercules = new ArrayList<>();
     	int a = 0;
     	int b = 1;
     	int c = 2;
     	int d = 3;
-    	Boolean stringFlag = true;
+    	
     	int size;
     	
-    	
-    	// java - get screen size using the Toolkit class
-    			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    			
-    			// the screen height
-    			int screenHeight = (int)screenSize.getHeight();
-
-    			// the screen width
-    			int screenWidth = (int)screenSize.getWidth();
-    	
     	for(int i = 0; i < AlexxWork2.spaceObjList.size(); i++) {
-    		stringFlag = true;
+    		if(AlexxWork2.spaceObjList.get(i).getType() == "MESR") {
+    			System.out.println(AlexxWork2.spaceObjList.get(i).getProperName());
+    			System.out.println(AlexxWork2.spaceObjList.get(i).getMagnitude());
+    			System.out.println(AlexxWork2.spaceObjList.get(i).getAltitude());
+    		}
     		if(AlexxWork2.spaceObjList.get(i).getType() == "PLAN") {
     			System.out.println(AlexxWork2.spaceObjList.get(i).getProperName());
     			System.out.println(AlexxWork2.spaceObjList.get(i).getAltitude());
     		}
-    		if(AlexxWork2.spaceObjList.get(i).getMagnitude() != null && (Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()) <= 6.0) 
+    		/*
+    		if(AlexxWork2.spaceObjList.get(i).getType() == "CONST") {
+    			System.out.println(AlexxWork2.spaceObjList.get(i).getConstName());
+    			System.out.println(AlexxWork2.spaceObjList.get(i).getMagnitude());
+    			System.out.println(AlexxWork2.spaceObjList.get(i).getAltitude());
+    		}
+    		*/
+    		if(AlexxWork2.spaceObjList.get(i).getMagnitude() != null 
+    				&& (Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()) <= 6.0) 
     				&& AlexxWork2.spaceObjList.get(i).getAltitude() > 1) {
 	    		
-    			int x = getX(2250, 2250, 1000, (int)AlexxWork2.spaceObjList.get(i).getAzimuth(), (int)AlexxWork2.spaceObjList.get(i).getAltitude());
-				int y = getY(2250, 2250, 1000, (int)AlexxWork2.spaceObjList.get(i).getAzimuth(), (int)AlexxWork2.spaceObjList.get(i).getAltitude());
+    			int x = getX(2250, 2250, 1000, 
+    					(int)AlexxWork2.spaceObjList.get(i).getAzimuth(), 
+    					(int)AlexxWork2.spaceObjList.get(i).getAltitude());
+    			
+				int y = getY(2250, 2250, 1000, 
+						(int)AlexxWork2.spaceObjList.get(i).getAzimuth(), 
+						(int)AlexxWork2.spaceObjList.get(i).getAltitude());
+				
 				if(AlexxWork2.starNamesCB) {
 					if(AlexxWork2.spaceObjList.get(i).getType() == "STAR" 
 							&& AlexxWork2.spaceObjList.get(i).getProperName() != null 
-							&& AlexxWork2.spaceObjList.get(i).getProperName() != "") {
+							&& AlexxWork2.spaceObjList.get(i).getProperName() != ""
+							&& AlexxWork2.spaceObjList.get(i).getProperName().contains("Her")) {
+						if(AlexxWork2.spaceObjList.get(i).getProperName().contains("27Bet")
+								&& AlexxWork2.spaceObjList.get(i).getProperName().contains("Her")) {
+							//System.out.println(AlexxWork2.spaceObjList.get(i).getProperName());
+							//hercules.add(AlexxWork2.spaceObjList.get(i).getProperName());
+							//hercules.sort(null);
+							hercules.add(x);
+							hercules.add(y);
+							
+						}
+						if(AlexxWork2.spaceObjList.get(i).getProperName().contains("20Gam")
+								&& AlexxWork2.spaceObjList.get(i).getProperName().contains("Her")) {
+							//System.out.println(AlexxWork2.spaceObjList.get(i).getProperName());
+							//hercules.add(AlexxWork2.spaceObjList.get(i).getProperName());
+							//hercules.sort(null);
+							hercules.add(x);
+							hercules.add(y);
+							
+						}
+						if(AlexxWork2.spaceObjList.get(i).getProperName().contains("7Kap")
+								&& AlexxWork2.spaceObjList.get(i).getProperName().contains("Her")) {
+							//System.out.println(AlexxWork2.spaceObjList.get(i).getProperName());
+							//hercules.add(AlexxWork2.spaceObjList.get(i).getProperName());
+							//hercules.sort(null);
+							hercules.add(x);
+							hercules.add(y);
+							
+						}
+						if(AlexxWork2.spaceObjList.get(i).getProperName().contains("Del")
+								&& AlexxWork2.spaceObjList.get(i).getProperName().contains("Her")) {
+							//System.out.println(AlexxWork2.spaceObjList.get(i).getProperName());
+							//hercules.add(AlexxWork2.spaceObjList.get(i).getProperName());
+							//hercules.sort(null);
+							hercules.add(x);
+							hercules.add(y);
+							
+						}
+						if(AlexxWork2.spaceObjList.get(i).getProperName().contains("Lam")
+								&& AlexxWork2.spaceObjList.get(i).getProperName().contains("Her")) {
+							//System.out.println(AlexxWork2.spaceObjList.get(i).getProperName());
+							//hercules.add(AlexxWork2.spaceObjList.get(i).getProperName());
+							//hercules.sort(null);
+							hercules.add(x);
+							hercules.add(y);
+							
+						}
+						
 						try {
 							int testInt = Integer.parseInt(AlexxWork2.spaceObjList.get(i).getProperName());
 							} catch (NumberFormatException | NullPointerException nfe) {
-								
 								if(!(Character.isDigit(AlexxWork2.spaceObjList.get(i).getProperName().charAt(0)))
-										&& Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()) <= 2.0) {
-									//System.out.println(AlexxWork2.spaceObjList.get(i).getProperName());
+										&& Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()) <= 6.0) {
 									starLabels.add(AlexxWork2.spaceObjList.get(i).getProperName());
 									starLabels.add(String.valueOf(x));
 									starLabels.add(String.valueOf(y));
 								}
 								
 							}
+						
 					}
 				}
+				
 	    		test.add(a, x);
 	    		test.add(b, y);
-	    		if(AlexxWork2.spaceObjList.get(i).getType() == "PLAN") {
-	    			size = 50;
+	    		if(AlexxWork2.spaceObjList.get(i).getType() == "MESR") {
+	    			size = 25;
 	    			System.out.println(AlexxWork2.spaceObjList.get(i).getType());
 	    		}
 	    		else {
@@ -155,7 +233,26 @@ public class DrawingSky extends Canvas {
 	    		d = c + 1;
     		}
     		
+    		if(AlexxWork2.constellationsCB) {
+				if(AlexxWork2.spaceObjList.get(i).getType() == "CONST" 
+						&& AlexxWork2.spaceObjList.get(i).getConstName() != null 
+						&& AlexxWork2.spaceObjList.get(i).getConstName() != ""
+						&& AlexxWork2.spaceObjList.get(i).getAltitude() > 1) {
+					int x = getX(2250, 2250, 1000, (int)AlexxWork2.spaceObjList.get(i).getAzimuth(), (int)AlexxWork2.spaceObjList.get(i).getAltitude());
+					int y = getY(2250, 2250, 1000, (int)AlexxWork2.spaceObjList.get(i).getAzimuth(), (int)AlexxWork2.spaceObjList.get(i).getAltitude());
+					
+					//System.out.println("X: "+ x);
+					//System.out.println("Y: "+ y);
+					
+					constLabels.add(AlexxWork2.spaceObjList.get(i).getConstName());
+					constLabels.add(String.valueOf(x));
+					constLabels.add(String.valueOf(y));
+				
+				}
+			}
+    		
     	}
+    	System.out.println(hercules);
     	return test;
     }
     
@@ -164,8 +261,6 @@ public int getX(int screenHeight, int screenWidth, int r, int z, int a) {
 	
 	//Cartesian coordinate
 	x = (int) (r * Math.sin(Math.toRadians(z)) * Math.cos(Math.toRadians(a)));
-	
-	
 	
 	//Pixel Coordinate
 	//x = (int) (Math.toRadians(x) + (screenWidth/2));
@@ -178,8 +273,7 @@ public int getY(int screenHeight, int screenWidth, int r, int z, int a) {
 	int y;
 	
 	//Cartesian coordinate
-	y = (int) (r * Math.cos(Math.toRadians(z)) * Math.cos(Math.toRadians(a)));
-			
+	y = (int) (r * Math.cos(Math.toRadians(z)) * Math.cos(Math.toRadians(a)));	
 			
 	//Pixel Coordinate
 	//y = (screenHeight/2) - (int) (Math.toDegrees(y));		
@@ -216,28 +310,7 @@ public int getSize(Double mag) {
 	
 	return size;
 }  
-  /*  
-    static 
-    public static void captureComponent(Component component) {
-    	java.awt.Rectangle rect = component.getBounds();
-    	
-    	try {
-    		String format = "jpeg";
-    		String fileName = "C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\drawing.jpeg";
-    		BufferedImage captureImage =
-    	    new BufferedImage(rect.width, rect.height,
-    	    		BufferedImage.TYPE_INT_ARGB);
-    		component.paint(captureImage.getGraphics());
-    	
-    		ImageIO.write(captureImage, format, new File(fileName));
-    	
-    		System.out.printf("The screenshot of %s was saved!", component.getName());
-    		} catch (IOException ex) {
-    			System.err.println(ex);
-    	    }
-    }
-    */
-    
+
     public ImageIcon takeSnapShot(Component panel){
 	       BufferedImage bufImage = new BufferedImage(panel.getSize().width, panel.getSize().height,BufferedImage.TYPE_INT_RGB);
 	       System.out.println(panel.getSize().width+" "+panel.getSize().height);
@@ -255,6 +328,7 @@ public int getSize(Double mag) {
 	    } 
 	    return imageIcon;
 	}
+    
     public static int getRandom(int min, int max){
         int x = (int) ((Math.random()*((max-min)+1))+min);
         return x;

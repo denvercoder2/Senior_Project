@@ -89,9 +89,9 @@ public class AlexxWork2 extends JFrame {
 	private String latitudeDirection;
 	private String longitudeDirection;
 	public static Boolean starNamesCB;
-	public Boolean constellationsCB;
-	public Boolean planetsCB;
-	public Boolean messierCB;
+	public static Boolean constellationsCB;
+	public static Boolean planetsCB;
+	public static Boolean messierCB;
 	
 	public static ArrayList<SpaceObj> spaceObjList;
 	
