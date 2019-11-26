@@ -29,7 +29,9 @@ public class DrawingSky extends Canvas {
 	ArrayList<String> mesrLabels;
 	int[] hercules = new int[44];
 	ArrayList<String> herculesNames;
-	ArrayList<Integer> herculesLocations;
+	int[] ursaMinor = new int[16];
+	ArrayList<String> ursaMinorNames;
+	
 	
 	
 	ArrayList<String> constNames;
@@ -62,21 +64,6 @@ public class DrawingSky extends Canvas {
     	g.setColor(Color.white);
     	System.out.println("----------------------\n"+(list.size()/4)+"\n-----------------------------\n");
     	for(int i = 0; i < (list.size()/4); i++) {
-    		/*color = getRandom(1,4);
-    		if(color == 1) {
-    			g.setColor(Color.white);
-    		}
-    		else if(color == 2) {
-    			g.setColor(Color.red);
-    		}
-    		else if(color == 3) {
-    			g.setColor(Color.blue);
-    		}
-    		else if(color == 4) {
-    			g.setColor(Color.green);
-    		}
-    		*/
-    		
     		g.fillOval(list.get(a), list.get(b), list.get(c), list.get(d));
     		a = d + 1;
     		b = a + 1;
@@ -84,7 +71,6 @@ public class DrawingSky extends Canvas {
     		d = c + 1;
     	}
     	index = 0;
-    	System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~"+(constLabels.size()/3)+"~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     	for(int i = 0; i < (constLabels.size()/3); i++) {
     		g.drawString(constLabels.get(index), Integer.valueOf(constLabels.get(index+1)), Integer.valueOf(constLabels.get(index+2)));
     		index +=3;
@@ -94,16 +80,47 @@ public class DrawingSky extends Canvas {
     		g.drawString(starLabels.get(index), Integer.valueOf(starLabels.get(index+1)), Integer.valueOf(starLabels.get(index+2)));
     		index +=3;
     	}
-    	for(int i = 0; i < 44; i++) {
-    		System.out.println(i+" : " +hercules[i]);
+    	
+    	g.drawLine(ursaMinor[0], ursaMinor[1], ursaMinor[2], ursaMinor[3]);
+    	g.drawLine(ursaMinor[2], ursaMinor[3], ursaMinor[4], ursaMinor[5]);
+    	g.drawLine(ursaMinor[4], ursaMinor[5], ursaMinor[6], ursaMinor[7]);
+    	g.drawLine(ursaMinor[6], ursaMinor[7], ursaMinor[8], ursaMinor[9]);
+    	g.drawLine(ursaMinor[8], ursaMinor[9], ursaMinor[10], ursaMinor[11]);
+    	g.drawLine(ursaMinor[10], ursaMinor[11], ursaMinor[12], ursaMinor[13]);
+    	g.drawLine(ursaMinor[12], ursaMinor[13], ursaMinor[14], ursaMinor[15]);
+    	g.drawLine(ursaMinor[14], ursaMinor[15], ursaMinor[6], ursaMinor[7]);
+    	
+    	
+    	if(checkHercules()) {
+	    	g.drawLine(hercules[0], hercules[1], hercules[2], hercules[3]);
+	    	g.drawLine(hercules[0], hercules[1], hercules[10], hercules[11]);
+	    	g.drawLine(hercules[2], hercules[3], hercules[10], hercules[11]);
+	    	g.drawLine(hercules[2], hercules[3], hercules[4], hercules[5]);
+	    	g.drawLine(hercules[4], hercules[5], hercules[8], hercules[9]);
+	    	g.drawLine(hercules[8], hercules[9], hercules[6], hercules[7]);
+	    	g.drawLine(hercules[10], hercules[11], hercules[12], hercules[13]);
+	    	g.drawLine(hercules[12], hercules[13], hercules[14], hercules[15]);
+	    	g.drawLine(hercules[14], hercules[15], hercules[22], hercules[23]);
+	    	g.drawLine(hercules[22], hercules[23], hercules[18], hercules[19]);
+	    	g.drawLine(hercules[18], hercules[19], hercules[20], hercules[21]);
+	    	g.drawLine(hercules[2], hercules[3], hercules[16], hercules[17]);
+	    	g.drawLine(hercules[10], hercules[11], hercules[24], hercules[25]);
+	    	g.drawLine(hercules[16], hercules[17], hercules[34], hercules[35]);
+	    	g.drawLine(hercules[24], hercules[25], hercules[26], hercules[27]);
+	    	g.drawLine(hercules[16], hercules[17], hercules[24], hercules[25]);
+	    	g.drawLine(hercules[34], hercules[35], hercules[26], hercules[27]);
+	    	g.drawLine(hercules[34], hercules[35], hercules[36], hercules[37]);
+	    	g.drawLine(hercules[36], hercules[37], hercules[38], hercules[39]);
+	    	g.drawLine(hercules[38], hercules[39], hercules[40], hercules[41]);
+	    	g.drawLine(hercules[40], hercules[41], hercules[42], hercules[43]);
+	    	g.drawLine(hercules[26], hercules[27], hercules[28], hercules[29]);
+	    	g.drawLine(hercules[28], hercules[29], hercules[30], hercules[31]);
+	    	g.drawLine(hercules[30], hercules[31], hercules[32], hercules[33]);
     	}
-    	//g.drawLine(herculesLocations.get(0), herculesLocations.get(1), herculesLocations.get(2), herculesLocations.get(3));
-    	g.drawLine(hercules[0], hercules[1], hercules[2], hercules[3]);
-    	g.drawLine(hercules[0], hercules[1], hercules[10], hercules[11]);
-    	g.drawLine(hercules[2], hercules[3], hercules[10], hercules[11]);
-    	g.drawLine(hercules[2], hercules[3], hercules[4], hercules[5]);
-    	g.drawLine(hercules[4], hercules[5], hercules[8], hercules[9]);
-    	g.drawLine(hercules[8], hercules[9], hercules[6], hercules[7]);
+    	
+    	
+    	
+    	
     }
     
     public ArrayList<Integer> createList(){
@@ -112,7 +129,7 @@ public class DrawingSky extends Canvas {
     	constLabels = new ArrayList<>();
     	planetLabels = new ArrayList<>();
     	mesrLabels = new ArrayList<>();
-    	herculesLocations = new ArrayList<>();
+    	
     	
     	int a = 0;
     	int b = 1;
@@ -155,151 +172,43 @@ public class DrawingSky extends Canvas {
 						(int)AlexxWork2.spaceObjList.get(i).getAzimuth(), 
 						(int)AlexxWork2.spaceObjList.get(i).getAltitude());
 				
-				if(AlexxWork2.starNamesCB) {
-					if(AlexxWork2.spaceObjList.get(i).getType() == "STAR" 
-							&& AlexxWork2.spaceObjList.get(i).getProperName() != null 
-							&& AlexxWork2.spaceObjList.get(i).getProperName() != "") {
-					
-						if(herculesNames.contains(AlexxWork2.spaceObjList.get(i).getProperName())) {
-							String name = AlexxWork2.spaceObjList.get(i).getProperName();
-							//System.out.println("Hercules Contains: "+AlexxWork2.spaceObjList.get(i).getProperName());
-							//loadHerculesLocation(name, x, y);
-					    	System.out.println("Name:"+ name);
-					    	System.out.println("X: "+ x);
-					    	System.out.println("Y: "+ y);
-					    	if(name.contains("Rasalgethi")) {
-					    		hercules[0] = x;
-					    		hercules[1] = y;
-					    		System.out.println("-----------X: "+ hercules[0]);
-						    	System.out.println("-----------Y: "+ hercules[1]);
-					    		
-					    	}
-					    	if(name.contains(" 27Bet Her")) {
-					    		hercules[2] = x;
-					    		hercules[3] = y;
-					    		
-					    	}
-					    	if(name.contains(" 20Gam Her")) {
-					    		hercules[4] = x;
-					    		hercules[5] = y;
-					    		
-					    	}
-					    	if(name.contains(" 24Ome Her")) {
-					    		hercules[6] = x;
-					    		hercules[7] = y;
-					    		
-					    	}
-					    	if(name.contains("  7Kap Her")) {
-					    		hercules[8] = x;
-					    		hercules[9] = y;
-					    		
-					    	}
-					    	if(name.contains(" 65Del Her")) {
-					    		hercules[10] = x;
-					    		hercules[11] = y;
-					    		
-					    	}
-					    	if(name.contains(" 76Lam Her")) {
-					    		hercules[12] = x;
-					    		hercules[13] = y;
-					    		
-					    	}
-					    	if(name.contains(" 86Mu  Her")) {
-					    		hercules[14] = x;
-					    		hercules[15] = y;
-					    		
-					    	}
-					    	if(name.contains(" 40Zet Her")) {
-					    		hercules[16] = x;
-					    		hercules[17] = y;
-					    		
-					    	}
-					    	if(name.contains("103Omi Her")) {
-					    		hercules[18] = x;
-					    		hercules[19] = y;
-					    		
-					    	}
-					    	if(name.contains("102    Her")) {
-					    		hercules[20] = x;
-					    		hercules[21] = y;
-					    		
-					    	}
-					    	if(name.contains(" 92Xi  Her")) {
-					    		hercules[22] = x;
-					    		hercules[23] = y;
-					    		
-					    	}
-					    	if(name.contains(" 58Eps Her")) {
-					    		hercules[24] = x;
-					    		hercules[25] = y;
-					    		
-					    	}
-					    	if(name.contains(" 67Pi  Her")) {
-					    		hercules[26] = x;
-					    		hercules[27] = y;
-					    		
-					    	}
-					    	if(name.contains(" 75Rho Her")) {
-					    		hercules[28] = x;
-					    		hercules[29] = y;
-					    		
-					    	}
-					    	if(name.contains(" 91The Her")) {
-					    		hercules[30] = x;
-					    		hercules[31] = y;
-					    		
-					    	}
-					    	if(name.contains(" 85Iot Her")) {
-					    		hercules[32] = x;
-					    		hercules[33] = y;
-					    		
-					    	}
-					    	if(name.contains(" 44Eta Her")) {
-					    		hercules[34] = x;
-					    		hercules[35] = y;
-					    		
-					    	}
-					    	if(name.contains(" 35Sig Her")) {
-					    		hercules[36] = x;
-					    		hercules[37] = y;
-					    		
-					    	}
-					    	if(name.contains(" 22Tau Her")) {
-					    		hercules[38] = x;
-					    		hercules[39] = y;
-					    		
-					    	}
-					    	if(name.contains(" 11Phi Her")) {
-					    		hercules[40] = x;
-					    		hercules[41] = y;
-					    		
-					    	}
-					    	if(name.contains("  1Chi Her")) {
-					    		hercules[42] = x;
-					    		hercules[43] = y;
-					    		
-					    	}
-							
-						}
-						
-							
-							
-							
-							try {
-								int testInt = Integer.parseInt(AlexxWork2.spaceObjList.get(i).getProperName());
-								} catch (NumberFormatException | NullPointerException nfe) {
-									starLabels.add(AlexxWork2.spaceObjList.get(i).getProperName());
-									starLabels.add(String.valueOf(x));
-									starLabels.add(String.valueOf(y));
-						
-								}
+				
+				if(AlexxWork2.spaceObjList.get(i).getType() == "STAR" 
+						&& AlexxWork2.spaceObjList.get(i).getProperName() != null 
+						&& AlexxWork2.spaceObjList.get(i).getProperName() != "") {
+					if(AlexxWork2.spaceObjList.get(i).getProperName().contains(" UMi")) {
+						System.out.println("Ursa Minor: " +AlexxWork2.spaceObjList.get(i).getProperName());
 					}
+					if(AlexxWork2.starNamesCB 
+							&& Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()) <= 3.0) {
+						try {
+							int testInt = Integer.parseInt(AlexxWork2.spaceObjList.get(i).getProperName());
+							} catch (NumberFormatException | NullPointerException nfe) {
+								starLabels.add(AlexxWork2.spaceObjList.get(i).getProperName());
+								starLabels.add(String.valueOf(x));
+								starLabels.add(String.valueOf(y));
+							}
+					}
+					
+					if(herculesNames.contains(AlexxWork2.spaceObjList.get(i).getProperName())) {
+						String name = AlexxWork2.spaceObjList.get(i).getProperName();
+						//System.out.println("Hercules Contains: "+AlexxWork2.spaceObjList.get(i).getProperName());
+						loadHerculesLocation(name, x, y);
+				    	//System.out.println("Name:"+ name);
+				    	//System.out.println("X: "+ x);
+				    	//System.out.println("Y: "+ y);	
+					}
+					if(ursaMinorNames.contains(AlexxWork2.spaceObjList.get(i).getProperName())) {
+						String name = AlexxWork2.spaceObjList.get(i).getProperName();
+						loadUrsaMinorLocation(name, x, y);
+					}
+						
 				}				
 	    		test.add(a, x);
 	    		test.add(b, y);
 	    		if(AlexxWork2.spaceObjList.get(i).getType() == "MESR") {
 	    			size = 25;
-	    			System.out.println(AlexxWork2.spaceObjList.get(i).getType());
+	    			//System.out.println(AlexxWork2.spaceObjList.get(i).getType());
 	    		}
 	    		else {
 	    			size = getSize(Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()));
@@ -317,7 +226,7 @@ public class DrawingSky extends Canvas {
 				if(AlexxWork2.spaceObjList.get(i).getType() == "CONST" 
 						&& AlexxWork2.spaceObjList.get(i).getConstName() != null 
 						&& AlexxWork2.spaceObjList.get(i).getConstName() != ""
-						&& AlexxWork2.spaceObjList.get(i).getAltitude() > 1) {
+						&& AlexxWork2.spaceObjList.get(i).getAltitude() > 0) {
 					int x = getX(2250, 2250, 1000, (int)AlexxWork2.spaceObjList.get(i).getAzimuth(), (int)AlexxWork2.spaceObjList.get(i).getAltitude());
 					int y = getY(2250, 2250, 1000, (int)AlexxWork2.spaceObjList.get(i).getAzimuth(), (int)AlexxWork2.spaceObjList.get(i).getAltitude());
 					
@@ -332,10 +241,7 @@ public class DrawingSky extends Canvas {
 			}
     		
     	}
-    	for(int i = 0; i < 44; i++) {
-    		System.out.println("In Create List: "+hercules[i]);
-    		herculesLocations.add(hercules[i]);
-    	}
+    	
     	//System.out.println(herculesNames);
     	return test;
     }
@@ -413,117 +319,153 @@ public class DrawingSky extends Canvas {
 	    return imageIcon;
 	}
     
-   
+    public void loadUrsaMinorLocation(String name, int x, int y) {
+    	if(name.contains("Polaris")) {
+    		ursaMinor[0] = x;
+    		ursaMinor[1] = y;
+    	}
+    	if(name.contains(" 23Del UMi")) {
+    		ursaMinor[2] = x;
+    		ursaMinor[3] = y;
+    	}
+    	if(name.contains(" 22Eps UMi")) {
+    		ursaMinor[4] = x;
+    		ursaMinor[5] = y;
+    	}
+    	if(name.contains(" 16Zet UMi")) {
+    		ursaMinor[6] = x;
+    		ursaMinor[7] = y;
+    	}
+    	if(name.contains(" 15The UMi")) {
+    		ursaMinor[8] = x;
+    		ursaMinor[9] = y;
+    	}
+    	if(name.contains("Kochab")) {
+    		ursaMinor[10] = x;
+    		ursaMinor[11] = y;
+    	}
+    	if(name.contains(" 13Gam UMi")) {
+    		ursaMinor[12] = x;
+    		ursaMinor[13] = y;
+    	}
+    	if(name.contains(" 21Eta UMi")) {
+    		ursaMinor[14] = x;
+    		ursaMinor[15] = y;
+    	}
+    }
+    
     public void loadHerculesLocation(String name, int x, int y) {
-    	System.out.println("Name: "+ name);
-    	System.out.println("X: "+ x);
-    	System.out.println("Y: "+ y);
-    	if(name == "Rasalgethi") {
+    	//System.out.println("Name: "+ name);
+    	//System.out.println("X: "+ x);
+    	//System.out.println("Y: "+ y);
+    	if(name.contains("Rasalgethi")) {
     		hercules[0] = x;
     		hercules[1] = y;
+    		//System.out.println("-----------X: "+ hercules[0]);
+	    	//System.out.println("-----------Y: "+ hercules[1]);
     		
     	}
-    	if(name == " 27Bet Her") {
+    	if(name.contains(" 27Bet Her")) {
     		hercules[2] = x;
     		hercules[3] = y;
     		
     	}
-    	if(name == " 20Gam Her") {
+    	if(name.contains(" 20Gam Her")) {
     		hercules[4] = x;
     		hercules[5] = y;
     		
     	}
-    	if(name == " 24Ome Her") {
+    	if(name.contains(" 24Ome Her")) {
     		hercules[6] = x;
     		hercules[7] = y;
     		
     	}
-    	if(name == "  7Kap Her") {
+    	if(name.contains("  7Kap Her")) {
     		hercules[8] = x;
     		hercules[9] = y;
     		
     	}
-    	if(name == " 65Del Her") {
+    	if(name.contains(" 65Del Her")) {
     		hercules[10] = x;
     		hercules[11] = y;
     		
     	}
-    	if(name == " 76Lam Her") {
+    	if(name.contains(" 76Lam Her")) {
     		hercules[12] = x;
     		hercules[13] = y;
     		
     	}
-    	if(name == " 86Mu  Her") {
+    	if(name.contains(" 86Mu  Her")) {
     		hercules[14] = x;
     		hercules[15] = y;
     		
     	}
-    	if(name == " 40Zet Her") {
+    	if(name.contains(" 40Zet Her")) {
     		hercules[16] = x;
     		hercules[17] = y;
     		
     	}
-    	if(name == "103Omi Her") {
+    	if(name.contains("103Omi Her")) {
     		hercules[18] = x;
     		hercules[19] = y;
     		
     	}
-    	if(name == "102    Her") {
+    	if(name.contains("102    Her")) {
     		hercules[20] = x;
     		hercules[21] = y;
     		
     	}
-    	if(name == " 92Xi  Her") {
+    	if(name.contains(" 92Xi  Her")) {
     		hercules[22] = x;
     		hercules[23] = y;
     		
     	}
-    	if(name == " 58Eps Her") {
+    	if(name.contains(" 58Eps Her")) {
     		hercules[24] = x;
     		hercules[25] = y;
     		
     	}
-    	if(name == " 67Pi  Her") {
+    	if(name.contains(" 67Pi  Her")) {
     		hercules[26] = x;
     		hercules[27] = y;
     		
     	}
-    	if(name == " 75Rho Her") {
+    	if(name.contains(" 75Rho Her")) {
     		hercules[28] = x;
     		hercules[29] = y;
     		
     	}
-    	if(name == " 91The Her") {
+    	if(name.contains(" 91The Her")) {
     		hercules[30] = x;
     		hercules[31] = y;
     		
     	}
-    	if(name == " 85Iot Her") {
+    	if(name.contains(" 85Iot Her")) {
     		hercules[32] = x;
     		hercules[33] = y;
     		
     	}
-    	if(name == " 44Eta Her") {
+    	if(name.contains(" 44Eta Her")) {
     		hercules[34] = x;
     		hercules[35] = y;
     		
     	}
-    	if(name == " 35Sig Her") {
+    	if(name.contains(" 35Sig Her")) {
     		hercules[36] = x;
     		hercules[37] = y;
     		
     	}
-    	if(name == " 22Tau Her") {
+    	if(name.contains(" 22Tau Her")) {
     		hercules[38] = x;
     		hercules[39] = y;
     		
     	}
-    	if(name == " 11Phi Her") {
+    	if(name.contains(" 11Phi Her")) {
     		hercules[40] = x;
     		hercules[41] = y;
     		
     	}
-    	if(name == "  1Chi Her") {
+    	if(name.contains("  1Chi Her")) {
     		hercules[42] = x;
     		hercules[43] = y;
     		
@@ -533,7 +475,18 @@ public class DrawingSky extends Canvas {
     
     public void loadConstNames() {
     	loadHerculesNames();
- 
+    	loadUrsaMinorNames();
+    }
+    public void loadUrsaMinorNames() {
+    	ursaMinorNames = new ArrayList<>();
+    	ursaMinorNames.add("Polaris");
+    	ursaMinorNames.add(" 23Del UMi");
+    	ursaMinorNames.add(" 22Eps UMi");
+    	ursaMinorNames.add(" 16Zet UMi");
+    	ursaMinorNames.add(" 15The UMi");
+    	ursaMinorNames.add("Kochab");
+    	ursaMinorNames.add(" 13Gam UMi");
+    	ursaMinorNames.add(" 21Eta UMi");
     }
     public void loadHerculesNames() {
     	
@@ -562,6 +515,16 @@ public class DrawingSky extends Canvas {
     	herculesNames.add("  1Chi Her");	
     }
   
+    public Boolean checkHercules() {
+    	Boolean flag = true;
+    	for(int i = 0; i < 44; i++) {
+    		if(hercules[i] == 0) {
+    			flag = false;
+    		}
+    	}
+    	return flag;
+    }
+    
     public static int getRandom(int min, int max){
         int x = (int) ((Math.random()*((max-min)+1))+min);
         return x;
