@@ -190,7 +190,7 @@ public class DrawingSky extends Canvas {
 						&& AlexxWork2.spaceObjList.get(i).getProperName() != "") {
 					
 					if(AlexxWork2.starNamesCB 
-							&& Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()) <= 6.0) {
+							&& Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()) <= 3.0) {
 						try {
 							int testInt = Integer.parseInt(AlexxWork2.spaceObjList.get(i).getProperName());
 							} catch (NumberFormatException | NullPointerException nfe) {
