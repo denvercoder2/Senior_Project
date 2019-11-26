@@ -31,6 +31,8 @@ public class DrawingSky extends Canvas {
 	ArrayList<String> herculesNames;
 	int[] ursaMinor = new int[16];
 	ArrayList<String> ursaMinorNames;
+	int[] ursaMajor = new int[16];
+	ArrayList<String> ursaMajorNames;
 	
 	
 	
@@ -80,17 +82,26 @@ public class DrawingSky extends Canvas {
     		g.drawString(starLabels.get(index), Integer.valueOf(starLabels.get(index+1)), Integer.valueOf(starLabels.get(index+2)));
     		index +=3;
     	}
-    	
-    	g.drawLine(ursaMinor[0], ursaMinor[1], ursaMinor[2], ursaMinor[3]);
-    	g.drawLine(ursaMinor[2], ursaMinor[3], ursaMinor[4], ursaMinor[5]);
-    	g.drawLine(ursaMinor[4], ursaMinor[5], ursaMinor[6], ursaMinor[7]);
-    	g.drawLine(ursaMinor[6], ursaMinor[7], ursaMinor[8], ursaMinor[9]);
-    	g.drawLine(ursaMinor[8], ursaMinor[9], ursaMinor[10], ursaMinor[11]);
-    	g.drawLine(ursaMinor[10], ursaMinor[11], ursaMinor[12], ursaMinor[13]);
-    	g.drawLine(ursaMinor[12], ursaMinor[13], ursaMinor[14], ursaMinor[15]);
-    	g.drawLine(ursaMinor[14], ursaMinor[15], ursaMinor[6], ursaMinor[7]);
-    	
-    	
+    	if(checkUrsaMajor()) {
+    		g.drawLine(ursaMajor[0], ursaMajor[1], ursaMajor[2], ursaMajor[3]);
+        	g.drawLine(ursaMajor[2], ursaMajor[3], ursaMajor[4], ursaMajor[5]);
+        	g.drawLine(ursaMajor[4], ursaMajor[5], ursaMajor[6], ursaMajor[7]);
+        	g.drawLine(ursaMajor[6], ursaMajor[7], ursaMajor[8], ursaMajor[9]);
+        	g.drawLine(ursaMajor[8], ursaMajor[9], ursaMajor[10], ursaMajor[11]);
+        	g.drawLine(ursaMajor[10], ursaMajor[11], ursaMajor[12], ursaMajor[13]);
+        	g.drawLine(ursaMajor[12], ursaMajor[13], ursaMajor[14], ursaMajor[15]);
+        	g.drawLine(ursaMajor[14], ursaMajor[15], ursaMajor[8], ursaMajor[9]);
+    	}
+    	if(checkUrsaMinor()) {
+    		g.drawLine(ursaMinor[0], ursaMinor[1], ursaMinor[2], ursaMinor[3]);
+        	g.drawLine(ursaMinor[2], ursaMinor[3], ursaMinor[4], ursaMinor[5]);
+        	g.drawLine(ursaMinor[4], ursaMinor[5], ursaMinor[6], ursaMinor[7]);
+        	g.drawLine(ursaMinor[6], ursaMinor[7], ursaMinor[8], ursaMinor[9]);
+        	g.drawLine(ursaMinor[8], ursaMinor[9], ursaMinor[10], ursaMinor[11]);
+        	g.drawLine(ursaMinor[10], ursaMinor[11], ursaMinor[12], ursaMinor[13]);
+        	g.drawLine(ursaMinor[12], ursaMinor[13], ursaMinor[14], ursaMinor[15]);
+        	g.drawLine(ursaMinor[14], ursaMinor[15], ursaMinor[6], ursaMinor[7]);
+    	}
     	if(checkHercules()) {
 	    	g.drawLine(hercules[0], hercules[1], hercules[2], hercules[3]);
 	    	g.drawLine(hercules[0], hercules[1], hercules[10], hercules[11]);
@@ -149,11 +160,12 @@ public class DrawingSky extends Canvas {
     			System.out.println(AlexxWork2.spaceObjList.get(i).getMagnitude());
     			System.out.println(AlexxWork2.spaceObjList.get(i).getAltitude());
     		}
+    		*/
     		if(AlexxWork2.spaceObjList.get(i).getType() == "PLAN") {
     			System.out.println(AlexxWork2.spaceObjList.get(i).getProperName());
     			System.out.println(AlexxWork2.spaceObjList.get(i).getAltitude());
     		}
-    		
+    		/*
     		if(AlexxWork2.spaceObjList.get(i).getType() == "CONST") {
     			System.out.println(AlexxWork2.spaceObjList.get(i).getConstName());
     			System.out.println(AlexxWork2.spaceObjList.get(i).getMagnitude());
@@ -176,11 +188,9 @@ public class DrawingSky extends Canvas {
 				if(AlexxWork2.spaceObjList.get(i).getType() == "STAR" 
 						&& AlexxWork2.spaceObjList.get(i).getProperName() != null 
 						&& AlexxWork2.spaceObjList.get(i).getProperName() != "") {
-					if(AlexxWork2.spaceObjList.get(i).getProperName().contains(" UMi")) {
-						System.out.println("Ursa Minor: " +AlexxWork2.spaceObjList.get(i).getProperName());
-					}
+					
 					if(AlexxWork2.starNamesCB 
-							&& Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()) <= 3.0) {
+							&& Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()) <= 6.0) {
 						try {
 							int testInt = Integer.parseInt(AlexxWork2.spaceObjList.get(i).getProperName());
 							} catch (NumberFormatException | NullPointerException nfe) {
@@ -192,15 +202,15 @@ public class DrawingSky extends Canvas {
 					
 					if(herculesNames.contains(AlexxWork2.spaceObjList.get(i).getProperName())) {
 						String name = AlexxWork2.spaceObjList.get(i).getProperName();
-						//System.out.println("Hercules Contains: "+AlexxWork2.spaceObjList.get(i).getProperName());
 						loadHerculesLocation(name, x, y);
-				    	//System.out.println("Name:"+ name);
-				    	//System.out.println("X: "+ x);
-				    	//System.out.println("Y: "+ y);	
 					}
 					if(ursaMinorNames.contains(AlexxWork2.spaceObjList.get(i).getProperName())) {
 						String name = AlexxWork2.spaceObjList.get(i).getProperName();
 						loadUrsaMinorLocation(name, x, y);
+					}
+					if(ursaMajorNames.contains(AlexxWork2.spaceObjList.get(i).getProperName())) {
+						String name = AlexxWork2.spaceObjList.get(i).getProperName();
+						loadUrsaMajorLocation(name, x, y);
 					}
 						
 				}				
@@ -354,6 +364,56 @@ public class DrawingSky extends Canvas {
     	}
     }
     
+    public void loadUrsaMajorLocation(String name, int x, int y) {
+    	if(name.contains("Alkaid")) {
+    		ursaMajor[0] = x;
+    		ursaMajor[1] = y;
+    	}
+    	if(name.contains(" 80    UMa")) {
+    		ursaMajor[2] = x;
+    		ursaMajor[3] = y;
+    	}
+    	if(name.contains("Mizar")) {
+    		ursaMajor[4] = x;
+    		ursaMajor[5] = y;
+    	}
+    	if(name.contains("Alioth")) {
+    		ursaMajor[6] = x;
+    		ursaMajor[7] = y;
+    	}
+    	if(name.contains(" 69Del UMa")) {
+    		ursaMajor[8] = x;
+    		ursaMajor[9] = y;
+    	}
+    	if(name.contains("Phad")) {
+    		ursaMajor[10] = x;
+    		ursaMajor[11] = y;
+    	}
+    	if(name.contains("Merak")) {
+    		ursaMajor[12] = x;
+    		ursaMajor[13] = y;
+    	}
+    	if(name.contains("Dubhe")) {
+    		ursaMajor[14] = x;
+    		ursaMajor[15] = y;
+    	}
+    	
+    }
+    
+    public void loadUrsaMajorNames() {
+    	ursaMajorNames = new ArrayList<>();
+    	ursaMajorNames.add("Alkaid");
+    	ursaMajorNames.add(" 80    UMa");
+    	ursaMajorNames.add("Mizar");
+    	ursaMajorNames.add("Alioth");
+    	ursaMajorNames.add(" 69Del UMa");
+    	ursaMajorNames.add("Phad");
+    	ursaMajorNames.add("Merak");
+    	ursaMajorNames.add("Dubhe");
+    	
+    }
+    
+    
     public void loadHerculesLocation(String name, int x, int y) {
     	//System.out.println("Name: "+ name);
     	//System.out.println("X: "+ x);
@@ -476,6 +536,7 @@ public class DrawingSky extends Canvas {
     public void loadConstNames() {
     	loadHerculesNames();
     	loadUrsaMinorNames();
+    	loadUrsaMajorNames();
     }
     public void loadUrsaMinorNames() {
     	ursaMinorNames = new ArrayList<>();
@@ -519,6 +580,24 @@ public class DrawingSky extends Canvas {
     	Boolean flag = true;
     	for(int i = 0; i < 44; i++) {
     		if(hercules[i] == 0) {
+    			flag = false;
+    		}
+    	}
+    	return flag;
+    }
+    public Boolean checkUrsaMinor() {
+    	Boolean flag = true;
+    	for(int i = 0; i < 16; i++) {
+    		if(ursaMinor[i] == 0) {
+    			flag = false;
+    		}
+    	}
+    	return flag;
+    }
+    public Boolean checkUrsaMajor() {
+    	Boolean flag = true;
+    	for(int i = 0; i < 16; i++) {
+    		if(ursaMajor[i] == 0) {
     			flag = false;
     		}
     	}
