@@ -13,6 +13,7 @@ public class Moon {
     // constructor
     public static class MoonPhase{
         private String phase;
+        private String magnitude; 
     }
 
     // // getters and setters
@@ -50,14 +51,17 @@ public class Moon {
         return dec_return;
     }
 
+
+
     /*
     Function: getPhase()
     Parameters: month, day, year (all int)
     Purpose: return an array of correctly
     formatted phase given the date and status
     */
-    public static String getPhase(int month, int day, int year){
+    public static ArrayList<String> getPhase(int month, int day, int year)throws NullPointerException, Exception{
         MoonPhase moon = new MoonPhase();
+        ArrayList<String> MoonInfoHolder = new ArrayList<>();
         String[] descriptions = {
             "New",
             "Waxing Crescent",
@@ -74,7 +78,7 @@ public class Moon {
             year = year - 1;
             month = month + 12;
         }
-            // source: http://home.hiwaay.net/~krcool/Astro/moon/moonphase/
+        //     // source: http://home.hiwaay.net/~krcool/Astro/moon/moonphase/
 
             // This is essentially a barebones JulianDay method
             int A = year/100;
@@ -83,6 +87,7 @@ public class Moon {
             int E = (int)(365.25 * (year + 4716));
             int F = (int)(30.6001 * (month + 1));
             JD =  C + day + E + F - 1524.5;
+
             System.out.printf("Julian Day %f", JD);
             
             double days_since_new = JD - 2451549.5;
@@ -92,6 +97,8 @@ public class Moon {
             String phase = null;
             boolean visable = true;
             
+
+            String mag = "3.00";
             System.out.printf("\nFor Year: %d, Month: %d, Day: %d", year, month, day);
             System.out.printf("\n=======================================\n");
 
@@ -119,6 +126,7 @@ public class Moon {
             }
             else if(days_into_cycle >= 14.80 && days_into_cycle <= 15.74){
                 phase = descriptions[4]; // Full
+                mag = "-12.74";
             }
             else if(days_into_cycle >= 15.75 && days_into_cycle <= 22.00){
                 phase = descriptions[5]; // Waning Gibbious
@@ -139,17 +147,24 @@ public class Moon {
             System.out.printf("Days into cycle: %.2f", days_into_cycle,  "\n");
 
             moon.phase = phase;
+            moon.magnitude = mag;
 
-            return phase;
+            MoonInfoHolder.add(phase);
+            MoonInfoHolder.add(mag);
+
+            return MoonInfoHolder;
     }
         
-        public static void main(String[] args) {
-            int month = 11;
-            int day = 17;
+        public static void main(String[] args) throws NullPointerException, Exception{
+            MoonPhase moon = new MoonPhase();
+            ArrayList<String> MoonInfo = new ArrayList<>();
+            int month = 12;
+            int day = 22;
             int year = 2019;
             // object phase is passed
-            String test = getPhase(month, day, year);
-            System.out.printf("\nPhase: %s", test);
+            MoonInfo = getPhase(month, day, year);
+            System.out.printf("\nPhase: %s", MoonInfo.get(0));
+            System.out.printf("\nMagnitude: %s", MoonInfo.get(1));
 
     }
 }   

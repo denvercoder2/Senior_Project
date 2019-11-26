@@ -13,7 +13,7 @@ public class MoonPoint{
         return rad * (180.00/Math.PI);
     }
 
-	public static double toJulianDay(int year, int month, int day, int hours, int minutes) throws Exception {
+	public static double toJulianDay(int year, int month, int day) throws Exception {
 		// The conversion formulas are from Meeus, chapter 7.
 		boolean julian = false; // Use Gregorian calendar
 		
@@ -31,8 +31,8 @@ public class MoonPoint{
 		int A = Y / 100;
 		int B = julian ? 0 : 2 - A + A / 4;
 
-		double dayFraction = (hours + minutes) / 24.0;
-		double jd = dayFraction + (int) (365.25D * (Y + 4716)) + (int) (30.6001 * (M + 1)) + D + B - 1524.5;
+		// double dayFraction = (hours + minutes) / 24.0;
+		double jd = (int) (365.25D * (Y + 4716)) + (int) (30.6001 * (M + 1)) + D + B - 1524.5;
 
 		if (jd < 2299160.0 && jd >= 2299150.0)
 			throw new Exception("invalid julian day " + jd + ". This date does not exist.");
