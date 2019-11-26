@@ -19,17 +19,24 @@ import ScottWork.main.Constellations;
 import ScottWork.main.MessierDeep;
 
 public class SkyMap_Formulae_J {
+	// Reading the comments for the first getSpace function will also describe the others.
+	// The other functions sole purposes are to use arguments passed in rather than automatic ones.
 	
+	// Main for internal testing.
 	public static void main(String[] args) throws ParseException {
 		ArrayList<SpaceObj> spaceObjList = getSpace();
 	}
 	
+	// This function returns a SpaceObject ArrayList in the case no arguments are sent.
 	public static ArrayList getSpace() throws ParseException {
+		// Initiates a calendar for us to go by for our own date.
 		Calendar c = Calendar.getInstance(); 
 
 		//nowDate = nowDate2;
+		// Starts timer for debug use to try to speed up runtime
 		long startTime = System.nanoTime();
 
+		// Creates a SpaceObj arraylist for the GUI
 		ArrayList<SpaceObj> spaceObjList = null;
 
 		String filename = "stars.xml";
@@ -52,7 +59,7 @@ public class SkyMap_Formulae_J {
 			e.printStackTrace();
 		}		
 		
-
+		// This creates SpaceObjs for the planets to be sent into the Jython script later for figuring their Alt and Azimuth
 		String[] planets = {"sol","mercury","venus","mars","jupiter","saturn","uranus","neptune"};
 		for (int i = 1; i < planets.length; i++) {
 			SpaceObj tempObj = new SpaceObj();
@@ -60,6 +67,8 @@ public class SkyMap_Formulae_J {
 			tempObj.setProperName(planets[i]);
 			spaceObjList.add(tempObj);
 		}	
+		
+		// This creates the SpaceObjs for the constellation locations that will be sent to the Jython script later for figuring their Alt and Azimuth
 		System.out.println(spaceObjList.size());
 		for (int i = 1; i < 31; i++) {
 			Constellations Cobj = Constellations.CreateConstArr("Constellations.xml", i);
@@ -73,11 +82,12 @@ public class SkyMap_Formulae_J {
 			spaceObjList.add(tempObj);
 		}		
 		
-		for (int i = 1; i < 111; i++) {
+		/*
+		// This creates the SpaceObjs for the Messier object locations that will be sent to the Jython script later for figuring their Alt and Azimuth
+		for (int i = 0; i < 111; i++) {
 			ArrayList<String> MessierDeepObj = MessierDeep.MDSO("MessierDeep.xml", i);
 
 			if(!MessierDeepObj.isEmpty()){
-
 				SpaceObj tempObj = new SpaceObj();
 				tempObj.setType("MESR");
 				tempObj.setProperName(MessierDeepObj.get(1));
@@ -92,18 +102,31 @@ public class SkyMap_Formulae_J {
 
 				tempObj.setRA(Double.toString(Convert2RA.ConvertRA(tempRAHour,tempRAMin)));
 				tempObj.setDec(Double.toString(Convert2RA.ConvertDec(tempDecHour,tempDecMin)));
+
+				spaceObjList.add(tempObj);
 			}
-		}
+		}*/
 		
+		System.out.println("with messier = " + spaceObjList.size());
+
 		
+		// This begins our Jython implementation.
+		// This string strictly holds the output coming from the Python script.
 		String outputStr;
+		// This string is used to send the argument to the Python script.
 		String stringArgument;
+		// This is the interpreter required to start a communication to python.
 		org.python.util.PythonInterpreter python = new org.python.util.PythonInterpreter();
 		
+		// I use this boolean during the for loop to only open connection to the solving location once.
+		// Doing it multiple times caused noticable speed increases in execution time. 
 		boolean doOnce = false;
+		
+		// This for loop sends the current SpaceObj ArrayList through the Python script to get our Altitude and Azimuth for all the objects in the ArrayList.
 		for (int k = 0; k < spaceObjList.size(); k++) {
 			//System.out.println(spaceObjList.get(k).getRA());
 			//System.out.println(spaceObjList.get(k).getDec());
+			// This special argument is used to determine use on figuring a Star or Planet's Altitude and Azimuth when sent to the Python script.
 			String argument11 = "";
 			if (spaceObjList.get(k).getProperName() == "mercury")
 				argument11 = "mercury";
@@ -123,6 +146,7 @@ public class SkyMap_Formulae_J {
 				argument11 = "sol";
 			String RAtoSend = spaceObjList.get(k).getRA();
 			String DecToSend = spaceObjList.get(k).getDec();
+			// This is done because the planets don't naturally hold a RA and Dec.
 			if (spaceObjList.get(k).getRA() == null) {
 				RAtoSend = "0";
 				DecToSend = "0"; 
@@ -139,35 +163,23 @@ public class SkyMap_Formulae_J {
 					+ ":" + c.get(Calendar.DAY_OF_MONTH)			// 9.day
 					+ ":" + "FALSE"									// 10.dst
 					+ ":" + argument11;								// 11.obj
-			String[] arguments = {"solveLocation.py", stringArgument};
+			String[] arguments = {"solveLocation.py", stringArgument}; // This prepares the arguments to be sent. Jython allows up to 4 arguments apparently, and only in the form of a string array.
+			// This is only done once, as doing it multiple times causes noticable delays.
 			if (doOnce == false) {
 				PythonInterpreter.initialize(System.getProperties(), System.getProperties(), arguments);
 				doOnce = true;
 			}
 			StringWriter out = new StringWriter();
 			python.setOut(out);
-			python.exec("from Article import solveLocation");
-			PyObject func = python.get("solveLocation");
-			func.__call__(new PyString(arguments[1]));
+			python.exec("from Article import solveLocation"); // This actually calls the Python script.
+			PyObject func = python.get("solveLocation"); // This calls the specific function in the Python script.
+			func.__call__(new PyString(arguments[1])); // This sends our argument to the Python Script.
 			outputStr = out.toString();
 			System.out.println(outputStr);
-
+			// These 2 set the outputStr items of Alt and Azimuth to the SpaceObjs.
 			spaceObjList.get(k).setAltitude(Double.parseDouble(outputStr.substring(outputStr.indexOf(',')+2,outputStr.indexOf(')'))));
 			spaceObjList.get(k).setAzimuth(Double.parseDouble(outputStr.substring(outputStr.lastIndexOf(',')+2,outputStr.lastIndexOf(')'))));
 		}
-		/*
-		System.out.println(spaceObjList.get(24).getProperName());
-		System.out.println(spaceObjList.get(24).getAltitude());
-		System.out.println(spaceObjList.get(24).getAzimuth());
-		
-		for (int i = 0; i < spaceObjList.size(); i++) {
-			if (spaceObjList.get(i).getProperName() == "uranus") {
-				System.out.println(spaceObjList.get(i).getProperName());
-				System.out.println(spaceObjList.get(i).getAltitude());
-				System.out.println(spaceObjList.get(i).getAzimuth());
-				break;
-			}
-		}*/
 		
 		long endTime = System.nanoTime();
 		long elapsedTime = endTime - startTime;
@@ -176,6 +188,7 @@ public class SkyMap_Formulae_J {
 		return spaceObjList;
 	}
 	
+	// This function returns a SpaceObject ArrayList in the case all arguments are sent except Latitude and Longitude.
 	public static ArrayList getSpace(String YEAR, String MONTH, String DAY, String HOUR, String MIN, String SEC) throws ParseException {
 		Calendar c = Calendar.getInstance(); 
 
@@ -225,6 +238,7 @@ public class SkyMap_Formulae_J {
 			spaceObjList.add(tempObj);
 		}	
 		
+		/*
 		for (int i = 1; i < 111; i++) {
 			ArrayList<String> MessierDeepObj = MessierDeep.MDSO("MessierDeep.xml", i);
 
@@ -244,8 +258,10 @@ public class SkyMap_Formulae_J {
 
 				tempObj.setRA(Double.toString(Convert2RA.ConvertRA(tempRAHour,tempRAMin)));
 				tempObj.setDec(Double.toString(Convert2RA.ConvertDec(tempDecHour,tempDecMin)));
+
+				spaceObjList.add(tempObj);
 			}
-		}
+		}*/
 		
 		String outputStr;
 		String stringArgument;
@@ -314,6 +330,7 @@ public class SkyMap_Formulae_J {
 		return spaceObjList;
 	}
 	
+	// This function returns a SpaceObject ArrayList in the case all arguments are sent.
 	public static ArrayList getSpace(String YEAR, String MONTH, String DAY, String HOUR, String MIN, String SEC, String LAT, String LONG) throws ParseException {
 		Calendar c = Calendar.getInstance(); 
 
@@ -362,6 +379,7 @@ public class SkyMap_Formulae_J {
 			spaceObjList.add(tempObj);
 		}	
 		
+		/*
 		for (int i = 1; i < 111; i++) {
 			ArrayList<String> MessierDeepObj = MessierDeep.MDSO("MessierDeep.xml", i);
 
@@ -381,8 +399,10 @@ public class SkyMap_Formulae_J {
 
 				tempObj.setRA(Double.toString(Convert2RA.ConvertRA(tempRAHour,tempRAMin)));
 				tempObj.setDec(Double.toString(Convert2RA.ConvertDec(tempDecHour,tempDecMin)));
+
+				spaceObjList.add(tempObj);
 			}
-		}
+		}*/
 		
 		String outputStr;
 		String stringArgument;
@@ -451,6 +471,7 @@ public class SkyMap_Formulae_J {
 		return spaceObjList;
 	}
 	
+	// This function returns a SpaceObject ArrayList in the case when only the Latitude and Longitude arguments are sent.
 	public static ArrayList getSpace(String LAT, String LONG) throws ParseException {
 		Calendar c = Calendar.getInstance(); 
 
@@ -498,7 +519,7 @@ public class SkyMap_Formulae_J {
 			tempObj.setDec(Cobj.getDec());
 			spaceObjList.add(tempObj);
 		}	
-		
+		/*
 		for (int i = 1; i < 111; i++) {
 			ArrayList<String> MessierDeepObj = MessierDeep.MDSO("MessierDeep.xml", i);
 
@@ -518,8 +539,10 @@ public class SkyMap_Formulae_J {
 
 				tempObj.setRA(Double.toString(Convert2RA.ConvertRA(tempRAHour,tempRAMin)));
 				tempObj.setDec(Double.toString(Convert2RA.ConvertDec(tempDecHour,tempDecMin)));
+
+				spaceObjList.add(tempObj);
 			}
-		}
+		}*/
 		
 		String outputStr;
 		String stringArgument;
