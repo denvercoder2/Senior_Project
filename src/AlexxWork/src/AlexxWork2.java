@@ -137,7 +137,9 @@ public class AlexxWork2 extends JFrame {
 			//ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\SkyMap.png");
 			//scrollPane_1.setViewportView(new JLabel(ii));
 			setLabels();
-			//getSpaceObjects();
+			getSpaceObjects();
+			drawSky();
+			
 		}
 		else {
 			JOptionPane.showMessageDialog(new JFrame(), "Please Enter Valid Inputs!", "Dialog",
@@ -146,41 +148,58 @@ public class AlexxWork2 extends JFrame {
 	}
 	
 	public void setValidInputs() {
+		
+		System.out.println(latInput);
+		System.out.println(longInput);
+		System.out.println(latitudeDirection);
+		System.out.println(longitudeDirection);
 		dayValid = dayInput;
 		yearValid = yearInput;
 		monthValid = monthInput;
 		hourValid = hourInput;
 		minuteValid = minuteInput;
-		if(longitudeDirection == "South") {
-			longValid = longInput * -1;
-		}
-		if(longitudeDirection == "North") {
+		//if(longitudeDirection.equals("South")) {
+		//	longValid = longInput * -1;
+			
+		//}
+		//if(longitudeDirection.equals("North")) {
 			longValid = longInput;
-		}
+			//System.out.println("***"+longValid);
+		//}
 		
-		if(latitudeDirection == "West") {
-			latValid = latInput * -1;
-		}
-		if(latitudeDirection == "East") {
+		//if(latitudeDirection.equals("West")) {
+			//latValid = latInput * -1;
+			//System.out.println("******"+latValid);
+		//}
+		//if(latitudeDirection.equals("East")) {
 			latValid = latInput;
-		}
+		//}
 		minValid = minInput;
+		
+		System.out.println(yearValid);
+		System.out.println(monthValid);
+		System.out.println(dayValid);
+		System.out.println(hourValid);
+		System.out.println(minuteValid);
+		System.out.println(latValid);
+		System.out.println(longValid);
+		
 	}
 	
 	public void getSpaceObjects() throws ParseException {
-		/*
+		
 		spaceObjList = SkyMap_Formulae_J.getSpace(String.valueOf((int)yearValid), String.valueOf((int)monthValid), 
 				String.valueOf((int)dayValid), String.valueOf((int)hourValid), 
 				String.valueOf((int)minuteValid), String.valueOf(0), 
-				String.valueOf((int)latValid), String.valueOf((int)longValid));*/
+				String.valueOf((int)latValid), String.valueOf((int)longValid));
 		//ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\waiting.jpg");
 		//scrollPane_1.setViewportView(new JLabel(ii));
-		spaceObjList = SkyMap_Formulae_J.getSpace(String.valueOf((int)2019), String.valueOf((int)11), 
+		/*spaceObjList = SkyMap_Formulae_J.getSpace(String.valueOf((int)2019), String.valueOf((int)11), 
 				String.valueOf((int)23), String.valueOf((int)13), 
 				String.valueOf((int)05), String.valueOf(0), 
-				String.valueOf((int)37), String.valueOf((int)-114));
-		System.out.println("2222222222222222222222222222\n");
-    	System.out.println(spaceObjList.size()+"\2222222222222222222222222222\n");
+				String.valueOf((int)37), String.valueOf((int)-114));*/
+		//System.out.println("2222222222222222222222222222\n");
+    	//System.out.println(spaceObjList.size()+"\2222222222222222222222222222\n");
     	
 		
 	}
@@ -333,7 +352,7 @@ public class AlexxWork2 extends JFrame {
 				latTextField.setBorder(new LineBorder(Color.RED, 3));
 			}
 			
-			if(latInput < 0 || latInput > 90) {
+			if(latInput < -90 || latInput > 90) {
 				latTextField.setBorder(new LineBorder(Color.RED, 3));
 			}
 			else {
@@ -358,7 +377,7 @@ public class AlexxWork2 extends JFrame {
 				longTextField.setBorder(new LineBorder(Color.RED, 3));
 			}
 			
-			if(longInput < 0 || longInput > 180) {
+			if(longInput < -180 || longInput > 180) {
 				longTextField.setBorder(new LineBorder(Color.RED, 3));
 			}
 			else {
@@ -375,15 +394,15 @@ public class AlexxWork2 extends JFrame {
 	public Boolean checkLatitudeDirection() {
 		Boolean flag = false;
 		
-		if(latitudeComboBox.getSelectedItem().toString() == " ") {
+		if(latitudeComboBox.getSelectedItem().toString().equals(" ")) {
 			latitudeComboBox.setBorder(new LineBorder(Color.RED, 3));
 		}
 		else {
-			if(latitudeComboBox.getSelectedItem().toString() == "North") {
+			if(latitudeComboBox.getSelectedItem().toString().equals("North")) {
 				latitudeDirection = "North";
 				latitudeComboBox.setBorder(new LineBorder(Color.BLACK, 1));
 			}
-			else if(latitudeComboBox.getSelectedItem().toString() == "South") {
+			else if(latitudeComboBox.getSelectedItem().toString().equals("South")) {
 				latitudeDirection = "South";
 				latitudeComboBox.setBorder(new LineBorder(Color.BLACK, 1));
 			}
@@ -660,8 +679,8 @@ public class AlexxWork2 extends JFrame {
 		btnSaveToDisk = new JButton("Save Image");
 		btnSaveToDisk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\waiting.jpg");
-				scrollPane_1.setViewportView(new JLabel(ii));
+				//ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\waiting.jpg");
+				//scrollPane_1.setViewportView(new JLabel(ii));
 				
 			}
 		});
@@ -703,10 +722,10 @@ public class AlexxWork2 extends JFrame {
 		applyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					//checkValues();
-					setLabels();
-					getSpaceObjects();
-					drawSky();
+					checkValues();
+					//setLabels();
+					//getSpaceObjects();
+					//drawSky();
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -772,7 +791,7 @@ public class AlexxWork2 extends JFrame {
 		latTextField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				if (!Character.isDigit(e.getKeyChar()) && e.getKeyChar() != '.') {
+				if (!Character.isDigit(e.getKeyChar()) && e.getKeyChar() != '.' && e.getKeyChar() != '-') {
 					e.consume();
 				}
 			}
@@ -791,7 +810,7 @@ public class AlexxWork2 extends JFrame {
 		longTextField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				if (!Character.isDigit(e.getKeyChar()) && e.getKeyChar() != '.') {
+				if (!Character.isDigit(e.getKeyChar()) && e.getKeyChar() != '.' &&  e.getKeyChar() != '-') {
 					e.consume();
 				}
 			}

@@ -33,6 +33,8 @@ public class DrawingSky extends Canvas {
 	ArrayList<String> ursaMinorNames;
 	int[] ursaMajor = new int[16];
 	ArrayList<String> ursaMajorNames;
+	int[] libra = new int[12];
+	ArrayList<String> libraNames;
 	
 	
 	
@@ -102,6 +104,16 @@ public class DrawingSky extends Canvas {
         	g.drawLine(ursaMinor[12], ursaMinor[13], ursaMinor[14], ursaMinor[15]);
         	g.drawLine(ursaMinor[14], ursaMinor[15], ursaMinor[6], ursaMinor[7]);
     	}
+    	
+    	if(checkLibra()) {
+    		g.drawLine(libra[0], libra[1], libra[2], libra[3]);
+    		g.drawLine(libra[2], libra[3], libra[4], libra[5]);
+    		g.drawLine(libra[4], libra[5], libra[6], libra[7]);
+    		g.drawLine(libra[6], libra[7], libra[8], libra[9]);
+    		g.drawLine(libra[8], libra[9], libra[10], libra[11]);
+    		g.drawLine(libra[4], libra[5], libra[8], libra[9]);
+    	}
+    	
     	if(checkHercules()) {
 	    	g.drawLine(hercules[0], hercules[1], hercules[2], hercules[3]);
 	    	g.drawLine(hercules[0], hercules[1], hercules[10], hercules[11]);
@@ -190,10 +202,11 @@ public class DrawingSky extends Canvas {
 						&& AlexxWork2.spaceObjList.get(i).getProperName() != "") {
 					
 					if(AlexxWork2.starNamesCB 
-							&& Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()) <= 3.0) {
+							&& Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()) <= 6.0) {
 						try {
 							int testInt = Integer.parseInt(AlexxWork2.spaceObjList.get(i).getProperName());
 							} catch (NumberFormatException | NullPointerException nfe) {
+								//System.out.println(AlexxWork2.spaceObjList.get(i).getProperName());
 								starLabels.add(AlexxWork2.spaceObjList.get(i).getProperName());
 								starLabels.add(String.valueOf(x));
 								starLabels.add(String.valueOf(y));
@@ -211,6 +224,10 @@ public class DrawingSky extends Canvas {
 					if(ursaMajorNames.contains(AlexxWork2.spaceObjList.get(i).getProperName())) {
 						String name = AlexxWork2.spaceObjList.get(i).getProperName();
 						loadUrsaMajorLocation(name, x, y);
+					}
+					if(libraNames.contains(AlexxWork2.spaceObjList.get(i).getProperName())) {
+						String name = AlexxWork2.spaceObjList.get(i).getProperName();
+						loadLibraLocation(name, x, y);
 					}
 						
 				}				
@@ -400,6 +417,33 @@ public class DrawingSky extends Canvas {
     	
     }
     
+    public void loadLibraLocation(String name, int x, int y) {
+    	if(name.contains(" 46The Lib")) {
+    		libra[0] = x;
+    		libra[1] = y;
+    	}
+    	if(name.contains(" 38Gam Lib")) {
+    		libra[2] = x;
+    		libra[3] = y;
+    	}
+    	if(name.contains(" 27Bet Lib")) {
+    		libra[4] = x;
+    		libra[5] = y;
+    	}
+    	if(name.contains("  8Alp1Lib")) {
+    		libra[6] = x;
+    		libra[7] = y;
+    	}
+    	if(name.contains(" 20Sig Lib")) {
+    		libra[8] = x;
+    		libra[9] = y;
+    	}
+    	if(name.contains(" 39Ups Lib")) {
+    		libra[10] = x;
+    		libra[11] = y;
+    	}
+    }
+    
     public void loadUrsaMajorNames() {
     	ursaMajorNames = new ArrayList<>();
     	ursaMajorNames.add("Alkaid");
@@ -537,7 +581,19 @@ public class DrawingSky extends Canvas {
     	loadHerculesNames();
     	loadUrsaMinorNames();
     	loadUrsaMajorNames();
+    	loadLibraNames();
     }
+    
+    public void loadLibraNames() {
+    	libraNames = new ArrayList<>();
+    	libraNames.add(" 46The Lib");
+    	libraNames.add(" 38Gam Lib");
+    	libraNames.add(" 27Bet Lib");
+    	libraNames.add("  8Alp1Lib");
+    	libraNames.add(" 20Sig Lib");
+    	libraNames.add(" 39Ups Lib");
+    }
+    
     public void loadUrsaMinorNames() {
     	ursaMinorNames = new ArrayList<>();
     	ursaMinorNames.add("Polaris");
@@ -598,6 +654,15 @@ public class DrawingSky extends Canvas {
     	Boolean flag = true;
     	for(int i = 0; i < 16; i++) {
     		if(ursaMajor[i] == 0) {
+    			flag = false;
+    		}
+    	}
+    	return flag;
+    }
+    public Boolean checkLibra() {
+    	Boolean flag = true;
+    	for(int i = 0; i < 12; i++) {
+    		if(libra[i] == 0) {
     			flag = false;
     		}
     	}
