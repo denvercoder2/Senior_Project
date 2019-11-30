@@ -1,0 +1,1557 @@
+<root>
+    <row-0>
+        <ObjectNum>      1</ObjectNum>
+        <Name>NGC 1952 Crab Nebula</Name>
+        <Type>Supernova Remnant</Type>
+        <Constellation>Taurus</Constellation>
+        <RAHour>5</RAHour>
+        <RAMinute>34.5</RAMinute>
+        <DecSign>+</DecSign>
+        <DecDeg>22</DecDeg>
+        <DecMinute>1</DecMinute>
+        <Magnitude>8.4</Magnitude>
+        <Info>Size: 6.0x4.0</Info>
+        <Distance>6,300</Distance >
+    </row-0>
+    <row-1>
+        <ObjectNum>      2</ObjectNum>
+        <Name>NGC 7089  </Name>
+        <Type>Globular Cluster</Type>
+        <Constellation>Aquarius</Constellation>
+        <RAHour>21</RAHour>
+        <RAMinute>33.5</RAMinute>
+        <DecSign>-</DecSign>
+        <DecDeg>0</DecDeg>
+        <DecMinute>49</DecMinute>
+        <Magnitude>6.5</Magnitude>
+        <Info>Size: 12.9</Info>
+        <Distance >37,500</Distance >
+</row-1>
+<row-2>
+<ObjectNum>      3</ObjectNum>
+<Name>NGC 5272  </Name>
+<Type>Globular Cluster</Type>
+<Constellation>Canes Venatici</Constellation>
+<RAHour>13</RAHour>
+<RAMinute>42.2</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>28</DecDeg>
+<DecMinute>23</DecMinute>
+<Magnitude>6.2</Magnitude>
+<Info>Size: 16.2</Info>
+<Distance >33,900</Distance >
+</row-2>
+<row-3>
+<ObjectNum>      4</ObjectNum>
+<Name>NGC 6121  </Name>
+<Type>Globular Cluster</Type>
+<Constellation>Scorpius</Constellation>
+<RAHour>16</RAHour>
+<RAMinute>23.6</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>26</DecDeg>
+<DecMinute>32</DecMinute>
+<Magnitude>5.6</Magnitude>
+<Info>Size: 26.3</Info>
+<Distance >7,200</Distance >
+</row-3>
+<row-4>
+<ObjectNum>      5</ObjectNum>
+<Name>NGC 5904  </Name>
+<Type>Globular Cluster</Type>
+<Constellation>Serpens Caput</Constellation>
+<RAHour>15</RAHour>
+<RAMinute>18.6</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>2</DecDeg>
+<DecMinute>5</DecMinute>
+<Magnitude>5.6</Magnitude>
+<Info>Size: 17.4</Info>
+<Distance >24,500</Distance >
+</row-4>
+<row-5>
+<ObjectNum>      6</ObjectNum>
+<Name>NGC 6405 Butterfly Cluster</Name>
+<Type>Open Cluster</Type>
+<Constellation>Scorpius</Constellation>
+<RAHour>17</RAHour>
+<RAMinute>40.1</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>32</DecDeg>
+<DecMinute>13</DecMinute>
+<Magnitude>5.3</Magnitude>
+<Info>Size: 25</Info>
+<Distance >2,000</Distance >
+</row-5>
+<row-6>
+<ObjectNum>      7</ObjectNum>
+<Name>NGC 6475 Ptolemy¹s Cluster</Name>
+<Type>Open Cluster</Type>
+<Constellation>Scorpius</Constellation>
+<RAHour>17</RAHour>
+<RAMinute>53.9</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>34</DecDeg>
+<DecMinute>49</DecMinute>
+<Magnitude>4.1</Magnitude>
+<Info>Size: 80</Info>
+<Distance >800</Distance >
+</row-6>
+<row-7>
+<ObjectNum>      8</ObjectNum>
+<Name>NGC 6523 Lagoon Nebula</Name>
+<Type>Diffuse Nebula</Type>
+<Constellation>Sagittarius</Constellation>
+<RAHour>18</RAHour>
+<RAMinute>3.8</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>24</DecDeg>
+<DecMinute>23</DecMinute>
+<Magnitude>6</Magnitude>
+<Info>Size: 90x40</Info>
+<Distance >5,200</Distance >
+</row-7>
+<row-8>
+<ObjectNum>      9</ObjectNum>
+<Name>NGC 6333  </Name>
+<Type>Globular Cluster</Type>
+<Constellation>Ophiucus</Constellation>
+<RAHour>17</RAHour>
+<RAMinute>19.2</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>18</DecDeg>
+<DecMinute>31</DecMinute>
+<Magnitude>7.7</Magnitude>
+<Info>Size: 9.3</Info>
+<Distance >26,700</Distance >
+</row-8>
+<row-9>
+<ObjectNum>     10</ObjectNum>
+<Name>NGC 6254  </Name>
+<Type>Globular Cluster</Type>
+<Constellation>Ophiucus</Constellation>
+<RAHour>16</RAHour>
+<RAMinute>57.1</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>4</DecDeg>
+<DecMinute>6</DecMinute>
+<Magnitude>6.6</Magnitude>
+<Info>Size: 15.1</Info>
+<Distance >14,400</Distance >
+</row-9>
+<row-10>
+<ObjectNum>     11</ObjectNum>
+<Name>NGC 6705 Wild Duck Cluster</Name>
+<Type>Open Cluster</Type>
+<Constellation>Scutum</Constellation>
+<RAHour>18</RAHour>
+<RAMinute>51.1</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>6</DecDeg>
+<DecMinute>16</DecMinute>
+<Magnitude>6.3</Magnitude>
+<Info>Size: 14</Info>
+<Distance >6,000</Distance >
+</row-10>
+<row-11>
+<ObjectNum>     12</ObjectNum>
+<Name>NGC 6218  </Name>
+<Type>Globular Cluster</Type>
+<Constellation>Ophiucus</Constellation>
+<RAHour>16</RAHour>
+<RAMinute>47.2</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>1</DecDeg>
+<DecMinute>57</DecMinute>
+<Magnitude>6.7</Magnitude>
+<Info>Size: 14.5</Info>
+<Distance >16,000</Distance >
+</row-11>
+<row-12>
+<ObjectNum>     13</ObjectNum>
+<Name>NGC 6205 Hercules Globular Cluster</Name>
+<Type>Globular Cluster</Type>
+<Constellation>Hercules</Constellation>
+<RAHour>16</RAHour>
+<RAMinute>41.7</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>36</DecDeg>
+<DecMinute>28</DecMinute>
+<Magnitude>5.8</Magnitude>
+<Info>Size: 16.6</Info>
+<Distance >22,800</Distance >
+</row-12>
+<row-13>
+<ObjectNum>     14</ObjectNum>
+<Name>NGC 6402  </Name>
+<Type>Globular Cluster</Type>
+<Constellation>Ophiucus</Constellation>
+<RAHour>17</RAHour>
+<RAMinute>37.6</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>3</DecDeg>
+<DecMinute>15</DecMinute>
+<Magnitude>7.6</Magnitude>
+<Info>Size: 11.7</Info>
+<Distance >27,400</Distance >
+</row-13>
+<row-14>
+<ObjectNum>     15</ObjectNum>
+<Name>NGC 7078  </Name>
+<Type>Globular Cluster</Type>
+<Constellation>Pegasus</Constellation>
+<RAHour>21</RAHour>
+<RAMinute>30</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>12</DecDeg>
+<DecMinute>10</DecMinute>
+<Magnitude>6.2</Magnitude>
+<Info>Size: 12.3</Info>
+<Distance >33,600</Distance >
+</row-14>
+<row-15>
+<ObjectNum>     16</ObjectNum>
+<Name>NGC 6611 Eagle Nebula Cluster</Name>
+<Type>Open Cluster</Type>
+<Constellation>Serpens Claudia</Constellation>
+<RAHour>18</RAHour>
+<RAMinute>18.8</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>13</DecDeg>
+<DecMinute>47</DecMinute>
+<Magnitude>6.4</Magnitude>
+<Info>Size: 7</Info>
+<Distance >7,000</Distance >
+</row-15>
+<row-16>
+<ObjectNum>     17</ObjectNum>
+<Name>NGC 6618 Omega, Swan, Horseshoe Nebula</Name>
+<Type>Diffuse Nebula</Type>
+<Constellation>Sagittarius</Constellation>
+<RAHour>18</RAHour>
+<RAMinute>20.8</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>16</DecDeg>
+<DecMinute>11</DecMinute>
+<Magnitude>7</Magnitude>
+<Info>Size: 11</Info>
+<Distance >5,000</Distance >
+</row-16>
+<row-17>
+<ObjectNum>     18</ObjectNum>
+<Name>NGC 6613  </Name>
+<Type>Open Cluster</Type>
+<Constellation>Sagittarius</Constellation>
+<RAHour>18</RAHour>
+<RAMinute>19.9</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>17</DecDeg>
+<DecMinute>8</DecMinute>
+<Magnitude>7.5</Magnitude>
+<Info>Size: 9</Info>
+<Distance >4,900</Distance >
+</row-17>
+<row-18>
+<ObjectNum>     19</ObjectNum>
+<Name>NGC 6273  </Name>
+<Type>Globular Cluster</Type>
+<Constellation>Ophiucus</Constellation>
+<RAHour>17</RAHour>
+<RAMinute>2.6</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>26</DecDeg>
+<DecMinute>16</DecMinute>
+<Magnitude>6.8</Magnitude>
+<Info>Size: 13.5</Info>
+<Distance >27,100</Distance >
+</row-18>
+<row-19>
+<ObjectNum>     20</ObjectNum>
+<Name>NGC 6514 Trifid Nebula</Name>
+<Type>Diffuse Nebula</Type>
+<Constellation>Sagittarius</Constellation>
+<RAHour>18</RAHour>
+<RAMinute>2.3</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>23</DecDeg>
+<DecMinute>2</DecMinute>
+<Magnitude>9</Magnitude>
+<Info>Size: 28</Info>
+<Distance >5,200</Distance >
+</row-19>
+<row-20>
+<ObjectNum>     21</ObjectNum>
+<Name>NGC 6531  </Name>
+<Type>Open Cluster</Type>
+<Constellation>Sagittarius</Constellation>
+<RAHour>18</RAHour>
+<RAMinute>4.6</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>22</DecDeg>
+<DecMinute>30</DecMinute>
+<Magnitude>6.5</Magnitude>
+<Info>Size: 13</Info>
+<Distance >4,250</Distance >
+</row-20>
+<row-21>
+<ObjectNum>     22</ObjectNum>
+<Name>NGC 6656  </Name>
+<Type>Globular Cluster</Type>
+<Constellation>Sagittarius</Constellation>
+<RAHour>18</RAHour>
+<RAMinute>36.4</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>23</DecDeg>
+<DecMinute>54</DecMinute>
+<Magnitude>5.1</Magnitude>
+<Info>Size: 24</Info>
+<Distance >10,100</Distance >
+</row-21>
+<row-22>
+<ObjectNum>     23</ObjectNum>
+<Name>NGC 6494  </Name>
+<Type>Open Cluster</Type>
+<Constellation>Sagittarius</Constellation>
+<RAHour>17</RAHour>
+<RAMinute>56.8</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>19</DecDeg>
+<DecMinute>1</DecMinute>
+<Magnitude>6.9</Magnitude>
+<Info>Size: 27</Info>
+<Distance >2,150</Distance >
+</row-22>
+<row-23>
+<ObjectNum>     24</ObjectNum>
+<Name>NGC 6603 Milky Way Patch</Name>
+<Type>Star Cloud</Type>
+<Constellation>Sagittarius</Constellation>
+<RAHour>18</RAHour>
+<RAMinute>18.4</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>18</DecDeg>
+<DecMinute>25</DecMinute>
+<Magnitude>4.6</Magnitude>
+<Info>Size: 90</Info>
+<Distance >10,000</Distance >
+</row-23>
+<row-24>
+<ObjectNum>     25</ObjectNum>
+<Name>IC 4725</Name>
+<Type>Open Cluster</Type>
+<Constellation>Sagittarius</Constellation>
+<RAHour>18</RAHour>
+<RAMinute>31.7</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>19</DecDeg>
+<DecMinute>14</DecMinute>
+<Magnitude>6.5</Magnitude>
+<Info>Size: 40</Info>
+<Distance >2,000</Distance >
+</row-24>
+<row-25>
+<ObjectNum>     26</ObjectNum>
+<Name>NGC 6694  </Name>
+<Type>Open Cluster</Type>
+<Constellation>Scutum</Constellation>
+<RAHour>18</RAHour>
+<RAMinute>45.2</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>9</DecDeg>
+<DecMinute>24</DecMinute>
+<Magnitude>8</Magnitude>
+<Info>Size: 15</Info>
+<Distance >5,000</Distance >
+</row-25>
+<row-26>
+<ObjectNum>     27</ObjectNum>
+<Name>NGC 6853 Dumbbell Nebula</Name>
+<Type>Planetary Nebula</Type>
+<Constellation>Vulpecula</Constellation>
+<RAHour>19</RAHour>
+<RAMinute>59.6</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>22</DecDeg>
+<DecMinute>43</DecMinute>
+<Magnitude>7.4</Magnitude>
+<Info>Size: 8.0x5.7</Info>
+<Distance >1,250</Distance >
+</row-26>
+<row-27>
+<ObjectNum>     28</ObjectNum>
+<Name>NGC 6626  </Name>
+<Type>Globular Cluster</Type>
+<Constellation>Sagittarius</Constellation>
+<RAHour>18</RAHour>
+<RAMinute>24.5</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>24</DecDeg>
+<DecMinute>52</DecMinute>
+<Magnitude>6.8</Magnitude>
+<Info>Size: 11.2</Info>
+<Distance >17,900</Distance >
+</row-27>
+<row-28>
+<ObjectNum>     29</ObjectNum>
+<Name>NGC 6913  </Name>
+<Type>Open Cluster</Type>
+<Constellation>Cygnus</Constellation>
+<RAHour>20</RAHour>
+<RAMinute>23.9</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>38</DecDeg>
+<DecMinute>32</DecMinute>
+<Magnitude>7.1</Magnitude>
+<Info>Size: 7</Info>
+<Distance >4,000</Distance >
+</row-28>
+<row-29>
+<ObjectNum>     30</ObjectNum>
+<Name>NGC 7099  </Name>
+<Type>Globular Cluster</Type>
+<Constellation>Capricornus</Constellation>
+<RAHour>21</RAHour>
+<RAMinute>40.4</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>23</DecDeg>
+<DecMinute>11</DecMinute>
+<Magnitude>7.2</Magnitude>
+<Info>Size: 11</Info>
+<Distance >24,800</Distance >
+</row-29>
+<row-30>
+<ObjectNum>     31</ObjectNum>
+<Name>NGC 224 Andromeda Galaxy</Name>
+<Type>Spiral Galaxy</Type>
+<Constellation>Andromeda</Constellation>
+<RAHour>0</RAHour>
+<RAMinute>42.7</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>41</DecDeg>
+<DecMinute>16</DecMinute>
+<Magnitude>3.4</Magnitude>
+<Info>Size: 178x63</Info>
+<Distance >2,900,000</Distance >
+</row-30>
+<row-31>
+<ObjectNum>     32</ObjectNum>
+<Name>NGC 221 Satellite of M31</Name>
+<Type>Elliptical Galaxy</Type>
+<Constellation>Andromeda</Constellation>
+<RAHour>0</RAHour>
+<RAMinute>42.7</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>40</DecDeg>
+<DecMinute>52</DecMinute>
+<Magnitude>8.1</Magnitude>
+<Info>Size: 8x6</Info>
+<Distance >2,900,000</Distance >
+</row-31>
+<row-32>
+<ObjectNum>     33</ObjectNum>
+<Name>NGC 598 Triangulum/Pinwheel Galaxy</Name>
+<Type>Spiral Galaxy</Type>
+<Constellation>Triangulum</Constellation>
+<RAHour>1</RAHour>
+<RAMinute>33.9</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>30</DecDeg>
+<DecMinute>39</DecMinute>
+<Magnitude>5.7</Magnitude>
+<Info>Size: 73x45</Info>
+<Distance >3,000,000</Distance >
+</row-32>
+<row-33>
+<ObjectNum>     34</ObjectNum>
+<Name>NGC 1039  </Name>
+<Type>Open Cluster</Type>
+<Constellation>Perseus</Constellation>
+<RAHour>2</RAHour>
+<RAMinute>42</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>42</DecDeg>
+<DecMinute>47</DecMinute>
+<Magnitude>5.5</Magnitude>
+<Info>Size: 35</Info>
+<Distance >1,400</Distance >
+</row-33>
+<row-34>
+<ObjectNum>     35</ObjectNum>
+<Name>NGC 2168  </Name>
+<Type>Open Cluster</Type>
+<Constellation>Gemini</Constellation>
+<RAHour>6</RAHour>
+<RAMinute>8.9</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>24</DecDeg>
+<DecMinute>20</DecMinute>
+<Magnitude>5.3</Magnitude>
+<Info>Size: 28</Info>
+<Distance >2,800</Distance >
+</row-34>
+<row-35>
+<ObjectNum>     36</ObjectNum>
+<Name>NGC 1960  </Name>
+<Type>Open Cluster</Type>
+<Constellation>Auriga</Constellation>
+<RAHour>5</RAHour>
+<RAMinute>36.1</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>34</DecDeg>
+<DecMinute>8</DecMinute>
+<Magnitude>6.3</Magnitude>
+<Info>Size: 12</Info>
+<Distance >4,100</Distance >
+</row-35>
+<row-36>
+<ObjectNum>     37</ObjectNum>
+<Name>NGC 2099  </Name>
+<Type>Open Cluster</Type>
+<Constellation>Auriga</Constellation>
+<RAHour>5</RAHour>
+<RAMinute>52.4</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>32</DecDeg>
+<DecMinute>33</DecMinute>
+<Magnitude>6.2</Magnitude>
+<Info>Size: 24</Info>
+<Distance >4,400</Distance >
+</row-36>
+<row-37>
+<ObjectNum>     38</ObjectNum>
+<Name>NGC 1912  </Name>
+<Type>Open Cluster</Type>
+<Constellation>Auriga</Constellation>
+<RAHour>5</RAHour>
+<RAMinute>28.7</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>35</DecDeg>
+<DecMinute>50</DecMinute>
+<Magnitude>7.4</Magnitude>
+<Info>Size: 21</Info>
+<Distance >4,200</Distance >
+</row-37>
+<row-38>
+<ObjectNum>     39</ObjectNum>
+<Name>NGC 7092  </Name>
+<Type>Open Cluster</Type>
+<Constellation>Cygnus</Constellation>
+<RAHour>21</RAHour>
+<RAMinute>32.2</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>48</DecDeg>
+<DecMinute>26</DecMinute>
+<Magnitude>5.2</Magnitude>
+<Info>Size: 32</Info>
+<Distance >825</Distance >
+</row-38>
+<row-39>
+<ObjectNum>     40</ObjectNum>
+<Name>Winecke 4</Name>
+<Type>Double Star</Type>
+<Constellation>Ursa Major</Constellation>
+<RAHour>12</RAHour>
+<RAMinute>22.2</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>58</DecDeg>
+<DecMinute>5</DecMinute>
+<Magnitude>9.3</Magnitude>
+<Info>Sep: 49 arcsec</Info>
+<Distance >510</Distance >
+</row-39>
+<row-40>
+<ObjectNum>     41</ObjectNum>
+<Name>NGC 2287  </Name>
+<Type>Open Cluster</Type>
+<Constellation>Canis Major</Constellation>
+<RAHour>6</RAHour>
+<RAMinute>47</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>20</DecDeg>
+<DecMinute>44</DecMinute>
+<Magnitude>4.6</Magnitude>
+<Info>Size: 38</Info>
+<Distance >2,300</Distance >
+</row-40>
+<row-41>
+<ObjectNum>     42</ObjectNum>
+<Name>NGC 1976 Great Orion Nebula</Name>
+<Type>Diffuse Nebula</Type>
+<Constellation>Orion</Constellation>
+<RAHour>5</RAHour>
+<RAMinute>35.4</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>5</DecDeg>
+<DecMinute>27</DecMinute>
+<Magnitude>4</Magnitude>
+<Info>Size: 85x60</Info>
+<Distance >1,600</Distance >
+</row-41>
+<row-42>
+<ObjectNum>     43</ObjectNum>
+<Name>NGC 1982 de Mairan¹s Nebula</Name>
+<Type>Diffuse Nebula</Type>
+<Constellation>Orion</Constellation>
+<RAHour>5</RAHour>
+<RAMinute>35.6</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>5</DecDeg>
+<DecMinute>16</DecMinute>
+<Magnitude>9</Magnitude>
+<Info>Size: 20x15</Info>
+<Distance >1,600</Distance >
+</row-42>
+<row-43>
+<ObjectNum>     44</ObjectNum>
+<Name>NGC 2632 Beehive Cluster (Praesepe)</Name>
+<Type>Open Cluster</Type>
+<Constellation>Cancer</Constellation>
+<RAHour>8</RAHour>
+<RAMinute>40.1</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>19</DecDeg>
+<DecMinute>59</DecMinute>
+<Magnitude>3.7</Magnitude>
+<Info>Size: 95</Info>
+<Distance >577</Distance >
+</row-43>
+<row-44>
+<ObjectNum>     45</ObjectNum>
+<Name>Pleiades, Subaru, Seven Sisters</Name>
+<Type>Open Cluster</Type>
+<Constellation>Taurus</Constellation>
+<RAHour>3</RAHour>
+<RAMinute>47</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>24</DecDeg>
+<DecMinute>7.2</DecMinute>
+<Magnitude>1.6</Magnitude>
+<Info>Size: 110</Info>
+<Distance >380</Distance >
+</row-44>
+<row-45>
+<ObjectNum>     46</ObjectNum>
+<Name>NGC 2437  </Name>
+<Type>Open Cluster</Type>
+<Constellation>Puppis</Constellation>
+<RAHour>7</RAHour>
+<RAMinute>41.8</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>14</DecDeg>
+<DecMinute>49</DecMinute>
+<Magnitude>6</Magnitude>
+<Info>Size: 27</Info>
+<Distance >5,400</Distance >
+</row-45>
+<row-46>
+<ObjectNum>     47</ObjectNum>
+<Name>NGC 2422  </Name>
+<Type>Open Cluster</Type>
+<Constellation>Puppis</Constellation>
+<RAHour>7</RAHour>
+<RAMinute>36.6</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>14</DecDeg>
+<DecMinute>30</DecMinute>
+<Magnitude>5.2</Magnitude>
+<Info>Size: 30</Info>
+<Distance >1,600</Distance >
+</row-46>
+<row-47>
+<ObjectNum>     48</ObjectNum>
+<Name>NGC 2548  </Name>
+<Type>Open Cluster</Type>
+<Constellation>Hydra</Constellation>
+<RAHour>8</RAHour>
+<RAMinute>13.8</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>5</DecDeg>
+<DecMinute>48</DecMinute>
+<Magnitude>5.5</Magnitude>
+<Info>Size: 54</Info>
+<Distance >1,500</Distance >
+</row-47>
+<row-48>
+<ObjectNum>     49</ObjectNum>
+<Name>NGC 4472  </Name>
+<Type>Elliptical Galaxy</Type>
+<Constellation>Virgo</Constellation>
+<RAHour>12</RAHour>
+<RAMinute>29.8</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>8</DecDeg>
+<DecMinute>0</DecMinute>
+<Magnitude>8.4</Magnitude>
+<Info>Size: 9x7.5</Info>
+<Distance >60,000,000</Distance >
+</row-48>
+<row-49>
+<ObjectNum>     50</ObjectNum>
+<Name>NGC 2323  </Name>
+<Type>Open Cluster</Type>
+<Constellation>Monocerus</Constellation>
+<RAHour>7</RAHour>
+<RAMinute>3.2</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>8</DecDeg>
+<DecMinute>20</DecMinute>
+<Magnitude>6.3</Magnitude>
+<Info>Size: 16</Info>
+<Distance >3,000</Distance >
+</row-49>
+<row-50>
+<ObjectNum>     51</ObjectNum>
+<Name>NGC 5194 Whirlpool Galaxy</Name>
+<Type>Spiral Galaxy</Type>
+<Constellation>Canes Venatici</Constellation>
+<RAHour>13</RAHour>
+<RAMinute>29.9</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>47</DecDeg>
+<DecMinute>12</DecMinute>
+<Magnitude>8.4</Magnitude>
+<Info>Size: 11x7</Info>
+<Distance >37,000,000</Distance >
+</row-50>
+<row-51>
+<ObjectNum>     52</ObjectNum>
+<Name>NGC 7654  </Name>
+<Type>Open Cluster</Type>
+<Constellation>Cassiopeia</Constellation>
+<RAHour>23</RAHour>
+<RAMinute>24.2</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>61</DecDeg>
+<DecMinute>35</DecMinute>
+<Magnitude>7.3</Magnitude>
+<Info>Size: 13</Info>
+<Distance >5,000</Distance >
+</row-51>
+<row-52>
+<ObjectNum>     53</ObjectNum>
+<Name>NGC 5024  </Name>
+<Type>Globular Cluster</Type>
+<Constellation>Coma Berenices</Constellation>
+<RAHour>13</RAHour>
+<RAMinute>12.9</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>18</DecDeg>
+<DecMinute>10</DecMinute>
+<Magnitude>7.6</Magnitude>
+<Info>Size: 12.6</Info>
+<Distance >56,400</Distance >
+</row-52>
+<row-53>
+<ObjectNum>     54</ObjectNum>
+<Name>NGC 6715  </Name>
+<Type>Globular Cluster</Type>
+<Constellation>Sagittarius</Constellation>
+<RAHour>18</RAHour>
+<RAMinute>55.1</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>30</DecDeg>
+<DecMinute>29</DecMinute>
+<Magnitude>7.6</Magnitude>
+<Info>Size: 9.1</Info>
+<Distance >82,800</Distance >
+</row-53>
+<row-54>
+<ObjectNum>     55</ObjectNum>
+<Name>NGC 6809  </Name>
+<Type>Globular Cluster</Type>
+<Constellation>Sagittarius</Constellation>
+<RAHour>19</RAHour>
+<RAMinute>40</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>30</DecDeg>
+<DecMinute>58</DecMinute>
+<Magnitude>6.3</Magnitude>
+<Info>Size: 19</Info>
+<Distance >16,600</Distance >
+</row-54>
+<row-55>
+<ObjectNum>     56</ObjectNum>
+<Name>NGC 6779  </Name>
+<Type>Globular Cluster</Type>
+<Constellation>Lyra</Constellation>
+<RAHour>19</RAHour>
+<RAMinute>16.6</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>30</DecDeg>
+<DecMinute>11</DecMinute>
+<Magnitude>8.3</Magnitude>
+<Info>Size: 7.1</Info>
+<Distance >31,600</Distance >
+</row-55>
+<row-56>
+<ObjectNum>     57</ObjectNum>
+<Name>NGC 6720 Ring Nebula</Name>
+<Type>Planetary Nebula</Type>
+<Constellation>Lyra</Constellation>
+<RAHour>18</RAHour>
+<RAMinute>53.6</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>33</DecDeg>
+<DecMinute>2</DecMinute>
+<Magnitude>8.8</Magnitude>
+<Info>Size: 1.4x1</Info>
+<Distance >4,100</Distance >
+</row-56>
+<row-57>
+<ObjectNum>     58</ObjectNum>
+<Name>NGC 4579  </Name>
+<Type>Spiral Galaxy</Type>
+<Constellation>Virgo</Constellation>
+<RAHour>12</RAHour>
+<RAMinute>37.7</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>11</DecDeg>
+<DecMinute>49</DecMinute>
+<Magnitude>9.7</Magnitude>
+<Info>Size: 5.5x4.5</Info>
+<Distance >60,000,000</Distance >
+</row-57>
+<row-58>
+<ObjectNum>     59</ObjectNum>
+<Name>NGC 4621  </Name>
+<Type>Elliptical Galaxy</Type>
+<Constellation>Virgo</Constellation>
+<RAHour>12</RAHour>
+<RAMinute>42</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>11</DecDeg>
+<DecMinute>39</DecMinute>
+<Magnitude>9.6</Magnitude>
+<Info>Size: 5x3.5</Info>
+<Distance >60,000,000</Distance >
+</row-58>
+<row-59>
+<ObjectNum>     60</ObjectNum>
+<Name>NGC 4649  </Name>
+<Type>Elliptical Galaxy</Type>
+<Constellation>Virgo</Constellation>
+<RAHour>12</RAHour>
+<RAMinute>43.7</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>11</DecDeg>
+<DecMinute>33</DecMinute>
+<Magnitude>8.8</Magnitude>
+<Info>Size: 7x6</Info>
+<Distance >60,000,000</Distance >
+</row-59>
+<row-60>
+<ObjectNum>     61</ObjectNum>
+<Name>NGC 4303  </Name>
+<Type>Spiral Galaxy</Type>
+<Constellation>Virgo</Constellation>
+<RAHour>12</RAHour>
+<RAMinute>21.9</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>4</DecDeg>
+<DecMinute>28</DecMinute>
+<Magnitude>9.7</Magnitude>
+<Info>Size: 6x5.5</Info>
+<Distance >60,000,000</Distance >
+</row-60>
+<row-61>
+<ObjectNum>     62</ObjectNum>
+<Name>NGC 6266  </Name>
+<Type>Globular Cluster</Type>
+<Constellation>Ophiucus</Constellation>
+<RAHour>17</RAHour>
+<RAMinute>1.2</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>30</DecDeg>
+<DecMinute>7</DecMinute>
+<Magnitude>6.5</Magnitude>
+<Info>Size: 14.1</Info>
+<Distance >21,500</Distance >
+</row-61>
+<row-62>
+<ObjectNum>     63</ObjectNum>
+<Name>NGC 5055 Sunflower Galaxy</Name>
+<Type>Spiral Galaxy</Type>
+<Constellation>Canes Venatici</Constellation>
+<RAHour>13</RAHour>
+<RAMinute>15.8</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>42</DecDeg>
+<DecMinute>2</DecMinute>
+<Magnitude>8.6</Magnitude>
+<Info>Size: 10x6</Info>
+<Distance >37,000,000</Distance >
+</row-62>
+<row-63>
+<ObjectNum>     64</ObjectNum>
+<Name>NGC 4826 Blackeye Galaxy</Name>
+<Type>Spiral Galaxy</Type>
+<Constellation>Coma Berenices</Constellation>
+<RAHour>12</RAHour>
+<RAMinute>56.7</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>21</DecDeg>
+<DecMinute>41</DecMinute>
+<Magnitude>8.5</Magnitude>
+<Info>Size: 9.3x5.4</Info>
+<Distance >19,000,000</Distance >
+</row-63>
+<row-64>
+<ObjectNum>     65</ObjectNum>
+<Name>NGC 3623  </Name>
+<Type>Spiral Galaxy</Type>
+<Constellation>Leo</Constellation>
+<RAHour>11</RAHour>
+<RAMinute>18.9</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>13</DecDeg>
+<DecMinute>5</DecMinute>
+<Magnitude>9.3</Magnitude>
+<Info>Size: 8x1.5</Info>
+<Distance >35,000,000</Distance >
+</row-64>
+<row-65>
+<ObjectNum>     66</ObjectNum>
+<Name>NGC 3627  </Name>
+<Type>Spiral Galaxy</Type>
+<Constellation>Leo</Constellation>
+<RAHour>11</RAHour>
+<RAMinute>20.2</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>12</DecDeg>
+<DecMinute>59</DecMinute>
+<Magnitude>8.9</Magnitude>
+<Info>Size: 8x2.5</Info>
+<Distance >35,000,000</Distance >
+</row-65>
+<row-66>
+<ObjectNum>     67</ObjectNum>
+<Name>NGC 2682  </Name>
+<Type>Open Cluster</Type>
+<Constellation>Cancer</Constellation>
+<RAHour>8</RAHour>
+<RAMinute>50.4</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>11</DecDeg>
+<DecMinute>49</DecMinute>
+<Magnitude>6.1</Magnitude>
+<Info>Size: 30</Info>
+<Distance >2,700</Distance >
+</row-66>
+<row-67>
+<ObjectNum>     68</ObjectNum>
+<Name>NGC 4590  </Name>
+<Type>Globular Cluster</Type>
+<Constellation>Hydra</Constellation>
+<RAHour>12</RAHour>
+<RAMinute>39.5</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>26</DecDeg>
+<DecMinute>45</DecMinute>
+<Magnitude>7.8</Magnitude>
+<Info>Size: 12</Info>
+<Distance >33,300</Distance >
+</row-67>
+<row-68>
+<ObjectNum>     69</ObjectNum>
+<Name>NGC 6637  </Name>
+<Type>Globular Cluster</Type>
+<Constellation>Sagittarius</Constellation>
+<RAHour>18</RAHour>
+<RAMinute>31.4</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>32</DecDeg>
+<DecMinute>21</DecMinute>
+<Magnitude>7.6</Magnitude>
+<Info>Size: 7.1</Info>
+<Distance >26,700</Distance >
+</row-68>
+<row-69>
+<ObjectNum>     70</ObjectNum>
+<Name>NGC 6681  </Name>
+<Type>Globular Cluster</Type>
+<Constellation>Sagittarius</Constellation>
+<RAHour>18</RAHour>
+<RAMinute>43.2</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>32</DecDeg>
+<DecMinute>18</DecMinute>
+<Magnitude>7.9</Magnitude>
+<Info>Size: 7.8</Info>
+<Distance >28,000</Distance >
+</row-69>
+<row-70>
+<ObjectNum>     71</ObjectNum>
+<Name>NGC 6838  </Name>
+<Type>Globular Cluster</Type>
+<Constellation>Sagitta</Constellation>
+<RAHour>19</RAHour>
+<RAMinute>53.8</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>18</DecDeg>
+<DecMinute>47</DecMinute>
+<Magnitude>8.3</Magnitude>
+<Info>Size: 7.2</Info>
+<Distance >11,700</Distance >
+</row-70>
+<row-71>
+<ObjectNum>     72</ObjectNum>
+<Name>NGC 6981</Name>
+<Type>Globular Cluster</Type>
+<Constellation>Aquarius</Constellation>
+<RAHour>20</RAHour>
+<RAMinute>53.5</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>12</DecDeg>
+<DecMinute>32</DecMinute>
+<Magnitude>9.3</Magnitude>
+<Info>Size: 5.9</Info>
+<Distance >52,800</Distance >
+</row-71>
+<row-72>
+<ObjectNum>     73</ObjectNum>
+<Name>NGC 6994  Group of 4 stars</Name>
+<Type>Group/Asterism</Type>
+<Constellation>Aquarius</Constellation>
+<RAHour>20</RAHour>
+<RAMinute>59</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>12</DecDeg>
+<DecMinute>38</DecMinute>
+<Magnitude>9</Magnitude>
+<Info>Size: 2.8</Info>
+<Distance >2,000</Distance >
+</row-72>
+<row-73>
+<ObjectNum>     74</ObjectNum>
+<Name>NGC 628 </Name>
+<Type>Spiral Galaxy</Type>
+<Constellation>Pisces</Constellation>
+<RAHour>1</RAHour>
+<RAMinute>36.7</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>15</DecDeg>
+<DecMinute>47</DecMinute>
+<Magnitude>9.4</Magnitude>
+<Info>Size: 10.2x9.5</Info>
+<Distance >35,000,000</Distance >
+</row-73>
+<row-74>
+<ObjectNum>     75</ObjectNum>
+<Name>NGC 6864  </Name>
+<Type>Globular Cluster</Type>
+<Constellation>Sagittarius</Constellation>
+<RAHour>20</RAHour>
+<RAMinute>6.1</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>21</DecDeg>
+<DecMinute>55</DecMinute>
+<Magnitude>8.5</Magnitude>
+<Info>Size: 6</Info>
+<Distance >57,700</Distance >
+</row-74>
+<row-75>
+<ObjectNum>     76</ObjectNum>
+<Name>NGC 650 Little Dumbell, Cork, Butterfly Nebula</Name>
+<Type>Planetary Nebula</Type>
+<Constellation>Perseus</Constellation>
+<RAHour>1</RAHour>
+<RAMinute>42.3</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>51</DecDeg>
+<DecMinute>34</DecMinute>
+<Magnitude>10.1</Magnitude>
+<Info>Size: 2.7x1.8</Info>
+<Distance >3,400</Distance >
+</row-75>
+<row-76>
+<ObjectNum>     77</ObjectNum>
+<Name>NGC 1068 Cetus A</Name>
+<Type>Spiral Galaxy</Type>
+<Constellation>Cetus</Constellation>
+<RAHour>2</RAHour>
+<RAMinute>42.7</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>0</DecDeg>
+<DecMinute>1</DecMinute>
+<Magnitude>8.9</Magnitude>
+<Info>Size: 7x6</Info>
+<Distance >60,000,000</Distance >
+</row-76>
+<row-77>
+<ObjectNum>     78</ObjectNum>
+<Name>NGC 2068  </Name>
+<Type>Diffuse Nebula</Type>
+<Constellation>Orion</Constellation>
+<RAHour>5</RAHour>
+<RAMinute>46.7</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>0</DecDeg>
+<DecMinute>3</DecMinute>
+<Magnitude>8.3</Magnitude>
+<Info>Size: 8x6</Info>
+<Distance >1,600</Distance >
+</row-77>
+<row-78>
+<ObjectNum>     79</ObjectNum>
+<Name>NGC 1904  </Name>
+<Type>Globular Cluster</Type>
+<Constellation>Lepus</Constellation>
+<RAHour>5</RAHour>
+<RAMinute>24.5</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>24</DecDeg>
+<DecMinute>33</DecMinute>
+<Magnitude>7.7</Magnitude>
+<Info>Size: 8.7</Info>
+<Distance >41,100</Distance >
+</row-78>
+<row-79>
+<ObjectNum>     80</ObjectNum>
+<Name>NGC 6093  </Name>
+<Type>Globular Cluster</Type>
+<Constellation>Scorpius</Constellation>
+<RAHour>16</RAHour>
+<RAMinute>17</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>22</DecDeg>
+<DecMinute>59</DecMinute>
+<Magnitude>7.3</Magnitude>
+<Info>Size: 8.9</Info>
+<Distance >27,400</Distance >
+</row-79>
+<row-80>
+<ObjectNum>     81</ObjectNum>
+<Name>NGC 3031 Bode¹s Galaxy</Name>
+<Type>Spiral Galaxy</Type>
+<Constellation>Ursa Major</Constellation>
+<RAHour>9</RAHour>
+<RAMinute>55.6</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>69</DecDeg>
+<DecMinute>4</DecMinute>
+<Magnitude>6.9</Magnitude>
+<Info>Size: 21x10</Info>
+<Distance >12,000,000</Distance >
+</row-80>
+<row-81>
+<ObjectNum>     82</ObjectNum>
+<Name>NGC 3034 Cigar Galaxy</Name>
+<Type>Irregular Galaxy</Type>
+<Constellation>Ursa Major</Constellation>
+<RAHour>9</RAHour>
+<RAMinute>55.8</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>69</DecDeg>
+<DecMinute>41</DecMinute>
+<Magnitude>8.4</Magnitude>
+<Info>Size: 9.x4</Info>
+<Distance >12,000,000</Distance >
+</row-81>
+<row-82>
+<ObjectNum>     83</ObjectNum>
+<Name>NGC 5236 Southern Pinwheel Galaxy</Name>
+<Type>Spiral Galaxy</Type>
+<Constellation>Hydra</Constellation>
+<RAHour>13</RAHour>
+<RAMinute>37</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>29</DecDeg>
+<DecMinute>52</DecMinute>
+<Magnitude>7.6</Magnitude>
+<Info>Size: 11x10</Info>
+<Distance >15,000,000</Distance >
+</row-82>
+<row-83>
+<ObjectNum>     84</ObjectNum>
+<Name>NGC 4374  </Name>
+<Type>Lenticular (S0) Galaxy</Type>
+<Constellation>Virgo</Constellation>
+<RAHour>12</RAHour>
+<RAMinute>25.1</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>12</DecDeg>
+<DecMinute>53</DecMinute>
+<Magnitude>9.1</Magnitude>
+<Info>Size: 5</Info>
+<Distance >60,000,000</Distance >
+</row-83>
+<row-84>
+<ObjectNum>     85</ObjectNum>
+<Name>NGC 4382  </Name>
+<Type>Lenticular (S0) Galaxy</Type>
+<Constellation>Coma Berenices</Constellation>
+<RAHour>12</RAHour>
+<RAMinute>25.4</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>18</DecDeg>
+<DecMinute>11</DecMinute>
+<Magnitude>9.1</Magnitude>
+<Info>Size: 7.1x5.2</Info>
+<Distance >60,000,000</Distance >
+</row-84>
+<row-85>
+<ObjectNum>     86</ObjectNum>
+<Name>NGC 4406  </Name>
+<Type>Lenticular (S0) Galaxy</Type>
+<Constellation>Virgo</Constellation>
+<RAHour>12</RAHour>
+<RAMinute>26.2</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>12</DecDeg>
+<DecMinute>57</DecMinute>
+<Magnitude>8.9</Magnitude>
+<Info>Size: 7.5x5.5</Info>
+<Distance >60,000,000</Distance >
+</row-85>
+<row-86>
+<ObjectNum>     87</ObjectNum>
+<Name>NGC 4486 Virgo A</Name>
+<Type>Elliptical Galaxy</Type>
+<Constellation>Virgo</Constellation>
+<RAHour>12</RAHour>
+<RAMinute>30.8</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>12</DecDeg>
+<DecMinute>24</DecMinute>
+<Magnitude>8.6</Magnitude>
+<Info>Size: 7</Info>
+<Distance >60,000,000</Distance >
+</row-86>
+<row-87>
+<ObjectNum>     88</ObjectNum>
+<Name>NGC 4501  </Name>
+<Type>Spiral Galaxy</Type>
+<Constellation>Coma Berenices</Constellation>
+<RAHour>12</RAHour>
+<RAMinute>32</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>14</DecDeg>
+<DecMinute>25</DecMinute>
+<Magnitude>9.6</Magnitude>
+<Info>Size: 7x4</Info>
+<Distance >60,000,000</Distance >
+</row-87>
+<row-88>
+<ObjectNum>     89</ObjectNum>
+<Name>NGC 4552  </Name>
+<Type>Elliptical Galaxy</Type>
+<Constellation>Virgo</Constellation>
+<RAHour>12</RAHour>
+<RAMinute>35.7</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>12</DecDeg>
+<DecMinute>33</DecMinute>
+<Magnitude>9.8</Magnitude>
+<Info>Size: 4</Info>
+<Distance >60,000,000</Distance >
+</row-88>
+<row-89>
+<ObjectNum>     90</ObjectNum>
+<Name>NGC 4569  </Name>
+<Type>Spiral Galaxy</Type>
+<Constellation>Virgo</Constellation>
+<RAHour>12</RAHour>
+<RAMinute>36.8</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>13</DecDeg>
+<DecMinute>10</DecMinute>
+<Magnitude>9.5</Magnitude>
+<Info>Size: 9.5x4.5</Info>
+<Distance >60,000,000</Distance >
+</row-89>
+<row-90>
+<ObjectNum>     91</ObjectNum>
+<Name>NGC 4548  </Name>
+<Type>Spiral Galaxy</Type>
+<Constellation>Coma Berenices</Constellation>
+<RAHour>12</RAHour>
+<RAMinute>35.4</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>14</DecDeg>
+<DecMinute>30</DecMinute>
+<Magnitude>10.2</Magnitude>
+<Info>Size: 5.4x4.4</Info>
+<Distance >60,000,000</Distance >
+</row-90>
+<row-91>
+<ObjectNum>     92</ObjectNum>
+<Name>NGC 6341  </Name>
+<Type>Globular Cluster</Type>
+<Constellation>Hercules</Constellation>
+<RAHour>17</RAHour>
+<RAMinute>17.1</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>43</DecDeg>
+<DecMinute>8</DecMinute>
+<Magnitude>6.4</Magnitude>
+<Info>Size: 11.2</Info>
+<Distance >26,400</Distance >
+</row-91>
+<row-92>
+<ObjectNum>     93</ObjectNum>
+<Name>NGC 2447  </Name>
+<Type>Open Cluster</Type>
+<Constellation>Puppis</Constellation>
+<RAHour>7</RAHour>
+<RAMinute>44.6</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>23</DecDeg>
+<DecMinute>52</DecMinute>
+<Magnitude>6</Magnitude>
+<Info>Size: 22</Info>
+<Distance >3,600</Distance >
+</row-92>
+<row-93>
+<ObjectNum>     94</ObjectNum>
+<Name>NGC 4736  </Name>
+<Type>Spiral Galaxy</Type>
+<Constellation>Canes Venatici</Constellation>
+<RAHour>12</RAHour>
+<RAMinute>50.9</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>41</DecDeg>
+<DecMinute>7</DecMinute>
+<Magnitude>8.2</Magnitude>
+<Info>Size: 7x3</Info>
+<Distance >14,500,000</Distance >
+</row-93>
+<row-94>
+<ObjectNum>     95</ObjectNum>
+<Name>NGC 3351  </Name>
+<Type>Spiral Galaxy</Type>
+<Constellation>Leo</Constellation>
+<RAHour>10</RAHour>
+<RAMinute>44</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>11</DecDeg>
+<DecMinute>42</DecMinute>
+<Magnitude>9.7</Magnitude>
+<Info>Size: 4.4x3.3</Info>
+<Distance >38,000,000</Distance >
+</row-94>
+<row-95>
+<ObjectNum>     96</ObjectNum>
+<Name>NGC 3368  </Name>
+<Type>Spiral Galaxy</Type>
+<Constellation>Leo</Constellation>
+<RAHour>10</RAHour>
+<RAMinute>46.8</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>11</DecDeg>
+<DecMinute>49</DecMinute>
+<Magnitude>9.2</Magnitude>
+<Info>Size: 6x4</Info>
+<Distance >38,000,000</Distance >
+</row-95>
+<row-96>
+<ObjectNum>     97</ObjectNum>
+<Name>NGC 3587 Owl Nebula</Name>
+<Type>Planetary Nebula</Type>
+<Constellation>Ursa Major</Constellation>
+<RAHour>11</RAHour>
+<RAMinute>14.8</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>55</DecDeg>
+<DecMinute>1</DecMinute>
+<Magnitude>9.9</Magnitude>
+<Info>Size: 3.4x3.3</Info>
+<Distance >2,600</Distance >
+</row-96>
+<row-97>
+<ObjectNum>     98</ObjectNum>
+<Name>NGC 4192  </Name>
+<Type>Spiral Galaxy</Type>
+<Constellation>Coma Berenices</Constellation>
+<RAHour>12</RAHour>
+<RAMinute>13.8</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>14</DecDeg>
+<DecMinute>54</DecMinute>
+<Magnitude>10.1</Magnitude>
+<Info>Size: 9.5x3.2</Info>
+<Distance >60,000,000</Distance >
+</row-97>
+<row-98>
+<ObjectNum>     99</ObjectNum>
+<Name>NGC 4254  </Name>
+<Type>Spiral Galaxy</Type>
+<Constellation>Coma Berenices</Constellation>
+<RAHour>12</RAHour>
+<RAMinute>18.8</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>14</DecDeg>
+<DecMinute>25</DecMinute>
+<Magnitude>9.9</Magnitude>
+<Info>Size: 5.4x4.8</Info>
+<Distance >60,000,000</Distance >
+</row-98>
+<row-99>
+<ObjectNum>    100</ObjectNum>
+<Name>NGC 4321  </Name>
+<Type>Spiral Galaxy</Type>
+<Constellation>Coma Berenices</Constellation>
+<RAHour>12</RAHour>
+<RAMinute>22.9</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>15</DecDeg>
+<DecMinute>49</DecMinute>
+<Magnitude>9.3</Magnitude>
+<Info>Size: 7x6</Info>
+<Distance >60,000,000</Distance >
+</row-99>
+<row-100>
+<ObjectNum>    101</ObjectNum>
+<Name>NGC 5457 Pinwheel Galaxy</Name>
+<Type>Spiral Galaxy</Type>
+<Constellation>Ursa Major</Constellation>
+<RAHour>14</RAHour>
+<RAMinute>3.2</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>54</DecDeg>
+<DecMinute>21</DecMinute>
+<Magnitude>7.9</Magnitude>
+<Info>Size: 22</Info>
+<Distance >27,000,000</Distance >
+</row-100>
+<row-101>
+<ObjectNum>    102</ObjectNum>
+<Name>NGC 5866 Spindle Galaxy</Name>
+<Type>Lenticular (S0) Galaxy</Type>
+<Constellation>Draco</Constellation>
+<RAHour>15</RAHour>
+<RAMinute>6.5</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>55</DecDeg>
+<DecMinute>46</DecMinute>
+<Magnitude>9.9</Magnitude>
+<Info>Size: 5.2x2.3</Info>
+<Distance >40,000,000</Distance >
+</row-101>
+<row-102>
+<ObjectNum>    103</ObjectNum>
+<Name>NGC 581</Name>
+<Type>Open Cluster</Type>
+<Constellation>Cassiopeia</Constellation>
+<RAHour>1</RAHour>
+<RAMinute>33.2</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>60</DecDeg>
+<DecMinute>42</DecMinute>
+<Magnitude>7.4</Magnitude>
+<Info>Size: 6</Info>
+<Distance >8,000</Distance >
+</row-102>
+<row-103>
+<ObjectNum>    104</ObjectNum>
+<Name>NGC 4594 Sombrero Galaxy</Name>
+<Type>Spiral Galaxy</Type>
+<Constellation>Virgo</Constellation>
+<RAHour>12</RAHour>
+<RAMinute>40</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>11</DecDeg>
+<DecMinute>37</DecMinute>
+<Magnitude>8</Magnitude>
+<Info>Size: 9x4</Info>
+<Distance >50,000,000</Distance >
+</row-103>
+<row-104>
+<ObjectNum>    105</ObjectNum>
+<Name>NGC 3379</Name>
+<Type>Elliptical Galaxy</Type>
+<Constellation>Leo</Constellation>
+<RAHour>10</RAHour>
+<RAMinute>47.8</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>12</DecDeg>
+<DecMinute>35</DecMinute>
+<Magnitude>9.3</Magnitude>
+<Info>Size: 2</Info>
+<Distance >38,000,000</Distance >
+</row-104>
+<row-105>
+<ObjectNum>    106</ObjectNum>
+<Name>NGC 4258</Name>
+<Type>Spiral Galaxy</Type>
+<Constellation>Canes Venatici</Constellation>
+<RAHour>12</RAHour>
+<RAMinute>19</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>47</DecDeg>
+<DecMinute>18</DecMinute>
+<Magnitude>8.4</Magnitude>
+<Info>Size: 19x8</Info>
+<Distance >25,000,000</Distance >
+</row-105>
+<row-106>
+<ObjectNum>    107</ObjectNum>
+<Name>NGC 6171</Name>
+<Type>Globular Cluster</Type>
+<Constellation>Ophiucus</Constellation>
+<RAHour>16</RAHour>
+<RAMinute>32.5</RAMinute>
+<DecSign>-</DecSign>
+<DecDeg>13</DecDeg>
+<DecMinute>3</DecMinute>
+<Magnitude>7.9</Magnitude>
+<Info>Size: 10</Info>
+<Distance >19,600</Distance >
+</row-106>
+<row-107>
+<ObjectNum>    108</ObjectNum>
+<Name>NGC 3556</Name>
+<Type>Spiral Galaxy</Type>
+<Constellation>Ursa Major</Constellation>
+<RAHour>11</RAHour>
+<RAMinute>11.5</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>55</DecDeg>
+<DecMinute>40</DecMinute>
+<Magnitude>10</Magnitude>
+<Info>Size: 8x1</Info>
+<Distance >45,000,000</Distance >
+</row-107>
+<row-108>
+<ObjectNum>    109</ObjectNum>
+<Name>NGC 3992</Name>
+<Type>Spiral Galaxy</Type>
+<Constellation>Ursa Major</Constellation>
+<RAHour>11</RAHour>
+<RAMinute>57.6</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>53</DecDeg>
+<DecMinute>23</DecMinute>
+<Magnitude>9.8</Magnitude>
+<Info>Size: 7x4</Info>
+<Distance >55,000,000</Distance >
+</row-108>
+<row-109>
+<ObjectNum>    110</ObjectNum>
+<Name>NGC 205 Satellite of M31</Name>
+<Type>Elliptical Galaxy</Type>
+<Constellation>Andromeda</Constellation>
+<RAHour>0</RAHour>
+<RAMinute>40.4</RAMinute>
+<DecSign>+</DecSign>
+<DecDeg>41</DecDeg>
+<DecMinute>41</DecMinute>
+<Magnitude>8.5</Magnitude>
+<Info>Size: 17x10</Info>
+<Distance >2,900,000</Distance >
+</row-109>
+<row-110>
+<ObjectNum></ObjectNum>
+<Name></Name>
+<Type></Type>
+<Constellation></Constellation>
+<RAHour></RAHour>
+<RAMinute></RAMinute>
+<DecSign></DecSign>
+<DecDeg></DecDeg>
+<DecMinute></DecMinute>
+<Magnitude></Magnitude>
+<Info></Info>
+<Distance ></Distance >
+<__parsed_extra></__parsed_extra>
+</row-110>
+</root>

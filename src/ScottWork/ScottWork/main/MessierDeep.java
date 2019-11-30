@@ -43,7 +43,7 @@ public class MessierDeep{
     public static ArrayList<String> MDSO (String filename, int edge_condition){
         MDSObjects obj = new MDSObjects();
         ArrayList<String> SpaceObjects = new ArrayList<>();
-        
+        //System.out.println("MessierDeep.java filename = " + filename);
         try{
             File xml_file = new File (filename);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -118,7 +118,7 @@ public class MessierDeep{
             }    
         catch (Exception e) {
             e.printStackTrace();
-            System.out.println("");
+            System.out.println("THERE'S NO MESSIER DEEP FILE");
         }
         return SpaceObjects;
         }
