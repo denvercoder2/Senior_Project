@@ -1,18 +1,7 @@
+# -*- coding: utf-8 -*-
+
 import math
 import decimal
-# Primary Elements
-# a  Mean distance, or semi-major axis
-# e  Eccentricity
-# T  Time at perihelion
-# i  Inclination, i.e. the "tilt" of the orbit relative to the ecliptic.
-#    The inclination varies from 0 to 180 degrees.
-# N  Longitude of Ascending Node.
-# w  The angle from the Ascending node to the Perihelion, along the orbit.
-
-# q  Perihelion distance  = a * (1 - e)
-
-# spherical ecliptic coordinates (long, lat)
-# spherical equatorial coordinates (RA, Decl)
 
 
 def getUT(place, time, dst):
