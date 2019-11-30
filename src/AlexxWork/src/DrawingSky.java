@@ -27,6 +27,7 @@ public class DrawingSky extends Canvas {
 	ArrayList<String> constLabels;
 	ArrayList<String> planetLabels;
 	ArrayList<String> mesrLabels;
+	
 	int[] hercules = new int[44];
 	ArrayList<String> herculesNames;
 	int[] ursaMinor = new int[16];
@@ -35,6 +36,61 @@ public class DrawingSky extends Canvas {
 	ArrayList<String> ursaMajorNames;
 	int[] libra = new int[12];
 	ArrayList<String> libraNames;
+	int[] andromeda = new int[1];
+	ArrayList<String> andromedaNames;
+	int[] aquarius = new int[1];
+	ArrayList<String> aquariusNames;
+	int[] aquila = new int[1];
+	ArrayList<String> aquilaNames;
+	int[] aries = new int[1];
+	ArrayList<String> ariesNames;
+	int[] auriga = new int[1];
+	ArrayList<String> aurigaNames;
+	int[] bootes = new int[1];
+	ArrayList<String> bootesNames;
+	int[] cancer = new int[1];
+	ArrayList<String> cancerNames;
+	int[] canisMajor = new int[1];
+	ArrayList<String> canisMajorNames;
+	int[] canisMinor = new int[1];
+	ArrayList<String> canisMinorNames;
+	int[] capricornus = new int[1];
+	ArrayList<String> capricornusNames;
+	int[] cassiopeia = new int[1];
+	ArrayList<String> cassiopeiaNames;
+	int[] centaurus = new int[1];
+	ArrayList<String> centaurusNames;
+	int[] cepheus = new int[1];
+	ArrayList<String> cepheusNames;
+	int[] crux = new int[1];
+	ArrayList<String> cruxNames;
+	int[] cygnus = new int[1];
+	ArrayList<String> cygnusNames;
+	int[] draco = new int[1];
+	ArrayList<String> dracoNames;
+	int[] gemini = new int[1];
+	ArrayList<String> geminiNames;
+	int[] hydra = new int[1];
+	ArrayList<String> hydraNames;
+	int[] leo = new int[1];
+	ArrayList<String> leoNames;
+	int[] lyra = new int[1];
+	ArrayList<String> lyraNames;
+	int[] orion = new int[1];
+	ArrayList<String> orionNames;
+	int[] pegasus = new int[1];
+	ArrayList<String> pegasusNames;
+	int[] perseus = new int[1];
+	ArrayList<String> perseusNames;
+	int[] pisces = new int[1];
+	ArrayList<String> piscesNames;
+	int[] sagittarius = new int[1];
+	ArrayList<String> sagittariusNames;
+	int[] scorpio = new int[1];
+	ArrayList<String> scorpioNames;
+	int[] taurus= new int[1];
+	ArrayList<String> taurusNames;
+	
 	
 	
 	
@@ -252,17 +308,17 @@ public class DrawingSky extends Canvas {
     		if(AlexxWork2.constellationsCB) {
 				if(AlexxWork2.spaceObjList.get(i).getType() == "CONST" 
 						&& AlexxWork2.spaceObjList.get(i).getConstName() != null 
-						&& AlexxWork2.spaceObjList.get(i).getConstName() != ""
-						&& AlexxWork2.spaceObjList.get(i).getAltitude() > 0) {
+						&& AlexxWork2.spaceObjList.get(i).getConstName() != "") {
+						//&& AlexxWork2.spaceObjList.get(i).getAltitude() > 0) {
 					int x = getX(2250, 2250, 1000, (int)AlexxWork2.spaceObjList.get(i).getAzimuth(), (int)AlexxWork2.spaceObjList.get(i).getAltitude());
 					int y = getY(2250, 2250, 1000, (int)AlexxWork2.spaceObjList.get(i).getAzimuth(), (int)AlexxWork2.spaceObjList.get(i).getAltitude());
 					
-					//System.out.println("X: "+ x);
+					System.out.println("Const: "+AlexxWork2.spaceObjList.get(i).getConstName());
 					//System.out.println("Y: "+ y);
 					
-					constLabels.add(AlexxWork2.spaceObjList.get(i).getConstName());
-					constLabels.add(String.valueOf(x));
-					constLabels.add(String.valueOf(y));
+					//constLabels.add(AlexxWork2.spaceObjList.get(i).getConstName());
+					//constLabels.add(String.valueOf(x));
+					//constLabels.add(String.valueOf(y));
 				
 				}
 			}
