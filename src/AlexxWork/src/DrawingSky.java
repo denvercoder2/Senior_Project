@@ -136,6 +136,16 @@ public class DrawingSky extends Canvas {
     		g.drawString(starLabels.get(index), Integer.valueOf(starLabels.get(index+1)), Integer.valueOf(starLabels.get(index+2)));
     		index +=3;
     	}
+    	index = 0;
+    	for(int i = 0; i < (planetLabels.size()/3); i++) {
+    		g.drawString(planetLabels.get(index), Integer.valueOf(planetLabels.get(index+1)), Integer.valueOf(planetLabels.get(index+2)));
+    		index +=3;
+    	}
+    	index = 0;
+    	for(int i = 0; i < (mesrLabels.size()/3); i++) {
+    		g.drawString(mesrLabels.get(index), Integer.valueOf(mesrLabels.get(index+1)), Integer.valueOf(mesrLabels.get(index+2)));
+    		index +=3;
+    	}
     	if(checkUrsaMajor()) {
     		g.drawLine(ursaMajor[0], ursaMajor[1], ursaMajor[2], ursaMajor[3]);
         	g.drawLine(ursaMajor[2], ursaMajor[3], ursaMajor[4], ursaMajor[5]);
@@ -205,7 +215,6 @@ public class DrawingSky extends Canvas {
     	planetLabels = new ArrayList<>();
     	mesrLabels = new ArrayList<>();
     	
-    	
     	int a = 0;
     	int b = 1;
     	int c = 2;
@@ -213,11 +222,15 @@ public class DrawingSky extends Canvas {
     	
     	int size;
     	
-    	
     	herculesNames.sort(null);
     	System.out.println("Size: "+herculesNames.size());
     	System.out.println(herculesNames);
     	for(int i = 0; i < AlexxWork2.spaceObjList.size(); i++) {
+    		if(AlexxWork2.spaceObjList.get(i).getType() == "LUNA") {
+				System.out.println("Moon Found");
+				System.out.println("Mag: "+AlexxWork2.spaceObjList.get(i).getMagnitude());
+				System.out.println("Alt: "+ AlexxWork2.spaceObjList.get(i).getAltitude());
+			}
     		if(AlexxWork2.spaceObjList.get(i).getMagnitude() != null 
     				&& (Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()) <= 6.0) 
     				&& AlexxWork2.spaceObjList.get(i).getAltitude() > 1) {
@@ -229,6 +242,7 @@ public class DrawingSky extends Canvas {
 				int y = getY(2250, 2250, 1000, 
 						(int)AlexxWork2.spaceObjList.get(i).getAzimuth(), 
 						(int)AlexxWork2.spaceObjList.get(i).getAltitude());
+				
 				
 				
 				if(AlexxWork2.spaceObjList.get(i).getType() == "STAR" 
@@ -346,17 +360,9 @@ public class DrawingSky extends Canvas {
 				}				
 	    		test.add(a, x);
 	    		test.add(b, y);
-	    		if(AlexxWork2.spaceObjList.get(i).getType() == "MESR" 
-	    				&& AlexxWork2.spaceObjList.get(i).getAltitude() > 1) {
-	    			size = 20;
-	    			System.out.println(AlexxWork2.spaceObjList.get(i).getProperName());
-	    			System.out.println(AlexxWork2.spaceObjList.get(i).getMagnitude());
-	    		}
-	    		else if(AlexxWork2.spaceObjList.get(i).getType() == "PLAN" 
-	    				&& AlexxWork2.spaceObjList.get(i).getAltitude() > 1) {
-	    			size = 40;
-	    			System.out.println(AlexxWork2.spaceObjList.get(i).getProperName());
-	    			System.out.println(AlexxWork2.spaceObjList.get(i).getMagnitude());
+	    		
+	    		if(AlexxWork2.spaceObjList.get(i).getType() == "PLAN"){
+	    			size = 16;
 	    		}
 	    		else{
 	    			size = getSize(Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()));
@@ -374,7 +380,7 @@ public class DrawingSky extends Canvas {
 				if(AlexxWork2.spaceObjList.get(i).getType() == "CONST" 
 						&& AlexxWork2.spaceObjList.get(i).getConstName() != null 
 						&& AlexxWork2.spaceObjList.get(i).getConstName() != ""
-						&& AlexxWork2.spaceObjList.get(i).getAltitude() > 0) {
+						&& AlexxWork2.spaceObjList.get(i).getAltitude() > 1) {
 					int x = getX(2250, 2250, 1000, (int)AlexxWork2.spaceObjList.get(i).getAzimuth(), (int)AlexxWork2.spaceObjList.get(i).getAltitude());
 					int y = getY(2250, 2250, 1000, (int)AlexxWork2.spaceObjList.get(i).getAzimuth(), (int)AlexxWork2.spaceObjList.get(i).getAltitude());
 										
@@ -383,6 +389,33 @@ public class DrawingSky extends Canvas {
 					constLabels.add(String.valueOf(y));
 				}
 			}
+    		if(AlexxWork2.planetsCB) {
+				if(AlexxWork2.spaceObjList.get(i).getType() == "PLAN" 
+						&& AlexxWork2.spaceObjList.get(i).getProperName() != null 
+						&& AlexxWork2.spaceObjList.get(i).getProperName() != ""
+						&& AlexxWork2.spaceObjList.get(i).getAltitude() > 1) {
+					int x = getX(2250, 2250, 1000, (int)AlexxWork2.spaceObjList.get(i).getAzimuth(), (int)AlexxWork2.spaceObjList.get(i).getAltitude());
+					int y = getY(2250, 2250, 1000, (int)AlexxWork2.spaceObjList.get(i).getAzimuth(), (int)AlexxWork2.spaceObjList.get(i).getAltitude());
+										
+					planetLabels.add(AlexxWork2.spaceObjList.get(i).getProperName());
+					planetLabels.add(String.valueOf(x));
+					planetLabels.add(String.valueOf(y));
+				}
+			}
+    		if(AlexxWork2.messierCB) {
+				if(AlexxWork2.spaceObjList.get(i).getType() == "MESR" 
+						&& AlexxWork2.spaceObjList.get(i).getProperName() != null 
+						&& AlexxWork2.spaceObjList.get(i).getProperName() != ""
+						&& AlexxWork2.spaceObjList.get(i).getAltitude() > 1) {
+					int x = getX(2250, 2250, 1000, (int)AlexxWork2.spaceObjList.get(i).getAzimuth(), (int)AlexxWork2.spaceObjList.get(i).getAltitude());
+					int y = getY(2250, 2250, 1000, (int)AlexxWork2.spaceObjList.get(i).getAzimuth(), (int)AlexxWork2.spaceObjList.get(i).getAltitude());
+										
+					mesrLabels.add(AlexxWork2.spaceObjList.get(i).getProperName());
+					mesrLabels.add(String.valueOf(x));
+					mesrLabels.add(String.valueOf(y));
+				}
+			}
+    		
     	}
     	return test;
     }
