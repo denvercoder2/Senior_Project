@@ -65,6 +65,7 @@ public class SkyMap_Formulae_J {
 			SpaceObj tempObj = new SpaceObj();
 			tempObj.setType("PLAN");
 			tempObj.setProperName(planets[i]);
+			tempObj.setMagnitude("3");
 			spaceObjList.add(tempObj);
 		}	
 		
@@ -250,6 +251,7 @@ public class SkyMap_Formulae_J {
 			SpaceObj tempObj = new SpaceObj();
 			tempObj.setType("PLAN");
 			tempObj.setProperName(planets[i]);
+			tempObj.setMagnitude("3");
 			spaceObjList.add(tempObj);
 		}	
 		System.out.println(spaceObjList.size());
@@ -391,6 +393,7 @@ public class SkyMap_Formulae_J {
 			SpaceObj tempObj = new SpaceObj();
 			tempObj.setType("PLAN");
 			tempObj.setProperName(planets[i]);
+			tempObj.setMagnitude("3");
 			spaceObjList.add(tempObj);
 		}	
 		System.out.println(spaceObjList.size());
@@ -531,6 +534,7 @@ public class SkyMap_Formulae_J {
 			SpaceObj tempObj = new SpaceObj();
 			tempObj.setType("PLAN");
 			tempObj.setProperName(planets[i]);
+			tempObj.setMagnitude("3");
 			spaceObjList.add(tempObj);
 		}	
 		System.out.println(spaceObjList.size());
