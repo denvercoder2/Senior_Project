@@ -22,6 +22,8 @@ import java.awt.event.ActionEvent;
 import java.awt.ScrollPane;
 import java.awt.Scrollbar;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+
 import java.awt.Color;
 import java.awt.Dimension;
 
@@ -95,6 +97,7 @@ public class AlexxWork2 extends JFrame {
 	
 	public static ArrayList<SpaceObj> spaceObjList;
 	
+	public JFileChooser fc = new JFileChooser();
 	
 	private JButton btnSaveToDisk;
 	private JScrollPane scrollPane_1;
@@ -188,16 +191,17 @@ public class AlexxWork2 extends JFrame {
 	
 	public void getSpaceObjects() throws ParseException {
 		
-		spaceObjList = SkyMap_Formulae_J.getSpace(String.valueOf((int)yearValid), String.valueOf((int)monthValid), 
+		/*spaceObjList = SkyMap_Formulae_J.getSpace(String.valueOf((int)yearValid), String.valueOf((int)monthValid), 
 				String.valueOf((int)dayValid), String.valueOf((int)hourValid), 
 				String.valueOf((int)minuteValid), String.valueOf(0), 
 				String.valueOf((int)latValid), String.valueOf((int)longValid));
+				*/
 		//ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\waiting.jpg");
 		//scrollPane_1.setViewportView(new JLabel(ii));
-		/*spaceObjList = SkyMap_Formulae_J.getSpace(String.valueOf((int)2019), String.valueOf((int)11), 
+		spaceObjList = SkyMap_Formulae_J.getSpace(String.valueOf((int)2019), String.valueOf((int)11), 
 				String.valueOf((int)23), String.valueOf((int)13), 
 				String.valueOf((int)05), String.valueOf(0), 
-				String.valueOf((int)37), String.valueOf((int)-114));*/
+				String.valueOf((int)37), String.valueOf((int)-114));
 		//System.out.println("2222222222222222222222222222\n");
     	//System.out.println(spaceObjList.size()+"\2222222222222222222222222222\n");
     	
@@ -207,6 +211,7 @@ public class AlexxWork2 extends JFrame {
 		drawing = new DrawingSky();
 		screenshot = drawing.draw();
 		scrollPane_1.setViewportView(new JLabel(screenshot));
+		//fc.setSelectedFile(new java.io.File(screenshot));
 	}
 
 	public Boolean checkDay() {
@@ -393,7 +398,7 @@ public class AlexxWork2 extends JFrame {
 	
 	public Boolean checkLatitudeDirection() {
 		Boolean flag = false;
-		
+		/*
 		if(latitudeComboBox.getSelectedItem().toString().equals(" ")) {
 			latitudeComboBox.setBorder(new LineBorder(Color.RED, 3));
 		}
@@ -408,13 +413,14 @@ public class AlexxWork2 extends JFrame {
 			}
 			flag = true;
 		}
-		
+		*/
+		flag = true;
 		return flag;
 	}
 	
 	public Boolean checkLongitudeDirection() {
 		Boolean flag = false;
-		
+		/*
 		if(longitudeComboBox.getSelectedItem().toString() == " ") {
 			longitudeComboBox.setBorder(new LineBorder(Color.RED, 3));
 		}
@@ -429,7 +435,8 @@ public class AlexxWork2 extends JFrame {
 			}
 			flag = true;
 		}
-		
+		*/
+		flag = true;
 		return flag;
 	}
 	
@@ -539,6 +546,8 @@ public class AlexxWork2 extends JFrame {
 	
 	public AlexxWork2() {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		
+
 		double screenHeight = screenSize.height;
 		double screenWidth = screenSize.width;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -679,13 +688,12 @@ public class AlexxWork2 extends JFrame {
 		btnSaveToDisk = new JButton("Save Image");
 		btnSaveToDisk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\waiting.jpg");
-				//scrollPane_1.setViewportView(new JLabel(ii));
+				
 				
 			}
 		});
 		btnSaveToDisk.setFont(new Font("Tahoma", Font.BOLD, 30));
-		mainGUI.add(btnSaveToDisk, "cell 12 31,grow");
+		mainGUI.add(btnSaveToDisk, "cell 12 31,growx");
 		
 		latitudeComboBox = new JComboBox();
 		latitudeComboBox.addItem(" ");
@@ -722,10 +730,10 @@ public class AlexxWork2 extends JFrame {
 		applyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					checkValues();
-					//setLabels();
-					//getSpaceObjects();
-					//drawSky();
+					//checkValues();
+					setLabels();
+					getSpaceObjects();
+					drawSky();
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -734,7 +742,7 @@ public class AlexxWork2 extends JFrame {
 			}
 		});
 		applyButton.setFont(new Font("Tahoma", Font.BOLD, 34));
-		mainGUI.add(applyButton, "cell 0 31 7 1,grow");
+		mainGUI.add(applyButton, "cell 0 31 7 1,growx");
 		
 		scrollPane_1 = new JScrollPane();
 		scrollPane_1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
