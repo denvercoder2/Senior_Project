@@ -82,7 +82,7 @@ public class SkyMap_Formulae_J {
 			spaceObjList.add(tempObj);
 		}		
 		
-		/*
+		
 		// This creates the SpaceObjs for the Messier object locations that will be sent to the Jython script later for figuring their Alt and Azimuth
 		for (int i = 0; i < 111; i++) {
 			ArrayList<String> MessierDeepObj = MessierDeep.MDSO("MessierDeep.xml", i);
@@ -105,10 +105,13 @@ public class SkyMap_Formulae_J {
 
 				spaceObjList.add(tempObj);
 			}
-		}*/
+		}
 		
 		System.out.println("with messier = " + spaceObjList.size());
-
+		
+		
+		
+		
 		
 		// This begins our Jython implementation.
 		// This string strictly holds the output coming from the Python script.
@@ -127,7 +130,7 @@ public class SkyMap_Formulae_J {
 			//System.out.println(spaceObjList.get(k).getRA());
 			//System.out.println(spaceObjList.get(k).getDec());
 			// This special argument is used to determine use on figuring a Star or Planet's Altitude and Azimuth when sent to the Python script.
-			String argument11 = "";
+			String argument11 = "n";
 			if (spaceObjList.get(k).getProperName() == "mercury")
 				argument11 = "mercury";
 			else if (spaceObjList.get(k).getProperName() == "venus")
@@ -144,6 +147,8 @@ public class SkyMap_Formulae_J {
 				argument11 = "neptune";
 			else if (spaceObjList.get(k).getProperName() == "sol")
 				argument11 = "sol";
+			
+			
 			String RAtoSend = spaceObjList.get(k).getRA();
 			String DecToSend = spaceObjList.get(k).getDec();
 			// This is done because the planets don't naturally hold a RA and Dec.
@@ -180,6 +185,29 @@ public class SkyMap_Formulae_J {
 			spaceObjList.get(k).setAltitude(Double.parseDouble(outputStr.substring(outputStr.indexOf(',')+2,outputStr.indexOf(')'))));
 			spaceObjList.get(k).setAzimuth(Double.parseDouble(outputStr.substring(outputStr.lastIndexOf(',')+2,outputStr.lastIndexOf(')'))));
 		}
+		/*
+		for (int i = 0; i < spaceObjList.size(); i++) {
+			if (spaceObjList.get(i).getProperName() == "uranus") {
+				System.out.println(spaceObjList.get(i).getProperName());
+				System.out.println(spaceObjList.get(i).getAltitude());
+				System.out.println(spaceObjList.get(i).getAzimuth());
+			}
+			else if (spaceObjList.get(i).getProperName() == "neptune") {
+				System.out.println(spaceObjList.get(i).getProperName());
+				System.out.println(spaceObjList.get(i).getAltitude());
+				System.out.println(spaceObjList.get(i).getAzimuth());
+			}
+		}
+		
+		for (int i = 0; i < spaceObjList.size(); i++) {
+			if (spaceObjList.get(i).getProperName() != null && spaceObjList.get(i).getProperName() != "" && spaceObjList.get(i).getType() == "MESR") {
+				System.out.println(spaceObjList.get(i).getProperName());
+				System.out.println(spaceObjList.get(i).getType());
+				System.out.println(spaceObjList.get(i).getAltitude());
+				System.out.println(spaceObjList.get(i).getAzimuth());
+			}	
+		}*/
+		
 		
 		long endTime = System.nanoTime();
 		long elapsedTime = endTime - startTime;
@@ -238,7 +266,6 @@ public class SkyMap_Formulae_J {
 			spaceObjList.add(tempObj);
 		}	
 		
-		/*
 		for (int i = 1; i < 111; i++) {
 			ArrayList<String> MessierDeepObj = MessierDeep.MDSO("MessierDeep.xml", i);
 
@@ -261,7 +288,7 @@ public class SkyMap_Formulae_J {
 
 				spaceObjList.add(tempObj);
 			}
-		}*/
+		}
 		
 		String outputStr;
 		String stringArgument;
@@ -271,7 +298,7 @@ public class SkyMap_Formulae_J {
 		for (int k = 0; k < spaceObjList.size(); k++) {
 			//System.out.println(spaceObjList.get(k).getRA());
 			//System.out.println(spaceObjList.get(k).getDec());
-			String argument11 = "";
+			String argument11 = "n";
 			if (spaceObjList.get(k).getProperName() == "mercury")
 				argument11 = "mercury";
 			else if (spaceObjList.get(k).getProperName() == "venus")
@@ -305,7 +332,7 @@ public class SkyMap_Formulae_J {
 					+ ":" + MONTH									// 8.month
 					+ ":" + DAY										// 9.day
 					+ ":" + "FALSE"									// 10.dst
-					+ ":" + "";										// 11.obj
+					+ ":" + argument11;								// 11.obj
 			String[] arguments = {"solveLocation.py", stringArgument};
 			if (doOnce == false) {
 				PythonInterpreter.initialize(System.getProperties(), System.getProperties(), arguments);
@@ -379,7 +406,6 @@ public class SkyMap_Formulae_J {
 			spaceObjList.add(tempObj);
 		}	
 		
-		/*
 		for (int i = 1; i < 111; i++) {
 			ArrayList<String> MessierDeepObj = MessierDeep.MDSO("MessierDeep.xml", i);
 
@@ -402,7 +428,7 @@ public class SkyMap_Formulae_J {
 
 				spaceObjList.add(tempObj);
 			}
-		}*/
+		}
 		
 		String outputStr;
 		String stringArgument;
@@ -412,7 +438,7 @@ public class SkyMap_Formulae_J {
 		for (int k = 0; k < spaceObjList.size(); k++) {
 			//System.out.println(spaceObjList.get(k).getRA());
 			//System.out.println(spaceObjList.get(k).getDec());
-			String argument11 = "";
+			String argument11 = "n";
 			if (spaceObjList.get(k).getProperName() == "mercury")
 				argument11 = "mercury";
 			else if (spaceObjList.get(k).getProperName() == "venus")
@@ -446,7 +472,7 @@ public class SkyMap_Formulae_J {
 					+ ":" + MONTH									// 8.month
 					+ ":" + DAY										// 9.day
 					+ ":" + "FALSE"									// 10.dst
-					+ ":" + "";										// 11.obj
+					+ ":" + argument11;								// 11.obj
 			String[] arguments = {"solveLocation.py", stringArgument};
 			if (doOnce == false) {
 				PythonInterpreter.initialize(System.getProperties(), System.getProperties(), arguments);
@@ -519,7 +545,7 @@ public class SkyMap_Formulae_J {
 			tempObj.setDec(Cobj.getDec());
 			spaceObjList.add(tempObj);
 		}	
-		/*
+		
 		for (int i = 1; i < 111; i++) {
 			ArrayList<String> MessierDeepObj = MessierDeep.MDSO("MessierDeep.xml", i);
 
@@ -542,7 +568,7 @@ public class SkyMap_Formulae_J {
 
 				spaceObjList.add(tempObj);
 			}
-		}*/
+		}
 		
 		String outputStr;
 		String stringArgument;
@@ -552,7 +578,7 @@ public class SkyMap_Formulae_J {
 		for (int k = 0; k < spaceObjList.size(); k++) {
 			//System.out.println(spaceObjList.get(k).getRA());
 			//System.out.println(spaceObjList.get(k).getDec());
-			String argument11 = "";
+			String argument11 = "n";
 			if (spaceObjList.get(k).getProperName() == "mercury")
 				argument11 = "mercury";
 			else if (spaceObjList.get(k).getProperName() == "venus")
@@ -586,7 +612,7 @@ public class SkyMap_Formulae_J {
 					+ ":" + (c.get(Calendar.MONTH)+1)				// 8.month
 					+ ":" + c.get(Calendar.DAY_OF_MONTH)			// 9.day
 					+ ":" + "FALSE"									// 10.dst
-					+ ":" + "";										// 11.obj
+					+ ":" + argument11;								// 11.obj
 			String[] arguments = {"solveLocation.py", stringArgument};
 			if (doOnce == false) {
 				PythonInterpreter.initialize(System.getProperties(), System.getProperties(), arguments);
