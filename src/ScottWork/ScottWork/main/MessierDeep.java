@@ -118,7 +118,7 @@ public class MessierDeep{
             }    
         catch (Exception e) {
             e.printStackTrace();
-            System.out.println("THERE'S NO MESSIER DEEP FILE");
+            System.out.println(" ");
         }
         return SpaceObjects;
         }
