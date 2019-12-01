@@ -218,24 +218,6 @@ public class DrawingSky extends Canvas {
     	System.out.println("Size: "+herculesNames.size());
     	System.out.println(herculesNames);
     	for(int i = 0; i < AlexxWork2.spaceObjList.size(); i++) {
-    		/*
-    		if(AlexxWork2.spaceObjList.get(i).getType() == "MESR") {
-    			System.out.println(AlexxWork2.spaceObjList.get(i).getProperName());
-    			System.out.println(AlexxWork2.spaceObjList.get(i).getMagnitude());
-    			System.out.println(AlexxWork2.spaceObjList.get(i).getAltitude());
-    		}
-    		*/
-    		if(AlexxWork2.spaceObjList.get(i).getType() == "PLAN") {
-    			System.out.println(AlexxWork2.spaceObjList.get(i).getProperName());
-    			System.out.println(AlexxWork2.spaceObjList.get(i).getAltitude());
-    		}
-    		/*
-    		if(AlexxWork2.spaceObjList.get(i).getType() == "CONST") {
-    			System.out.println(AlexxWork2.spaceObjList.get(i).getConstName());
-    			System.out.println(AlexxWork2.spaceObjList.get(i).getMagnitude());
-    			System.out.println(AlexxWork2.spaceObjList.get(i).getAltitude());
-    		}
-    		*/
     		if(AlexxWork2.spaceObjList.get(i).getMagnitude() != null 
     				&& (Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()) <= 6.0) 
     				&& AlexxWork2.spaceObjList.get(i).getAltitude() > 1) {
@@ -258,7 +240,6 @@ public class DrawingSky extends Canvas {
 						try {
 							int testInt = Integer.parseInt(AlexxWork2.spaceObjList.get(i).getProperName());
 							} catch (NumberFormatException | NullPointerException nfe) {
-								//System.out.println(AlexxWork2.spaceObjList.get(i).getProperName());
 								starLabels.add(AlexxWork2.spaceObjList.get(i).getProperName());
 								starLabels.add(String.valueOf(x));
 								starLabels.add(String.valueOf(y));
@@ -365,11 +346,19 @@ public class DrawingSky extends Canvas {
 				}				
 	    		test.add(a, x);
 	    		test.add(b, y);
-	    		if(AlexxWork2.spaceObjList.get(i).getType() == "MESR") {
-	    			size = 25;
-	    			//System.out.println(AlexxWork2.spaceObjList.get(i).getType());
+	    		if(AlexxWork2.spaceObjList.get(i).getType() == "MESR" 
+	    				&& AlexxWork2.spaceObjList.get(i).getAltitude() > 1) {
+	    			size = 20;
+	    			System.out.println(AlexxWork2.spaceObjList.get(i).getProperName());
+	    			System.out.println(AlexxWork2.spaceObjList.get(i).getMagnitude());
 	    		}
-	    		else {
+	    		else if(AlexxWork2.spaceObjList.get(i).getType() == "PLAN" 
+	    				&& AlexxWork2.spaceObjList.get(i).getAltitude() > 1) {
+	    			size = 40;
+	    			System.out.println(AlexxWork2.spaceObjList.get(i).getProperName());
+	    			System.out.println(AlexxWork2.spaceObjList.get(i).getMagnitude());
+	    		}
+	    		else{
 	    			size = getSize(Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()));
 	    		}
 	    		
@@ -384,24 +373,17 @@ public class DrawingSky extends Canvas {
     		if(AlexxWork2.constellationsCB) {
 				if(AlexxWork2.spaceObjList.get(i).getType() == "CONST" 
 						&& AlexxWork2.spaceObjList.get(i).getConstName() != null 
-						&& AlexxWork2.spaceObjList.get(i).getConstName() != "") {
-						//&& AlexxWork2.spaceObjList.get(i).getAltitude() > 0) {
+						&& AlexxWork2.spaceObjList.get(i).getConstName() != ""
+						&& AlexxWork2.spaceObjList.get(i).getAltitude() > 0) {
 					int x = getX(2250, 2250, 1000, (int)AlexxWork2.spaceObjList.get(i).getAzimuth(), (int)AlexxWork2.spaceObjList.get(i).getAltitude());
 					int y = getY(2250, 2250, 1000, (int)AlexxWork2.spaceObjList.get(i).getAzimuth(), (int)AlexxWork2.spaceObjList.get(i).getAltitude());
-					
-					System.out.println("Const: "+AlexxWork2.spaceObjList.get(i).getConstName());
-					//System.out.println("Y: "+ y);
-					
-					//constLabels.add(AlexxWork2.spaceObjList.get(i).getConstName());
-					//constLabels.add(String.valueOf(x));
-					//constLabels.add(String.valueOf(y));
-				
+										
+					constLabels.add(AlexxWork2.spaceObjList.get(i).getConstName());
+					constLabels.add(String.valueOf(x));
+					constLabels.add(String.valueOf(y));
 				}
 			}
-    		
     	}
-    	
-    	//System.out.println(herculesNames);
     	return test;
     }
     
