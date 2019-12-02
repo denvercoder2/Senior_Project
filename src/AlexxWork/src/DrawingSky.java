@@ -37,33 +37,33 @@ public class DrawingSky extends Canvas {
 	ArrayList<String> ursaMajorNames;
 	int[] libra = new int[12];
 	ArrayList<String> libraNames;
-	int[] andromeda = new int[1];
+	int[] andromeda = new int[30];
 	ArrayList<String> andromedaNames;
 	int[] aquarius = new int[1];
 	ArrayList<String> aquariusNames;
-	int[] aquila = new int[1];
+	int[] aquila = new int[16];
 	ArrayList<String> aquilaNames;
-	int[] aries = new int[1];
+	int[] aries = new int[8];
 	ArrayList<String> ariesNames;
-	int[] auriga = new int[1];
+	int[] auriga = new int[14];
 	ArrayList<String> aurigaNames;
 	int[] bootes = new int[1];
 	ArrayList<String> bootesNames;
-	int[] cancer = new int[1];
+	int[] cancer = new int[10];
 	ArrayList<String> cancerNames;
-	int[] canisMajor = new int[1];
+	int[] canisMajor = new int[20];
 	ArrayList<String> canisMajorNames;
-	int[] canisMinor = new int[1];
+	int[] canisMinor = new int[4];
 	ArrayList<String> canisMinorNames;
 	int[] capricornus = new int[1];
 	ArrayList<String> capricornusNames;
-	int[] cassiopeia = new int[1];
+	int[] cassiopeia = new int[10];
 	ArrayList<String> cassiopeiaNames;
 	int[] centaurus = new int[1];
 	ArrayList<String> centaurusNames;
-	int[] cepheus = new int[1];
+	int[] cepheus = new int[18];
 	ArrayList<String> cepheusNames;
-	int[] crux = new int[1];
+	int[] crux = new int[8];
 	ArrayList<String> cruxNames;
 	int[] cygnus = new int[1];
 	ArrayList<String> cygnusNames;
@@ -75,7 +75,7 @@ public class DrawingSky extends Canvas {
 	ArrayList<String> hydraNames;
 	int[] leo = new int[1];
 	ArrayList<String> leoNames;
-	int[] lyra = new int[1];
+	int[] lyra = new int[12];
 	ArrayList<String> lyraNames;
 	int[] orion = new int[1];
 	ArrayList<String> orionNames;
@@ -146,6 +146,113 @@ public class DrawingSky extends Canvas {
     		g.drawString(mesrLabels.get(index), Integer.valueOf(mesrLabels.get(index+1)), Integer.valueOf(mesrLabels.get(index+2)));
     		index +=3;
     	}
+    	
+    	if(checkCanisMajor()) {
+    		g.drawLine(canisMajor[0], canisMajor[1], canisMajor[2], canisMajor[3]);
+    		g.drawLine(canisMajor[2], canisMajor[3], canisMajor[4], canisMajor[5]);
+    		g.drawLine(canisMajor[2], canisMajor[3], canisMajor[6], canisMajor[7]);
+    		g.drawLine(canisMajor[6], canisMajor[7], canisMajor[8], canisMajor[9]);
+    		g.drawLine(canisMajor[8], canisMajor[9], canisMajor[10], canisMajor[11]);
+    		g.drawLine(canisMajor[10], canisMajor[11], canisMajor[12], canisMajor[13]);
+    		g.drawLine(canisMajor[12], canisMajor[13], canisMajor[6], canisMajor[7]);
+    		g.drawLine(canisMajor[6], canisMajor[7], canisMajor[14], canisMajor[15]);
+    		g.drawLine(canisMajor[14], canisMajor[15], canisMajor[16], canisMajor[17]);
+    		g.drawLine(canisMajor[16], canisMajor[17], canisMajor[18], canisMajor[19]);
+    		g.drawLine(canisMajor[18], canisMajor[19], canisMajor[0], canisMajor[1]);
+    	}
+    	
+    	if(checkAquila()) {
+    		g.drawLine(aquila[0], aquila[1], aquila[2], aquila[3]);
+    		g.drawLine(aquila[2], aquila[3], aquila[4], aquila[5]);
+    		g.drawLine(aquila[4], aquila[5], aquila[0], aquila[1]);
+    		g.drawLine(aquila[2], aquila[3], aquila[6], aquila[7]);
+    		g.drawLine(aquila[6], aquila[7], aquila[14], aquila[15]);
+    		g.drawLine(aquila[14], aquila[15], aquila[4], aquila[5]);
+    		g.drawLine(aquila[4], aquila[5], aquila[8], aquila[9]);
+    		g.drawLine(aquila[8], aquila[9], aquila[10], aquila[11]);
+    		g.drawLine(aquila[10], aquila[11], aquila[12], aquila[13]);
+    	}
+    	
+    	if(checkCepheus()) {
+    		g.drawLine(cepheus[16], cepheus[17], cepheus[0], cepheus[1]);
+    		g.drawLine(cepheus[2], cepheus[3], cepheus[0], cepheus[1]);
+    		g.drawLine(cepheus[2], cepheus[3], cepheus[14], cepheus[15]);
+    		g.drawLine(cepheus[2], cepheus[3], cepheus[4], cepheus[5]);
+    		g.drawLine(cepheus[4], cepheus[5], cepheus[6], cepheus[7]);
+    		g.drawLine(cepheus[6], cepheus[7], cepheus[8], cepheus[9]);
+    		g.drawLine(cepheus[8], cepheus[9], cepheus[4], cepheus[5]);
+    		g.drawLine(cepheus[8], cepheus[9], cepheus[10], cepheus[11]);
+    		g.drawLine(cepheus[10], cepheus[11], cepheus[12], cepheus[13]);
+    		g.drawLine(cepheus[12], cepheus[13], cepheus[14], cepheus[15]);
+    	}
+    	
+    	if(checkAuriga()) {
+    		g.drawLine(auriga[0], auriga[1], auriga[2], auriga[3]);
+    		g.drawLine(auriga[2], auriga[3], auriga[4], auriga[5]);
+    		g.drawLine(auriga[4], auriga[5], auriga[6], auriga[7]);
+    		g.drawLine(auriga[2], auriga[3], auriga[8], auriga[9]);
+    		g.drawLine(auriga[0], auriga[1], auriga[10], auriga[11]);
+    		g.drawLine(auriga[10], auriga[11], auriga[12], auriga[13]);
+    		g.drawLine(auriga[10], auriga[11], auriga[2], auriga[3]);
+    	}
+    	
+    	if(checkCancer()) {
+    		g.drawLine(cancer[0], cancer[1], cancer[2], cancer[3]);
+    		g.drawLine(cancer[2], cancer[3], cancer[4], cancer[5]);
+    		g.drawLine(cancer[4], cancer[5], cancer[6], cancer[7]);
+    		g.drawLine(cancer[4], cancer[5], cancer[8], cancer[9]);
+    	}
+    	
+    	if(checkAries()) {
+    		g.drawLine(aries[0], aries[1], aries[2], aries[3]);
+    		g.drawLine(aries[2], aries[3], aries[4], aries[5]);
+    		g.drawLine(aries[4], aries[5], aries[6], aries[7]);
+    	}
+    	
+    	if(checkCassiopeia()) {
+    		g.drawLine(cassiopeia[0], cassiopeia[1], cassiopeia[2], cassiopeia[3]);
+    		g.drawLine(cassiopeia[2], cassiopeia[3], cassiopeia[4], cassiopeia[5]);
+    		g.drawLine(cassiopeia[4], cassiopeia[5], cassiopeia[6], cassiopeia[7]);
+    		g.drawLine(cassiopeia[6], cassiopeia[7], cassiopeia[8], cassiopeia[9]);
+    	}
+    	
+    	if(checkCrux()) {
+    		g.drawLine(crux[0],crux[1], crux[4], crux[5]);
+    		g.drawLine(crux[6],crux[7], crux[2], crux[3]);
+    	}
+    	
+    	if(checkCanisMinor()) {
+    		g.drawLine(canisMinor[0], canisMinor[1], canisMinor[2], canisMinor[3]);
+    	}
+    	
+    	if(checkLyra()) {
+    		g.drawLine(lyra[0], lyra[1], lyra[2], lyra[3]);
+    		g.drawLine(lyra[2], lyra[3], lyra[4], lyra[5]);
+    		g.drawLine(lyra[4], lyra[5], lyra[0], lyra[1]);
+    		g.drawLine(lyra[4], lyra[5], lyra[6], lyra[7]);
+    		g.drawLine(lyra[6], lyra[7], lyra[8], lyra[9]);
+    		g.drawLine(lyra[4], lyra[5], lyra[10], lyra[11]);
+    		g.drawLine(lyra[8], lyra[9], lyra[10], lyra[11]);
+    		
+    	}
+    	
+    	if(checkAndromeda()) {
+    		g.drawLine(andromeda[0], andromeda[1], andromeda[2], andromeda[3]);
+    		g.drawLine(andromeda[4], andromeda[5], andromeda[6], andromeda[7]);
+    		g.drawLine(andromeda[2], andromeda[3], andromeda[10], andromeda[11]);
+    		g.drawLine(andromeda[26], andromeda[27], andromeda[28], andromeda[29]);
+    		g.drawLine(andromeda[2], andromeda[3], andromeda[4], andromeda[5]);
+    		g.drawLine(andromeda[6], andromeda[7], andromeda[8], andromeda[9]);
+    		g.drawLine(andromeda[10], andromeda[11], andromeda[12], andromeda[13]);
+    		g.drawLine(andromeda[22], andromeda[23], andromeda[26], andromeda[27]);
+    		g.drawLine(andromeda[12], andromeda[13], andromeda[14], andromeda[15]);
+    		g.drawLine(andromeda[14], andromeda[15], andromeda[16], andromeda[17]);
+    		g.drawLine(andromeda[12], andromeda[13], andromeda[18], andromeda[19]);
+    		g.drawLine(andromeda[2], andromeda[3], andromeda[20], andromeda[21]);
+    		g.drawLine(andromeda[20], andromeda[21], andromeda[22], andromeda[23]);
+    		g.drawLine(andromeda[22], andromeda[23], andromeda[24], andromeda[25]);
+    	}
+    	
     	if(checkUrsaMajor()) {
     		g.drawLine(ursaMajor[0], ursaMajor[1], ursaMajor[2], ursaMajor[3]);
         	g.drawLine(ursaMajor[2], ursaMajor[3], ursaMajor[4], ursaMajor[5]);
@@ -222,15 +329,25 @@ public class DrawingSky extends Canvas {
     	
     	int size;
     	
-    	herculesNames.sort(null);
-    	System.out.println("Size: "+herculesNames.size());
-    	System.out.println(herculesNames);
+    	//herculesNames.sort(null);
+    	//System.out.println("Size: "+herculesNames.size());
+    	//System.out.println(herculesNames);
     	for(int i = 0; i < AlexxWork2.spaceObjList.size(); i++) {
-    		if(AlexxWork2.spaceObjList.get(i).getType() == "LUNA") {
+    		if(AlexxWork2.spaceObjList.get(i).getType().contains("LUNA") || AlexxWork2.spaceObjList.get(i).getType().contains("Luna") || AlexxWork2.spaceObjList.get(i).getType().contains("Moon")||AlexxWork2.spaceObjList.get(i).getType().contains("MOON")) {
 				System.out.println("Moon Found");
 				System.out.println("Mag: "+AlexxWork2.spaceObjList.get(i).getMagnitude());
 				System.out.println("Alt: "+ AlexxWork2.spaceObjList.get(i).getAltitude());
 			}
+    		if(canisMajorNames.contains(AlexxWork2.spaceObjList.get(i).getProperName())) {
+    			System.out.println("Name: "+AlexxWork2.spaceObjList.get(i).getProperName());
+    		}
+    		if(AlexxWork2.spaceObjList.get(i).getProperName() != null && AlexxWork2.spaceObjList.get(i).getProperName() != "") {
+    			if(AlexxWork2.spaceObjList.get(i).getProperName().contains(" CMa")||AlexxWork2.spaceObjList.get(i).getProperName().contains("CMa")
+    					||AlexxWork2.spaceObjList.get(i).getProperName().contains("Sirius") || AlexxWork2.spaceObjList.get(i).getProperName().contains("Adhara")) {
+        			System.out.println("Aur:"+AlexxWork2.spaceObjList.get(i).getProperName());
+        		}
+    		}
+    		
     		if(AlexxWork2.spaceObjList.get(i).getMagnitude() != null 
     				&& (Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()) <= 6.0) 
     				&& AlexxWork2.spaceObjList.get(i).getAltitude() > 1) {
@@ -250,15 +367,18 @@ public class DrawingSky extends Canvas {
 						&& AlexxWork2.spaceObjList.get(i).getProperName() != "") {
 					
 					if(AlexxWork2.starNamesCB 
-							&& Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()) <= 6.0) {
+							&& Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()) <= 6.0
+							&& lyraNames.contains(AlexxWork2.spaceObjList.get(i).getProperName())) {
 						try {
 							int testInt = Integer.parseInt(AlexxWork2.spaceObjList.get(i).getProperName());
 							} catch (NumberFormatException | NullPointerException nfe) {
+								//System.out.println("Andromeda: "+andromedaNames.contains(AlexxWork2.spaceObjList.get(i).getProperName()));
 								starLabels.add(AlexxWork2.spaceObjList.get(i).getProperName());
 								starLabels.add(String.valueOf(x));
 								starLabels.add(String.valueOf(y));
 							}
 					}
+					
 					
 					if(herculesNames.contains(AlexxWork2.spaceObjList.get(i).getProperName())) {
 						String name = AlexxWork2.spaceObjList.get(i).getProperName();
@@ -356,7 +476,8 @@ public class DrawingSky extends Canvas {
 					}
 					if(taurusNames.contains(AlexxWork2.spaceObjList.get(i).getProperName())) {
 						loadTaurusLocation(AlexxWork2.spaceObjList.get(i).getProperName(), x, y);
-					}				
+					}
+					
 				}				
 	    		test.add(a, x);
 	    		test.add(b, y);
@@ -710,6 +831,66 @@ public class DrawingSky extends Canvas {
     }
     
     public void loadAndromedaLocation(String name, int x, int y) {
+    	if(name.contains(" 50Ups And")) {
+    		andromeda[0] = x;
+    		andromeda[1] = y;
+    	}
+    	if(name.contains("Mirach")) {
+    		andromeda[2] = x;
+    		andromeda[3] = y;
+    	}
+    	if(name.contains(" 37Mu  And")) {
+    		andromeda[4] = x;
+    		andromeda[5] = y;
+    	}
+    	if(name.contains(" 35Nu  And")) {
+    		andromeda[6] = x;
+    		andromeda[7] = y;
+    	}
+    	if(name.contains(" 42Phi And")) {
+    		andromeda[8] = x;
+    		andromeda[9] = y;
+    	}
+    	if(name.contains(" 29Pi  And")) {
+    		andromeda[10] = x;
+    		andromeda[11] = y;
+    	}
+    	if(name.contains(" 17Iot And")) {
+    		andromeda[12] = x;
+    		andromeda[13] = y;
+    	}
+    	if(name.contains(" 19Kap And")) {
+    		andromeda[14] = x;
+    		andromeda[15] = y;
+    	}
+    	if(name.contains(" 16Lam And")) {
+    		andromeda[16] = x;
+    		andromeda[17] = y;
+    	}
+    	if(name.contains("  1Omi And")) {
+    		andromeda[18] = x;
+    		andromeda[19] = y;
+    	}
+    	if(name.contains(" 31Del And")) {
+    		andromeda[20] = x;
+    		andromeda[21] = y;
+    	}
+    	if(name.contains(" 30Eps And")) {
+    		andromeda[22] = x;
+    		andromeda[23] = y;
+    	}
+    	if(name.contains("Alpheratz")) {
+    		andromeda[24] = x;
+    		andromeda[25] = y;
+    	}
+    	if(name.contains(" 34Zet And")) {
+    		andromeda[26] = x;
+    		andromeda[27] = y;
+    	}
+    	if(name.contains(" 38Eta And")) {
+    		andromeda[28] = x;
+    		andromeda[29] = y;
+    	}
     	
     }
     
@@ -717,13 +898,87 @@ public class DrawingSky extends Canvas {
     	
     }
     public void loadAquilaLocation(String name, int x, int y) {
-    	
+    	if(name.contains(" 17Zet Aql")) {
+    		aquila[0] = x;
+    		aquila[1] = y;
+    	}
+    	if(name.contains(" 16Lam Aql")) {
+    		aquila[2] = x;
+    		aquila[3] = y;
+    	}
+    	if(name.contains(" 30Del Aql")) {
+    		aquila[4] = x;
+    		aquila[5] = y;
+    	}
+    	if(name.contains(" 41Iot Aql")) {
+    		aquila[6] = x;
+    		aquila[7] = y;
+    	}
+    	if(name.contains("Tarazed")) {
+    		aquila[8] = x;
+    		aquila[9] = y;
+    	}
+    	if(name.contains("Altair")) {
+    		aquila[10] = x;
+    		aquila[11] = y;
+    	}
+    	if(name.contains(" 60Bet Aql")) {
+    		aquila[12] = x;
+    		aquila[13] = y;
+    	}
+    	if(name.contains(" 65The Aql")) {
+    		aquila[14] = x;
+    		aquila[15] = y;
+    	}
     }
     
     public void loadAriesLocation(String name, int x, int y) {
-    	
+    	if(name.contains(" 41    Ari")) {
+    		aries[0] = x;
+    		aries[1] = y;
+    	}
+    	if(name.contains("Hamal")) {
+    		aries[2] = x;
+    		aries[3] = y;
+    	}
+    	if(name.contains("  6Bet Ari")) {
+    		aries[4] = x;
+    		aries[5] = y;
+    	}
+    	if(name.contains("  5Gam2Ari")) {
+    		aries[6] = x;
+    		aries[7] = y;
+    	}
     }
     public void loadAurigaLocation(String name, int x, int y) {
+    	if(name.contains(" 33Del Aur")) {
+    		auriga[0] = x;
+    		auriga[1] = y;
+    	}
+    	if(name.contains("Capella")) {
+    		auriga[2] = x;
+    		auriga[3] = y;
+    	}
+    	if(name.contains("  7Eps Aur")) {
+    		auriga[4] = x;
+    		auriga[5] = y;
+    	}
+    	if(name.contains("  8Zet Aur")) {
+    		auriga[6] = x;
+    		auriga[7] = y;
+    	}
+    	if(name.contains("  3Iot Aur")) {
+    		auriga[8] = x;
+    		auriga[9] = y;
+    	}
+    	if(name.contains(" 34Bet Aur")) {
+    		auriga[10] = x;
+    		auriga[11] = y;
+    	}
+    	if(name.contains(" 37The Aur")) {
+    		auriga[12] = x;
+    		auriga[13] = y;
+    	}
     	
     }
     
@@ -731,20 +986,106 @@ public class DrawingSky extends Canvas {
     	
     }
     public void loadCancerLocation(String name, int x, int y) {
-    	
+    	if(name.contains(" 48Iot Cnc")) {
+    		cancer[0] = x;
+    		cancer[1] = y;
+    	}
+    	if(name.contains(" 43Gam Cnc")) {
+    		cancer[2] = x;
+    		cancer[3] = y;
+    	}
+    	if(name.contains(" 47Del Cnc")) {
+    		cancer[4] = x;
+    		cancer[5] = y;
+    	}
+    	if(name.contains(" 17Bet Cnc")) {
+    		cancer[6] = x;
+    		cancer[7] = y;
+    	}
+    	if(name.contains(" 65Alp Cnc")) {
+    		cancer[8] = x;
+    		cancer[9] = y;
+    	}
     }
     
     public void loadCanisMajorLocation(String name, int x, int y) {
+    	if(name.contains("Adhara")) {
+    		canisMajor[0] = x;
+    		canisMajor[1] = y;
+    	}
+    	if(name.contains(" 25Del CMa")) {
+    		canisMajor[2] = x;
+    		canisMajor[3] = y;
+    	}
+    	if(name.contains(" 31Eta CMa")) {
+    		canisMajor[4] = x;
+    		canisMajor[5] = y;
+    	}
+    	if(name.contains("Sirius")) {
+    		canisMajor[6] = x;
+    		canisMajor[7] = y;
+    	}
+    	if(name.contains(" 20Iot CMa")) {
+    		canisMajor[8] = x;
+    		canisMajor[9] = y;
+    	}
+    	if(name.contains(" 23Gam CMa")) {
+    		canisMajor[10] = x;
+    		canisMajor[11] = y;
+    	}
+    	if(name.contains(" 14The CMa")) {
+    		canisMajor[12] = x;
+    		canisMajor[13] = y;
+    	}
+    	if(name.contains("  2Bet CMa")) {
+    		canisMajor[14] = x;
+    		canisMajor[15] = y;
+    	}
+    	if(name.contains("  7Nu 2CMa")) {
+    		canisMajor[16] = x;
+    		canisMajor[17] = y;
+    	}
+    	if(name.contains(" 16Omi1CMa")) {
+    		canisMajor[18] = x;
+    		canisMajor[19] = y;
+    	}
     	
     }
     public void loadCanisMinorLocation(String name, int x, int y) {
-    	
+    	if(name.contains("Procyon")) {
+    		canisMinor[0] = x;
+    		canisMinor[1] = y;
+    	}
+    	if(name.contains("  3Bet CMi")) {
+    		canisMinor[2] = x;
+    		canisMinor[3] = y;
+    	}
     }
     
     public void loadCapricornusLocation(String name, int x, int y) {
     	
     }
     public void loadCassiopeiaLocation(String name, int x, int y) {
+    	if(name.contains("Caph")) {
+    		cassiopeia[0] = x;
+    		cassiopeia[1] = y;
+    	}
+    	if(name.contains("Shedir")) {
+    		cassiopeia[2] = x;
+    		cassiopeia[3] = y;
+    	}
+    	if(name.contains(" 27Gam Cas")) {
+    		cassiopeia[4] = x;
+    		cassiopeia[5] = y;
+    	}
+    	if(name.contains(" 37Del Cas")) {
+    		cassiopeia[6] = x;
+    		cassiopeia[7] = y;
+    	}
+    	if(name.contains(" 45Eps Cas")) {
+    		cassiopeia[8] = x;
+    		cassiopeia[9] = y;
+    	}
     	
     }
     
@@ -752,11 +1093,62 @@ public class DrawingSky extends Canvas {
     	
     }
     public void loadCepheusLocation(String name, int x, int y) {
+    	if(name.contains("  3Eta Cep")) {
+    		cepheus[0] = x;
+    		cepheus[1] = y;
+    	}
+    	if(name.contains("Alderamin")) {
+    		cepheus[2] = x;
+    		cepheus[3] = y;
+    	}
+    	if(name.contains("  8Bet Cep")) {
+    		cepheus[4] = x;
+    		cepheus[5] = y;
+    	}
+    	if(name.contains(" 35Gam Cep")) {
+    		cepheus[6] = x;
+    		cepheus[7] = y;
+    	}
+    	if(name.contains(" 32Iot Cep")) {
+    		cepheus[8] = x;
+    		cepheus[9] = y;
+    	}
+    	if(name.contains(" 27Del Cep")) {
+    		cepheus[10] = x;
+    		cepheus[11] = y;
+    	}
+    	if(name.contains(" 21Zet Cep")) {
+    		cepheus[12] = x;
+    		cepheus[13] = y;
+    	}
+    	if(name.contains(" 23Eps Cep")) {
+    		cepheus[14] = x;
+    		cepheus[15] = y;
+    	}
+    	if(name.contains("  2The Cep")) {
+    		cepheus[16] = x;
+    		cepheus[17] = y;
+    	}
     	
     }
     
     public void loadCruxLocation(String name, int x, int y) {
-    	
+    	if(name.contains("Acrux")) {
+    		crux[0] = x;
+    		crux[1] = y;
+    	}
+    	if(name.contains("   Del Cru")) {
+    		crux[2] = x;
+    		crux[3] = y;
+    	}
+    	if(name.contains("   Gam Cru")) {
+    		crux[4] = x;
+    		crux[5] = y;
+    	}
+    	if(name.contains("   Bet Cru")) {
+    		crux[6] = x;
+    		crux[7] = y;
+    	}
     }
     public void loadCygnusLocation(String name, int x, int y) {
     	
@@ -777,7 +1169,30 @@ public class DrawingSky extends Canvas {
     }
     
     public void loadLyraLocation(String name, int x, int y) {
-    	
+    	if(name.contains("Vega")) {
+    		lyra[0] = x;
+    		lyra[1] = y;
+    	}
+    	if(name.contains("  4Eps1Lyr")) {
+    		lyra[2] = x;
+    		lyra[3] = y;
+    	}
+    	if(name.contains("  6Zet1Lyr")) {
+    		lyra[4] = x;
+    		lyra[5] = y;
+    	}
+    	if(name.contains(" 11Del1Lyr")) {
+    		lyra[6] = x;
+    		lyra[7] = y;
+    	}
+    	if(name.contains(" 14Gam Lyr")) {
+    		lyra[8] = x;
+    		lyra[9] = y;
+    	}
+    	if(name.contains(" 10Bet Lyr")) {
+    		lyra[10] = x;
+    		lyra[11] = y;
+    	}
     }
     public void loadOrionLocation(String name, int x, int y) {
     	
@@ -896,6 +1311,23 @@ public class DrawingSky extends Canvas {
     }
     public void loadAndromedaNames() {
     	andromedaNames = new ArrayList<>();
+    	andromedaNames.add(" 50Ups And");
+    	andromedaNames.add("Mirach");
+    	andromedaNames.add(" 37Mu  And");
+    	andromedaNames.add(" 35Nu  And");
+    	andromedaNames.add(" 42Phi And");
+    	andromedaNames.add(" 29Pi  And");
+    	andromedaNames.add(" 17Iot And");
+    	andromedaNames.add(" 19Kap And");
+    	andromedaNames.add(" 16Lam And");
+    	andromedaNames.add("  1Omi And");
+    	andromedaNames.add(" 31Del And");
+    	andromedaNames.add(" 30Eps And");
+    	andromedaNames.add("Alpheratz");
+    	andromedaNames.add(" 34Zet And");
+    	andromedaNames.add(" 38Eta And");
+    	
+    	
     }
     public void loadAquariusNames() {
     	aquariusNames = new ArrayList<>();
@@ -903,39 +1335,97 @@ public class DrawingSky extends Canvas {
     }
     public void loadAquilaNames() {
     	aquilaNames = new ArrayList<>();
+    	aquilaNames.add(" 17Zet Aql");
+    	aquilaNames.add(" 16Lam Aql");
+    	aquilaNames.add(" 30Del Aql");
+    	aquilaNames.add(" 41Iot Aql");
+    	aquilaNames.add("Tarazed");
+    	aquilaNames.add("Altair");
+    	aquilaNames.add(" 60Bet Aql");
+    	aquilaNames.add(" 65The Aql");
+    	
     }
     public void loadAriesNames() {
     	ariesNames = new ArrayList<>();
+    	ariesNames.add(" 41    Ari");
+    	ariesNames.add("Hamal");
+    	ariesNames.add("  6Bet Ari");
+    	ariesNames.add("  5Gam2Ari");
     }
     public void loadAurigaNames() {
     	aurigaNames = new ArrayList<>();
+    	aurigaNames.add(" 33Del Aur");
+    	aurigaNames.add("Capella");
+    	aurigaNames.add("  7Eps Aur");
+    	aurigaNames.add("  8Zet Aur");
+    	aurigaNames.add("  3Iot Aur");
+    	aurigaNames.add(" 34Bet Aur");
+    	aurigaNames.add(" 37The Aur");
     }
     public void loadBootesNames() {
     	bootesNames = new ArrayList<>();
     }
     public void loadCancerNames() {
     	cancerNames = new ArrayList<>();
+    	cancerNames.add(" 48Iot Cnc");
+    	cancerNames.add(" 43Gam Cnc");
+    	cancerNames.add(" 47Del Cnc");
+    	cancerNames.add(" 17Bet Cnc");
+    	cancerNames.add(" 65Alp Cnc");
+    	
     }
     public void loadCanisMajorNames() {
     	canisMajorNames = new ArrayList<>();
+    	canisMajorNames.add("Adhara");
+    	canisMajorNames.add(" 25Del CMa");
+    	canisMajorNames.add(" 31Eta CMa");
+    	canisMajorNames.add("Sirius");
+    	canisMajorNames.add(" 20Iot CMa");
+    	canisMajorNames.add(" 23Gam CMa");
+    	canisMajorNames.add(" 14The CMa");
+    	canisMajorNames.add("  2Bet CMa");
+    	canisMajorNames.add("  7Nu 2CMa");
+    	canisMajorNames.add(" 16Omi1CMa");
+    	
     }
     public void loadCanisMinorNames() {
     	canisMinorNames = new ArrayList<>();
+    	canisMinorNames.add("Procyon");
+    	canisMinorNames.add(" 3Bet CMi");
     }
     public void loadCapricornusNames() {
     	capricornusNames = new ArrayList<>();
     }
     public void loadCassiopeiaNames() {
     	cassiopeiaNames = new ArrayList<>();
+    	cassiopeiaNames.add("Caph");
+    	cassiopeiaNames.add("Shedir");
+    	cassiopeiaNames.add(" 27Gam Cas");
+    	cassiopeiaNames.add(" 37Del Cas");
+    	cassiopeiaNames.add(" 45Eps Cas");
     }
     public void loadCentaurusNames() {
     	centaurusNames = new ArrayList<>();
     }
     public void loadCepheusNames() {
     	cepheusNames = new ArrayList<>();
+    	cepheusNames.add("  2The Cep");
+    	cepheusNames.add("  3Eta Cep");
+    	cepheusNames.add("Alderamin");
+    	cepheusNames.add("  8Bet Cep");
+    	cepheusNames.add(" 35Gam Cep");
+    	cepheusNames.add(" 32Iot Cep");
+    	cepheusNames.add(" 27Del Cep");
+    	cepheusNames.add(" 21Zet Cep");
+    	cepheusNames.add(" 23Eps Cep");
+    	
     }
     public void loadCruxNames() {
     	cruxNames = new ArrayList<>();
+    	cruxNames.add("Acrux");
+    	cruxNames.add("   Del Cru");
+    	cruxNames.add("   Gam Cru");
+    	cruxNames.add("   Bet Cru");
     }
     public void loadCygnusNames() {
     	cygnusNames = new ArrayList<>();
@@ -954,6 +1444,13 @@ public class DrawingSky extends Canvas {
     }
     public void loadLyraNames() {
     	lyraNames = new ArrayList<>();
+    	lyraNames.add("Vega");
+    	lyraNames.add("  4Eps1Lyr");
+    	lyraNames.add("  6Zet1Lyr");
+    	lyraNames.add(" 11Del1Lyr");
+    	lyraNames.add(" 14Gam Lyr");
+    	lyraNames.add(" 10Bet Lyr");
+    	
     }
     public void loadOrionNames() {
     	orionNames = new ArrayList<>();
@@ -1014,8 +1511,12 @@ public class DrawingSky extends Canvas {
     	return flag;
     }
     public Boolean checkAndromeda() {
-    	Boolean flag = false;
-    	
+    	Boolean flag = true;
+    	for(int i = 0; i < 30; i++) {
+    		if(andromeda[i] == 0) {
+    			flag = false;
+    		}
+    	}
     	return flag;
     }
     public Boolean checkAquarius() {
@@ -1024,18 +1525,30 @@ public class DrawingSky extends Canvas {
     	return flag;
     }
     public Boolean checkAquila() {
-    	Boolean flag = false;
-    	
+    	Boolean flag = true;
+    	for(int i = 0; i < 16; i++) {
+    		if(aquila[i] == 0) {
+    			flag = false;
+    		}
+    	}
     	return flag;
     }
     public Boolean checkAries() {
-    	Boolean flag = false;
-    	
+    	Boolean flag = true;
+    	for(int i = 0; i < 8; i++) {
+    		if(aries[i] == 0) {
+    			flag = false;
+    		}
+    	}
     	return flag;
     }
     public Boolean checkAuriga() {
-    	Boolean flag = false;
-    	
+    	Boolean flag = true;
+    	for(int i = 0; i < 14; i++) {
+    		if(auriga[i] == 0) {
+    			flag = false;
+    		}
+    	}
     	return flag;
     }
     public Boolean checkBootes() {
@@ -1044,18 +1557,30 @@ public class DrawingSky extends Canvas {
     	return flag;
     }
     public Boolean checkCancer() {
-    	Boolean flag = false;
-    	
+    	Boolean flag = true;
+    	for(int i = 0; i < 10; i++) {
+    		if(cancer[i] == 0) {
+    			flag = false;
+    		}
+    	}
     	return flag;
     }
     public Boolean checkCanisMajor() {
-    	Boolean flag = false;
-    	
+    	Boolean flag = true;
+    	for(int i = 0; i < 20; i++) {
+    		if(canisMajor[i] == 0) {
+    			flag = false;
+    		}
+    	}
     	return flag;
     }
     public Boolean checkCanisMinor() {
-    	Boolean flag = false;
-    	
+    	Boolean flag = true;
+    	for(int i = 0; i < 4; i++) {
+    		if(canisMinor[i] == 0) {
+    			flag = false;
+    		}
+    	}
     	return flag;
     }
     public Boolean checkCapricornus() {
@@ -1064,8 +1589,12 @@ public class DrawingSky extends Canvas {
     	return flag;
     }
     public Boolean checkCassiopeia() {
-    	Boolean flag = false;
-    	
+    	Boolean flag = true;
+    	for(int i = 0; i < 10; i++) {
+    		if(cassiopeia[i] == 0) {
+    			flag = false;
+    		}
+    	}
     	return flag;
     }
     public Boolean checkCentaurus() {
@@ -1074,13 +1603,21 @@ public class DrawingSky extends Canvas {
     	return flag;
     }
     public Boolean checkCepheus() {
-    	Boolean flag = false;
-    	
+    	Boolean flag = true;
+    	for(int i = 0; i < 18; i++) {
+    		if(cepheus[i] == 0) {
+    			flag = false;
+    		}
+    	}
     	return flag;
     }
     public Boolean checkCrux() {
-    	Boolean flag = false;
-    	
+    	Boolean flag = true;
+    	for(int i = 0; i < 8; i++) {
+    		if(crux[i] == 0) {
+    			flag = false;
+    		}
+    	}
     	return flag;
     }
     public Boolean checkCygnus() {
@@ -1109,8 +1646,12 @@ public class DrawingSky extends Canvas {
     	return flag;
     }
     public Boolean checkLyra() {
-    	Boolean flag = false;
-    	
+    	Boolean flag = true;
+    	for(int i = 0; i < 12; i++) {
+    		if(lyra[i] == 0) {
+    			flag = false;
+    		}
+    	}
     	return flag;
     }
     public Boolean checkOrion() {

@@ -201,7 +201,7 @@ public class AlexxWork2 extends JFrame {
 		spaceObjList = SkyMap_Formulae_J.getSpace(String.valueOf((int)2019), String.valueOf((int)11), 
 				String.valueOf((int)23), String.valueOf((int)13), 
 				String.valueOf((int)05), String.valueOf(0), 
-				String.valueOf((int)37), String.valueOf((int)-114));
+				String.valueOf((int)50), String.valueOf((int)25));
 		//System.out.println("2222222222222222222222222222\n");
     	//System.out.println(spaceObjList.size()+"\2222222222222222222222222222\n");
     	
