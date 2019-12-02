@@ -119,7 +119,7 @@ public class AlexxWork2 extends JFrame {
 		});
 	}
 
-	public void checkValues() throws ParseException {
+	public void checkValues() throws NullPointerException, Exception {
 		
 		checkDay();
 		checkYear();
@@ -189,7 +189,7 @@ public class AlexxWork2 extends JFrame {
 		
 	}
 	
-	public void getSpaceObjects() throws ParseException {
+	public void getSpaceObjects() throws NullPointerException, Exception {
 		
 		/*spaceObjList = SkyMap_Formulae_J.getSpace(String.valueOf((int)yearValid), String.valueOf((int)monthValid), 
 				String.valueOf((int)dayValid), String.valueOf((int)hourValid), 
@@ -735,6 +735,12 @@ public class AlexxWork2 extends JFrame {
 					getSpaceObjects();
 					drawSky();
 				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
