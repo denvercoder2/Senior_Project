@@ -337,6 +337,65 @@ def getPlanet(gcdate, iplanet):
 
 def getStar(ra, dec):
     return ra, dec
+    
+def getECLon(jd):
+    epoch = 2455196.5
+    D = jd - epoch
+    t = (epoch-2415020.0)/36525
+    L = 279.6966778 + (36000.76892*t) + (0.0003025*t*t)  # mean longitude
+    L = boundRange(L)
+    w = 281.2208444 + (1.719175*t) + (0.000452778*t*t)  # argument of perigee
+    w = boundRange(w)
+    e = 0.01675104 - (0.0000418*t) - (0.000000126*t*t)
+    N = (360/365.242191)*D
+    N = boundRange(N)
+    M = N+L-w
+    if M < 0:
+        M += 360
+    E = (360/math.pi)*e*math.sin(math.radians(M))
+    l = N+E+L
+    while (l > 360):
+        l -= 360
+    return l, M
+    
+def getMoon(gcdate):
+    l_0 = 91.929336  # degrees
+    P_0 = 130.143076  # degrees
+    N_0 = 291.682547  # degrees
+    i = math.radians(5.145396)  # degrees
+    e = 0.0549
+    a = 384401  # km
+
+    jd = getJD(gcdate)
+    epoch = 2455196.5
+    D = jd - epoch
+    ecLon_s, M_s = getECLon(jd)
+    ecLon_s = ecLon_s
+    M_s = math.radians(M_s)
+
+    l = boundRange((13.1763966*D) + l_0)
+    M = boundRange(l - (0.1114041*D) - P_0)
+    N = boundRange(N_0 - (0.0529539*D))
+
+    C = l - ecLon_s
+    E_v = 1.2739 * math.sin(math.radians(2*C - M))
+    A_e = 0.1858*math.sin(M_s)
+    A_3 = 0.37*math.sin(M_s)
+
+    v = math.radians(M + E_v - A_e - A_3)
+    E_c = 6.2886*math.sin(v)
+    A_4 = 0.214*math.sin(math.radians(2*M))
+
+    l_c = l + E_v + E_c - A_e + A_4
+    V = 0.6583*math.sin(math.radians(2*(l-ecLon_s)))
+    l_t = math.radians(l_c + V)
+    N_c = math.radians(N - (0.16*math.sin(M_s)))
+    y = math.sin(l_t - N_c)*math.cos(i)
+    x = math.cos(l_t-N_c)
+    ecLon_m = math.radians(getQuadrant(x, y)+math.degrees(N_c))
+    ecLat_m = math.asin(math.sin(l_t - N_c)*math.sin(i))
+    ra, dec = equatorialCoordinates(ecLon_m, ecLat_m, gcdate)
+    return ra, dec
 
 def solveLocation(istring):
     #         0  1   2   3   4  5  6  7  8   9   10  11
@@ -369,6 +428,8 @@ def solveLocation(istring):
         ra, dec = getStar(ra, dec)
     elif obj.lower() == 'sol':
         ra, dec = getSun(gcdate, dst)
+    elif obj.lower() == 'luna':
+        ra, dec = getMoon(gcdate)
     else:
         ra, dec = getPlanet(gcdate, obj)
 
