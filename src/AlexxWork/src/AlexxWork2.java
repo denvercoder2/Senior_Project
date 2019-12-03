@@ -23,6 +23,7 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
@@ -109,6 +110,7 @@ public class AlexxWork2 extends JFrame {
 	private JButton btnSaveToDisk;
 	private JScrollPane scrollPane_1;
 	private JButton refreshButton;
+	private int count = 0;
 	
 
 	/**
@@ -490,6 +492,22 @@ public class AlexxWork2 extends JFrame {
 		return flag;
 	}
 	
+	public void copyFile(File source, File dest) throws IOException {
+		//Files.copy(source.toPath(), dest.toPath());
+		File f;
+	    f = dest;
+	    if (!f.exists())
+	    {
+	    	Files.copy(source.toPath(), dest.toPath());
+	    }
+	    else
+	    {
+	      count++;
+	      copyFile(f,
+	    		  new File(FileSystemView.getFileSystemView().getDefaultDirectory().toString() + "\\spaceGUI\\yourImage" + count + ".jpeg"));
+	    }
+	}
+	
 	public void intialize() {
 		//Set to intial values
 		dayInput = -1;
@@ -699,17 +717,56 @@ public class AlexxWork2 extends JFrame {
 		btnSaveToDisk = new JButton("Save Image");
 		btnSaveToDisk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String documentsDirectory = FileSystemView.getFileSystemView().getDefaultDirectory().toString() + "\\spaceGUI\\testScreenShot.jpeg";
-				File saveLoc = new File(documentsDirectory.substring(0,documentsDirectory.indexOf("testScreenShot.jpeg")));
+				String savedImageDirectory = FileSystemView.getFileSystemView().getDefaultDirectory().toString() + "\\spaceGUI\\yourImage.jpeg";
+				File saveLocFolder = new File(savedImageDirectory.substring(0,savedImageDirectory.indexOf("yourImage.jpeg")));
+				File saveLoc = new File(savedImageDirectory);
+				int saveChecker = 0;
+				
+				// Check to see if screen shot folder does not exist, if it does not then make it.
+				if(!saveLocFolder.exists()) {
+					saveLocFolder.mkdir();
+					saveChecker += 1;
+				}
+				else
+					saveChecker += 1;
+				
+				// Check to see if the screen shot does not exist.
+				// If the screen shot does not exist  then disable save button, change text to display no image found, and return image button to defaults
 				if(!saveLoc.exists()) {
-					saveLoc.mkdir();
+					btnSaveToDisk.setEnabled(false);
+					btnSaveToDisk.setText("No Image Found");
+					new java.util.Timer().schedule( 
+					        new java.util.TimerTask() {
+					            @Override
+					            public void run() {
+									btnSaveToDisk.setText("Re-Apply");
+					            }
+					        }, 
+					        3000 
+					);
 				}
-				try {
-					Desktop.getDesktop().open(new File(saveLoc.toString()));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				else
+					saveChecker += 1;
+				
+				if (saveChecker == 2) {
+					// If the file and the folder exists, then open the directory.
+					try {
+						Desktop.getDesktop().open(new File(saveLocFolder.toString()));
+						count = 0;
+						copyFile(saveLoc,
+					    		  new File(FileSystemView.getFileSystemView().getDefaultDirectory().toString() + "\\spaceGUI\\yourImage" + "1" + ".jpeg"));
+						
+						
+						
+						
+						//
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
+				else
+					saveChecker = 0;
 			}
 		});
 		btnSaveToDisk.setFont(new Font("Tahoma", Font.BOLD, 30));
@@ -756,6 +813,7 @@ public class AlexxWork2 extends JFrame {
 					setLabels();
 					getSpaceObjects();
 					drawSky();
+					btnSaveToDisk.setText("Save Image");
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
