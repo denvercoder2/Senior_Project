@@ -8,7 +8,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.Image;
+
 import javax.swing.JCheckBox;
+import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
@@ -16,6 +20,10 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
@@ -25,9 +33,11 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dimension;
 
 import javax.swing.border.LineBorder;
+import javax.swing.filechooser.FileSystemView;
 import javax.swing.JScrollPane;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
@@ -97,10 +107,10 @@ public class AlexxWork2 extends JFrame {
 	
 	public static ArrayList<SpaceObj> spaceObjList;
 	
-	public JFileChooser fc = new JFileChooser();
-	
 	private JButton btnSaveToDisk;
 	private JScrollPane scrollPane_1;
+	private JButton refreshButton;
+	private int count = 0;
 	
 
 	/**
@@ -210,7 +220,10 @@ public class AlexxWork2 extends JFrame {
 	public void drawSky() {
 		drawing = new DrawingSky();
 		screenshot = drawing.draw();
+
 		scrollPane_1.setViewportView(new JLabel(screenshot));
+		btnSaveToDisk.setEnabled(true);
+		refreshButton.setEnabled(true);
 		//fc.setSelectedFile(new java.io.File(screenshot));
 	}
 
@@ -479,6 +492,22 @@ public class AlexxWork2 extends JFrame {
 		return flag;
 	}
 	
+	public void copyFile(File source, File dest) throws IOException {
+		//Files.copy(source.toPath(), dest.toPath());
+		File f;
+	    f = dest;
+	    if (!f.exists())
+	    {
+	    	Files.copy(source.toPath(), dest.toPath());
+	    }
+	    else
+	    {
+	      count++;
+	      copyFile(f,
+	    		  new File(FileSystemView.getFileSystemView().getDefaultDirectory().toString() + "\\spaceGUI\\yourImage" + count + ".jpeg"));
+	    }
+	}
+	
 	public void intialize() {
 		//Set to intial values
 		dayInput = -1;
@@ -688,11 +717,60 @@ public class AlexxWork2 extends JFrame {
 		btnSaveToDisk = new JButton("Save Image");
 		btnSaveToDisk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				String savedImageDirectory = FileSystemView.getFileSystemView().getDefaultDirectory().toString() + "\\spaceGUI\\yourImage.jpeg";
+				File saveLocFolder = new File(savedImageDirectory.substring(0,savedImageDirectory.indexOf("yourImage.jpeg")));
+				File saveLoc = new File(savedImageDirectory);
+				int saveChecker = 0;
 				
+				// Check to see if screen shot folder does not exist, if it does not then make it.
+				if(!saveLocFolder.exists()) {
+					saveLocFolder.mkdir();
+					saveChecker += 1;
+				}
+				else
+					saveChecker += 1;
 				
+				// Check to see if the screen shot does not exist.
+				// If the screen shot does not exist  then disable save button, change text to display no image found, and return image button to defaults
+				if(!saveLoc.exists()) {
+					btnSaveToDisk.setEnabled(false);
+					btnSaveToDisk.setText("No Image Found");
+					new java.util.Timer().schedule( 
+					        new java.util.TimerTask() {
+					            @Override
+					            public void run() {
+									btnSaveToDisk.setText("Re-Apply");
+					            }
+					        }, 
+					        3000 
+					);
+				}
+				else
+					saveChecker += 1;
+				
+				if (saveChecker == 2) {
+					// If the file and the folder exists, then open the directory.
+					try {
+						Desktop.getDesktop().open(new File(saveLocFolder.toString()));
+						count = 0;
+						copyFile(saveLoc,
+					    		  new File(FileSystemView.getFileSystemView().getDefaultDirectory().toString() + "\\spaceGUI\\yourImage" + "1" + ".jpeg"));
+						
+						
+						
+						
+						//
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				else
+					saveChecker = 0;
 			}
 		});
 		btnSaveToDisk.setFont(new Font("Tahoma", Font.BOLD, 30));
+		btnSaveToDisk.setEnabled(false);
 		mainGUI.add(btnSaveToDisk, "cell 12 31,growx");
 		
 		latitudeComboBox = new JComboBox();
@@ -707,7 +785,7 @@ public class AlexxWork2 extends JFrame {
 		longitudeComboBox.addItem("West");
 		mainGUI.add(longitudeComboBox, "cell 0 27 7 1,grow");
 		
-		JButton refreshButton = new JButton("Refresh SkyMap");
+		refreshButton = new JButton("Refresh SkyMap");
 		refreshButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//try {
@@ -724,6 +802,7 @@ public class AlexxWork2 extends JFrame {
 			}
 		});
 		refreshButton.setFont(new Font("Tahoma", Font.BOLD, 30));
+		refreshButton.setEnabled(false);
 		mainGUI.add(refreshButton, "cell 12 17,growx,aligny top");
 		
 		JButton applyButton = new JButton("Apply");
@@ -734,6 +813,7 @@ public class AlexxWork2 extends JFrame {
 					setLabels();
 					getSpaceObjects();
 					drawSky();
+					btnSaveToDisk.setText("Save Image");
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
