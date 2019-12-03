@@ -17,6 +17,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.filechooser.FileSystemView;
 
 import JohnWork.main.SpaceObj;
 
@@ -28,6 +29,7 @@ public class DrawingSky extends Canvas {
 	ArrayList<String> planetLabels;
 	ArrayList<String> mesrLabels;
 	ArrayList<String> constNames;
+	ArrayList<String> moonLabel;
 	
 	int[] hercules = new int[44];
 	ArrayList<String> herculesNames;
@@ -47,7 +49,7 @@ public class DrawingSky extends Canvas {
 	ArrayList<String> ariesNames;
 	int[] auriga = new int[14];
 	ArrayList<String> aurigaNames;
-	int[] bootes = new int[1];
+	int[] bootes = new int[20];
 	ArrayList<String> bootesNames;
 	int[] cancer = new int[10];
 	ArrayList<String> cancerNames;
@@ -145,6 +147,25 @@ public class DrawingSky extends Canvas {
     	for(int i = 0; i < (mesrLabels.size()/3); i++) {
     		g.drawString(mesrLabels.get(index), Integer.valueOf(mesrLabels.get(index+1)), Integer.valueOf(mesrLabels.get(index+2)));
     		index +=3;
+    	}
+    	
+    	if(moonLabel.size() > 0) {
+    		g.drawString(moonLabel.get(0), Integer.valueOf(moonLabel.get(1)), Integer.valueOf(moonLabel.get(2)));
+    	}
+    	
+    	if(checkBootes()) {
+    		g.drawLine(bootes[0], bootes[1], bootes[4], bootes[5]);
+    		g.drawLine(bootes[0], bootes[1], bootes[2], bootes[3]);
+    		g.drawLine(bootes[2], bootes[3], bootes[4], bootes[5]);
+    		g.drawLine(bootes[4], bootes[5], bootes[6], bootes[7]);
+    		g.drawLine(bootes[6], bootes[7], bootes[8], bootes[9]);
+    		g.drawLine(bootes[8], bootes[9], bootes[10], bootes[11]);
+    		g.drawLine(bootes[10], bootes[11], bootes[12], bootes[13]);
+    		g.drawLine(bootes[10], bootes[11], bootes[14], bootes[15]);
+    		g.drawLine(bootes[10], bootes[11], bootes[16], bootes[17]);
+    		g.drawLine(bootes[16], bootes[17], bootes[18], bootes[19]);
+    		g.drawLine(bootes[18], bootes[19], bootes[6], bootes[7]);
+    		
     	}
     	
     	if(checkCanisMajor()) {
@@ -321,6 +342,7 @@ public class DrawingSky extends Canvas {
     	constLabels = new ArrayList<>();
     	planetLabels = new ArrayList<>();
     	mesrLabels = new ArrayList<>();
+    	moonLabel = new ArrayList<>();
     	
     	int a = 0;
     	int b = 1;
@@ -333,17 +355,21 @@ public class DrawingSky extends Canvas {
     	//System.out.println("Size: "+herculesNames.size());
     	//System.out.println(herculesNames);
     	for(int i = 0; i < AlexxWork2.spaceObjList.size(); i++) {
-    		if(AlexxWork2.spaceObjList.get(i).getType().contains("LUNA") || AlexxWork2.spaceObjList.get(i).getType().contains("Luna") || AlexxWork2.spaceObjList.get(i).getType().contains("Moon")||AlexxWork2.spaceObjList.get(i).getType().contains("MOON")) {
+    		if(AlexxWork2.spaceObjList.get(i).getProperName() == "MOON") {
 				System.out.println("Moon Found");
 				System.out.println("Mag: "+AlexxWork2.spaceObjList.get(i).getMagnitude());
 				System.out.println("Alt: "+ AlexxWork2.spaceObjList.get(i).getAltitude());
-			}
-    		if(canisMajorNames.contains(AlexxWork2.spaceObjList.get(i).getProperName())) {
+				//System.out.println("Phase: "+Ale)
+			}/*
+    		if(bootesNames.contains(AlexxWork2.spaceObjList.get(i).getProperName())) {
     			System.out.println("Name: "+AlexxWork2.spaceObjList.get(i).getProperName());
-    		}
+    			System.out.println("Alt: "+ AlexxWork2.spaceObjList.get(i).getAltitude());
+    			System.out.println("Mag: "+AlexxWork2.spaceObjList.get(i).getMagnitude());
+    			
+    		}*/
     		if(AlexxWork2.spaceObjList.get(i).getProperName() != null && AlexxWork2.spaceObjList.get(i).getProperName() != "") {
-    			if(AlexxWork2.spaceObjList.get(i).getProperName().contains(" CMa")||AlexxWork2.spaceObjList.get(i).getProperName().contains("CMa")
-    					||AlexxWork2.spaceObjList.get(i).getProperName().contains("Sirius") || AlexxWork2.spaceObjList.get(i).getProperName().contains("Adhara")) {
+    			if(AlexxWork2.spaceObjList.get(i).getProperName().contains(" Cyg")||AlexxWork2.spaceObjList.get(i).getProperName().contains("Cyg")
+    					||AlexxWork2.spaceObjList.get(i).getProperName().contains("Deneb")||AlexxWork2.spaceObjList.get(i).getProperName().contains("Albireo")) {
         			System.out.println("Aur:"+AlexxWork2.spaceObjList.get(i).getProperName());
         		}
     		}
@@ -367,8 +393,7 @@ public class DrawingSky extends Canvas {
 						&& AlexxWork2.spaceObjList.get(i).getProperName() != "") {
 					
 					if(AlexxWork2.starNamesCB 
-							&& Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()) <= 6.0
-							&& lyraNames.contains(AlexxWork2.spaceObjList.get(i).getProperName())) {
+							&& Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()) <= 6.0) {
 						try {
 							int testInt = Integer.parseInt(AlexxWork2.spaceObjList.get(i).getProperName());
 							} catch (NumberFormatException | NullPointerException nfe) {
@@ -482,7 +507,17 @@ public class DrawingSky extends Canvas {
 	    		test.add(a, x);
 	    		test.add(b, y);
 	    		
-	    		if(AlexxWork2.spaceObjList.get(i).getType() == "PLAN"){
+	    		if(AlexxWork2.spaceObjList.get(i).getProperName() == "MOON") {
+	    			System.out.println("------------------------Moon found!!!!!!-----------------------");
+	    			System.out.println("Type: "+AlexxWork2.spaceObjList.get(i).getType());
+	    			size = 20;
+	    			String moonName = AlexxWork2.spaceObjList.get(i).getProperName() + ": " + AlexxWork2.spaceObjList.get(i).getType();
+	    			moonLabel.add(moonName);
+					moonLabel.add(String.valueOf(x));
+					moonLabel.add(String.valueOf(y));
+	    		}
+	    		
+	    		else if(AlexxWork2.spaceObjList.get(i).getType() == "PLAN"){
 	    			size = 16;
 	    		}
 	    		else{
@@ -596,23 +631,45 @@ public class DrawingSky extends Canvas {
 	return size;
 }  
 
-    public ImageIcon takeSnapShot(Component panel){
-	       BufferedImage bufImage = new BufferedImage(panel.getSize().width, panel.getSize().height,BufferedImage.TYPE_INT_RGB);
-	       System.out.println(panel.getSize().width+" "+panel.getSize().height);
-	       panel.paint(bufImage.createGraphics());
-	       ImageIcon imageIcon = new ImageIcon(bufImage);
-	       String snapshotLocation = "C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\testScreenShot.jpeg";
-		File imageFile = new File(snapshotLocation);
-	    try{
-	        imageFile.createNewFile();
-	        ImageIO.write(bufImage, "jpeg", imageFile);
-	        System.out.println("Created picture");
-	        
-	    }catch(Exception ex){
-	    	System.out.println("Did not create picture");
-	    } 
-	    return imageIcon;
-	}
+//    public ImageIcon takeSnapShot(Component panel){
+//	       BufferedImage bufImage = new BufferedImage(panel.getSize().width, panel.getSize().height,BufferedImage.TYPE_INT_RGB);
+//	       System.out.println(panel.getSize().width+" "+panel.getSize().height);
+//	       panel.paint(bufImage.createGraphics());
+//	       ImageIcon imageIcon = new ImageIcon(bufImage);
+//	       String snapshotLocation = "C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\testScreenShot.jpeg";
+//		File imageFile = new File(snapshotLocation);
+//	    try{
+//	        imageFile.createNewFile();
+//	        ImageIO.write(bufImage, "jpeg", imageFile);
+//	        System.out.println("Created picture");
+//	        
+//	    }catch(Exception ex){
+//	    	System.out.println("Did not create picture");
+//	    } 
+//	    return imageIcon;
+//	}
+	
+	public ImageIcon takeSnapShot(Component panel){
+        BufferedImage bufImage = new BufferedImage(panel.getSize().width, panel.getSize().height,BufferedImage.TYPE_INT_RGB);
+        System.out.println(panel.getSize().width+" "+panel.getSize().height);
+        panel.paint(bufImage.createGraphics());
+        ImageIcon imageIcon = new ImageIcon(bufImage);
+        String snapshotLocation = FileSystemView.getFileSystemView().getDefaultDirectory().toString() + "\\spaceGUI\\yourImage.jpeg";
+        File fc = new File(snapshotLocation.substring(0,snapshotLocation.indexOf("yourImage.jpeg")));
+        if(!fc.exists()) {
+            fc.mkdir();
+         }
+     File imageFile = new File(snapshotLocation);
+     try{
+         imageFile.createNewFile();
+         ImageIO.write(bufImage, "jpeg", imageFile);
+         System.out.println("Created picture");
+         
+     }catch(Exception ex){
+         System.out.println("Did not create picture");
+     } 
+     return imageIcon;
+ }
     
     public void loadUrsaMinorLocation(String name, int x, int y) {
     	if(name.contains("Polaris")) {
@@ -983,6 +1040,52 @@ public class DrawingSky extends Canvas {
     }
     
     public void loadBootesLocation(String name, int x, int y) {
+    	if(name.contains(" 23The Boo")) {
+    		bootes[0] = x;
+    		bootes[1] = y;
+    		
+    	}
+    	if(name.contains(" 17Kap2Boo")) {
+    		bootes[2] = x;
+    		bootes[3] = y;
+    		System.out.println("Name: "+ name);
+    		System.out.println("X: "+ x);
+        	System.out.println("Y: "+ y);
+    	}
+    	if(name.contains(" 19Lam Boo")) {
+    		bootes[4] = x;
+    		bootes[5] = y;
+    		System.out.println("X: "+ x);
+        	System.out.println("Y: "+ y);
+    	}
+    	if(name.contains(" 27Gam Boo")) {
+    		bootes[6] = x;
+    		bootes[7] = y;
+    	}
+    	if(name.contains(" 25Rho Boo")) {
+    		bootes[8] = x;
+    		bootes[9] = y;
+    	}
+    	if(name.contains("Arcturus")) {
+    		bootes[10] = x;
+    		bootes[11] = y;
+    	}
+    	if(name.contains("  8Eta Boo")) {
+    		bootes[12] = x;
+    		bootes[13] = y;
+    	}
+    	if(name.contains(" 30Zet Boo")) {
+    		bootes[14] = x;
+    		bootes[15] = y;
+    	}
+    	if(name.contains(" 49Del Boo")) {
+    		bootes[16] = x;
+    		bootes[17] = y;
+    	}
+    	if(name.contains(" 42Bet Boo")) {
+    		bootes[18] = x;
+    		bootes[19] = y;
+    	}
     	
     }
     public void loadCancerLocation(String name, int x, int y) {
@@ -1364,6 +1467,17 @@ public class DrawingSky extends Canvas {
     }
     public void loadBootesNames() {
     	bootesNames = new ArrayList<>();
+    	bootesNames.add(" 23The Boo");
+    	bootesNames.add(" 17Kap2Boo");
+    	bootesNames.add(" 19Lam Boo");
+    	bootesNames.add(" 27Gam Boo");
+    	bootesNames.add(" 25Rho Boo");
+    	bootesNames.add("Arcturus");
+    	bootesNames.add("  8Eta Boo");
+    	bootesNames.add(" 30Zet Boo");
+    	bootesNames.add(" 49Del Boo");
+    	bootesNames.add(" 42Bet Boo");
+    	
     }
     public void loadCancerNames() {
     	cancerNames = new ArrayList<>();
@@ -1552,8 +1666,12 @@ public class DrawingSky extends Canvas {
     	return flag;
     }
     public Boolean checkBootes() {
-    	Boolean flag = false;
-    	
+    	Boolean flag = true;
+    	for(int i = 0; i < 20; i++) {
+    		if(bootes[i] == 0) {
+    			flag = false;
+    		}
+    	}
     	return flag;
     }
     public Boolean checkCancer() {
