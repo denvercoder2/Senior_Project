@@ -4,6 +4,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.lang.Math;
 import java.util.ArrayList;
 import java.util.Random;
@@ -67,7 +68,7 @@ public class DrawingSky extends Canvas {
 	ArrayList<String> cepheusNames;
 	int[] crux = new int[8];
 	ArrayList<String> cruxNames;
-	int[] cygnus = new int[1];
+	int[] cygnus = new int[14];
 	ArrayList<String> cygnusNames;
 	int[] draco = new int[1];
 	ArrayList<String> dracoNames;
@@ -95,16 +96,12 @@ public class DrawingSky extends Canvas {
 	ArrayList<String> taurusNames;
 	
     public ImageIcon draw() {
-    	//loadConstNames();
-    	
         JFrame frame = new JFrame("My Drawing");
         frame.setBackground(Color.BLACK);
         Canvas canvas = new DrawingSky();
-        //canvas.setSize(1800, 1800);
         canvas.setSize(2250, 2250);
         frame.add(canvas);
         frame.pack();
-        //frame.setVisible(true);
         return takeSnapShot(canvas);
     }
 
@@ -120,7 +117,7 @@ public class DrawingSky extends Canvas {
     	int index;
     	int color;
     	g.setColor(Color.white);
-    	System.out.println("----------------------\n"+(list.size()/4)+"\n-----------------------------\n");
+
     	for(int i = 0; i < (list.size()/4); i++) {
     		g.fillOval(list.get(a), list.get(b), list.get(c), list.get(d));
     		a = d + 1;
@@ -129,15 +126,19 @@ public class DrawingSky extends Canvas {
     		d = c + 1;
     	}
     	index = 0;
-    	for(int i = 0; i < (constLabels.size()/3); i++) {
-    		g.drawString(constLabels.get(index), Integer.valueOf(constLabels.get(index+1)), Integer.valueOf(constLabels.get(index+2)));
-    		index +=3;
-    	}
-    	index = 0;
     	for(int i = 0; i < (starLabels.size()/3); i++) {
     		g.drawString(starLabels.get(index), Integer.valueOf(starLabels.get(index+1)), Integer.valueOf(starLabels.get(index+2)));
     		index +=3;
     	}
+    	
+    	g.setFont(new Font("Helvetica", Font.PLAIN, 20)); 
+    	
+    	index = 0;
+    	for(int i = 0; i < (constLabels.size()/3); i++) {
+    		g.drawString(constLabels.get(index), Integer.valueOf(constLabels.get(index+1)), Integer.valueOf(constLabels.get(index+2)));
+    		index +=3;
+    	}
+    	
     	index = 0;
     	for(int i = 0; i < (planetLabels.size()/3); i++) {
     		g.drawString(planetLabels.get(index), Integer.valueOf(planetLabels.get(index+1)), Integer.valueOf(planetLabels.get(index+2)));
@@ -151,6 +152,17 @@ public class DrawingSky extends Canvas {
     	
     	if(moonLabel.size() > 0) {
     		g.drawString(moonLabel.get(0), Integer.valueOf(moonLabel.get(1)), Integer.valueOf(moonLabel.get(2)));
+    	}
+    	
+    	if(checkCygnus()) {
+    		g.drawLine(cygnus[0], cygnus[1], cygnus[2], cygnus[3]);
+    		g.drawLine(cygnus[2], cygnus[3], cygnus[4], cygnus[5]);
+    		g.drawLine(cygnus[4], cygnus[5], cygnus[6], cygnus[7]);
+    		g.drawLine(cygnus[6], cygnus[7], cygnus[8], cygnus[9]);
+    		g.drawLine(cygnus[6], cygnus[7], cygnus[10], cygnus[11]);
+    		g.drawLine(cygnus[10], cygnus[11], cygnus[12], cygnus[13]);
+    		g.drawLine(cygnus[12], cygnus[13], cygnus[0], cygnus[1]);
+    		
     	}
     	
     	if(checkBootes()) {
@@ -329,11 +341,7 @@ public class DrawingSky extends Canvas {
 	    	g.drawLine(hercules[26], hercules[27], hercules[28], hercules[29]);
 	    	g.drawLine(hercules[28], hercules[29], hercules[30], hercules[31]);
 	    	g.drawLine(hercules[30], hercules[31], hercules[32], hercules[33]);
-    	}
-    	
-    	
-    	
-    	
+    	}	
     }
     
     public ArrayList<Integer> createList(){
@@ -351,28 +359,25 @@ public class DrawingSky extends Canvas {
     	
     	int size;
     	
-    	//herculesNames.sort(null);
-    	//System.out.println("Size: "+herculesNames.size());
-    	//System.out.println(herculesNames);
     	for(int i = 0; i < AlexxWork2.spaceObjList.size(); i++) {
     		if(AlexxWork2.spaceObjList.get(i).getProperName() == "MOON") {
 				System.out.println("Moon Found");
 				System.out.println("Mag: "+AlexxWork2.spaceObjList.get(i).getMagnitude());
 				System.out.println("Alt: "+ AlexxWork2.spaceObjList.get(i).getAltitude());
 				//System.out.println("Phase: "+Ale)
-			}/*
-    		if(bootesNames.contains(AlexxWork2.spaceObjList.get(i).getProperName())) {
+			}
+    		if(cygnusNames.contains(AlexxWork2.spaceObjList.get(i).getProperName())) {
     			System.out.println("Name: "+AlexxWork2.spaceObjList.get(i).getProperName());
     			System.out.println("Alt: "+ AlexxWork2.spaceObjList.get(i).getAltitude());
     			System.out.println("Mag: "+AlexxWork2.spaceObjList.get(i).getMagnitude());
     			
-    		}*/
-    		if(AlexxWork2.spaceObjList.get(i).getProperName() != null && AlexxWork2.spaceObjList.get(i).getProperName() != "") {
+    		}
+    		/*if(AlexxWork2.spaceObjList.get(i).getProperName() != null && AlexxWork2.spaceObjList.get(i).getProperName() != "") {
     			if(AlexxWork2.spaceObjList.get(i).getProperName().contains(" Cyg")||AlexxWork2.spaceObjList.get(i).getProperName().contains("Cyg")
     					||AlexxWork2.spaceObjList.get(i).getProperName().contains("Deneb")||AlexxWork2.spaceObjList.get(i).getProperName().contains("Albireo")) {
         			System.out.println("Aur:"+AlexxWork2.spaceObjList.get(i).getProperName());
         		}
-    		}
+    		}*/
     		
     		if(AlexxWork2.spaceObjList.get(i).getMagnitude() != null 
     				&& (Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()) <= 6.0) 
@@ -385,8 +390,6 @@ public class DrawingSky extends Canvas {
 				int y = getY(2250, 2250, 1000, 
 						(int)AlexxWork2.spaceObjList.get(i).getAzimuth(), 
 						(int)AlexxWork2.spaceObjList.get(i).getAltitude());
-				
-				
 				
 				if(AlexxWork2.spaceObjList.get(i).getType() == "STAR" 
 						&& AlexxWork2.spaceObjList.get(i).getProperName() != null 
@@ -508,9 +511,7 @@ public class DrawingSky extends Canvas {
 	    		test.add(b, y);
 	    		
 	    		if(AlexxWork2.spaceObjList.get(i).getProperName() == "MOON") {
-	    			System.out.println("------------------------Moon found!!!!!!-----------------------");
-	    			System.out.println("Type: "+AlexxWork2.spaceObjList.get(i).getType());
-	    			size = 20;
+	    			size = 22;
 	    			String moonName = AlexxWork2.spaceObjList.get(i).getProperName() + ": " + AlexxWork2.spaceObjList.get(i).getType();
 	    			moonLabel.add(moonName);
 					moonLabel.add(String.valueOf(x));
@@ -583,7 +584,6 @@ public class DrawingSky extends Canvas {
 	x = (int) (r * Math.sin(Math.toRadians(z)) * Math.cos(Math.toRadians(a)));
 	
 	//Pixel Coordinate
-	//x = (int) (Math.toRadians(x) + (screenWidth/2));
 	x = x + (screenWidth/2);
 	
 	return x;	
@@ -596,8 +596,6 @@ public class DrawingSky extends Canvas {
 	y = (int) (r * Math.cos(Math.toRadians(z)) * Math.cos(Math.toRadians(a)));	
 			
 	//Pixel Coordinate
-	//y = (screenHeight/2) - (int) (Math.toDegrees(y));		
-	//y = (screenHeight/2) - (int) (Math.toRadians(y));
 	y = (screenHeight/2) - y;
 	
 	return y;	
@@ -626,8 +624,6 @@ public class DrawingSky extends Canvas {
 	else {
 		size = 14;
 	}
-	
-	
 	return size;
 }  
 
@@ -769,15 +765,9 @@ public class DrawingSky extends Canvas {
     }
     
     public void loadHerculesLocation(String name, int x, int y) {
-    	//System.out.println("Name: "+ name);
-    	//System.out.println("X: "+ x);
-    	//System.out.println("Y: "+ y);
     	if(name.contains("Rasalgethi")) {
     		hercules[0] = x;
     		hercules[1] = y;
-    		//System.out.println("-----------X: "+ hercules[0]);
-	    	//System.out.println("-----------Y: "+ hercules[1]);
-    		
     	}
     	if(name.contains(" 27Bet Her")) {
     		hercules[2] = x;
@@ -1048,15 +1038,10 @@ public class DrawingSky extends Canvas {
     	if(name.contains(" 17Kap2Boo")) {
     		bootes[2] = x;
     		bootes[3] = y;
-    		System.out.println("Name: "+ name);
-    		System.out.println("X: "+ x);
-        	System.out.println("Y: "+ y);
     	}
     	if(name.contains(" 19Lam Boo")) {
     		bootes[4] = x;
     		bootes[5] = y;
-    		System.out.println("X: "+ x);
-        	System.out.println("Y: "+ y);
     	}
     	if(name.contains(" 27Gam Boo")) {
     		bootes[6] = x;
@@ -1254,6 +1239,34 @@ public class DrawingSky extends Canvas {
     	}
     }
     public void loadCygnusLocation(String name, int x, int y) {
+    	if(name.contains("Deneb")) {
+    		cygnus[0] = x;
+    		cygnus[1] = y;
+    	}
+    	if(name.contains("  7Iot1Cyg")) {
+    		cygnus[2] = x;
+    		cygnus[3] = y;
+    	}
+    	if(name.contains(" 18Del Cyg")) {
+    		cygnus[4] = x;
+    		cygnus[5] = y;
+    	}
+    	if(name.contains(" 37Gam Cyg")) {
+    		cygnus[6] = x;
+    		cygnus[7] = y;
+    	}
+    	if(name.contains("  6Bet1Cyg")) {
+    		cygnus[8] = x;
+    		cygnus[9] = y;
+    	}
+    	if(name.contains(" 53Eps Cyg")) {
+    		cygnus[10] = x;
+    		cygnus[11] = y;
+    	}
+    	if(name.contains(" 64Zet Cyg")) {
+    		cygnus[12] = x;
+    		cygnus[13] = y;
+    	}
     	
     }
     
@@ -1543,6 +1556,13 @@ public class DrawingSky extends Canvas {
     }
     public void loadCygnusNames() {
     	cygnusNames = new ArrayList<>();
+    	cygnusNames.add("Deneb");
+    	cygnusNames.add("  7Iot1Cyg");
+    	cygnusNames.add(" 18Del Cyg");
+    	cygnusNames.add(" 37Gam Cyg");
+    	cygnusNames.add("  6Bet1Cyg");
+    	cygnusNames.add(" 53Eps Cyg");
+    	cygnusNames.add(" 64Zet Cyg");
     }
     public void loadDracoNames() {
     	dracoNames = new ArrayList<>();
@@ -1739,8 +1759,12 @@ public class DrawingSky extends Canvas {
     	return flag;
     }
     public Boolean checkCygnus() {
-    	Boolean flag = false;
-    	
+    	Boolean flag = true;
+    	for(int i = 0; i < 14; i++) {
+    		if(cygnus[i] == 0) {
+    			flag = false;
+    		}
+    	}
     	return flag;
     }
     public Boolean checkDraco() {
