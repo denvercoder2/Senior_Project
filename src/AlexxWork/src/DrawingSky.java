@@ -42,7 +42,7 @@ public class DrawingSky extends Canvas {
 	ArrayList<String> libraNames;
 	int[] andromeda = new int[30];
 	ArrayList<String> andromedaNames;
-	int[] aquarius = new int[1];
+	int[] aquarius = new int[26];
 	ArrayList<String> aquariusNames;
 	int[] aquila = new int[16];
 	ArrayList<String> aquilaNames;
@@ -58,11 +58,11 @@ public class DrawingSky extends Canvas {
 	ArrayList<String> canisMajorNames;
 	int[] canisMinor = new int[4];
 	ArrayList<String> canisMinorNames;
-	int[] capricornus = new int[1];
+	int[] capricornus = new int[10];
 	ArrayList<String> capricornusNames;
 	int[] cassiopeia = new int[10];
 	ArrayList<String> cassiopeiaNames;
-	int[] centaurus = new int[1];
+	int[] centaurus = new int[30];
 	ArrayList<String> centaurusNames;
 	int[] cepheus = new int[18];
 	ArrayList<String> cepheusNames;
@@ -70,29 +70,29 @@ public class DrawingSky extends Canvas {
 	ArrayList<String> cruxNames;
 	int[] cygnus = new int[14];
 	ArrayList<String> cygnusNames;
-	int[] draco = new int[1];
+	int[] draco = new int[28];
 	ArrayList<String> dracoNames;
-	int[] gemini = new int[1];
+	int[] gemini = new int[28];
 	ArrayList<String> geminiNames;
-	int[] hydra = new int[1];
+	int[] hydra = new int[28];
 	ArrayList<String> hydraNames;
-	int[] leo = new int[1];
+	int[] leo = new int[26];
 	ArrayList<String> leoNames;
 	int[] lyra = new int[12];
 	ArrayList<String> lyraNames;
-	int[] orion = new int[1];
+	int[] orion = new int[32];
 	ArrayList<String> orionNames;
-	int[] pegasus = new int[1];
+	int[] pegasus = new int[16];
 	ArrayList<String> pegasusNames;
-	int[] perseus = new int[1];
+	int[] perseus = new int[28];
 	ArrayList<String> perseusNames;
-	int[] pisces = new int[1];
+	int[] pisces = new int[20];
 	ArrayList<String> piscesNames;
-	int[] sagittarius = new int[1];
+	int[] sagittarius = new int[16];
 	ArrayList<String> sagittariusNames;
-	int[] scorpio = new int[1];
+	int[] scorpio = new int[20];
 	ArrayList<String> scorpioNames;
-	int[] taurus= new int[1];
+	int[] taurus= new int[16];
 	ArrayList<String> taurusNames;
 	
     public ImageIcon draw() {
@@ -152,6 +152,97 @@ public class DrawingSky extends Canvas {
     	
     	if(moonLabel.size() > 0) {
     		g.drawString(moonLabel.get(0), Integer.valueOf(moonLabel.get(1)), Integer.valueOf(moonLabel.get(2)));
+    	}
+    	
+    	if(checkCentaurus()) {
+    		g.drawLine(centaurus[0], centaurus[1], centaurus[4], centaurus[5]);
+    		g.drawLine(centaurus[4], centaurus[5], centaurus[6], centaurus[7]);
+    		g.drawLine(centaurus[6], centaurus[7], centaurus[2], centaurus[3]);
+    		g.drawLine(centaurus[6], centaurus[7], centaurus[8], centaurus[9]);
+    		g.drawLine(centaurus[8], centaurus[9], centaurus[10], centaurus[11]);
+    		g.drawLine(centaurus[10], centaurus[11], centaurus[12], centaurus[13]);
+    		g.drawLine(centaurus[8], centaurus[9], centaurus[14], centaurus[15]);
+    		g.drawLine(centaurus[10], centaurus[11], centaurus[14], centaurus[15]);
+    		g.drawLine(centaurus[14], centaurus[15], centaurus[16], centaurus[17]);
+    		g.drawLine(centaurus[16], centaurus[17], centaurus[18], centaurus[19]);
+    		g.drawLine(centaurus[16], centaurus[17], centaurus[20], centaurus[21]);
+    		g.drawLine(centaurus[20], centaurus[21], centaurus[22], centaurus[23]);
+    		g.drawLine(centaurus[22], centaurus[23], centaurus[24], centaurus[25]);
+    		g.drawLine(centaurus[24], centaurus[25], centaurus[26], centaurus[27]);
+    		g.drawLine(centaurus[24], centaurus[25], centaurus[28], centaurus[29]);
+    		g.drawLine(centaurus[28], centaurus[29], centaurus[14], centaurus[15]);
+    	}
+    	
+    	if(checkAquarius()) {
+    		g.drawLine(aquarius[0], aquarius[1], aquarius[2], aquarius[3]);
+    		g.drawLine(aquarius[2], aquarius[3], aquarius[4], aquarius[5]);
+    		g.drawLine(aquarius[2], aquarius[3], aquarius[6], aquarius[7]);
+    		g.drawLine(aquarius[6], aquarius[7], aquarius[8], aquarius[9]);
+    		g.drawLine(aquarius[8], aquarius[9], aquarius[10], aquarius[11]);
+    		g.drawLine(aquarius[10], aquarius[11], aquarius[12], aquarius[13]);
+    		g.drawLine(aquarius[12], aquarius[13], aquarius[6], aquarius[7]);
+    		g.drawLine(aquarius[6], aquarius[7], aquarius[14], aquarius[15]);
+    		g.drawLine(aquarius[14], aquarius[15], aquarius[16], aquarius[17]);
+    		g.drawLine(aquarius[16], aquarius[17], aquarius[18], aquarius[19]);
+    		g.drawLine(aquarius[18], aquarius[19], aquarius[20], aquarius[21]);
+    		g.drawLine(aquarius[20], aquarius[21], aquarius[22], aquarius[23]);
+    		g.drawLine(aquarius[22], aquarius[23], aquarius[24], aquarius[25]);
+    		g.drawLine(aquarius[24], aquarius[25], aquarius[16], aquarius[17]);	
+    	}
+    	
+    	if(checkLeo()) {
+    		g.drawLine(leo[0], leo[1], leo[4], leo[5]);
+    		g.drawLine(leo[4], leo[5], leo[6], leo[7]);
+    		g.drawLine(leo[6], leo[7], leo[12], leo[13]);
+    		g.drawLine(leo[8], leo[9], leo[10], leo[11]);
+    		g.drawLine(leo[10], leo[11], leo[12], leo[13]);
+    		g.drawLine(leo[12], leo[13], leo[14], leo[15]);
+    		g.drawLine(leo[10], leo[11], leo[18], leo[19]);
+    		g.drawLine(leo[12], leo[13], leo[16], leo[17]);
+    		g.drawLine(leo[18], leo[19], leo[20], leo[21]);
+    		g.drawLine(leo[20], leo[21], leo[16], leo[17]);
+    		g.drawLine(leo[16], leo[17], leo[22], leo[23]);
+    		g.drawLine(leo[22], leo[23], leo[24], leo[25]);
+    		g.drawLine(leo[6], leo[7], leo[2], leo[3]);
+    		g.drawLine(leo[2], leo[3], leo[0], leo[1]);
+    		g.drawLine(leo[2], leo[3], leo[8], leo[9]);
+    		
+    	}
+    	
+    	if(checkPegasus()) {
+    		g.drawLine(pegasus[0], pegasus[1], pegasus[2], pegasus[3]);
+    		g.drawLine(pegasus[2], pegasus[3], pegasus[4], pegasus[5]);
+    		g.drawLine(pegasus[4], pegasus[5], pegasus[6], pegasus[7]);
+    		g.drawLine(pegasus[4], pegasus[5], pegasus[8], pegasus[9]);
+    		g.drawLine(pegasus[8], pegasus[9], pegasus[10], pegasus[11]);
+    		g.drawLine(pegasus[8], pegasus[9], pegasus[12], pegasus[13]);
+    		g.drawLine(pegasus[12], pegasus[13], pegasus[14], pegasus[15]);
+    	}
+    	
+    	if(checkDraco()) {
+    		g.drawLine(draco[0], draco[1], draco[2], draco[3]);
+    		g.drawLine(draco[2], draco[3], draco[4], draco[5]);
+    		g.drawLine(draco[4], draco[5], draco[6], draco[7]);
+    		g.drawLine(draco[6], draco[7], draco[8], draco[9]);
+    		g.drawLine(draco[8], draco[9], draco[10], draco[11]);
+    		g.drawLine(draco[10], draco[11], draco[14], draco[15]);
+    		g.drawLine(draco[14], draco[15], draco[18], draco[19]);
+    		g.drawLine(draco[14], draco[15], draco[12], draco[13]);
+    		g.drawLine(draco[18], draco[19], draco[16], draco[17]);
+    		g.drawLine(draco[18], draco[19], draco[20], draco[21]);
+    		g.drawLine(draco[20], draco[21], draco[22], draco[23]);
+    		g.drawLine(draco[22], draco[23], draco[24], draco[25]);
+    		g.drawLine(draco[24], draco[25], draco[26], draco[27]);
+    		g.drawLine(draco[26], draco[27], draco[20], draco[21]);
+    		
+    	}
+    	
+    	if(checkCapricornus()) {
+    		g.drawLine(capricornus[0], capricornus[1], capricornus[2], capricornus[3]);
+    		g.drawLine(capricornus[2], capricornus[3], capricornus[4], capricornus[5]);
+    		g.drawLine(capricornus[4], capricornus[5], capricornus[6], capricornus[7]);
+    		g.drawLine(capricornus[6], capricornus[7], capricornus[8], capricornus[9]);
+    		g.drawLine(capricornus[8], capricornus[9], capricornus[0], capricornus[1]);
     	}
     	
     	if(checkCygnus()) {
@@ -366,22 +457,22 @@ public class DrawingSky extends Canvas {
 				System.out.println("Alt: "+ AlexxWork2.spaceObjList.get(i).getAltitude());
 				//System.out.println("Phase: "+Ale)
 			}
-    		if(cygnusNames.contains(AlexxWork2.spaceObjList.get(i).getProperName())) {
+    		/*if(leoNames.contains(AlexxWork2.spaceObjList.get(i).getProperName())) {
     			System.out.println("Name: "+AlexxWork2.spaceObjList.get(i).getProperName());
     			System.out.println("Alt: "+ AlexxWork2.spaceObjList.get(i).getAltitude());
     			System.out.println("Mag: "+AlexxWork2.spaceObjList.get(i).getMagnitude());
     			
-    		}
-    		/*if(AlexxWork2.spaceObjList.get(i).getProperName() != null && AlexxWork2.spaceObjList.get(i).getProperName() != "") {
-    			if(AlexxWork2.spaceObjList.get(i).getProperName().contains(" Cyg")||AlexxWork2.spaceObjList.get(i).getProperName().contains("Cyg")
-    					||AlexxWork2.spaceObjList.get(i).getProperName().contains("Deneb")||AlexxWork2.spaceObjList.get(i).getProperName().contains("Albireo")) {
+    		}*/
+    		if(AlexxWork2.spaceObjList.get(i).getProperName() != null && AlexxWork2.spaceObjList.get(i).getProperName() != "") {
+    			if(AlexxWork2.spaceObjList.get(i).getProperName().contains(" Cen")||AlexxWork2.spaceObjList.get(i).getProperName().contains("Cen")
+    					||AlexxWork2.spaceObjList.get(i).getProperName().contains("Hadar")||AlexxWork2.spaceObjList.get(i).getProperName().contains("Rigil")) {
         			System.out.println("Aur:"+AlexxWork2.spaceObjList.get(i).getProperName());
         		}
-    		}*/
+    		}
     		
     		if(AlexxWork2.spaceObjList.get(i).getMagnitude() != null 
     				&& (Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()) <= 6.0) 
-    				&& AlexxWork2.spaceObjList.get(i).getAltitude() > 1) {
+    				&& AlexxWork2.spaceObjList.get(i).getAltitude() > 0.5) {
 	    		
     			int x = getX(2250, 2250, 1000, 
     					(int)AlexxWork2.spaceObjList.get(i).getAzimuth(), 
@@ -942,6 +1033,58 @@ public class DrawingSky extends Canvas {
     }
     
     public void loadAquariusLocation(String name, int x, int y) {
+    	if(name.contains("  2Eps Aqr")) {
+    		aquarius[0] = x;
+    		aquarius[1] = y;
+    	}
+    	if(name.contains(" 22Bet Aqr")) {
+    		aquarius[2] = x;
+    		aquarius[3] = y;
+    	}
+    	if(name.contains(" 33Iot Aqr")) {
+    		aquarius[4] = x;
+    		aquarius[5] = y;
+    	}
+    	if(name.contains(" 34Alp Aqr")) {
+    		aquarius[6] = x;
+    		aquarius[7] = y;
+    	}
+    	if(name.contains(" 52Pi  Aqr")) {
+    		aquarius[8] = x;
+    		aquarius[9] = y;
+    	}
+    	if(name.contains(" 55Zet Aqr")) {
+    		aquarius[10] = x;
+    		aquarius[11] = y;
+    	}
+    	if(name.contains(" 48Gam Aqr")) {
+    		aquarius[12] = x;
+    		aquarius[13] = y;
+    	}
+    	if(name.contains(" 43The Aqr")) {
+    		aquarius[14] = x;
+    		aquarius[15] = y;
+    	}
+    	if(name.contains(" 73Lam Aqr")) {
+    		aquarius[16] = x;
+    		aquarius[17] = y;
+    	}
+    	if(name.contains(" 90Phi Aqr")) {
+    		aquarius[18] = x;
+    		aquarius[19] = y;
+    	}
+    	if(name.contains(" 93Psi2Aqr")) {
+    		aquarius[20] = x;
+    		aquarius[21] = y;
+    	}
+    	if(name.contains(" 76Del Aqr")) {
+    		aquarius[22] = x;
+    		aquarius[23] = y;
+    	}
+    	if(name.contains(" 69Tau1Aqr")) {
+    		aquarius[24] = x;
+    		aquarius[25] = y;
+    	}
     	
     }
     public void loadAquilaLocation(String name, int x, int y) {
@@ -1151,6 +1294,27 @@ public class DrawingSky extends Canvas {
     }
     
     public void loadCapricornusLocation(String name, int x, int y) {
+    	if(name.contains("  5Alp1Cap")) {
+    		capricornus[0] = x;
+    		capricornus[1] = y;
+    	}
+    	if(name.contains(" 18Ome Cap")) {
+    		capricornus[2] = x;
+    		capricornus[3] = y;
+    	}
+    	if(name.contains(" 34Zet Cap")) {
+    		capricornus[4] = x;
+    		capricornus[5] = y;
+    	}
+    	if(name.contains(" 49Del Cap")) {
+    		capricornus[6] = x;
+    		capricornus[7] = y;
+    	}
+    	if(name.contains(" 23The Cap")) {
+    		capricornus[8] = x;
+    		capricornus[9] = y;
+    	}
+    	
     	
     }
     public void loadCassiopeiaLocation(String name, int x, int y) {
@@ -1178,6 +1342,66 @@ public class DrawingSky extends Canvas {
     }
     
     public void loadCentaurusLocation(String name, int x, int y) {
+    	if(name.contains("   Pi  Cen")) {
+    		centaurus[0] = x;
+    		centaurus[1] = y;
+    	}
+    	if(name.contains("   Omi1Cen")) {
+    		centaurus[2] = x;
+    		centaurus[3] = y;
+    	}
+    	if(name.contains("   Del Cen")) {
+    		centaurus[4] = x;
+    		centaurus[5] = y;
+    	}
+    	if(name.contains("   Sig Cen")) {
+    		centaurus[6] = x;
+    		centaurus[7] = y;
+    	}
+    	if(name.contains("   Gam Cen")) {
+    		centaurus[8] = x;
+    		centaurus[9] = y;
+    	}
+    	if(name.contains("   Eps Cen")) {
+    		centaurus[10] = x;
+    		centaurus[11] = y;
+    	}
+    	if(name.contains("Hadar")) {
+    		centaurus[12] = x;
+    		centaurus[13] = y;
+    	}
+    	if(name.contains("   Zet Cen")) {
+    		centaurus[14] = x;
+    		centaurus[15] = y;
+    	}
+    	if(name.contains("   Nu  Cen")) {
+    		centaurus[16] = x;
+    		centaurus[17] = y;
+    	}
+    	if(name.contains("   Iot Cen")) {
+    		centaurus[18] = x;
+    		centaurus[19] = y;
+    	}
+    	if(name.contains("  5The Cen")) {
+    		centaurus[20] = x;
+    		centaurus[21] = y;
+    	}
+    	if(name.contains("   Psi Cen")) {
+    		centaurus[22] = x;
+    		centaurus[23] = y;
+    	}
+    	if(name.contains("   Phi Cen")) {
+    		centaurus[24] = x;
+    		centaurus[25] = y;
+    	}
+    	if(name.contains("   Kap Cen")) {
+    		centaurus[26] = x;
+    		centaurus[27] = y;
+    	}
+    	if(name.contains("   Ups1Cen")) {
+    		centaurus[28] = x;
+    		centaurus[29] = y;
+    	}
     	
     }
     public void loadCepheusLocation(String name, int x, int y) {
@@ -1271,6 +1495,62 @@ public class DrawingSky extends Canvas {
     }
     
     public void loadDracoLocation(String name, int x, int y) {
+    	if(name.contains("  1Lam Dra")) {
+    		draco[0] = x;
+    		draco[1] = y;
+    	}
+    	if(name.contains("  5Kap Dra")) {
+    		draco[2] = x;
+    		draco[3] = y;
+    	}
+    	if(name.contains(" 11Alp Dra")) {
+    		draco[4] = x;
+    		draco[5] = y;
+    	}
+    	if(name.contains(" 12Iot Dra")) {
+    		draco[6] = x;
+    		draco[7] = y;
+    	}
+    	if(name.contains(" 13The Dra")) {
+    		draco[8] = x;
+    		draco[9] = y;
+    	}
+    	if(name.contains(" 22Zet Dra")) {
+    		draco[10] = x;
+    		draco[11] = y;
+    	}
+    	if(name.contains(" 44Chi Dra")) {
+    		draco[12] = x;
+    		draco[13] = y;
+    	}
+    	if(name.contains(" 43Phi Dra")) {
+    		draco[14] = x;
+    		draco[15] = y;
+    	}
+    	if(name.contains(" 63Eps Dra")) {
+    		draco[16] = x;
+    		draco[17] = y;
+    	}
+    	if(name.contains(" 57Del Dra")) {
+    		draco[18] = x;
+    		draco[19] = y;
+    	}
+    	if(name.contains(" 32Xi  Dra")) {
+    		draco[20] = x;
+    		draco[21] = y;
+    	}
+    	if(name.contains(" 24Nu 1Dra")) {
+    		draco[22] = x;
+    		draco[23] = y;
+    	}
+    	if(name.contains(" 23Bet Dra")) {
+    		draco[24] = x;
+    		draco[25] = y;
+    	}
+    	if(name.contains("Etamin")) {
+    		draco[26] = x;
+    		draco[27] = y;
+    	}
     	
     }
     public void loadGeminiLocation(String name, int x, int y) {
@@ -1281,6 +1561,58 @@ public class DrawingSky extends Canvas {
     	
     }
     public void loadLeoLocation(String name, int x, int y) {
+    	if(name.contains("  1Kap Leo")) {
+    		leo[0] = x;
+    		leo[1] = y;
+    	}
+    	if(name.contains(" 24Mu  Leo")) {
+    		leo[2] = x;
+    		leo[3] = y;
+    	}
+    	if(name.contains("  4Lam Leo")) {
+    		leo[4] = x;
+    		leo[5] = y;
+    	}
+    	if(name.contains(" 17Eps Leo")) {
+    		leo[6] = x;
+    		leo[7] = y;
+    	}
+    	if(name.contains(" 36Zet Leo")) {
+    		leo[8] = x;
+    		leo[9] = y;
+    	}
+    	if(name.contains("Algieba")) {
+    		leo[10] = x;
+    		leo[11] = y;
+    	}
+    	if(name.contains(" 30Eta Leo")) {
+    		leo[12] = x;
+    		leo[13] = y;
+    	}
+    	if(name.contains("Regulus")) {
+    		leo[14] = x;
+    		leo[15] = y;
+    	}
+    	if(name.contains(" 70The Leo")) {
+    		leo[16] = x;
+    		leo[17] = y;
+    	}
+    	if(name.contains(" 68Del Leo")) {
+    		leo[18] = x;
+    		leo[19] = y;
+    	}
+    	if(name.contains("Denebola")) {
+    		leo[20] = x;
+    		leo[21] = y;
+    	}
+    	if(name.contains(" 78Iot Leo")) {
+    		leo[22] = x;
+    		leo[23] = y;
+    	}
+    	if(name.contains(" 77Sig Leo")) {
+    		leo[24] = x;
+    		leo[25] = y;
+    	}
     	
     }
     
@@ -1315,6 +1647,38 @@ public class DrawingSky extends Canvas {
     }
     
     public void loadPegasusLocation(String name, int x, int y) {
+    	if(name.contains("  8Eps Peg")) {
+    		pegasus[0] = x;
+    		pegasus[1] = y;
+    	}
+    	if(name.contains(" 26The Peg")) {
+    		pegasus[2] = x;
+    		pegasus[3] = y;
+    	}
+    	if(name.contains("Markab")) {
+    		pegasus[4] = x;
+    		pegasus[5] = y;
+    	}
+    	if(name.contains("Algenib")) {
+    		pegasus[6] = x;
+    		pegasus[7] = y;
+    	}
+    	if(name.contains("Scheat")) {
+    		pegasus[8] = x;
+    		pegasus[9] = y;
+    	}
+    	if(name.contains(" 27Pi 1Peg")) {
+    		pegasus[10] = x;
+    		pegasus[11] = y;
+    	}
+    	if(name.contains(" 47Lam Peg")) {
+    		pegasus[12] = x;
+    		pegasus[13] = y;
+    	}
+    	if(name.contains(" 10Kap Peg")) {
+    		pegasus[14] = x;
+    		pegasus[15] = y;
+    	}
     	
     }
     public void loadPerseusLocation(String name, int x, int y) {
@@ -1447,6 +1811,20 @@ public class DrawingSky extends Canvas {
     }
     public void loadAquariusNames() {
     	aquariusNames = new ArrayList<>();
+    	aquariusNames.add("  2Eps Aqr");
+    	aquariusNames.add(" 22Bet Aqr");
+    	aquariusNames.add(" 33Iot Aqr");
+    	aquariusNames.add(" 34Alp Aqr");
+    	aquariusNames.add(" 52Pi  Aqr");
+    	aquariusNames.add(" 55Zet Aqr");
+    	aquariusNames.add(" 48Gam Aqr");
+    	aquariusNames.add(" 43The Aqr");
+    	aquariusNames.add(" 73Lam Aqr");
+    	aquariusNames.add(" 90Phi Aqr");
+    	aquariusNames.add(" 93Psi2Aqr");
+    	aquariusNames.add(" 76Del Aqr");
+    	aquariusNames.add(" 69Tau1Aqr");
+    	
     	
     }
     public void loadAquilaNames() {
@@ -1522,6 +1900,11 @@ public class DrawingSky extends Canvas {
     }
     public void loadCapricornusNames() {
     	capricornusNames = new ArrayList<>();
+    	capricornusNames.add("  5Alp1Cap");
+    	capricornusNames.add(" 18Ome Cap");
+    	capricornusNames.add(" 34Zet Cap");
+    	capricornusNames.add(" 49Del Cap");
+    	capricornusNames.add(" 23The Cap");
     }
     public void loadCassiopeiaNames() {
     	cassiopeiaNames = new ArrayList<>();
@@ -1533,6 +1916,21 @@ public class DrawingSky extends Canvas {
     }
     public void loadCentaurusNames() {
     	centaurusNames = new ArrayList<>();
+    	centaurusNames.add("   Pi  Cen");
+    	centaurusNames.add("   Omi1Cen");
+    	centaurusNames.add("   Del Cen");
+    	centaurusNames.add("   Sig Cen");
+    	centaurusNames.add("   Gam Cen");
+    	centaurusNames.add("   Eps Cen");
+    	centaurusNames.add("Hadar");
+    	centaurusNames.add("   Zet Cen");
+    	centaurusNames.add("   Nu  Cen");
+    	centaurusNames.add("   Iot Cen");
+    	centaurusNames.add("  5The Cen");
+    	centaurusNames.add("   Psi Cen");
+    	centaurusNames.add("   Phi Cen");
+    	centaurusNames.add("   Kap Cen");
+    	centaurusNames.add("   Ups1Cen");
     }
     public void loadCepheusNames() {
     	cepheusNames = new ArrayList<>();
@@ -1566,6 +1964,21 @@ public class DrawingSky extends Canvas {
     }
     public void loadDracoNames() {
     	dracoNames = new ArrayList<>();
+    	dracoNames.add("  1Lam Dra");
+    	dracoNames.add("  5Kap Dra");
+    	dracoNames.add(" 11Alp Dra");
+    	dracoNames.add(" 12Iot Dra");
+    	dracoNames.add(" 13The Dra");
+    	dracoNames.add(" 32Xi  Dra");
+    	dracoNames.add(" 44Chi Dra");
+    	dracoNames.add(" 43Phi Dra");
+    	dracoNames.add(" 63Eps Dra");
+    	dracoNames.add(" 57Del Dra");
+    	dracoNames.add(" 22Zet Dra");
+    	dracoNames.add(" 24Nu 1Dra");
+    	dracoNames.add(" 23Bet Dra");
+    	dracoNames.add("Etamin");
+    	
     }
     public void loadGeminiNames() {
     	geminiNames = new ArrayList<>();
@@ -1575,6 +1988,21 @@ public class DrawingSky extends Canvas {
     }
     public void loadLeoNames() {
     	leoNames = new ArrayList<>();
+    	leoNames.add("  1Kap Leo");
+    	leoNames.add(" 24Mu  Leo");
+    	leoNames.add("  4Lam Leo");
+    	leoNames.add(" 17Eps Leo");
+    	leoNames.add(" 36Zet Leo");
+    	leoNames.add("Algieba");
+    	leoNames.add(" 30Eta Leo");
+    	leoNames.add("Regulus");
+    	leoNames.add(" 70The Leo");
+    	leoNames.add(" 68Del Leo");
+    	leoNames.add("Denebola");
+    	leoNames.add(" 78Iot Leo");
+    	leoNames.add(" 77Sig Leo");
+    	
+    	
     }
     public void loadLyraNames() {
     	lyraNames = new ArrayList<>();
@@ -1591,6 +2019,16 @@ public class DrawingSky extends Canvas {
     }
     public void loadPegasusNames() {
     	pegasusNames = new ArrayList<>();
+    	pegasusNames.add("  8Eps Peg");
+    	pegasusNames.add(" 26The Peg");
+    	pegasusNames.add("Markab");
+    	pegasusNames.add("Algenib");
+    	pegasusNames.add("Scheat");
+    	pegasusNames.add(" 27Pi 1Peg");
+    	pegasusNames.add(" 47Lam Peg");
+    	pegasusNames.add(" 10Kap Peg");
+    	
+    	
     }
     public void loadPerseusNames() {
     	perseusNames = new ArrayList<>();
@@ -1654,9 +2092,13 @@ public class DrawingSky extends Canvas {
     	return flag;
     }
     public Boolean checkAquarius() {
-    	Boolean flag = false;
-    	
-    	return flag;
+        	Boolean flag = true;
+        	for(int i = 0; i < 26; i++) {
+        		if(aquarius[i] == 0) {
+        			flag = false;
+        		}
+        	}
+        	return flag;
     }
     public Boolean checkAquila() {
     	Boolean flag = true;
@@ -1722,8 +2164,12 @@ public class DrawingSky extends Canvas {
     	return flag;
     }
     public Boolean checkCapricornus() {
-    	Boolean flag = false;
-    	
+    	Boolean flag = true;
+    	for(int i = 0; i < 10; i++) {
+    		if(capricornus[i] == 0) {
+    			flag = false;
+    		}
+    	}
     	return flag;
     }
     public Boolean checkCassiopeia() {
@@ -1736,8 +2182,12 @@ public class DrawingSky extends Canvas {
     	return flag;
     }
     public Boolean checkCentaurus() {
-    	Boolean flag = false;
-    	
+    	Boolean flag = true;
+    	for(int i = 0; i < 30; i++) {
+    		if(centaurus[i] == 0) {
+    			flag = false;
+    		}
+    	}
     	return flag;
     }
     public Boolean checkCepheus() {
@@ -1768,8 +2218,12 @@ public class DrawingSky extends Canvas {
     	return flag;
     }
     public Boolean checkDraco() {
-    	Boolean flag = false;
-    	
+    	Boolean flag = true;
+    	for(int i = 0; i < 28; i++) {
+    		if(draco[i] == 0) {
+    			flag = false;
+    		}
+    	}
     	return flag;
     }
     public Boolean checkGemini() {
@@ -1783,8 +2237,12 @@ public class DrawingSky extends Canvas {
     	return flag;
     }
     public Boolean checkLeo() {
-    	Boolean flag = false;
-    	
+    	Boolean flag = true;
+    	for(int i = 0; i < 26; i++) {
+    		if(leo[i] == 0) {
+    			flag = false;
+    		}
+    	}
     	return flag;
     }
     public Boolean checkLyra() {
@@ -1802,8 +2260,12 @@ public class DrawingSky extends Canvas {
     	return flag;
     }
     public Boolean checkPegasus() {
-    	Boolean flag = false;
-    	
+    	Boolean flag = true;
+    	for(int i = 0; i < 16; i++) {
+    		if(pegasus[i] == 0) {
+    			flag = false;
+    		}
+    	}
     	return flag;
     }
     public Boolean checkPerseus() {
