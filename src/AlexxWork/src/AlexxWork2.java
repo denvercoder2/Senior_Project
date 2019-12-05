@@ -140,12 +140,12 @@ public class AlexxWork2 extends JFrame {
 		
 		checkLatitude();
 		checkLongitude();
-		checkLatitudeDirection();
-		checkLongitudeDirection();
+//		checkLatitudeDirection();
+//		checkLongitudeDirection();
 		
 		
 		if(checkDay() && checkYear() && checkMonth() && checkHours() && checkMinutes()
-				&& checkLatitude() && checkLongitude() && checkLatitudeDirection() && checkLongitudeDirection() && checkDate()) {
+				&& checkLatitude() && checkLongitude() && checkDate()) {
 			setValidInputs();
 			//ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\SkyMap.png");
 			//scrollPane_1.setViewportView(new JLabel(ii));
@@ -208,10 +208,10 @@ public class AlexxWork2 extends JFrame {
 				*/
 		//ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\waiting.jpg");
 		//scrollPane_1.setViewportView(new JLabel(ii));
-		spaceObjList = SkyMap_Formulae_J.getSpace(String.valueOf((int)2019), String.valueOf((int)11), 
-				String.valueOf((int)23), String.valueOf((int)13), 
+		spaceObjList = SkyMap_Formulae_J.getSpace(String.valueOf((int)2019), String.valueOf((int)5), 
+				String.valueOf((int)10), String.valueOf((int)13), 
 				String.valueOf((int)05), String.valueOf(0), 
-				String.valueOf((int)50), String.valueOf((int)25));
+				String.valueOf((int)10), String.valueOf((int)-10));
 		//System.out.println("2222222222222222222222222222\n");
     	//System.out.println(spaceObjList.size()+"\2222222222222222222222222222\n");
     	
@@ -409,49 +409,49 @@ public class AlexxWork2 extends JFrame {
 		return check;
 	}
 	
-	public Boolean checkLatitudeDirection() {
-		Boolean flag = false;
-		/*
-		if(latitudeComboBox.getSelectedItem().toString().equals(" ")) {
-			latitudeComboBox.setBorder(new LineBorder(Color.RED, 3));
-		}
-		else {
-			if(latitudeComboBox.getSelectedItem().toString().equals("North")) {
-				latitudeDirection = "North";
-				latitudeComboBox.setBorder(new LineBorder(Color.BLACK, 1));
-			}
-			else if(latitudeComboBox.getSelectedItem().toString().equals("South")) {
-				latitudeDirection = "South";
-				latitudeComboBox.setBorder(new LineBorder(Color.BLACK, 1));
-			}
-			flag = true;
-		}
-		*/
-		flag = true;
-		return flag;
-	}
-	
-	public Boolean checkLongitudeDirection() {
-		Boolean flag = false;
-		/*
-		if(longitudeComboBox.getSelectedItem().toString() == " ") {
-			longitudeComboBox.setBorder(new LineBorder(Color.RED, 3));
-		}
-		else {
-			if(longitudeComboBox.getSelectedItem().toString() == "West") {
-				longitudeDirection = "West";
-				longitudeComboBox.setBorder(new LineBorder(Color.BLACK, 1));
-			}
-			else if(longitudeComboBox.getSelectedItem().toString() == "East") {
-				longitudeDirection = "East";
-				longitudeComboBox.setBorder(new LineBorder(Color.BLACK, 1));
-			}
-			flag = true;
-		}
-		*/
-		flag = true;
-		return flag;
-	}
+//	public Boolean checkLatitudeDirection() {
+//		Boolean flag = false;
+//		/*
+//		if(latitudeComboBox.getSelectedItem().toString().equals(" ")) {
+//			latitudeComboBox.setBorder(new LineBorder(Color.RED, 3));
+//		}
+//		else {
+//			if(latitudeComboBox.getSelectedItem().toString().equals("North")) {
+//				latitudeDirection = "North";
+//				latitudeComboBox.setBorder(new LineBorder(Color.BLACK, 1));
+//			}
+//			else if(latitudeComboBox.getSelectedItem().toString().equals("South")) {
+//				latitudeDirection = "South";
+//				latitudeComboBox.setBorder(new LineBorder(Color.BLACK, 1));
+//			}
+//			flag = true;
+//		}
+//		*/
+//		flag = true;
+//		return flag;
+//	}
+//	
+//	public Boolean checkLongitudeDirection() {
+//		Boolean flag = false;
+//		/*
+//		if(longitudeComboBox.getSelectedItem().toString() == " ") {
+//			longitudeComboBox.setBorder(new LineBorder(Color.RED, 3));
+//		}
+//		else {
+//			if(longitudeComboBox.getSelectedItem().toString() == "West") {
+//				longitudeDirection = "West";
+//				longitudeComboBox.setBorder(new LineBorder(Color.BLACK, 1));
+//			}
+//			else if(longitudeComboBox.getSelectedItem().toString() == "East") {
+//				longitudeDirection = "East";
+//				longitudeComboBox.setBorder(new LineBorder(Color.BLACK, 1));
+//			}
+//			flag = true;
+//		}
+//		*/
+//		flag = true;
+//		return flag;
+//	}
 	
 	public Boolean checkDate() {
 		Boolean flag = true;
@@ -773,17 +773,17 @@ public class AlexxWork2 extends JFrame {
 		btnSaveToDisk.setEnabled(false);
 		mainGUI.add(btnSaveToDisk, "cell 12 31,growx");
 		
-		latitudeComboBox = new JComboBox();
-		latitudeComboBox.addItem(" ");
-		latitudeComboBox.addItem("North");
-		latitudeComboBox.addItem("South");
-		mainGUI.add(latitudeComboBox, "cell 0 23 7 1,grow");
-		
-		longitudeComboBox = new JComboBox();
-		longitudeComboBox.addItem(" ");
-		longitudeComboBox.addItem("East");
-		longitudeComboBox.addItem("West");
-		mainGUI.add(longitudeComboBox, "cell 0 27 7 1,grow");
+//		latitudeComboBox = new JComboBox();
+//		latitudeComboBox.addItem(" ");
+//		latitudeComboBox.addItem("North");
+//		latitudeComboBox.addItem("South");
+//		mainGUI.add(latitudeComboBox, "cell 0 23 7 1,grow");
+//		
+//		longitudeComboBox = new JComboBox();
+//		longitudeComboBox.addItem(" ");
+//		longitudeComboBox.addItem("East");
+//		longitudeComboBox.addItem("West");
+//		mainGUI.add(longitudeComboBox, "cell 0 27 7 1,grow");
 		
 		refreshButton = new JButton("Refresh SkyMap");
 		refreshButton.addActionListener(new ActionListener() {
