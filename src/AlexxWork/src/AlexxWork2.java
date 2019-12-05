@@ -23,6 +23,9 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.nio.file.Files;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -111,6 +114,7 @@ public class AlexxWork2 extends JFrame {
 	private JScrollPane scrollPane_1;
 	private JButton refreshButton;
 	private int count = 0;
+	private JButton btnHelp;
 	
 
 	/**
@@ -820,5 +824,57 @@ public class AlexxWork2 extends JFrame {
 		});
 		mainGUI.add(longTextField, "cell 6 25,grow");
 		longTextField.setColumns(10);
+		
+		btnHelp = new JButton("Help");
+		btnHelp.setFont(new Font("Tahoma", Font.BOLD, 30));
+		btnHelp.addActionListener(new ActionListener() {
+					
+					/**
+					 * Redraws skyMap based on the toggable labels
+					 */
+					public void actionPerformed(ActionEvent arg0) {
+						
+						try {
+					         URL url = new URL("http://www.google.com");
+					         URLConnection connection = url.openConnection();
+					         connection.connect();
+					         System.out.println("Internet is connected");
+					         
+					         // If the website was on the internet, you could open the webpage here but instead we'll go to the file location
+					         // and open it in an offline fashion.
+					         File file = new File("HTML5\\Default.htm");
+
+					        if(file.exists())
+								try {
+									Desktop.getDesktop().open(file);
+								} catch (IOException ee) {
+									// TODO Auto-generated catch block
+									ee.printStackTrace();
+								}
+					      } catch (MalformedURLException e) {
+						        File file = new File("PDF.pdf");
+
+						        if(file.exists())
+									try {
+										Desktop.getDesktop().open(file);
+									} catch (IOException ee) {
+										// TODO Auto-generated catch block
+										ee.printStackTrace();
+									}
+					      } catch (IOException e) {
+						        File file = new File("PDF.pdf");
+
+						        if(file.exists())
+									try {
+										Desktop.getDesktop().open(file);
+									} catch (IOException ee) {
+										// TODO Auto-generated catch block
+										ee.printStackTrace();
+									}
+					      }
+				    }
+				});
+		mainGUI.add(btnHelp, "cell 12 0,alignx right,aligny top");
+		
 	}
 }
