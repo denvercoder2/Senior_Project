@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <MadCap:bodyProxy />
+        <div class="home-footer">
+            <table style="width: 100%;">
+                <col />
+                <col />
+                <tbody>
+                    <tr>
+                        <td>
+                            <p class="footer-sub">Created Using MadCap&#160;Flare</p>
+                        </td>
+                        <td style="text-align: right;">
+                            <img src="../Images/logo4.png" style="width: 218px;height: 122px;" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
