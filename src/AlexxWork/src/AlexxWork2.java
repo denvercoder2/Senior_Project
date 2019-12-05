@@ -209,9 +209,9 @@ public class AlexxWork2 extends JFrame {
 		//ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\waiting.jpg");
 		//scrollPane_1.setViewportView(new JLabel(ii));
 		spaceObjList = SkyMap_Formulae_J.getSpace(String.valueOf((int)2019), String.valueOf((int)5), 
-				String.valueOf((int)10), String.valueOf((int)13), 
-				String.valueOf((int)05), String.valueOf(0), 
-				String.valueOf((int)10), String.valueOf((int)-10));
+				String.valueOf((int)10), String.valueOf((int)20), 
+				String.valueOf((int)23), String.valueOf(0), 
+				String.valueOf((int)0), String.valueOf((int)-114));
 		//System.out.println("2222222222222222222222222222\n");
     	//System.out.println(spaceObjList.size()+"\2222222222222222222222222222\n");
     	
