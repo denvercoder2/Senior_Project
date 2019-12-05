@@ -123,7 +123,8 @@ public class SpaceObjListBuilder {
 			
 			
 			// Finally, add the objects to our list
-			spaceObjList.add(tempSpaceObj);
+			if (Double.parseDouble(tempSpaceObj.getMagnitude()) < 6)
+				spaceObjList.add(tempSpaceObj);
 		
 		}
 		
