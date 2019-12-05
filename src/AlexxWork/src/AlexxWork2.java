@@ -128,7 +128,10 @@ public class AlexxWork2 extends JFrame {
 			}
 		});
 	}
-
+	
+	/**
+	 * Check all inputs and confirm they are valid. If not, send error message
+	 */
 	public void checkValues() throws NullPointerException, Exception {
 		
 		checkDay();
@@ -140,15 +143,10 @@ public class AlexxWork2 extends JFrame {
 		
 		checkLatitude();
 		checkLongitude();
-//		checkLatitudeDirection();
-//		checkLongitudeDirection();
-		
-		
+
 		if(checkDay() && checkYear() && checkMonth() && checkHours() && checkMinutes()
 				&& checkLatitude() && checkLongitude() && checkDate()) {
 			setValidInputs();
-			//ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\SkyMap.png");
-			//scrollPane_1.setViewportView(new JLabel(ii));
 			setLabels();
 			getSpaceObjects();
 			drawSky();
@@ -160,73 +158,50 @@ public class AlexxWork2 extends JFrame {
 		}
 	}
 	
+	/**
+	 * Set valid inputs
+	 */
 	public void setValidInputs() {
-		
-		System.out.println(latInput);
-		System.out.println(longInput);
-		System.out.println(latitudeDirection);
-		System.out.println(longitudeDirection);
 		dayValid = dayInput;
 		yearValid = yearInput;
 		monthValid = monthInput;
 		hourValid = hourInput;
 		minuteValid = minuteInput;
-		//if(longitudeDirection.equals("South")) {
-		//	longValid = longInput * -1;
-			
-		//}
-		//if(longitudeDirection.equals("North")) {
-			longValid = longInput;
-			//System.out.println("***"+longValid);
-		//}
-		
-		//if(latitudeDirection.equals("West")) {
-			//latValid = latInput * -1;
-			//System.out.println("******"+latValid);
-		//}
-		//if(latitudeDirection.equals("East")) {
-			latValid = latInput;
-		//}
+		longValid = longInput;
+		latValid = latInput;
 		minValid = minInput;
-		
-		System.out.println(yearValid);
-		System.out.println(monthValid);
-		System.out.println(dayValid);
-		System.out.println(hourValid);
-		System.out.println(minuteValid);
-		System.out.println(latValid);
-		System.out.println(longValid);
-		
 	}
 	
+	/**
+	 * Call spaceObjects to get list
+	 */
 	public void getSpaceObjects() throws NullPointerException, Exception {
 		
-		/*spaceObjList = SkyMap_Formulae_J.getSpace(String.valueOf((int)yearValid), String.valueOf((int)monthValid), 
+		spaceObjList = SkyMap_Formulae_J.getSpace(String.valueOf((int)yearValid), String.valueOf((int)monthValid), 
 				String.valueOf((int)dayValid), String.valueOf((int)hourValid), 
 				String.valueOf((int)minuteValid), String.valueOf(0), 
 				String.valueOf((int)latValid), String.valueOf((int)longValid));
-				*/
-		//ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\waiting.jpg");
-		//scrollPane_1.setViewportView(new JLabel(ii));
-		spaceObjList = SkyMap_Formulae_J.getSpace(String.valueOf((int)2019), String.valueOf((int)5), 
+		/*spaceObjList = SkyMap_Formulae_J.getSpace(String.valueOf((int)2019), String.valueOf((int)5), 
 				String.valueOf((int)10), String.valueOf((int)20), 
 				String.valueOf((int)23), String.valueOf(0), 
 				String.valueOf((int)0), String.valueOf((int)-114));
-		//System.out.println("2222222222222222222222222222\n");
-    	//System.out.println(spaceObjList.size()+"\2222222222222222222222222222\n");
-    	
-		
+				*/		
 	}
+	
+	/**
+	 * Call DrawingSky to get rendered image of skyMap
+	 */
 	public void drawSky() {
 		drawing = new DrawingSky();
 		screenshot = drawing.draw();
-
 		scrollPane_1.setViewportView(new JLabel(screenshot));
 		btnSaveToDisk.setEnabled(true);
 		refreshButton.setEnabled(true);
-		//fc.setSelectedFile(new java.io.File(screenshot));
 	}
 
+	/**
+	 * These methods confirm imputs are within the valid bounds
+	 */
 	public Boolean checkDay() {
 		Boolean check = false;
 		System.out.println(dayTextField.getText());
@@ -276,8 +251,6 @@ public class AlexxWork2 extends JFrame {
 			}
 		}
 		else {
-			//JOptionPane.showMessageDialog(new JFrame(), "Please Enter a Valid Day", "Dialog",
-			 //       JOptionPane.ERROR_MESSAGE);
 			yearTextField.setBorder(new LineBorder(Color.RED, 3));
 		}
 		return check;
@@ -408,50 +381,7 @@ public class AlexxWork2 extends JFrame {
 		}
 		return check;
 	}
-	
-//	public Boolean checkLatitudeDirection() {
-//		Boolean flag = false;
-//		/*
-//		if(latitudeComboBox.getSelectedItem().toString().equals(" ")) {
-//			latitudeComboBox.setBorder(new LineBorder(Color.RED, 3));
-//		}
-//		else {
-//			if(latitudeComboBox.getSelectedItem().toString().equals("North")) {
-//				latitudeDirection = "North";
-//				latitudeComboBox.setBorder(new LineBorder(Color.BLACK, 1));
-//			}
-//			else if(latitudeComboBox.getSelectedItem().toString().equals("South")) {
-//				latitudeDirection = "South";
-//				latitudeComboBox.setBorder(new LineBorder(Color.BLACK, 1));
-//			}
-//			flag = true;
-//		}
-//		*/
-//		flag = true;
-//		return flag;
-//	}
-//	
-//	public Boolean checkLongitudeDirection() {
-//		Boolean flag = false;
-//		/*
-//		if(longitudeComboBox.getSelectedItem().toString() == " ") {
-//			longitudeComboBox.setBorder(new LineBorder(Color.RED, 3));
-//		}
-//		else {
-//			if(longitudeComboBox.getSelectedItem().toString() == "West") {
-//				longitudeDirection = "West";
-//				longitudeComboBox.setBorder(new LineBorder(Color.BLACK, 1));
-//			}
-//			else if(longitudeComboBox.getSelectedItem().toString() == "East") {
-//				longitudeDirection = "East";
-//				longitudeComboBox.setBorder(new LineBorder(Color.BLACK, 1));
-//			}
-//			flag = true;
-//		}
-//		*/
-//		flag = true;
-//		return flag;
-//	}
+
 	
 	public Boolean checkDate() {
 		Boolean flag = true;
@@ -520,8 +450,11 @@ public class AlexxWork2 extends JFrame {
 		minInput = -1;
 	}
 	
+	
+	/**
+	 * Set label variables. Checkbox is checked if variable is true
+	 */
 	public void setLabels() {
-		//CB is checked if true
 	    starNamesCB = starNames.isSelected();
 		constellationsCB = constellations.isSelected();
 		planetsCB = planets.isSelected();
@@ -560,13 +493,6 @@ public class AlexxWork2 extends JFrame {
 		return minValid;
 	}
 	
-	public String getLatitudeDirection() {
-		return latitudeDirection;
-	}
-	
-	public String getLongitudeDirection() {
-		return longitudeDirection;
-	}
 	
 	
 	/**
@@ -584,11 +510,7 @@ public class AlexxWork2 extends JFrame {
 		mainGUI = new JPanel();
 		mainGUI.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(mainGUI);
-		
-		//Display display = Display.getDefault(); // this is required to come before the "Shell" we'll be editting
-		//Shell shell = new Shell(display, SWT.CLOSE | SWT.TITLE | SWT.MIN ); // Says 'use the Windows display window with a close, title, and minimize' but since we aren't also putting SWT.MAX then it is grayed out in my other projects I'm doing
-		//shell.setSize(600, 450); // Resolution in X, Y
-		
+				
 		//Intialize the member variables
 		intialize();
 		mainGUI.setLayout(new MigLayout("", "[75px][][9px][10px][7px][76.00px][105.00px][5px][-1.00px][-76.00px][850.00px,grow,fill][2.00][329.00px,right][]", "[67px][1px][4px][40px][13px][52px][11px][58px][3px][58px][4px][33px][9px][39px][3px][17px][76px][49px][101px][33px][48px][39px][22px][39px][28px][47px][22px][39px][28px][39px][28px][67px]"));
@@ -773,31 +695,15 @@ public class AlexxWork2 extends JFrame {
 		btnSaveToDisk.setEnabled(false);
 		mainGUI.add(btnSaveToDisk, "cell 12 31,growx");
 		
-//		latitudeComboBox = new JComboBox();
-//		latitudeComboBox.addItem(" ");
-//		latitudeComboBox.addItem("North");
-//		latitudeComboBox.addItem("South");
-//		mainGUI.add(latitudeComboBox, "cell 0 23 7 1,grow");
-//		
-//		longitudeComboBox = new JComboBox();
-//		longitudeComboBox.addItem(" ");
-//		longitudeComboBox.addItem("East");
-//		longitudeComboBox.addItem("West");
-//		mainGUI.add(longitudeComboBox, "cell 0 27 7 1,grow");
-		
 		refreshButton = new JButton("Refresh SkyMap");
 		refreshButton.addActionListener(new ActionListener() {
+			
+			/**
+			 * Redraws skyMap based on the toggable labels
+			 */
 			public void actionPerformed(ActionEvent arg0) {
-				//try {
-					//ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\waiting.jpg");
-					//scrollPane_1.setViewportView(new JLabel(ii));
-					setLabels();
-					drawSky();
-					//getSpaceObjects();
-				//} catch () {
-					// TODO Auto-generated catch block
-				//	e.printStackTrace();
-				//}
+				setLabels();
+				drawSky();
 				setLabels();
 			}
 		});
@@ -809,10 +715,8 @@ public class AlexxWork2 extends JFrame {
 		applyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					//checkValues();
-					setLabels();
-					getSpaceObjects();
-					drawSky();
+					
+					checkValues();
 					btnSaveToDisk.setText("Save Image");
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
@@ -834,8 +738,6 @@ public class AlexxWork2 extends JFrame {
 		scrollPane_1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scrollPane_1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane_1.setViewportBorder(new LineBorder(Color.BLACK));
-		//ImageIcon ii = new ImageIcon("C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\pluto.jpg");
-		//scrollPane_1.setViewportView(new JLabel(ii));
 		mainGUI.add(scrollPane_1, "cell 10 1 1 31,grow");
 		
 		JLabel lblHrsMins = new JLabel("Hrs              Mins");
@@ -869,6 +771,7 @@ public class AlexxWork2 extends JFrame {
 					e.consume();
 				}
 			}
+			
 			public void keyPressed(KeyEvent e) {
 				if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_V) {
 					System.out.println("ILLEGAL ACTION");
@@ -917,9 +820,5 @@ public class AlexxWork2 extends JFrame {
 		});
 		mainGUI.add(longTextField, "cell 6 25,grow");
 		longTextField.setColumns(10);
-		
-		
-		
-		
 	}
 }

@@ -95,6 +95,7 @@ public class DrawingSky extends Canvas {
 	int[] taurus= new int[16];
 	ArrayList<String> taurusNames;
 	
+	// Generate SkyMap
     public ImageIcon draw() {
         JFrame frame = new JFrame("My Drawing");
         frame.setBackground(Color.BLACK);
@@ -105,6 +106,7 @@ public class DrawingSky extends Canvas {
         return takeSnapShot(canvas);
     }
 
+    //Paint Image
     public void paint(Graphics g) {
         g.setColor(Color.black);
         g.fillRect(0, 0, getWidth(), getHeight());
@@ -118,6 +120,7 @@ public class DrawingSky extends Canvas {
     	int color;
     	g.setColor(Color.white);
 
+    	//Draw stars
     	for(int i = 0; i < (list.size()/4); i++) {
     		g.fillOval(list.get(a), list.get(b), list.get(c), list.get(d));
     		a = d + 1;
@@ -125,6 +128,8 @@ public class DrawingSky extends Canvas {
     		c = b + 1;
     		d = c + 1;
     	}
+    	
+    	//Draw star labels if checked
     	index = 0;
     	for(int i = 0; i < (starLabels.size()/3); i++) {
     		g.drawString(starLabels.get(index), Integer.valueOf(starLabels.get(index+1)), Integer.valueOf(starLabels.get(index+2)));
@@ -133,27 +138,33 @@ public class DrawingSky extends Canvas {
     	
     	g.setFont(new Font("Helvetica", Font.PLAIN, 20)); 
     	
+    	//Draw constellation labels if checked
     	index = 0;
     	for(int i = 0; i < (constLabels.size()/3); i++) {
     		g.drawString(constLabels.get(index), Integer.valueOf(constLabels.get(index+1)), Integer.valueOf(constLabels.get(index+2)));
     		index +=3;
     	}
     	
+    	//Draw planet labels if checked
     	index = 0;
     	for(int i = 0; i < (planetLabels.size()/3); i++) {
     		g.drawString(planetLabels.get(index), Integer.valueOf(planetLabels.get(index+1)), Integer.valueOf(planetLabels.get(index+2)));
     		index +=3;
     	}
+    	
+    	//Draw messier labels if checked
     	index = 0;
     	for(int i = 0; i < (mesrLabels.size()/3); i++) {
     		g.drawString(mesrLabels.get(index), Integer.valueOf(mesrLabels.get(index+1)), Integer.valueOf(mesrLabels.get(index+2)));
     		index +=3;
     	}
     	
+    	//Draw moon with label
     	if(moonLabel.size() > 0) {
     		g.drawString(moonLabel.get(0), Integer.valueOf(moonLabel.get(1)), Integer.valueOf(moonLabel.get(2)));
     	}
     	
+    	//Draw Constellations
     	if(checkTaurus()) {
     		g.drawLine(taurus[0], taurus[1], taurus[2], taurus[3]);
     		g.drawLine(taurus[4], taurus[5], taurus[6], taurus[7]);
@@ -561,6 +572,7 @@ public class DrawingSky extends Canvas {
     	}	
     }
     
+    //Create lists that are used to draw
     public ArrayList<Integer> createList(){
     	ArrayList<Integer> test = new ArrayList<>();
     	starLabels = new ArrayList<>();
@@ -576,25 +588,16 @@ public class DrawingSky extends Canvas {
     	
     	int size;
     	
+    	//Go through the spaceobjectlist
     	for(int i = 0; i < AlexxWork2.spaceObjList.size(); i++) {
-    		/*
-    		if(hydraNames.contains(AlexxWork2.spaceObjList.get(i).getProperName())) {
-    			System.out.println("Name: "+AlexxWork2.spaceObjList.get(i).getProperName());
-    			System.out.println("Alt: "+ AlexxWork2.spaceObjList.get(i).getAltitude());
-    			System.out.println("Mag: "+AlexxWork2.spaceObjList.get(i).getMagnitude());
-    			
-    		}/*
-    		if(AlexxWork2.spaceObjList.get(i).getProperName() != null && AlexxWork2.spaceObjList.get(i).getProperName() != "") {
-    			if(AlexxWork2.spaceObjList.get(i).getProperName().contains(" Hya")||AlexxWork2.spaceObjList.get(i).getProperName().contains("Psc")
-    					||AlexxWork2.spaceObjList.get(i).getProperName().contains("Alnath")||AlexxWork2.spaceObjList.get(i).getProperName().contains("Alnitak")) {
-        			System.out.println("Aur:"+AlexxWork2.spaceObjList.get(i).getProperName());
-        		}
-    		}*/
     		
+    		//If object is visible and object has positive altitude continue
     		if(AlexxWork2.spaceObjList.get(i).getMagnitude() != null 
     				&& (Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()) <= 6.0) 
     				&& AlexxWork2.spaceObjList.get(i).getAltitude() > 0.5) {
 	    		
+    			
+    			//Calculate X and Y
     			int x = getX(2250, 2250, 1000, 
     					(int)AlexxWork2.spaceObjList.get(i).getAzimuth(), 
     					(int)AlexxWork2.spaceObjList.get(i).getAltitude());
@@ -603,6 +606,7 @@ public class DrawingSky extends Canvas {
 						(int)AlexxWork2.spaceObjList.get(i).getAzimuth(), 
 						(int)AlexxWork2.spaceObjList.get(i).getAltitude());
 				
+				//Load stars
 				if(AlexxWork2.spaceObjList.get(i).getType() == "STAR" 
 						&& AlexxWork2.spaceObjList.get(i).getProperName() != null 
 						&& AlexxWork2.spaceObjList.get(i).getProperName() != "") {
@@ -610,6 +614,7 @@ public class DrawingSky extends Canvas {
 					if(AlexxWork2.starNamesCB 
 							&& Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()) <= 6.0) {
 						try {
+							//Filter out number only star names
 							int testInt = Integer.parseInt(AlexxWork2.spaceObjList.get(i).getProperName());
 							} catch (NumberFormatException | NullPointerException nfe) {
 								starLabels.add(AlexxWork2.spaceObjList.get(i).getProperName());
@@ -618,7 +623,7 @@ public class DrawingSky extends Canvas {
 							}
 					}
 					
-					
+					//Load constellation data
 					if(herculesNames.contains(AlexxWork2.spaceObjList.get(i).getProperName())) {
 						String name = AlexxWork2.spaceObjList.get(i).getProperName();
 						loadHerculesLocation(name, x, y);
@@ -716,11 +721,13 @@ public class DrawingSky extends Canvas {
 					if(taurusNames.contains(AlexxWork2.spaceObjList.get(i).getProperName())) {
 						loadTaurusLocation(AlexxWork2.spaceObjList.get(i).getProperName(), x, y);
 					}
-					
-				}				
+				}
+				
+				//Add coordinates to list
 	    		test.add(a, x);
 	    		test.add(b, y);
 	    		
+	    		//Add moon information if visible
 	    		if(AlexxWork2.spaceObjList.get(i).getProperName() == "MOON") {
 	    			size = 22;
 	    			String moonName = AlexxWork2.spaceObjList.get(i).getProperName() + ": " + AlexxWork2.spaceObjList.get(i).getType();
@@ -729,13 +736,17 @@ public class DrawingSky extends Canvas {
 					moonLabel.add(String.valueOf(y));
 	    		}
 	    		
+	    		//If object is planet, set the size
 	    		else if(AlexxWork2.spaceObjList.get(i).getType() == "PLAN"){
 	    			size = 16;
 	    		}
+	    		
+	    		//Else set size based on mag
 	    		else{
 	    			size = getSize(Double.valueOf(AlexxWork2.spaceObjList.get(i).getMagnitude()));
 	    		}
 	    		
+	    		//Add size to list
 	    		test.add(c, size);
 	    		test.add(d, size);
 	    		a = d + 1;
@@ -744,6 +755,7 @@ public class DrawingSky extends Canvas {
 	    		d = c + 1;
     		}
     		
+    		//Load constellation labels
     		if(AlexxWork2.constellationsCB) {
 				if(AlexxWork2.spaceObjList.get(i).getType() == "CONST" 
 						&& AlexxWork2.spaceObjList.get(i).getConstName() != null 
@@ -757,6 +769,8 @@ public class DrawingSky extends Canvas {
 					constLabels.add(String.valueOf(y));
 				}
 			}
+    		
+    		//Load planet labels
     		if(AlexxWork2.planetsCB) {
 				if(AlexxWork2.spaceObjList.get(i).getType() == "PLAN" 
 						&& AlexxWork2.spaceObjList.get(i).getProperName() != null 
@@ -770,6 +784,8 @@ public class DrawingSky extends Canvas {
 					planetLabels.add(String.valueOf(y));
 				}
 			}
+    		
+    		//Load messier labels
     		if(AlexxWork2.messierCB) {
 				if(AlexxWork2.spaceObjList.get(i).getType() == "MESR" 
 						&& AlexxWork2.spaceObjList.get(i).getProperName() != null 
@@ -783,8 +799,9 @@ public class DrawingSky extends Canvas {
 					mesrLabels.add(String.valueOf(y));
 				}
 			}
-    		
     	}
+    	
+    	//Return list 
     	return test;
     }
     
@@ -838,24 +855,7 @@ public class DrawingSky extends Canvas {
 	return size;
 }  
 
-//    public ImageIcon takeSnapShot(Component panel){
-//	       BufferedImage bufImage = new BufferedImage(panel.getSize().width, panel.getSize().height,BufferedImage.TYPE_INT_RGB);
-//	       System.out.println(panel.getSize().width+" "+panel.getSize().height);
-//	       panel.paint(bufImage.createGraphics());
-//	       ImageIcon imageIcon = new ImageIcon(bufImage);
-//	       String snapshotLocation = "C:\\Users\\alexx\\OneDrive\\Documents\\Fall 2019\\CS 499\\testScreenShot.jpeg";
-//		File imageFile = new File(snapshotLocation);
-//	    try{
-//	        imageFile.createNewFile();
-//	        ImageIO.write(bufImage, "jpeg", imageFile);
-//	        System.out.println("Created picture");
-//	        
-//	    }catch(Exception ex){
-//	    	System.out.println("Did not create picture");
-//	    } 
-//	    return imageIcon;
-//	}
-	
+	// Take screenshot of skymap
 	public ImageIcon takeSnapShot(Component panel){
        // BufferedImage bufImage = new BufferedImage(panel.getSize().width, panel.getSize().height,BufferedImage.TYPE_INT_RGB);
         BufferedImage bufImage = new BufferedImage(2250, 2250,BufferedImage.TYPE_INT_RGB);
@@ -878,6 +878,8 @@ public class DrawingSky extends Canvas {
      return imageIcon;
  }
     
+	//Load constellation locations
+	
     public void loadUrsaMinorLocation(String name, int x, int y) {
     	if(name.contains("Polaris")) {
     		ursaMinor[0] = x;
@@ -2212,6 +2214,8 @@ public class DrawingSky extends Canvas {
     	
     }
 
+    
+    //Load all the constellation names
     public void loadConstNames() {
     	loadHerculesNames();
     	loadUrsaMinorNames();
@@ -2663,6 +2667,8 @@ public class DrawingSky extends Canvas {
     	taurusNames.add(" 38Nu  Tau");
     }
     
+    
+    //Check if all stars in a constellation are loaded
     public Boolean checkHercules() {
     	Boolean flag = true;
     	for(int i = 0; i < 44; i++) {
