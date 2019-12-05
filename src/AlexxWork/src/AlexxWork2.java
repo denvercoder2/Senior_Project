@@ -14,6 +14,7 @@ import java.awt.Image;
 import javax.swing.JCheckBox;
 import javax.imageio.ImageIO;
 import javax.swing.Box;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
@@ -115,6 +116,7 @@ public class AlexxWork2 extends JFrame {
 	private JButton refreshButton;
 	private int count = 0;
 	private JButton btnHelp;
+	JButton applyButton;
 	
 
 	/**
@@ -150,12 +152,34 @@ public class AlexxWork2 extends JFrame {
 
 		if(checkDay() && checkYear() && checkMonth() && checkHours() && checkMinutes()
 				&& checkLatitude() && checkLongitude() && checkDate()) {
-			setValidInputs();
-			setLabels();
-			getSpaceObjects();
-			drawSky();
+
+			String gifImage = "spaceGif.gif";
+			Icon gifIcon = new ImageIcon(gifImage);
+			scrollPane_1.setViewportView(new JLabel(gifIcon));
 			
-		}
+			
+			applyButton.setText("Loading Universe...");
+				new java.util.Timer().schedule( 
+				        new java.util.TimerTask() {
+				            @Override
+				            public void run() {
+				    			
+				    			setValidInputs();
+				    			setLabels();
+				    			try {
+									getSpaceObjects();
+								} catch (NullPointerException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} catch (Exception e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+				    			drawSky();
+				            }
+				        }, 
+				        10);
+			}
 		else {
 			JOptionPane.showMessageDialog(new JFrame(), "Please Enter Valid Inputs!", "Dialog",
 			        JOptionPane.ERROR_MESSAGE);
@@ -195,12 +219,16 @@ public class AlexxWork2 extends JFrame {
 	/**
 	 * Call DrawingSky to get rendered image of skyMap
 	 */
-	public void drawSky() {
+	public void drawSky() {		
 		drawing = new DrawingSky();
 		screenshot = drawing.draw();
+		scrollPane_1.setViewportView(null);
 		scrollPane_1.setViewportView(new JLabel(screenshot));
 		btnSaveToDisk.setEnabled(true);
 		refreshButton.setEnabled(true);
+		applyButton.setText("Apply");
+		scrollPane_1.getVerticalScrollBar().setValue(scrollPane_1.getHeight()/2);
+		scrollPane_1.getHorizontalScrollBar().setValue(scrollPane_1.getWidth()/2);
 	}
 
 	/**
@@ -715,11 +743,10 @@ public class AlexxWork2 extends JFrame {
 		refreshButton.setEnabled(false);
 		mainGUI.add(refreshButton, "cell 12 17,growx,aligny top");
 		
-		JButton applyButton = new JButton("Apply");
+		applyButton = new JButton("Apply");
 		applyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					
 					checkValues();
 					btnSaveToDisk.setText("Save Image");
 				} catch (ParseException e) {

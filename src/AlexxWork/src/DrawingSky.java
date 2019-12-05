@@ -729,12 +729,12 @@ public class DrawingSky extends Canvas {
 	    		
 	    		//Add moon information if visible
 	    		if(AlexxWork2.spaceObjList.get(i).getProperName() == "MOON") {
-	    			size = 22;
-	    			String moonName = AlexxWork2.spaceObjList.get(i).getProperName() + ": " + AlexxWork2.spaceObjList.get(i).getType();
-	    			moonLabel.add(moonName);
-					moonLabel.add(String.valueOf(x));
-					moonLabel.add(String.valueOf(y));
-	    		}
+                    size = 22;
+                    String moonName = AlexxWork2.spaceObjList.get(i).getProperName() + ": " + AlexxWork2.spaceObjList.get(i).getType();
+                    moonLabel.add(0, moonName);
+                    moonLabel.add(1, String.valueOf(x));
+                    moonLabel.add(2, String.valueOf(y));
+                }
 	    		
 	    		//If object is planet, set the size
 	    		else if(AlexxWork2.spaceObjList.get(i).getType() == "PLAN"){
